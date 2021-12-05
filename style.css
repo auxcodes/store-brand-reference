@@ -1,0 +1,17 @@
+.results-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.result-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.brand-name {
+    margin: 0.5em;
+}
+
+.brand-url {
+    margin: 0.5em;
+}
