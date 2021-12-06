@@ -1,3 +1,17 @@
+label,
+input,
+button {
+    margin: 0.25em;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.search-form {
+    margin: 00.5em auto;
+}
+
 .results-container {
     display: flex;
     flex-direction: column;

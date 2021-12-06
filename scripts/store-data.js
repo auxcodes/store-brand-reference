@@ -2,23 +2,25 @@ const storeNames = [];
 const storeURLs = [];
 const brands = [];
 const products = [];
+const allData = [];
 export let initialised = false;
 
 function StoreData() {
     console.log("Initialise data");
     fetch("../assets/store-data.json")
         .then(response => {
-            console.log("init response: ", response);
+            //console.log("init response: ", response);
             return response.json();
         })
         .then(data => {
             initialised = true;
-            console.log("Store Data: ", data)
+            //console.log("Store Data: ", data);
             data.forEach(store => {
                 storeNames.push(store.storeName);
                 storeURLs.push(store.storeURL);
                 brands.push(store.brands.toLowerCase());
                 products.push(store.parts.toLowerCase());
+                allData.push(store);
             });
         });
 }
@@ -30,7 +32,7 @@ function findBrand(brandName) {
     for (let i = 0; i < length; i++) {
         const inString = brands[i].includes(brandName.toLowerCase());
         if (inString) {
-            result.push({ name: storeNames[i], url: storeURLs[i] });
+            result.push(allData[i]);
         }
     }
     console.log("Find brand result: ", result);
@@ -44,11 +46,15 @@ function findProduct(productName) {
     for (let i = 0; i < length; i++) {
         const inString = products[i].includes(productName.toLowerCase());
         if (inString) {
-            result.push({ name: storeNames[i], url: storeURLs[i] });
+            result.push(allData[i]);
         }
     }
     console.log("Find product result: ", result);
     return result;
 }
 
-export { StoreData, findBrand, findProduct }
+function allStores() {
+    return allData;
+}
+
+export { StoreData, findBrand, findProduct, allStores }

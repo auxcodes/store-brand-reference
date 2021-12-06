@@ -11,14 +11,15 @@
 </head>
 
 <body>
-    <div>
-        <label for="searchInput">Search Stores</label>
-        <input id="searchInput" type="text" />
-        <button id="searchBrandBtn" type="submit">Brands</button>
-        <button id="searchProductBtn" type="submit">Products</button>
+    <div class="search-bar">
+        <form class="search-form" action="#">
+            <label for="searchInput">Search Stores</label>
+            <input id="searchInput" type="text" />
+            <button id="searchBrandBtn" type="submit">Brands</button>
+            <button id="searchProductBtn" type="submit">Products</button>
+        </form>
     </div>
     <div id="searchResults" class="results-container">
-
     </div>
     <script type="module" src="./scripts/main.js"></script>
 </body>

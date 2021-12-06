@@ -1,4 +1,4 @@
-import { initialised, StoreData, findBrand, findProduct } from "./store-data.js";
+import { initialised, StoreData, findBrand, findProduct, allStores } from "./store-data.js";
 
 const storeData = new StoreData();
 
@@ -14,6 +14,25 @@ searchProductBtn.addEventListener("click", searchProduct);
 
 const searchResultElement = document.getElementById("searchResults");
 let searchResults = [];
+
+
+(function StoreList() {
+    initTimeOut();
+})() //IIFE immediately invoked function expression
+
+
+function initTimeOut() {
+    setTimeout(() => {
+        if (!initialised) {
+            initTimeOut();
+            console.log("waiting");
+        }
+        else {
+            resetResults();
+        }
+    }, 50);
+
+}
 
 function searchText(event) {
     searchValue = event.target.value;
@@ -52,12 +71,18 @@ function generateResults() {
     searchResults.forEach(item => {
         const div = document.createElement("div");
         div.classList.add("result-row");
-        div.innerHTML = "<span class='brand-name'>" + item.name + "</span> <a class='brand-url' href='" + item.url + "' target='_blank'>" + item.url + "</a>";
+        div.innerHTML = "<span class='brand-name'>" + item.storeName + "</span> <a class='brand-url' href='" + item.storeURL + "' target='_blank'>" + item.storeURL + "</a>";
         searchResultElement.append(div);
     });
-
 }
 
 function clearResults() {
     searchResultElement.innerHTML = "";
+}
+
+function resetResults() {
+    searchResults = [];
+    searchResults = allStores();
+    //console.log("reset: ", searchResults);
+    generateResults();
 }

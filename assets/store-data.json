@@ -3,7 +3,7 @@
         "storeName": "Dawson Sports",
         "storeURL": "https://dawsonsports.com.au",
         "brands": "4III, HED, Industry Nine, ISM, Praxis, WD40, Basso, Moots, Spatz Wear, Torhans",
-        "parts": "Power Meters, Wheels, Wheels, Saddles, Cranks, Sprays, Bikes Parts, Bikes Parts, Thermal Clothing, Aero Hydration"
+        "parts": "Power Meters, Wheels, Wheelset, Saddles, Cranks, Sprays, Bikes Parts, Thermal Clothing, Aero Hydration"
     },
     {
         "storeName": "Dirtworks",
@@ -186,13 +186,7 @@
         "parts": ""
     },
     {
-        "storeName": "Sola Sales",
-        "storeURL": "https://www.solasales.net.au/idServerLIVE/account/signin?ReturnUrl=%2fidServerLIVE%2fissue%2fwsfed%3fwa%3dwsignin1.0%26wtrealm%3dhttps%253a%252f%252fwww.solasales.net.au%252fSalesNetLIVE%252f%26wctx%3drm%253d0%2526id%253d%2526ru%253dhttps%25253a%25252f%25252fwww.solasales.net.au%25252fSalesNetLIVE%25252f%26wct%3d2017-09-04T06%253a39%253a15Z%26ap21idtype%3dperson&wa=wsignin1.0&wtrealm=https%3a%2f%2fwww.solasales.net.au%2fSalesNetLIVE%2f&wctx=rm%3d0%26id%3d%26ru%3dhttps%253a%252f%252fwww.solasales.net.au%252fSalesNetLIVE%252f&wct=2017-09-04T06%3a39%3a15Z&ap21idtype=person",
-        "brands": "",
-        "parts": ""
-    },
-    {
-        "storeName": "",
+        "storeName": "Sea to Summit",
         "storeURL": "https://b2b.seatosummitdistribution.com.au/customer/account/",
         "brands": "",
         "parts": ""
