@@ -36,12 +36,12 @@ function initTimeOut() {
 
 function searchText(event) {
     searchValue = event.target.value;
-    console.log("Search Text", searchValue);
+    //console.log("Search Text", searchValue);
 }
 
 function searchBrand(event) {
     getSearchValue();
-    console.log("Search Brand: ", searchValue, event);
+    //console.log("Search Brand: ", searchValue, event);
     searchResults = [];
     searchResults = findBrand(searchValue);
     clearResults();
@@ -50,7 +50,7 @@ function searchBrand(event) {
 
 function searchProduct(event) {
     getSearchValue();
-    console.log("Search Product", searchValue, event);
+    //console.log("Search Product", searchValue, event);
     searchResults = [];
     searchResults = findProduct(searchValue);
     clearResults();
@@ -62,7 +62,7 @@ function getSearchValue() {
         console.log("data not initialised");
     }
     if (searchValue === "") {
-        console.log(searchField);
+        //console.log(searchField);
         searchValue = searchField.value;
     }
 }

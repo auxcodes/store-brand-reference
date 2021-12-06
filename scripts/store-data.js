@@ -26,7 +26,7 @@ function StoreData() {
 }
 
 function findBrand(brandName) {
-    console.log("Find Brand", brandName);
+    //console.log("Find Brand", brandName);
     const result = [];
     const length = brands.length;
     for (let i = 0; i < length; i++) {
@@ -35,12 +35,12 @@ function findBrand(brandName) {
             result.push(allData[i]);
         }
     }
-    console.log("Find brand result: ", result);
+    //console.log("Find brand result: ", result);
     return result;
 }
 
 function findProduct(productName) {
-    console.log("Find Product", productName);
+    //console.log("Find Product", productName);
     const result = [];
     const length = products.length;
     for (let i = 0; i < length; i++) {
@@ -49,7 +49,7 @@ function findProduct(productName) {
             result.push(allData[i]);
         }
     }
-    console.log("Find product result: ", result);
+    //console.log("Find product result: ", result);
     return result;
 }
 
