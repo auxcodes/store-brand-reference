@@ -1,17 +1,71 @@
-label,
+body {
+    font-family: arial;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 0.25em;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4b4949;
+}
+
 input,
 button {
+    border: none;
     margin: 0.25em;
+    font-size: 1.5rem;
+}
+
+.notification-bar {
+    border-radius: 0.5em;
+    border: 2px solid rgb(0, 112, 146);
+    background-color: rgb(223, 237, 242);
+    padding: 0.5em;
+    width: max-content;
+    margin: auto auto 0.25em auto;
+}
+
+.notif-text {
+    margin: 0 0.25em 0.25em 0.25em;
+    color: #666;
 }
 
 .search-bar {
-    display: flex;
+    background-image: linear-gradient(#e8e8e8, white, #a7a7a7);
+    border-radius: 2em 2em;
+    padding: 0 0.5em;
 }
 
 .search-form {
-    margin: 00.5em auto;
+    display: grid;
+    grid-template-columns: max-content 2fr max-content max-content;
+    margin: 0.5em auto;
 }
 
+.search-input {
+    padding: 0 0.5em;
+    border-radius: 0.75em 0.75em;
+    border: 1px #666 solid;
+}
+
+.search-btn {
+    border-radius: 1.75em;
+    padding: 0 0.5em;
+}
+
+.brand-btn {
+    background-color: rgb(1, 136, 255);
+    border-radius: 0.75em 0 0 0.75em;
+    color: white;
+}
+
+.products-btn {
+    background-color: rgb(2, 172, 53);
+    border-radius: 0 0.75em 0.75em 0;
+    color: white;
+}
 .results-container {
     display: flex;
     flex-direction: column;
