@@ -3,6 +3,13 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 1rem;
+    height: 100vh;
+}
+
+header {
+    flex-shrink: 0;
+    position: relative;
+    top: 0;
 }
 
 label {
@@ -34,7 +41,8 @@ button {
 }
 
 .search-bar {
-    background-image: linear-gradient(#e8e8e8, white, #a7a7a7);
+    /* background-image: linear-gradient(#e8e8e8, white, #a7a7a7); */
+    border-bottom: 1px #666 solid;
     border-radius: 2em 2em;
     padding: 0 0.5em;
 }
@@ -54,6 +62,7 @@ button {
 .search-btn {
     border-radius: 1.75em;
     padding: 0 0.5em;
+    cursor: pointer;
 }
 
 .brand-btn {
@@ -67,14 +76,47 @@ button {
     border-radius: 0 0.75em 0.75em 0;
     color: white;
 }
+
+.content {
+    flex: 1 0 auto;
+}
+
 .results-container {
     display: flex;
     flex-direction: column;
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 1px #eceaea solid;
+    border-radius: 1em;
+    background-color: #fdfdfd;
 }
 
 .result-row {
     display: grid;
     grid-template-columns: 1fr 2fr;
+    border-bottom: 1px #d5d5d5 solid;
+    border-radius: 1em;
+}
+
+.result-row:hover,
+.result-row:focus-within {
+    border-radius: 1em;
+    background-color: #fff;
+    box-shadow: 0px 0px 19px #adabab94;
+    border: 1px #cfcfcf solid;
+}
+
+.no-result-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border-bottom: 1px #d5d5d5 solid;
+    border-radius: 1em;
+}
+
+.no-results {
+    margin: 0.5em auto;
+    font-size: 1.25rem;
+    grid-column: 1/-1;
 }
 
 .brand-name {
@@ -87,7 +129,10 @@ button {
 
 /* Footer */
 .footer-content {
+    flex-shrink: 0;
+    position: relative;
     display: flex;
+    bottom: 0;
     flex-direction: row;
     border-top: 1px solid #e1e1e1;
     padding: 10px;

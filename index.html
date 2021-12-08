@@ -11,24 +11,29 @@
 </head>
 
 <body>
-    <div class="notification-bar">
-        <span class="notif-text">This is currently a proof of concept; store information is currently incomplete as it
-            is being added
-            manually. </span><br />
-        <span class="notif-text">Search results will not provide all available options. </span><br />
-        <span class="notif-text">Future updates will include: update/edit store information, add new store and login
-            only access.</span>
-    </div>
-    <div class="search-bar">
-        <form id="form-search" class="search-form">
-            <label class="search-label" for="searchInput">Store Search:</label>
-            <input class="search-input" id="searchInput" type="text" />
-            <button class="search-btn brand-btn" id="searchBrandBtn" type="submit">Brands</button>
-            <button class="search-btn products-btn" id="searchProductBtn" type="submit">Products</button>
-        </form>
-    </div>
-    <div id="searchResults" class="results-container">
-    </div>
+    <header>
+        <div class="notification-bar">
+            <span class="notif-text">This is currently a proof of concept; store information is currently incomplete as
+                it
+                is being added
+                manually. </span><br />
+            <span class="notif-text">Search results will not provide all available options. </span><br />
+            <span class="notif-text">Future updates will include: update/edit store information, add new store and login
+                only access.</span>
+        </div>
+        <div class="search-bar">
+            <form id="form-search" class="search-form">
+                <label class="search-label" for="searchInput">Store Search:</label>
+                <input class="search-input" id="searchInput" type="text" />
+                <button class="search-btn brand-btn" id="searchBrandBtn" type="submit">Brands</button>
+                <button class="search-btn products-btn" id="searchProductBtn" type="submit">Products</button>
+            </form>
+        </div>
+    </header>
+    <section class="content">
+        <div id="searchResults" class="results-container">
+        </div>
+    </section>
     <script type="module" src="./scripts/main.js"></script>
     <footer class="footer-content">
         <a class="github-link" href="https://github.com/auxcodes/store-search" target="_blank">

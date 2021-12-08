@@ -71,12 +71,23 @@ function getSearchValue() {
 }
 
 function generateResults() {
+    if (searchResults.length === 0) {
+        noResultsFound();
+        return;
+    }
     searchResults.forEach(item => {
         const div = document.createElement("div");
         div.classList.add("result-row");
         div.innerHTML = "<span class='brand-name'>" + item.storeName + "</span> <a class='brand-url' href='" + item.storeURL + "' target='_blank'>" + item.storeURL + "</a>";
         searchResultElement.append(div);
     });
+}
+
+function noResultsFound() {
+    const div = document.createElement("div");
+    div.classList.add("no-result-row");
+    div.innerHTML = "<span class='no-results'>" + "No results were found matching your search term." + "</span>";
+    searchResultElement.append(div);
 }
 
 function clearResults() {
