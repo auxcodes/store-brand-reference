@@ -15,6 +15,9 @@ searchProductBtn.addEventListener("click", searchProduct);
 const searchResultElement = document.getElementById("searchResults");
 let searchResults = [];
 
+// form hack to stop page reload
+const searchForm = document.getElementById("form-search");
+searchForm.onsubmit = (event) => event.preventDefault();
 
 (function StoreList() {
     initTimeOut();
