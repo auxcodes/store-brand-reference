@@ -1,4 +1,4 @@
-import { initialised, StoreData, findBrand, findProduct, allStores } from "./store-data.js";
+import { initialised, StoreData, findBrand, findProduct, getAllStores } from "./store-data.js";
 
 const storeData = new StoreData();
 
@@ -96,7 +96,7 @@ function clearResults() {
 
 function resetResults() {
     searchResults = [];
-    searchResults = allStores();
+    searchResults = getAllStores().sort((sa, sb) => sa.storeName > sb.storeName);
     //console.log("reset: ", searchResults);
     generateResults();
 }

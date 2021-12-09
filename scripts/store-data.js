@@ -53,8 +53,8 @@ function findProduct(productName) {
     return result;
 }
 
-function allStores() {
+function getAllStores() {
     return allData;
 }
 
-export { StoreData, findBrand, findProduct, allStores }
+export { StoreData, findBrand, findProduct, getAllStores }
