@@ -1,4 +1,5 @@
 import { initialised, StoreData, findBrand, findProduct, getAllStores } from "./store-data.js";
+import { signUp } from "./auth.js";
 
 const storeData = new StoreData();
 
@@ -21,6 +22,7 @@ searchForm.onsubmit = (event) => event.preventDefault();
 
 (function StoreList() {
     initTimeOut();
+    signUp("test@99bikes.com.au", "");
 })() //IIFE immediately invoked function expression
 
 
@@ -99,4 +101,14 @@ function resetResults() {
     searchResults = getAllStores().sort((sa, sb) => sa.storeName > sb.storeName);
     //console.log("reset: ", searchResults);
     generateResults();
+}
+
+// Get the modal
+const modal = document.getElementById('login-modal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }

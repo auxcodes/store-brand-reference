@@ -176,3 +176,135 @@ button {
     margin: auto 10px auto auto;
     fill: #6c6c6c;
 }
+
+/* Login Form */
+/* Bordered form */
+.login-form {
+    border: 3px solid #f1f1f1;
+    border-radius: 0.5em;
+}
+
+/* Full-width inputs */
+.modal-field {
+    font-size: 1.25rem;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0.45em;
+    margin: 0.25em 0.45em;
+    font-size: 1.25rem;
+    border-radius: 0.85em;
+}
+
+.login-field {
+    border: 1px solid #ccc;
+}
+
+/* Set a style for all buttons */
+.btn-row {
+    display: flex;
+}
+
+.modal-btn {
+    width: 100%;
+    background-color: #045aaa;
+    color: white;
+    padding: 0.45em;
+    margin: 0.45em;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.85em;
+}
+
+/* Add a hover effect for buttons */
+.login-btn:hover {
+    opacity: 0.8;
+}
+
+.login-btn {
+    background-color: #04aa6d;
+}
+
+/* Add padding to containers */
+.container {
+    margin: 0 1em 1em 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The "Forgot password" text */
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 0.25em auto;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    position: relative;
+    margin-left: auto;
+    margin-right: 0.45em;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+    color: rgb(179, 7, 7);
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s;
+}
+
+@-webkit-keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0);
+    }
+    to {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes animatezoom {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}

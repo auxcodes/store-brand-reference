@@ -23,9 +23,7 @@
     <header>
         <div class="notification-bar">
             <span class="notif-text">This is currently a proof of concept; store information is currently incomplete as
-                it
-                is being added
-                manually. </span><br />
+                it is being added manually. </span><br />
             <span class="notif-text">Search results will not provide all available options. </span><br />
             <span class="notif-text">Future updates will include: update/edit store information, add new store and login
                 only access.</span>
@@ -41,6 +39,35 @@
     </header>
     <section class="content">
         <div id="searchResults" class="results-container">
+        </div>
+        <!-- Button to open the modal login form -->
+        <button class="modal-btn" onclick="document.getElementById('login-modal').style.display='block'">Login</button>
+
+        <!-- The Modal -->
+        <div id="login-modal" class="modal">
+
+            <!-- Modal Content -->
+            <form class="login-form modal-content animate" action="/action_page.php">
+                <div class="btn-row">
+                    <span onclick="document.getElementById('login-modal').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                </div>
+                <div class="container">
+                    <label class="modal-field" for="uname"><b>Username</b></label>
+                    <input class="modal-field login-field" type="text" placeholder="Enter Username" name="uname"
+                        required>
+                    <label class="modal-field" for="psw"><b>Password</b></label>
+                    <input class="modal-field login-field" type="password" placeholder="Enter Password" name="psw"
+                        required>
+                </div>
+                <div class="container">
+                    <div class="btn-row">
+                        <button class="modal-btn login-btn" type="submit">Login</button>
+                        <button class="modal-btn signup-btn" type="submit">Sign Up</button>
+                    </div>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
         </div>
     </section>
     <script type="module" src="./scripts/main.js"></script>
