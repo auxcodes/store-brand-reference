@@ -27,10 +27,11 @@ button {
 }
 
 .notification-bar {
+    position: relative;
     border-radius: 0.5em;
     border: 2px solid rgb(0, 112, 146);
     background-color: rgb(223, 237, 242);
-    padding: 0.5em;
+    padding: 0.5em 0.75em;
     width: max-content;
     margin: auto auto 0.25em auto;
 }
@@ -38,6 +39,15 @@ button {
 .notif-text {
     margin: 0 0.25em 0.25em 0.25em;
     color: #666;
+}
+
+.notif-close {
+    position: absolute;
+    right: 2px;
+    top: -6px;
+    font-size: 1.5em;
+    color: rgb(0, 112, 146);
+    cursor: pointer;
 }
 
 .search-bar {
