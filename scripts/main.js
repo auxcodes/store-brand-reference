@@ -80,7 +80,14 @@ function generateResults() {
     searchResults.forEach(item => {
         const div = document.createElement("div");
         div.classList.add("result-row");
-        div.innerHTML = "<span class='brand-name'>" + item.storeName + "</span> <a class='brand-url' href='" + item.storeURL + "' target='_blank'>" + item.storeURL + "</a>";
+        div.innerHTML = "<span class='brand-name'>" +
+            item.storeName +
+            "</span> <a class='brand-url' href='" +
+            item.storeURL +
+            "' target='_blank'>" +
+            item.storeURL +
+            "</a> <span class='brand-list'><b>Brands: </b>" +
+            item.brands + "</span>";
         searchResultElement.append(div);
     });
 }

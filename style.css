@@ -27,10 +27,11 @@ button {
 }
 
 .notification-bar {
+    position: relative;
     border-radius: 0.5em;
     border: 2px solid rgb(0, 112, 146);
     background-color: rgb(223, 237, 242);
-    padding: 0.5em;
+    padding: 0.5em 0.75em;
     width: max-content;
     margin: auto auto 0.25em auto;
 }
@@ -38,6 +39,15 @@ button {
 .notif-text {
     margin: 0 0.25em 0.25em 0.25em;
     color: #666;
+}
+
+.notif-close {
+    position: absolute;
+    right: 2px;
+    top: -6px;
+    font-size: 1.5em;
+    color: rgb(0, 112, 146);
+    cursor: pointer;
 }
 
 .search-bar {
@@ -94,6 +104,7 @@ button {
 .result-row {
     display: grid;
     grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr max-content;
     border-bottom: 1px #d5d5d5 solid;
     border-radius: 1em;
 }
@@ -119,12 +130,23 @@ button {
     grid-column: 1/-1;
 }
 
-.brand-name {
+.result-row .brand-name {
     margin: 0.5em;
 }
 
-.brand-url {
+.result-row .brand-url {
     margin: 0.5em;
+}
+
+.result-row .brand-list {
+    display: none;
+    grid-column: 1/-1;
+    margin: 0.5em;
+}
+
+.result-row:hover .brand-list,
+.result-row:focus-within .brand-list {
+    display: block;
 }
 
 /* Footer */
