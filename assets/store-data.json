@@ -14,8 +14,8 @@
     {
         "storeName": "Echelon Sports",
         "storeURL": "https://www.echelonsports.com.au",
-        "brands": "ASSOS, BIKND, BONT, Cycling, Challenge, Close The Gap, Dawn To Dusk, Dirtsurfer, Effetto Mariposa, ES Accessories, Frameskin Wrap, milKit, QUARQ, SILCA, Speedplay Pedals, Speedsleev, SRAM, Supacaz, SwissStop, Tri-Flow, veloToze, WEND Wax, XLAB Accessories, ZIPP",
-        "parts": "clothing, shoes, frame portection, power meter, pedals, chains, cranks, cassettes, derailleurs, shifters, brake pads, wheels, wheelset"
+        "brands": "Assos, Biknd, Bont, Cycling, Challenge, Close The Gap, Dawn To Dusk, Dirtsurfer, Effetto Mariposa, ES Accessories, Frameskin Wrap, milKit, Quarq, Silca, Speedplay Pedals, Speedsleev, SRAM, Supacaz, SwissStop, Tri-Flow, veloToze, WEND Wax, XLAB Accessories, ZIPP",
+        "parts": "clothing, shoes, frame protection, power meter, pedals, chains, cranks, cassettes, derailleurs, shifters, brake pads, wheels, wheelset"
     },
     {
         "storeName": "Euro Cycles",
@@ -32,7 +32,7 @@
     {
         "storeName": "FE Sports",
         "storeURL": "https://www.fesports.com.au/Login",
-        "brands": "wahoo, 100%, pirelli, aftershokz, the ragun, wera, k-edge, kogel, niterider, galfer bike, favero, 3t, absolute black, fazua, speedplay, ridley, eddy merckx, astute, forza, garmin, adventure medical",
+        "brands": "Wahoo, 100%, Pirelli, Aftershokz, The Ragun, Wera, K-Edge, Kogel, Niterider, Galfer Bike, Favero, 3t, Absolute Black, Fazua, Speedplay, Ridley, Eddy Merckx, Astute, Forza, Garmin, Adventure Medical",
         "parts": "gps, computer, gloves, clothing, tyres, tires, headphones, mounts, lights, bikes, power meter, handlebars, seatposts, pedals,"
     },
     {
@@ -69,7 +69,7 @@
         "storeName": "Active Out There",
         "storeURL": "https://www.activeoutthere.com.au/_myacct",
         "brands": "Grit, Crisp, District, Dominator, Phoenix, Aztek, Striker, Globber",
-        "parts": "SCOOTERS, SCOOTER PARTS, ROLLER SKATES, BALANCE BIKES & OTHER RIDES, ACCESSORIES, BAGS & CLOTHING, ELECTRIC SCOOTERS, PROTECTIVE, RAMPS & RAILS,SKATEBOARDS, TRICYCLES"
+        "parts": "Scooters, Scooter Parts, Roller Skates, Balance Bikes & Other Rides, Accessories, Bags & Clothing, Electric Scooters, Protective, Ramps & Rails,Skateboards, Tricycles"
     },
     {
         "storeName": "Apollo Bikes",
@@ -110,7 +110,7 @@
     {
         "storeName": "BMX International",
         "storeURL": "https://www.bmxinternational.com.au/Script/SEC/LoginX.asp",
-        "brands": "ACS, ALEX, ALMOND, WTP CLOTHING, AMOEBA, BLACKEYE, BOMBTRACK, BSD, CINEMA, CST, DIA-COMPE, DICTA, DRIVELINE, DRS, éclat, EXTREME, FAIRDALE, FITBIKECO, FUSE, Get-O, Wear, G-SPORT, HI-TECH, HYPER, IZUMI, JOYTECH, K&H, KASHIMAX, KENDA, KMC, LHR, LIFU, MCS, MIRRACO, MKS, NECO, NITTO, ODYSSEY, PANARACER, PRIME, AERO, PROMAX, PRYME, RADIO, REDLINE, REVENGE, INDUSTRIES, RUNLUX, S&M, SALT, SALTPLUS, SCOOTZ, SKYWAY, SNAFU, SUNDAY, TANGE, TAYA, TEKTRO, TIOGA, TORKER, UNITED, VP, WETHEPEOPLE, YABIN, YST",
+        "brands": "Acs, Alex, Almond, Wtp Clothing, Amoeba, Blackeye, Bombtrack, Bsd, Cinema, Cst, Dia-Compe, Dicta, Driveline, Drs, Éclat, Extreme, Fairdale, Fitbikeco, Fuse, Get-O, Wear, G-Sport, Hi-Tech, Hyper, Izumi, Joytech, K&H, Kashimax, Kenda, Kmc, Lhr, Lifu, Mcs, Mirraco, Mks, Neco, Nitto, Odyssey, Panaracer, Prime, Aero, Promax, Pryme, Radio, Redline, Revenge, Industries, Runlux, S&M, Salt, Saltplus, Scootz, Skyway, Snafu, Sunday, Tange, Taya, Tektro, Tioga, Torker, United, Vp, Wethepeople, Yabin, Yst",
         "parts": "WORKSHOP, CLEARANCE SALE, RIMS, WHEELS, STEMS, BIKES DRIVE SPROCKETS, GENERAL ACCESSORIES, HUB GUARDS, BB SETS, BRAKES, CHAINS, CLOTHING, CRANKS, FORKS, FRAMES, GRIPS, HANDLEBARS, HEADSETS, HUB PARTS, SPOKES & AXLES, HUBS, PEDALS, PEGS, SEATS, POSTS AND CLAMPS, TUBES, TYRES, RETRO, HELMETS, SCOOTERS, UNICYCLES, RACKS & STANDS"
     },
     {
