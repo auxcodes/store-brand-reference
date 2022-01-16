@@ -103,7 +103,7 @@ button {
 
 .result-row {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr max-content;
     grid-template-rows: 1fr max-content;
     border-bottom: 1px #d5d5d5 solid;
     border-radius: 1em;
@@ -147,6 +147,17 @@ button {
 .result-row:hover .brand-list,
 .result-row:focus-within .brand-list {
     display: block;
+}
+
+.result-row .edit-btn {
+    display: block;
+    cursor: pointer;
+    background-image: url("./assets/edit-icon.svg");
+    min-width: 1em;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    padding: 0.5em;
+    margin: 0.4em;
 }
 
 /* Footer */

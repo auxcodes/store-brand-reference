@@ -20,6 +20,8 @@ let searchResults = [];
 const searchForm = document.getElementById("form-search");
 searchForm.onsubmit = (event) => event.preventDefault();
 
+window.onEditStore = onEditStore;
+
 (function StoreList() {
     initTimeOut();
     signUp("test@99bikes.com.au", "");
@@ -72,6 +74,10 @@ function getSearchValue() {
     }
 }
 
+function onEditStore() {
+    console.log("edit store");
+}
+
 function generateResults() {
     if (searchResults.length === 0) {
         noResultsFound();
@@ -86,7 +92,7 @@ function generateResults() {
             item.storeURL +
             "' target='_blank'>" +
             item.storeURL +
-            "</a> <span class='brand-list'><b>Brands: </b>" +
+            "</a> <button id='editStoreBtn' class='edit-btn' title='Edit Store' onclick='onEditStore()'></button> <span class='brand-list'><b>Brands: </b>" +
             item.brands + "</span>";
         searchResultElement.append(div);
     });
@@ -108,6 +114,11 @@ function resetResults() {
     searchResults = getAllStores().sort((sa, sb) => sa.storeName > sb.storeName);
     //console.log("reset: ", searchResults);
     generateResults();
+}
+
+// On login click
+function onLoginClick() {
+    document.getElementById('login-modal');
 }
 
 // Get the modal
