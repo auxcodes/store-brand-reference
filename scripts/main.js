@@ -99,7 +99,12 @@ function noResultsFound() {
 
     const div = document.createElement("div");
     div.classList.add("no-result-row");
-    div.innerHTML = "<span class='no-results'>" + "No results were found matching your search term. <br><br> Did you mean: <span class='alt-search'>" + alternates + "</span></span>";
+    if (alternates.length > 0) {
+        div.innerHTML = "<span class='no-results'>Did you mean: <span class='alt-search'>" + alternates + "</span>  <br><br>No results were found matching your search term.</span>";
+    }
+    else {
+        div.innerHTML = "<span class='no-results'> No results were found matching your search term. </span>";
+    }
     searchResultElement.append(div);
 }
 
