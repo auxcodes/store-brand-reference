@@ -29,8 +29,35 @@ function filterStores(searchTerm, property) {
     return allData.filter(store => store[property].toLowerCase().includes(searchTerm.toLowerCase()));
 }
 
+function filterWords(searchTerm, property) {
+    let results = [];
+    while (results.length === 0 && searchTerm.length > 0) {
+        allData.forEach(store => {
+            const found = findWord(searchTerm, store[property].split(', '));
+            if (found.length > 0) {
+                results.push(...found);
+            }
+        });
+        searchTerm = searchTerm.slice(0, -1);
+    }
+    return results.join(", ");
+}
+
+function findWord(searchTerm, stringArray) {
+    if (searchTerm.length === 0) {
+        return [];
+    }
+    let results = [];
+    stringArray.forEach(word => {
+        if (word.toLowerCase().startsWith(searchTerm.toLowerCase())) {
+            results.push(word);
+        }
+    });
+    return results;
+}
+
 function getAllStores() {
     return allData;
 }
 
-export { StoreData, findBrand, findProduct, getAllStores }
+export { StoreData, findBrand, findProduct, getAllStores, filterWords }

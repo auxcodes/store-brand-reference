@@ -1,4 +1,4 @@
-import { initialised, StoreData, findBrand, findProduct, getAllStores } from "./store-data.js";
+import { initialised, StoreData, findBrand, findProduct, getAllStores, filterWords } from "./store-data.js";
 import { signUp } from "./auth.js";
 
 const storeData = new StoreData();
@@ -15,6 +15,7 @@ searchProductBtn.addEventListener("click", searchProduct);
 
 const searchResultElement = document.getElementById("searchResults");
 let searchResults = [];
+let searchType = "";
 
 // form hack to stop page reload
 const searchForm = document.getElementById("form-search");
@@ -47,6 +48,7 @@ function searchText(event) {
 }
 
 function searchBrand(event) {
+    searchType = "brands";
     getSearchValue();
     //console.log("Search Brand: ", searchValue, event);
     searchResults = [];
@@ -56,6 +58,7 @@ function searchBrand(event) {
 }
 
 function searchProduct(event) {
+    searchType = "parts";
     getSearchValue();
     //console.log("Search Product", searchValue, event);
     searchResults = [];
@@ -83,6 +86,7 @@ function generateResults() {
         noResultsFound();
         return;
     }
+    //console.log(searchResults);
     searchResults.forEach(item => {
         const div = document.createElement("div");
         div.classList.add("result-row");
@@ -99,9 +103,16 @@ function generateResults() {
 }
 
 function noResultsFound() {
+    const alternates = filterWords(searchValue, searchType);
+
     const div = document.createElement("div");
     div.classList.add("no-result-row");
-    div.innerHTML = "<span class='no-results'>" + "No results were found matching your search term." + "</span>";
+    if (alternates.length > 0) {
+        div.innerHTML = "<span class='no-results'>Did you mean: <span class='alt-search'>" + alternates + "</span>  <br><br>No results were found matching your search term.</span>";
+    }
+    else {
+        div.innerHTML = "<span class='no-results'> No results were found matching your search term. </span>";
+    }
     searchResultElement.append(div);
 }
 

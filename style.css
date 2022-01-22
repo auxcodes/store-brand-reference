@@ -130,6 +130,12 @@ button {
     grid-column: 1/-1;
 }
 
+.alt-search {
+    margin: 0.5em auto;
+    font-size: 1.25rem;
+    color: blue;
+}
+
 .result-row .brand-name {
     margin: 0.5em;
 }
