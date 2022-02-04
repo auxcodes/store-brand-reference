@@ -1,8 +1,11 @@
 const headers = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin',
     'Access-Control-Allow-Methods': 'GET, POST'
 };
+
+headers['Access-Control-Allow-Origin'] = '*';
+headers['Vary'] = 'Origin';
 
 exports.handler = (event, context, callback) => {
     const { auth } = JSON.parse(event.body);
