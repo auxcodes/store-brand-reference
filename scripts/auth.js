@@ -10,6 +10,20 @@ export function signUp(email, password) {
     console.log('signup');
     const postData = { "auth": { "email": email, "password": password } };
     const request = new XMLHttpRequest();
+    request.open(method, url, shouldBeAsync);
+    request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    request.setRequestHeader('Access-Control-Allow-Origin', '*')
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    // Or... request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+    request.send(postData);
+
+    request.upload.onprogress = (e) => {
+        console.log(`${e.loaded}B of  ${e.total}B uploaded`);
+    }
+
+    request.upload.onload = (e) => {
+        console.log('upload completed!');
+    }
 
     request.onload = () => {
         // You can get all kinds of information about the HTTP response.
@@ -18,11 +32,11 @@ export function signUp(email, password) {
         console.log(status, data);
     }
 
-    request.open(method, url, shouldBeAsync);
+    request.onerror = (e) => {
+        console.log(request.status);
+    }
 
-    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    // Or... request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-    request.send(postData);
+
 }
 
 export function signUpForm() {
