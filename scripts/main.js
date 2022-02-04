@@ -1,5 +1,6 @@
 import { initialised, StoreData, findBrand, findProduct, getAllStores, filterWords } from "./store-data.js";
-import { signUp } from "./auth.js";
+import { signUpForm } from "./auth.js";
+import { } from "./components/search-result.js"
 
 const storeData = new StoreData();
 
@@ -25,7 +26,7 @@ window.onEditStore = onEditStore;
 
 (function StoreList() {
     initTimeOut();
-    signUp("test@99bikes.com.au", "");
+    signUpForm();
 })() //IIFE immediately invoked function expression
 
 
@@ -39,7 +40,6 @@ function initTimeOut() {
             resetResults();
         }
     }, 50);
-
 }
 
 function searchText(event) {
@@ -79,6 +79,7 @@ function getSearchValue() {
 
 function onEditStore() {
     console.log("edit store");
+    document.getElementById('login-modal').style.display = 'block';
 }
 
 function generateResults() {
@@ -87,18 +88,11 @@ function generateResults() {
         return;
     }
     //console.log(searchResults);
-    searchResults.forEach(item => {
-        const div = document.createElement("div");
-        div.classList.add("result-row");
-        div.innerHTML = "<span class='brand-name'>" +
-            item.storeName +
-            "</span> <a class='brand-url' href='" +
-            item.storeURL +
-            "' target='_blank'>" +
-            item.storeURL +
-            "</a> <button id='editStoreBtn' class='edit-btn' title='Edit Store' onclick='onEditStore()'></button> <span class='brand-list'><b>Brands: </b>" +
-            item.brands + "</span>";
-        searchResultElement.append(div);
+    searchResults.forEach(result => {
+        const el = document.createElement('search-result');
+        el.classList.add("result-row");
+        el.result = result;
+        searchResultElement.append(el);
     });
 }
 
@@ -129,7 +123,15 @@ function resetResults() {
 
 // On login click
 function onLoginClick() {
-    document.getElementById('login-modal');
+    document.getElementById('login-modal').style.display = 'block';
+}
+
+function onLoginSubmit() {
+    console.log('login submit');
+}
+
+function onSignupSubmit() {
+    console.log('signup submit');
 }
 
 // Get the modal

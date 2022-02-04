@@ -305,6 +305,7 @@ span.psw {
     margin: 0.25em auto;
     border: 1px solid #888;
     width: 80%;
+    max-width: 500px;
 }
 
 /* The Close Button */

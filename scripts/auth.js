@@ -1,9 +1,13 @@
+import { } from "./components/login-modal.js"
+
 const url = "https://storesearch.aux.codes/.netlify/functions/authentication";
 const method = "POST";
 const shouldBeAsync = true;
-
+const main = document.querySelector('main');
+//let loginForm = null;
 
 export function signUp(email, password) {
+    console.log('signup');
     const postData = { "auth": { "email": email, "password": password } };
     const request = new XMLHttpRequest();
 
@@ -21,14 +25,29 @@ export function signUp(email, password) {
     request.send(postData);
 }
 
-const loginInnerHTML = {
-    email: "<label for='email'>Email</label><input id='login-email' type='text'/>",
-    password: "<label for='password'>Password</label><input id='login-password' type='text'/>"
+export function signUpForm() {
+    const el = document.createElement('login-modal');
+    el.classList.add('modal');
+    el.id = 'login-modal';
+    el.modal = {};
+    main.append(el);
+
+    const loginForm = document.getElementById('login-form');
+    loginForm.onsubmit = (event) => {
+        console.log('form submited', event);
+        event.preventDefault();
+        siginInSubmitted(event);
+    };
 }
 
-function signUpForm() {
-    const div = document.createElement("div");
-    div.classList.add("login-form");
-    div.innerHTML = loginInnerHTML.email + loginInnerHTML.password;
-    searchResultElement.append(div);
+function siginInSubmitted(event) {
+    if (event.submitter.id === 'signup-btn') {
+        const username = event.target[0].value;
+        const pswd = event.target[1].value;
+        console.log('signup button clicked', username);
+        signUp(username, pswd);
+    }
+    if (event.submitter.id === 'login-btn') {
+        console.log('login button clicked');
+    }
 }
