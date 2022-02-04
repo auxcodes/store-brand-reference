@@ -86,8 +86,8 @@
     {
         "storeName": "BICorp",
         "storeURL": "http://www.bicorp.com.au/login.aspx",
-        "brands": "Acentia, Azur, BC, Bellwether, Beto, Blastoff, Cygo, Exustar, Ezi Grip, Freedom, Jagwire, Jansport, KMC, Krush, Licensed, Lizard Skins, M2O, Michelin, Mirrycle, Never Flat, On Guard, Orange Seal, Oury, Pacific, Pacific Kidz Bitz, Profile Design, Proline, Quad Lock, Recoil, Rock N Roll, Ryder, Shogun, SKLZ, Sunrace, Super B, Superstand, Tannus, Tektro, Tioga, Torker, Trail Gator, Triad, True Blue, Urban Iki, Vulcan",
-        "parts": "clothing, grips, cables, chains, cleaning, bar tape, tyres, tires, sealant, rim tape, cranks, crankset, bmx, lube, chain lube, tools, brakes, inserts,"
+        "brands": "Acentia, Azur, BC, Bellwether, Beto, Blastoff, Cygo, Exustar, Ezi Grip, Freedom, Jagwire, Jansport, KMC, Krush, Licensed, Lizard Skins, M2O, Michelin, Mirrycle, Never Flat, On Guard, Orange Seal, Oury, Pacific, Pacific Kidz Bitz, Pedal, Profile Design, Proline, Quad Lock, Recoil, Rock N Roll, Ryder, Shogun, SKLZ, Sunrace, Super B, Superstand, Tannus, Tektro, Tioga, Torker, Trail Gator, Triad, True Blue, Urban Iki, Vulcan",
+        "parts": "clothing, grips, cables, chains, cleaning, bar tape, tyres, tires, sealant, rim tape, cranks, crankset, bmx, lube, chain lube, tools, brakes, inserts, hangers"
     },
     {
         "storeName": "Bicycle Parts Wholesale",
@@ -174,8 +174,14 @@
         "parts": ""
     },
     {
-        "storeName": "PSI Cycling",
+        "storeName": "PSI Cycling Old B2B",
         "storeURL": "http://b2b.psicycling.com.au/B2BCycling/login/",
+        "brands": "ABUS, Avid, Cannondale, Fox, Goodyear, GT, Lezyne, Mongoose, Quarq, Rock Shox, Schwinn, SRAM",
+        "parts": "locks, brakes, brake pads, suspension, tyres, tires, pumps, tools, bikes, power meter, cassettes, chains, shifters"
+    },
+    {
+        "storeName": "PSI Cycling New Website",
+        "storeURL": "https://wholesale.psicycling.com.au/customer/account/login/",
         "brands": "ABUS, Avid, Cannondale, Fox, Goodyear, GT, Lezyne, Mongoose, Quarq, Rock Shox, Schwinn, SRAM",
         "parts": "locks, brakes, brake pads, suspension, tyres, tires, pumps, tools, bikes, power meter, cassettes, chains, shifters"
     },
