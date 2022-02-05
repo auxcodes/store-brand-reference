@@ -4,9 +4,9 @@ const headers = {
 };
 
 exports.handler = (event, context, callback) => {
-    const { auth } = JSON.parse(event.body);
+    const body = JSON.parse(event.body);
     const errors = [];
-    const email = auth.email.toLowerCase();
+    const email = body['auth'].email.toLowerCase();
 
     if (email.includes("@99bikes.com.au")) {
         callback(null, {
