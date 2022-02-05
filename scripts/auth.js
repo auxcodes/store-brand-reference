@@ -8,7 +8,7 @@ const main = document.querySelector('main');
 
 export function signUp(email, password) {
     console.log('signup');
-    const postData = JSON.stringify({ "auth": { "email": email, "password": password } });
+    const postData = { "auth": { "email": email, "password": password } };
     const request = new XMLHttpRequest();
     request.open(method, url, shouldBeAsync);
     request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
