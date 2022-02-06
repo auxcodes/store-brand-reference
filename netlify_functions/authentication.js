@@ -3,7 +3,7 @@ const headers = {
     'Access-Control-Allow-Headers': 'Authorization'
 };
 
-exports.handler = (event, context, callback) => {
+exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
     const errors = [];
     const email = body['auth'].email.toLowerCase();

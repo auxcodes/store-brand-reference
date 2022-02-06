@@ -126,14 +126,6 @@ function onLoginClick() {
     document.getElementById('login-modal').style.display = 'block';
 }
 
-function onLoginSubmit() {
-    console.log('login submit');
-}
-
-function onSignupSubmit() {
-    console.log('signup submit');
-}
-
 // Get the modal
 const modal = document.getElementById('login-modal');
 

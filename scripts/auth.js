@@ -1,6 +1,6 @@
 import { } from "./components/login-modal.js"
 
-const url = "https://dev.storesearch.aux.codes/.netlify/functions/authentication";
+const url = "http://localhost:8888/.netlify/functions/authentication";
 const method = "POST";
 const shouldBeAsync = true;
 const main = document.querySelector('main');
