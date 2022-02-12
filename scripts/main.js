@@ -1,12 +1,10 @@
 import { initialised, StoreData, findBrand, findProduct, getAllStores, filterWords } from "./store-data.js";
 import { signUpForm } from "./auth.js";
 import { } from "./components/search-result.js"
-import { LocalStorageService } from "./local-storage.js";
+
 import { generateNotifications } from "./notifications.js";
 
 const storeData = new StoreData();
-const localStorageService = new LocalStorageService();
-const storageKey = 'storesearch.aux.codes';
 
 const searchField = document.getElementById("searchInput");
 let searchValue = "";
@@ -29,8 +27,6 @@ searchForm.onsubmit = (event) => event.preventDefault();
 window.onEditStore = onEditStore;
 
 (function StoreList() {
-    console.log('Local storage supported? ', localStorageService.supported);
-    checkLocalStorage();
     generateNotifications();
     initTimeOut();
     signUpForm();
@@ -48,18 +44,6 @@ function initTimeOut() {
         }
     }, 50);
 
-}
-
-async function checkLocalStorage() {
-    await localStorageService.readJSONEntry().then(storage => {
-        if (storage) {
-            console.log('found local storage', storage);
-        }
-        else {
-            console.log('No local storage', storage);
-        }
-    })
-        .catch(e => console.log(e));
 }
 
 function searchText(event) {
