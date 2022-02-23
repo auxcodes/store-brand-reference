@@ -19,6 +19,13 @@ const notificationObjects = [
         <span class="notif-text">Update 25/01: Added link to PSI's new website. </span>    
         `,
         show: true
+    },
+    {
+        id: "notif-2402",
+        content: `
+        <span class="notif-text">Update 24/02: Added POC, Updated LinkSports, Jetblack </span>    
+        `,
+        show: true
     }
 ];
 
