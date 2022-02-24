@@ -23,7 +23,7 @@ const notificationObjects = [
     {
         id: "notif-2402",
         content: `
-        <span class="notif-text">Update 24/02: Added POC, Updated LinkSports, Jetblack </span>    
+        <span class="notif-text">Update 24/02: Added POC, Updated LinkSports, Jetblack, Family Distribution </span>    
         `,
         show: true
     }
