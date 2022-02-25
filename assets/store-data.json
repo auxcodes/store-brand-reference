@@ -62,7 +62,7 @@
     {
         "storeName": "Advance Traders",
         "storeURL": "https://webshop.advancetraders.com.au/login",
-        "brands": "Cube, Merida, BMC, Norco",
+        "brands": "Cube, Merida, BMC, Norco, FSA",
         "parts": "bikes, frames, hangers, derailleur hanger, wheels,"
     },
     {
@@ -134,7 +134,7 @@
     {
         "storeName": "Groupe Sportif",
         "storeURL": "http://www.groupesportif.com/index.html",
-        "brands": "",
+        "brands": "Rotor",
         "parts": ""
     },
     {
