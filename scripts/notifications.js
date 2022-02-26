@@ -26,6 +26,13 @@ const notificationObjects = [
         <span class="notif-text">Update 24/02: Added POC, Updated LinkSports, Jetblack, Family Distribution </span>    
         `,
         show: true
+    },
+    {
+        id: "notif-2602",
+        content: `
+        <span class="notif-text">Update 26/02: Updated Advanced Traders, Groupe Sportif </span>    
+        `,
+        show: true
     }
 ];
 

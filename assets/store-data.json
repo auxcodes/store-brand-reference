@@ -74,7 +74,7 @@
     {
         "storeName": "Apollo Bikes",
         "storeURL": "http://dealers.apollobikes.com/",
-        "brands": "Apollo, neo, radius, dt swiss, easton, cycleOps, adura, limar, zefal, buzz rack, knog",
+        "brands": "Apollo, Neo, Radius, DT Swiss, Easton, CycleOps, Adura, Limar, Zefal, Buzz Rack, Knog",
         "parts": "Bikes, wheels, helmets, accessories, bike racks,"
     },
     {
@@ -134,8 +134,8 @@
     {
         "storeName": "Groupe Sportif",
         "storeURL": "http://www.groupesportif.com/index.html",
-        "brands": "Rotor",
-        "parts": ""
+        "brands": "Enve, ,Stages, Evoc, Kona, Mavic, Look, Rotor, Prologo, Raceface, Sinus Ebikes, Haibike, Pedros, Viva Bikes, Straitline, Suunto, Ezigrip",
+        "parts": "wheels, rims, components, bars, stems, seatposts, forks, time trial, bar tape, bottle cage, wheel bag, power meter, spindle, backpacks, bike packing, hip pack, travel bags, hydration, bikes, frames, hangers, swingarms, pedals, cockpit, seatpost clamp, tyres, footwear, shoes, socks, gloves, shoe covers, jerseys, short, computers, spokes, hubs, skewers, brake pads, chainrings, cranks, drive train, bottom brackets, saddles, lubes, cleaners, workshop tools, chain guides, direct mount, heartrate monitors, hrm, watches, pods, bike racks"
     },
     {
         "storeName": "Jet Black Products",
