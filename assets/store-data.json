@@ -50,8 +50,8 @@
     {
         "storeName": "Garmin",
         "storeURL": "https://dealers.garmin.com",
-        "brands": "Garmin",
-        "parts": "gps, computers, cycle computer, hrm, sensor"
+        "brands": "Garmin, Tacx ",
+        "parts": "Gps, Computers, Cycle Computer, Hrm, Sensor, Smart Watches, Fitness Trackers, Rollers, Trainer, Smart Trainer"
     },
     {
         "storeName": "Shimano",
@@ -216,10 +216,10 @@
         "parts": "Ebike"
     },
     {
-        "storeName": "Scott Sports",
+        "storeName": "Shepards Scott Sports",
         "storeURL": "https://shopb2b.scott-sports.com/scottb2b/en/login",
-        "brands": "",
-        "parts": ""
+        "brands": "Parktool, Blackburn, Cateye, Giro, Muc-Off",
+        "parts": "Bikes Stands, Workshop Tools, Multi Tools, Cleaning, Lube, Bike Wash, Degreaser, Helmets, Bike Lights, Computers, Bags, Racks, Pumps, Cages"
     },
     {
         "storeName": "SCV Imports",

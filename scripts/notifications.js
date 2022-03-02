@@ -33,6 +33,13 @@ const notificationObjects = [
         <span class="notif-text">Update 26/02: Updated Advanced Traders, Groupe Sportif </span>    
         `,
         show: true
+    },
+    {
+        id: "notif-0203",
+        content: `
+        <span class="notif-text">Update 02/03: Added Shepards Scott B2B, Updated Garmin </span>    
+        `,
+        show: true
     }
 ];
 
