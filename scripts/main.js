@@ -1,10 +1,12 @@
-import { initialised, StoreData, findBrand, findProduct, getAllStores, filterWords } from "./store-data.js";
+import { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords } from "./shop-data.js";
 import { signUpForm } from "./auth.js";
 import { } from "./components/search-result.js"
 
 import { generateNotifications } from "./notifications.js";
+import { AppDataService } from "./app-data.js";
 
-const storeData = new StoreData();
+const shopData = new ShopData();
+const appDataService = new AppDataService();
 
 const searchField = document.getElementById("searchInput");
 let searchValue = "";
@@ -24,9 +26,9 @@ let searchType = "";
 const searchForm = document.getElementById("form-search");
 searchForm.onsubmit = (event) => event.preventDefault();
 
-window.onEditStore = onEditStore;
+window.onEditShop = onEditShop;
 
-(function StoreList() {
+(function ShopList() {
     generateNotifications();
     initTimeOut();
     signUpForm();
@@ -81,8 +83,8 @@ function getSearchValue() {
     }
 }
 
-function onEditStore() {
-    console.log("edit store");
+function onEditShop() {
+    console.log("edit Shop");
     document.getElementById('login-modal').style.display = 'block';
 }
 
@@ -120,7 +122,7 @@ function clearResults() {
 
 function resetResults() {
     searchResults = [];
-    searchResults = getAllStores().sort((sa, sb) => sa.storeName > sb.storeName);
+    searchResults = getAllShops().sort((sa, sb) => sa.shopName > sb.shopName);
     //console.log("reset: ", searchResults);
     generateResults();
 }

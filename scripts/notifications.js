@@ -8,9 +8,9 @@ const notificationObjects = [
     {
         id: "notif-01",
         content: `
-        <span class="notif-text">This is currently a proof of concept; store information is currently incomplete as it is being added manually. </span><br />
+        <span class="notif-text">This is currently a proof of concept; shop information is currently incomplete as it is being added manually. </span><br />
         <span class="notif-text">Search results will not provide all available options. </span><br />
-        <span class="notif-text">Future updates will include: update/edit store information, add new store and login only access.</span>
+        <span class="notif-text">Future updates will include: update/edit shop information, add new shop and login only access.</span>
         `,
         show: true
     },

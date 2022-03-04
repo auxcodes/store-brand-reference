@@ -1,39 +1,39 @@
 const allData = [];
 export let initialised = false;
 
-function StoreData() {
+function ShopData() {
     console.log("Initialise data");
-    fetch("../assets/store-data.json")
+    fetch("../assets/shop-data.json")
         .then(response => {
             //console.log("init response: ", response);
             return response.json();
         })
         .then(data => {
             initialised = true;
-            //console.log("Store Data: ", data);
-            data.forEach(store => {
-                allData.push(store);
+            //console.log("Shop Data: ", data);
+            data.forEach(shop => {
+                allData.push(shop);
             });
         });
 }
 
 function findBrand(brandName) {
-    return filterStores(brandName, "brands");
+    return filterShops(brandName, "brands");
 }
 
 function findProduct(productName) {
-    return filterStores(productName, "parts");
+    return filterShops(productName, "parts");
 }
 
-function filterStores(searchTerm, property) {
-    return allData.filter(store => store[property].toLowerCase().includes(searchTerm.toLowerCase()));
+function filterShops(searchTerm, property) {
+    return allData.filter(shop => shop[property].toLowerCase().includes(searchTerm.toLowerCase()));
 }
 
 function filterWords(searchTerm, property) {
     let results = [];
     while (results.length === 0 && searchTerm.length > 0) {
-        allData.forEach(store => {
-            const found = findWord(searchTerm, store[property].split(', '));
+        allData.forEach(shop => {
+            const found = findWord(searchTerm, shop[property].split(', '));
             if (found.length > 0) {
                 results.push(...found);
             }
@@ -56,8 +56,8 @@ function findWord(searchTerm, stringArray) {
     return results;
 }
 
-function getAllStores() {
+function getAllShops() {
     return allData;
 }
 
-export { StoreData, findBrand, findProduct, getAllStores, filterWords }
+export { ShopData, findBrand, findProduct, getAllShops, filterWords }

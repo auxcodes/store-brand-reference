@@ -3,15 +3,17 @@ export class LocalStorageService {
     supported = true;
     storageKey = 'storesearch.aux.codes';
     notificationsKey = 'notifications';
-    storesKey = 'stores';
+    shopsKey = 'shops';
     hasEntry = () => localStorage.length > 0;
     message = { msg: 'Either not supported or no entry found' };
 
     constructor() {
+        console.log('Init Local Storage Service');
+
         this.supported = window.localStorage ? true : false;
         if (this.hasEntry === false) {
             localStorage.setItem(this.notificationsKey, '{}');
-            localStorage.setItem(this.storesKey, '{}');
+            localStorage.setItem(this.shopsKey, '{}');
         }
     }
 

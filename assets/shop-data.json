@@ -1,247 +1,247 @@
 [
     {
-        "storeName": "Dawson Sports",
-        "storeURL": "https://dawsonsports.com.au",
+        "shopName": "Dawson Sports",
+        "shopURL": "https://dawsonsports.com.au",
         "brands": "4III, HED, Industry Nine, ISM, Praxis, WD40, Basso, Moots, Spatz Wear, Torhans",
         "parts": "Power Meters, Wheels, Wheelset, Saddles, Cranks, Sprays, Bikes Parts, Thermal Clothing, Aero Hydration"
     },
     {
-        "storeName": "Dirtworks",
-        "storeURL": "https://dirtworksb2b.com.au",
+        "shopName": "Dirtworks",
+        "shopURL": "https://dirtworksb2b.com.au",
         "brands": "Canecreek, ee cycle works, pillar, ritchey, e*thirteen, the robert axle project, esi grips, oury, jones, first bike, thud buster, hayes, manitou, sunringle, pro taper, old man mountain, dice parts co, salted bikes, terrene, wayward bicycle co, dt swiss, tire co",
         "parts": "Headsets, Frames, Cranks, grips, seatposts, brakes, forks, wheels, wheelset, tires, tyres"
     },
     {
-        "storeName": "Echelon Sports",
-        "storeURL": "https://www.echelonsports.com.au",
+        "shopName": "Echelon Sports",
+        "shopURL": "https://www.echelonsports.com.au",
         "brands": "Assos, Biknd, Bont, Cycling, Challenge, Close The Gap, Dawn To Dusk, Dirtsurfer, Effetto Mariposa, ES Accessories, Frameskin Wrap, milKit, Quarq, Silca, Speedplay Pedals, Speedsleev, SRAM, Supacaz, SwissStop, Tri-Flow, veloToze, WEND Wax, XLAB Accessories, ZIPP",
         "parts": "clothing, shoes, frame protection, power meter, pedals, chains, cranks, cassettes, derailleurs, shifters, brake pads, wheels, wheelset"
     },
     {
-        "storeName": "Euro Cycles",
-        "storeURL": "http://b2b.eurocycles.com.au/",
+        "shopName": "Euro Cycles",
+        "shopURL": "http://b2b.eurocycles.com.au/",
         "brands": "Magura",
         "parts": "Disc Brakes, Bosch Ebike ABS, Rim Brakes, Elect Connectivity, S-Pedelecbrakes, dropper post, shocks, forks, original spare parts, powersports"
     },
     {
-        "storeName": "Family Distribution",
-        "storeURL": "https://www.familydistribution.com.au/_myacct/login",
+        "shopName": "Family Distribution",
+        "shopURL": "https://www.familydistribution.com.au/_myacct/login",
         "brands": "Academy, Colony, Cult, Division, DRB Bikes, Family, Red BMX, Stress",
         "parts": "BMX, Bags, Bars, Bar Ends, Bottom Brackets, Brake Systems, Brake Pads, Cables, Calipers, Gyros, Helmets, Levers, Spares, Tools, Build Kits, Chains, Full Link, Half Link, Cranks, Crank Spares, Grips, Forks, Top Bolt, Frames, Headsets, Hubs, Cassette, Freecoaster, Front, Hub Guards, Hub Spares, Pedals, Pegs, Rims, Seats, Stickers, Combo, Fat, Pivotal, Seat Posts, Slim, Sprockets, Stems, Tyres, Tubes, Wheels, Spokes, Nipples, Clothing, Head Wear, Jackets, Hoodies, Socks, T-shirts"
     },
     {
-        "storeName": "FE Sports",
-        "storeURL": "https://www.fesports.com.au/Login",
+        "shopName": "FE Sports",
+        "shopURL": "https://www.fesports.com.au/Login",
         "brands": "Wahoo, 100%, Pirelli, Aftershokz, The Ragun, Wera, K-Edge, Kogel, Niterider, Galfer Bike, Favero, 3t, Absolute Black, Fazua, Speedplay, Ridley, Eddy Merckx, Astute, Forza, Garmin, Adventure Medical",
         "parts": "gps, computer, gloves, clothing, tyres, tires, headphones, mounts, lights, bikes, power meter, handlebars, seatposts, pedals,"
     },
     {
-        "storeName": "FRF Sports",
-        "storeURL": "https://www.frfsports.com/",
+        "shopName": "FRF Sports",
+        "shopURL": "https://www.frfsports.com/",
         "brands": "Argon 18, BigBlow, Campagnolo, CeramicSpeed, Challenge, Colnago, Deda Elementi, Enfitnix, Feedback Sports, Fulcrum, KOM Cycling, Lake, RapiLock, Sella Italia, Selle Italia, Tubolito",
         "parts": "drive train, cassettes, derailleurs, cranks, crankset, wheels, wheelset, bike lock, lock, saddles, seat"
     },
     {
-        "storeName": "Freestyle Distribution",
-        "storeURL": "https://www.freestyledistribution.com.au/",
+        "shopName": "Freestyle Distribution",
+        "shopURL": "https://www.freestyledistribution.com.au/",
         "brands": "",
         "parts": "Scooters, E-scooters"
     },
     {
-        "storeName": "Garmin",
-        "storeURL": "https://dealers.garmin.com",
+        "shopName": "Garmin",
+        "shopURL": "https://dealers.garmin.com",
         "brands": "Garmin, Tacx ",
         "parts": "Gps, Computers, Cycle Computer, Hrm, Sensor, Smart Watches, Fitness Trackers, Rollers, Trainer, Smart Trainer"
     },
     {
-        "storeName": "Shimano",
-        "storeURL": "http://webshop.shimano.com.au",
+        "shopName": "Shimano",
+        "shopURL": "http://webshop.shimano.com.au",
         "brands": "Shimano, Pro, Lazer, Pearl Izumi",
         "parts": "Wheels, brakes, shifters, seats, clothing, shoes, handlebars, saddles, seatposts, chains, cassettes, groupset, wheelset, helmets"
     },
     {
-        "storeName": "Advance Traders",
-        "storeURL": "https://webshop.advancetraders.com.au/login",
+        "shopName": "Advance Traders",
+        "shopURL": "https://webshop.advancetraders.com.au/login",
         "brands": "Cube, Merida, BMC, Norco, FSA",
         "parts": "bikes, frames, hangers, derailleur hanger, wheels,"
     },
     {
-        "storeName": "Active Out There",
-        "storeURL": "https://www.activeoutthere.com.au/_myacct",
+        "shopName": "Active Out There",
+        "shopURL": "https://www.activeoutthere.com.au/_myacct",
         "brands": "Grit, Crisp, District, Dominator, Phoenix, Aztek, Striker, Globber",
         "parts": "Scooters, Scooter Parts, Roller Skates, Balance Bikes & Other Rides, Accessories, Bags & Clothing, Electric Scooters, Protective, Ramps & Rails,Skateboards, Tricycles"
     },
     {
-        "storeName": "Apollo Bikes",
-        "storeURL": "http://dealers.apollobikes.com/",
+        "shopName": "Apollo Bikes",
+        "shopURL": "http://dealers.apollobikes.com/",
         "brands": "Apollo, Neo, Radius, DT Swiss, Easton, CycleOps, Adura, Limar, Zefal, Buzz Rack, Knog",
         "parts": "Bikes, wheels, helmets, accessories, bike racks,"
     },
     {
-        "storeName": "BBB Parts",
-        "storeURL": "http://www.bbbparts.com.au/",
+        "shopName": "BBB Parts",
+        "shopURL": "http://www.bbbparts.com.au/",
         "brands": "BBB",
         "parts": "Bike parts, Accessories, Clothing, Helmets"
     },
     {
-        "storeName": "BICorp",
-        "storeURL": "http://www.bicorp.com.au/login.aspx",
+        "shopName": "BICorp",
+        "shopURL": "http://www.bicorp.com.au/login.aspx",
         "brands": "Acentia, Azur, BC, Bellwether, Beto, Blastoff, Cygo, Exustar, Ezi Grip, Freedom, Jagwire, Jansport, KMC, Krush, Licensed, Lizard Skins, M2O, Michelin, Mirrycle, Never Flat, On Guard, Orange Seal, Oury, Pacific, Pacific Kidz Bitz, Pedal, Profile Design, Proline, Quad Lock, Recoil, Rock N Roll, Ryder, Shogun, SKLZ, Sunrace, Super B, Superstand, Tannus, Tektro, Tioga, Torker, Trail Gator, Triad, True Blue, Urban Iki, Vulcan",
         "parts": "clothing, grips, cables, chains, cleaning, bar tape, tyres, tires, sealant, rim tape, cranks, crankset, bmx, lube, chain lube, tools, brakes, inserts, hangers"
     },
     {
-        "storeName": "Bicycle Parts Wholesale",
-        "storeURL": "http://www.bicyclepartswholesale.com.au/login",
+        "shopName": "Bicycle Parts Wholesale",
+        "shopURL": "http://www.bicyclepartswholesale.com.au/login",
         "brands": "Alex Rims, Beto, Busch & Muller, DT Swiss, Duro, Flinger, FLR Shoes, Funkier, KMC Chains, Kool Stop, Luma, Mach1, Novatec, Pillar, Polar Bottle, Polisport, Pro Series, Proviz, Roswheel, SR Suntour, Sturmey Archer, Sunrace, Tektro, Unior Tools, Velo Saddles, Velocity, VP Components",
         "parts": "wheels, wheelset, rims, spokes, hubs, bearings, cranks, derailleurs, brake pads, crankset, cassettes, chains, tools, saddles, seats"
     },
     {
-        "storeName": "Bike Box",
-        "storeURL": "https://www.bikebox.com.au/bikebox-home.html",
+        "shopName": "Bike Box",
+        "shopURL": "https://www.bikebox.com.au/bikebox-home.html",
         "brands": "Schwalbe, Orca, Orbea, Exposure Lights, Cushcore, Ergon, Gup, Squirt, Nuun",
         "parts": "tyres, tires, lights, inserts, grips, lube, chain lube, nutrition"
     },
     {
-        "storeName": "Bike Sportz",
-        "storeURL": "https://b2b.bikesportz.com.au/B2B",
+        "shopName": "Bike Sportz",
+        "shopURL": "https://b2b.bikesportz.com.au/B2B",
         "brands": "Arundel, Basil, Bosch, Bryton, Campagnolo, Crankbrothers, Cyclus Tools, DT Swiss, Gemini Lights, Hamax, Hope, Hozan, Knipex, Minoura, Morgan Blue, Northwave, Respro, Reynolds Wheels, Santini Clothing, Science In Sport, Scicon, Sealskinz, Selle San Marco, Time, Tubez, RMA",
         "parts": "ebike, battery, gps, computer, cranks, crankset, pedals, wheels, wheelset, lights, bottom bracket, headset, top cap, tools, lube, clothing, nutrition,"
     },
     {
-        "storeName": "BMX International",
-        "storeURL": "https://www.bmxinternational.com.au/Script/SEC/LoginX.asp",
+        "shopName": "BMX International",
+        "shopURL": "https://www.bmxinternational.com.au/Script/SEC/LoginX.asp",
         "brands": "Acs, Alex, Almond, Wtp Clothing, Amoeba, Blackeye, Bombtrack, Bsd, Cinema, Cst, Dia-Compe, Dicta, Driveline, Drs, Éclat, Extreme, Fairdale, Fitbikeco, Fuse, Get-O, Wear, G-Sport, Hi-Tech, Hyper, Izumi, Joytech, K&H, Kashimax, Kenda, Kmc, Lhr, Lifu, Mcs, Mirraco, Mks, Neco, Nitto, Odyssey, Panaracer, Prime, Aero, Promax, Pryme, Radio, Redline, Revenge, Industries, Runlux, S&M, Salt, Saltplus, Scootz, Skyway, Snafu, Sunday, Tange, Taya, Tektro, Tioga, Torker, United, Vp, Wethepeople, Yabin, Yst",
         "parts": "WORKSHOP, CLEARANCE SALE, RIMS, WHEELS, STEMS, BIKES DRIVE SPROCKETS, GENERAL ACCESSORIES, HUB GUARDS, BB SETS, BRAKES, CHAINS, CLOTHING, CRANKS, FORKS, FRAMES, GRIPS, HANDLEBARS, HEADSETS, HUB PARTS, SPOKES & AXLES, HUBS, PEDALS, PEGS, SEATS, POSTS AND CLAMPS, TUBES, TYRES, RETRO, HELMETS, SCOOTERS, UNICYCLES, RACKS & STANDS"
     },
     {
-        "storeName": "Cassons",
-        "storeURL": "https://www.cassons.com.au/User/Login?CookiesChecked=True",
+        "shopName": "Cassons",
+        "shopURL": "https://www.cassons.com.au/User/Login?CookiesChecked=True",
         "brands": "Arai, Avon, Azonic, Bell, Belray, Blur Goggles, Boyesen, Bull-it, Burley, Caberg, Cardo, Dainese, Did, DP, Elite, Emgo, FSA, Gaerne, Gardner Westcott, Hardline, Haynes, Innova, Kryptonite, Leatt, Metzeler, Moto xxx, Motomuck, Mr Tuffy, National Cycle, NGK, Ogio, Oko, Oneal, Oyek, Pinlock, Plexus, Progold, Renthal, Rjays, Roof, Scorpion, Sele Italia, Sidi, Silkolene, Sportourer, Tarmac, THH, TM Motocycle luggage, Topeak, Twin Air, UFO, Vance & Hines, Vision, X Tech, YBN, Zodiac",
         "parts": "clothing, glasses, goggles, handlebars, cranks, crankset, bottom bracket, locks, saddles, seats,"
     },
     {
-        "storeName": "GKA Sports Store",
-        "storeURL": "http://www.gkasportsstore.com.au/",
+        "shopName": "GKA Sports Store",
+        "shopURL": "http://www.gkasportsstore.com.au/",
         "brands": "Bnb Racks, Bont, Catlike, Chaptah, Control tech, Foss, Geax, Vittoria, Innovations, Motorex, Rasso, Slime, Solo, Super B",
         "parts": "rack, shoes, helmets, tyres, tires, tubeless, sealant, tools"
     },
     {
-        "storeName": "Go Easy Australia",
-        "storeURL": "https://www.goeasyaustralia.com.au/index.php?route=account/login",
+        "shopName": "Go Easy Australia",
+        "shopURL": "https://www.goeasyaustralia.com.au/index.php?route=account/login",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "Groupe Sportif",
-        "storeURL": "http://www.groupesportif.com/index.html",
+        "shopName": "Groupe Sportif",
+        "shopURL": "http://www.groupesportif.com/index.html",
         "brands": "Enve, ,Stages, Evoc, Kona, Mavic, Look, Rotor, Prologo, Raceface, Sinus Ebikes, Haibike, Pedros, Viva Bikes, Straitline, Suunto, Ezigrip",
         "parts": "wheels, rims, components, bars, stems, seatposts, forks, time trial, bar tape, bottle cage, wheel bag, power meter, spindle, backpacks, bike packing, hip pack, travel bags, hydration, bikes, frames, hangers, swingarms, pedals, cockpit, seatpost clamp, tyres, footwear, shoes, socks, gloves, shoe covers, jerseys, short, computers, spokes, hubs, skewers, brake pads, chainrings, cranks, drive train, bottom brackets, saddles, lubes, cleaners, workshop tools, chain guides, direct mount, heartrate monitors, hrm, watches, pods, bike racks"
     },
     {
-        "storeName": "Jet Black Products",
-        "storeURL": "http://www.jetblackproducts.com/login",
+        "shopName": "Jet Black Products",
+        "shopURL": "http://www.jetblackproducts.com/login",
         "brands": "661 SIX SIX ONE, Baby Nutty, Bar Fly Bike, Blue Dinosaur, CruzeeESI Grips, GU, JetBlack, Light & Motion, Little Nutty, Nutcase Helmets, Pivot Cycles, Ride66, Stan's No Tubes, Token, Vault, Weldtite, Wipeout, WTB",
         "parts": "Bikes, Balance Bike Parts, Balance Bikes, Bike Parts, Bottom Brackets, Grips, Headsets, Pedals, Saddles, Wheels, Rims, Tubes, Tyres, Valves, Wheel Sets, Wheels, Protection, Baby, Elbow Pads, Knee Pads, Eyewear, Goggles, Helmets, Youth, Trainers, Smart Trainers, Traditional Trainers, Trainer Accessories, Trainer Spare Parts, Tools & Workshop, Brake Fluid, Cleaning, Essential Kits, Grease, Fluids, Gripper Paste, Lubricants, Repair Kits, Rim Tape, Sealant, Tools, Tubless Kits, Valves, Accessories, Clothing, Nutrition, Bike Accessories, Bags, Bicycle Bells, Bike Locks, Bike Mounts, Bike Racks, Bike Security, Bottle Cages, Bottles, Lights, Pumps"
     },
     {
-        "storeName": "POC",
-        "storeURL": "https://app.next.nuorder.com",
+        "shopName": "POC",
+        "shopURL": "https://app.next.nuorder.com",
         "brands": "POC, GLOBE",
         "parts": "Helmets, Armor, Apparel, Goggles, Accessories, Glove, Socks, Boxers, Protective, Backpacks, Spare Lenses, Shorts, Jerseys, Jackets, Pants, Chest, Back, Knee, Elbow, Downhill, Jackets, Enduro, Cross Country, Dirt Jump, Spare Parts"
     },
     {
-        "storeName": "Link Sports",
-        "storeURL": "https://www.linksports.com.au/_myacct",
+        "shopName": "Link Sports",
+        "shopURL": "https://www.linksports.com.au/_myacct",
         "brands": "Ass Savers, Batch Bicycles, Burgtec, Clever Standard, Controltech, cSixx, Do Little, Genesis, Gloworm, Granite Design, Ground Keeper, iXS, KS, Lelumia, MTB Hopper, Mucky Nutz, Prestacycle, Restrap, RockBros, Slickoleum, Spank, Unparallel, X-Fusion",
         "parts": "Axles, Rear, Front, Chainrings, Drivetrain, Front Cranks, Bottom Brackets, Forks, Fork Top Cap, Grips, Tape, Handlebars, Aerobar, MTB, Road, Drop, Headset Spacers, Headsets, Hubs, Pedals, Rear Shocks, Rims, Saddles, Seatposts, External, Internal, Rigid, Stems, 31.8mm Clamp, 35mm Clamp, Suspension, Tyres, Wheels"
     },
     {
-        "storeName": "Lusty Industries",
-        "storeURL": "https://www.lustyindustries.com/login",
+        "shopName": "Lusty Industries",
+        "shopURL": "https://www.lustyindustries.com/login",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "KWT Imports",
-        "storeURL": "https://www.kwtimports.com.au/",
+        "shopName": "KWT Imports",
+        "shopURL": "https://www.kwtimports.com.au/",
         "brands": "A-Forge, Afton Shoes, Ashima, ATA, Bare Coffee, Beto, Bikehand, Coloury, CST, DDK, Dynaplug, FD Kobe, Funn, Gigapower, Guee, Ibera, Infinit Nutrition, JOES, Kenli, Kenny Racing, Kinlin Rims, KWT, Magicshine, MarsOne, Maxxis, Microshift, Netti, Nuun, Park Lock, Phatrider, PILO, Pro Bar, ProWheel, Quality Bike Parts, Ride Mechanic, Ride Panzer, RST, Ryfe, Sahoo, Scalato, STFU, Stowaway, Sunnywheel, Tektro, TranzX, Velo, Velox, VUP+, Xpedo, Yaban",
         "parts": "Shoes, Bleed Kits, Brake Pads, Disc Brake Adaptor, Disc Brake Pads, Disc Brake Rotors, End Fittings, Hydraulic Hose Sets, Thermal Disc Brake Pads, Tools, Cassette, Freewheel, Index Freewheel, Baby Seats, Floor Pumps, Shock Pumps, Storage, BB Tool, Chain Whip, Chainbreaker, Cleaning, Crank Puller, Pedal Spanner, Spoke Tools, Tyre Lever, Allen keys, Bolts, Valve Caps, Cable Adjusters, Cable Cutters, Chain Tools, Crank Set Tools, Ferrules, End Caps, Folding Multi-Tools, Mirrors, Pedal Tools, Seat Post Clamps, Skewers, Tyres, Hybrid Tyres, Kevlar Protection, Road Tyres, Rubber Rim tape, Super HP Tubes, Adjustables Stem, Bar Ends, Brakes, Chain Ring, Crankset, Forks, Frames, Handlebars, Pedals, Riser Adaptors, Rotors, Seatpost Clamp, Seatposts, Stems, Apparel, Chain Guides, Chain Rings, Cranks, Dropper Posts, Goggles, Grips, Headsets, Hubs, Cassette Bodies, Rims, Saddles, Seat Posts, Wheels, Bar Tape, Bells, Brackets, Socks, Water Bottles, Pannier Bags, Pannier Combos, Pannier Racks, Phone Mounts, PHONEMOUNTS, Saddle Bags, Storage Solutions, Top Tube Bags, Bike Care Bucket, Cleaner, Lubricant, Rim Strips, Sealant, Self Seal Tubes, Tubeless Kits, Tubeless Rim Tape, Tubeless Valves, Jerseys, Bottle Cages, Co2, Inflators, KWT Baskets, KWT Saddles, Locks, Pumps, Tubeless Tape, Battery Packs, Cables, Remotes, Combo Sets, Display Units, E-Bike Lights, Flashlights, Front Lights, Highpower, Mounts & Brackets, Rear Lights, Rep Samples, Running Lights, Accessories, Cable Sets, Cable Inner, Cable Outer, Cassettes, Derailleurs, Group Sets, Bar End Shifters Drop Bar Shifters, Flat Bar Shifters, Knicks, Bibs, Cassette Adaptors, Derailleur Hangers, Bottom Brackets, MTB Crankset, Road Crankset, Baskets, Freewheels, Indoor Trainers, Kickstands, Kiddy Trailers, Kids Seats, Workshop Stands,    Chamois Cream, Bike Carry Bags, Frame Protection, Mud Guards, Frame Bags, Handlebar Bag, Phone Top Tube, Saddlebags, E-Bike Car Racks, Towball Hitch Car Rack, Cartridges, Dropper Levers, Dropper Posts, COMFORT GRIPS velo, Gels Covers, Seats, ADHESION PACTHES, Bar Plugs, Grease, Mudguards, TUBULAR RIM TAPE, Tyre Levers, Chains, Chain"
     },
     {
-        "storeName": "Madd Gear",
-        "storeURL": "http://store.maddgear.com/",
+        "shopName": "Madd Gear",
+        "shopURL": "http://store.maddgear.com/",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "Modern brands",
-        "storeURL": "http://www.modernbrands.com.au/home",
+        "shopName": "Modern brands",
+        "shopURL": "http://www.modernbrands.com.au/home",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "PSI Cycling Old B2B",
-        "storeURL": "http://b2b.psicycling.com.au/B2BCycling/login/",
+        "shopName": "PSI Cycling Old B2B",
+        "shopURL": "http://b2b.psicycling.com.au/B2BCycling/login/",
         "brands": "ABUS, Avid, Cannondale, Fox, Goodyear, GT, Lezyne, Mongoose, Quarq, Rock Shox, Schwinn, SRAM",
         "parts": "locks, brakes, brake pads, suspension, tyres, tires, pumps, tools, bikes, power meter, cassettes, chains, shifters"
     },
     {
-        "storeName": "PSI Cycling New Website",
-        "storeURL": "https://wholesale.psicycling.com.au/customer/account/login/",
+        "shopName": "PSI Cycling New Website",
+        "shopURL": "https://wholesale.psicycling.com.au/customer/account/login/",
         "brands": "ABUS, Avid, Cannondale, Fox, Goodyear, GT, Lezyne, Mongoose, Quarq, Rock Shox, Schwinn, SRAM",
         "parts": "locks, brakes, brake pads, suspension, tyres, tires, pumps, tools, bikes, power meter, cassettes, chains, shifters"
     },
     {
-        "storeName": "OC Bicycles",
-        "storeURL": "http://www.ocbicycles.com.au/",
+        "shopName": "OC Bicycles",
+        "shopURL": "http://www.ocbicycles.com.au/",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "Sea to Summit",
-        "storeURL": "https://b2b.seatosummitdistribution.com.au/customer/account/",
+        "shopName": "Sea to Summit",
+        "shopURL": "https://b2b.seatosummitdistribution.com.au/customer/account/",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "Velo Vita",
-        "storeURL": "http://www.velovita.com.au/",
+        "shopName": "Velo Vita",
+        "shopURL": "http://www.velovita.com.au/",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "Velectrix",
-        "storeURL": "https://www.velectrix.com.au/user",
+        "shopName": "Velectrix",
+        "shopURL": "https://www.velectrix.com.au/user",
         "brands": "Velectrix",
         "parts": "Ebike"
     },
     {
-        "storeName": "Shepards Scott Sports",
-        "storeURL": "https://shopb2b.scott-sports.com/scottb2b/en/login",
+        "shopName": "Shepards Scott Sports",
+        "shopURL": "https://shopb2b.scott-sports.com/scottb2b/en/login",
         "brands": "Parktool, Blackburn, Cateye, Giro, Muc-Off",
         "parts": "Bikes Stands, Workshop Tools, Multi Tools, Cleaning, Lube, Bike Wash, Degreaser, Helmets, Bike Lights, Computers, Bags, Racks, Pumps, Cages"
     },
     {
-        "storeName": "SCV Imports",
-        "storeURL": "https://www.scvimports.com.au/login",
+        "shopName": "SCV Imports",
+        "shopURL": "https://www.scvimports.com.au/login",
         "brands": "All City, Bombtrack, buzzy's Slick Honey, Cardiff, Chapeau, Chris King, Enduro, HALO, IRD, Izumi, Juice Lubes, LAUF, MKS, Newbaums, Nitto, OTSO, Panaracer, Problem Solvers, Salsa Bikes and Frames, Salsa Components, Soma, Surly, Tange, Teravail, Thomson, Two Fish, WHeels Manufacturing, Whisky, Wolf Tooth, Yokozuna,",
         "parts": "bikes, frames, lube, headsets, bottom bracket, bearings, tape, tyres, tires, adapter, adaptor, seatposts, stem, derailleur hanger, hangers, chainrings, tools"
     },
     {
-        "storeName": "Triple Six",
-        "storeURL": "https://www.triplesix.com.au/_myacct/",
+        "shopName": "Triple Six",
+        "shopURL": "https://www.triplesix.com.au/_myacct/",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "V Sport",
-        "storeURL": "https://vsport.com.au/",
+        "shopName": "V Sport",
+        "shopURL": "https://vsport.com.au/",
         "brands": "",
         "parts": ""
     },
     {
-        "storeName": "GFL Group",
-        "storeURL": "https://dealer.gflgroup.com.au/account",
+        "shopName": "GFL Group",
+        "shopURL": "https://dealer.gflgroup.com.au/account",
         "brands": "",
         "parts": ""
     }
