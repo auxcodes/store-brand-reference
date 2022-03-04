@@ -2,32 +2,22 @@ export class LocalStorageService {
 
     supported = true;
     storageKey = 'storesearch.aux.codes';
-    hasEntry = () => localStorage.length > 0 && localStorage.getItem(storageKey);
-    storage = {};
+    notificationsKey = 'notifications';
+    storesKey = 'stores';
+    hasEntry = () => localStorage.length > 0;
     message = { msg: 'Either not supported or no entry found' };
 
     constructor() {
         this.supported = window.localStorage ? true : false;
-        this.storage = JSON.parse(localStorage.getItem(this.storageKey));
-        if (this.storage === null) {
-            localStorage.setItem(this.storageKey, '{}')
+        if (this.hasEntry === false) {
+            localStorage.setItem(this.notificationsKey, '{}');
+            localStorage.setItem(this.storesKey, '{}');
         }
     }
 
-    setObject(key, value) {
-        let obj = {};
-        obj[key] = value;
-        return obj;
-    }
-
-
     updateEntry(key, value) {
         if (this.supported) {
-            const newStorage = {
-                ...this.storage,
-                ...this.setObject(key, value)
-            };
-            localStorage.setItem(this.storageKey, JSON.stringify(newStorage));
+            localStorage.setItem(key, value);
             this.readEntry();
         }
         else {
@@ -35,10 +25,9 @@ export class LocalStorageService {
         }
     }
 
-    async readEntry() {
+    async readEntry(key) {
         if (this.supported && this.hasEntry) {
-            this.storage = JSON.parse(localStorage.getItem(this.storageKey));
-            return this.storage;
+            return JSON.parse(localStorage.getItem(key));
         }
         else {
             return this.message;

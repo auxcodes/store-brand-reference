@@ -1,7 +1,8 @@
 import { LocalStorageService } from "./local-storage.js";
 
 const localStorageService = new LocalStorageService();
-const storageKey = 'storesearch.aux.codes';
+const storageKey = 'notifications';
+let notificationHistory = {};
 
 const notificationObjects = [
     {
@@ -62,8 +63,9 @@ function generateNotifications() {
 }
 
 async function checkLocalStorage() {
-    await localStorageService.readEntry().then(storage => {
+    await localStorageService.readEntry(storageKey).then(storage => {
         if (storage) {
+            notificationHistory = storage;
             notificationObjects.forEach(item => {
                 if (storage[item.id] === false) {
                     item.show = false;
@@ -79,7 +81,22 @@ async function checkLocalStorage() {
 
 function closeNotification(id) {
     document.getElementById(id).style.display = 'none';
-    localStorageService.updateEntry(id, false);
+    notificationHistory = updateHistory(id, false);
+    localStorageService.updateEntry(storageKey, JSON.stringify(notificationHistory));
+}
+
+function updateHistory(key, value) {
+    const newStorage = {
+        ...notificationHistory,
+        ...setObject(key, value)
+    };
+    return newStorage;
+}
+
+function setObject(key, value) {
+    let obj = {};
+    obj[key] = value;
+    return obj;
 }
 
 export { generateNotifications, closeNotification }
