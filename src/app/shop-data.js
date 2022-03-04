@@ -2,8 +2,8 @@ const allData = [];
 export let initialised = false;
 
 function ShopData() {
-    console.log("Initialise data");
-    fetch("../assets/shop-data.json")
+    //console.log("Initialise data");
+    fetch("./src/assets/shop-data.json")
         .then(response => {
             //console.log("init response: ", response);
             return response.json();

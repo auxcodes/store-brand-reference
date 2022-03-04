@@ -171,7 +171,7 @@ button {
 .result-row .edit-btn {
     display: block;
     cursor: pointer;
-    background-image: url("./assets/edit-icon.svg");
+    background-image: url("./src/assets/edit-icon.svg");
     min-width: 1em;
     background-repeat: no-repeat;
     background-color: transparent;
@@ -201,7 +201,7 @@ button {
 }
 .footer-content .copyright .logo {
     display: block;
-    background-image: url("/assets/aux-logo-centered.svg");
+    background-image: url("./src/assets/aux-logo-centered.svg");
     background-size: 100%;
     background-repeat: no-repeat;
     margin: 0 0 0 2px;

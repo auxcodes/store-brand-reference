@@ -1,5 +1,5 @@
 import { FirebaseService } from "./firebase.js";
-import { getDatabase } from "firebase/database";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
 export class CloudStorageService {
 

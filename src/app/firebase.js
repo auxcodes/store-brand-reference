@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-analytics.js";
 
 export class FirebaseService {
     firebaseConfig = {
@@ -13,8 +13,13 @@ export class FirebaseService {
         measurementId: "G-C71LVJ0MQ1"
     };
 
-    // Initialize Firebase
-    app = initializeApp(firebaseConfig);
-    analytics = getAnalytics(app);
+    app = null;
+    analytics = null;
+
+    constructor() {
+        // Initialize Firebase
+        this.app = initializeApp(this.firebaseConfig);
+        this.analytics = getAnalytics(this.app);
+    }
 
 }
