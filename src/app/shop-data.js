@@ -1,5 +1,5 @@
 const allData = [];
-export let initialised = false;
+let initialised = false;
 
 function ShopData() {
     //console.log("Initialise data");
@@ -60,4 +60,4 @@ function getAllShops() {
     return allData;
 }
 
-export { ShopData, findBrand, findProduct, getAllShops, filterWords }
+export { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords }

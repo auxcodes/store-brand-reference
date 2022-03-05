@@ -7,5 +7,22 @@ export class AppDataService {
 
     constructor() {
         console.log('Init App Data Service');
+        this.getData();
+    }
+
+    getData() {
+        this.cloudStorageService.getStorage()
+            .then(shopData => {
+                console.log(shopData);
+            }
+            );
+    }
+
+    updateData(shopData) {
+        this.cloudStorageService.updateStorage(shopData);
+    }
+
+    backupDate(shopData) {
+        console.log("Backup App Data");
     }
 }
