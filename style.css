@@ -142,9 +142,17 @@ button {
 }
 
 .alt-search {
-    margin: 0.5em auto;
     font-size: 1.25rem;
     color: blue;
+    margin: 0.25em auto;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.alt-search:hover {
+    text-decoration: underline;
 }
 
 .result-row .brand-name {

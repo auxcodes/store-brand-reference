@@ -40,7 +40,18 @@ function filterWords(searchTerm, property) {
         });
         searchTerm = searchTerm.slice(0, -1);
     }
+    results = generateButtons(property, new Set(results.map(result => result.toLowerCase())));
     return results.join(", ");
+}
+
+function generateButtons(searchType, searchTerms) {
+    let buttons = [];
+    searchTerms.forEach(searchTerm => {
+        const searchEvent = JSON.stringify({ 'searchType': searchType, 'searchTerm': searchTerm });
+        const searchButton = `<button class='alt-search' onclick='onAltSearch(${searchEvent})' title="Search for this...">${searchTerm}</button>`;
+        buttons.push(searchButton);
+    })
+    return buttons;
 }
 
 function findWord(searchTerm, stringArray) {

@@ -1,7 +1,6 @@
 import { initialised, StoreData, findBrand, findProduct, getAllStores, filterWords } from "./store-data.js";
 import { signUpForm } from "./auth.js";
 import { } from "./components/search-result.js"
-
 import { generateNotifications } from "./notifications.js";
 import { productSearchEvent, brandSearchEvent } from "./analytics.js";
 
@@ -26,6 +25,7 @@ const searchForm = document.getElementById("form-search");
 searchForm.onsubmit = (event) => event.preventDefault();
 
 window.onEditStore = onEditStore;
+window.onAltSearch = onAltSearch;
 
 (function StoreList() {
     generateNotifications();
@@ -74,6 +74,10 @@ function searchProduct(event) {
     generateResults();
 }
 
+function onAltSearch(event) {
+    console.log('alt search: ', event);
+}
+
 function getSearchValue() {
     if (!initialised) {
         console.log("data not initialised");
@@ -109,7 +113,7 @@ function noResultsFound() {
     const div = document.createElement("div");
     div.classList.add("no-result-row");
     if (alternates.length > 0) {
-        div.innerHTML = "<span class='no-results'>Did you mean: <span class='alt-search'>" + alternates + "</span>  <br><br>No results were found matching your search term.</span>";
+        div.innerHTML = `<span class='no-results'> Did you mean? ${alternates} <br><br>No results were found matching your search term.</span>`;
     }
     else {
         div.innerHTML = "<span class='no-results'> No results were found matching your search term. </span>";
