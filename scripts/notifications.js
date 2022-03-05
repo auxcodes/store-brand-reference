@@ -40,6 +40,13 @@ const notificationObjects = [
         <span class="notif-text">Update 02/03: Added Shepards Scott B2B, Updated Garmin </span>    
         `,
         show: true
+    },
+    {
+        id: "notif-0603",
+        content: `
+        <span class="notif-text">Update 06/03: 'Did you mean?' results are now clickable! </span>    
+        `,
+        show: true
     }
 ];
 
