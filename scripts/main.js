@@ -55,7 +55,6 @@ function searchText(event) {
 function searchBrand(event) {
     searchType = "brands";
     getSearchValue();
-    //console.log("Search Brand: ", searchValue, event);
     brandSearchEvent(searchValue);
     searchResults = [];
     searchResults = findBrand(searchValue);
@@ -66,7 +65,6 @@ function searchBrand(event) {
 function searchProduct(event) {
     searchType = "parts";
     getSearchValue();
-    //console.log("Search Product", searchValue, event);
     productSearchEvent(searchProduct);
     searchResults = [];
     searchResults = findProduct(searchValue);
@@ -74,8 +72,15 @@ function searchProduct(event) {
     generateResults();
 }
 
-function onAltSearch(event) {
-    console.log('alt search: ', event);
+function onAltSearch(altSearch) {
+    searchField.value = altSearch.searchTerm;
+    searchValue = "";
+    if (altSearch.searchType === 'brands') {
+        searchBrand(altSearch);
+    }
+    if (altSearch.searchType === 'parts') {
+        searchProduct(altSearch);
+    }
 }
 
 function getSearchValue() {
