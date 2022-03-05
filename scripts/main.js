@@ -2,7 +2,7 @@ import { initialised, StoreData, findBrand, findProduct, getAllStores, filterWor
 import { signUpForm } from "./auth.js";
 import { } from "./components/search-result.js"
 import { generateNotifications } from "./notifications.js";
-//import { productSearchEvent, brandSearchEvent } from "./analytics.js";
+import { productSearchEvent, brandSearchEvent } from "./support.js";
 
 const storeData = new StoreData();
 
@@ -55,7 +55,7 @@ function searchText(event) {
 function searchBrand(event) {
     searchType = "brands";
     getSearchValue();
-    //brandSearchEvent(searchValue);
+    brandSearchEvent(searchValue);
     searchResults = [];
     searchResults = findBrand(searchValue);
     clearResults();
@@ -65,7 +65,7 @@ function searchBrand(event) {
 function searchProduct(event) {
     searchType = "parts";
     getSearchValue();
-    //productSearchEvent(searchProduct);
+    productSearchEvent(searchProduct);
     searchResults = [];
     searchResults = findProduct(searchValue);
     clearResults();
