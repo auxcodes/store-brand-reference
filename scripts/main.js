@@ -3,6 +3,7 @@ import { signUpForm } from "./auth.js";
 import { } from "./components/search-result.js"
 
 import { generateNotifications } from "./notifications.js";
+import { productSearchEvent, brandSearchEvent } from "./analytics.js";
 
 const storeData = new StoreData();
 
@@ -55,6 +56,7 @@ function searchBrand(event) {
     searchType = "brands";
     getSearchValue();
     //console.log("Search Brand: ", searchValue, event);
+    brandSearchEvent(searchValue);
     searchResults = [];
     searchResults = findBrand(searchValue);
     clearResults();
@@ -65,6 +67,7 @@ function searchProduct(event) {
     searchType = "parts";
     getSearchValue();
     //console.log("Search Product", searchValue, event);
+    productSearchEvent(searchProduct);
     searchResults = [];
     searchResults = findProduct(searchValue);
     clearResults();
