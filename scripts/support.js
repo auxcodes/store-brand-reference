@@ -1,18 +1,26 @@
 
 function productSearchEvent(searchTerm) {
-    gtag('event', 'ProductSearchSubmit', {
-        'event_category': 'Search',
-        'event_label': 'ProductSearch',
+    gtag('event', 'search_products', {
+        'event_category': 'search',
+        'event_label': 'Search Products',
         'value': searchTerm
     });
 }
 
 function brandSearchEvent(searchTerm) {
-    gtag('event', 'BrandSearchSubmit', {
-        'event_category': 'Search',
-        'event_label': 'BrandSearch',
+    gtag('event', 'search_brands', {
+        'event_category': 'search',
+        'event_label': 'Search Brands',
         'value': searchTerm
     });
 }
 
-export { productSearchEvent, brandSearchEvent }
+function noResultEvent(searchTerm) {
+    gtag('event', 'failed_search', {
+        'event_category': 'search',
+        'event_label': 'Failed Search',
+        'value': searchTerm
+    });
+}
+
+export { productSearchEvent, brandSearchEvent, noResultEvent }

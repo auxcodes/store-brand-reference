@@ -2,7 +2,7 @@ import { initialised, StoreData, findBrand, findProduct, getAllStores, filterWor
 import { signUpForm } from "./auth.js";
 import { } from "./components/search-result.js"
 import { generateNotifications } from "./notifications.js";
-import { productSearchEvent, brandSearchEvent } from "./support.js";
+import { productSearchEvent, brandSearchEvent, noResultEvent } from "./support.js";
 
 const storeData = new StoreData();
 
@@ -113,8 +113,8 @@ function generateResults() {
 }
 
 function noResultsFound() {
+    noResultEvent(searchValue);
     const alternates = filterWords(searchValue, searchType);
-
     const div = document.createElement("div");
     div.classList.add("no-result-row");
     if (alternates.length > 0) {
