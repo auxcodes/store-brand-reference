@@ -2,7 +2,7 @@ import { initialised, StoreData, findBrand, findProduct, getAllStores, filterWor
 import { signUpForm } from "./auth.js";
 import { } from "./components/search-result.js"
 import { generateNotifications } from "./notifications.js";
-import { productSearchEvent, brandSearchEvent, noResultEvent } from "./support.js";
+import { productSearchEvent, brandSearchEvent, noResultEvent, storeClickEvent } from "./support.js";
 
 const storeData = new StoreData();
 
@@ -26,6 +26,7 @@ searchForm.onsubmit = (event) => event.preventDefault();
 
 window.onEditStore = onEditStore;
 window.onAltSearch = onAltSearch;
+window.onStoreClick = onStoreClick;
 
 (function StoreList() {
     generateNotifications();
@@ -81,6 +82,10 @@ function onAltSearch(altSearch) {
     if (altSearch.searchType === 'parts') {
         searchProduct(altSearch);
     }
+}
+
+function onStoreClick(storeName) {
+    storeClickEvent(storeName);
 }
 
 function getSearchValue() {

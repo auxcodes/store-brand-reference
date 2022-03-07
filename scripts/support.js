@@ -23,4 +23,13 @@ function noResultEvent(searchTerm) {
     });
 }
 
-export { productSearchEvent, brandSearchEvent, noResultEvent }
+function storeClickEvent(storeName) {
+    gtag('event', 'store_clicked', {
+        'event_category': 'click',
+        'event_label': 'Store Click',
+        'value': storeName
+        //,'debug_mode': true
+    });
+}
+
+export { productSearchEvent, brandSearchEvent, noResultEvent, storeClickEvent }
