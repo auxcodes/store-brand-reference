@@ -8,6 +8,10 @@ import { AppDataService } from "./app-data.js";
 const shopData = new ShopData();
 const appDataService = new AppDataService();
 
+const activeColour = document.querySelector(':root');
+const brandColour = 'var(--brand-color)';
+const productColour = 'var(--product-color)';
+
 const searchField = document.getElementById("searchInput");
 let searchValue = "";
 searchField.addEventListener("change", searchText);
@@ -53,8 +57,22 @@ function searchText(event) {
     //console.log("Search Text", searchValue);
 }
 
+function pageColour() {
+    if (searchType === 'brands') {
+        activeColour.style.setProperty('--active-search-color', brandColour);
+        searchBrandBtn.className = 'search-btn brand-btn-active';
+        searchProductBtn.className = 'search-btn products-btn';
+    }
+    else {
+        activeColour.style.setProperty('--active-search-color', productColour);
+        searchBrandBtn.className = 'search-btn brand-btn';
+        searchProductBtn.className = 'search-btn products-btn-active';
+    }
+}
+
 function searchBrand(event) {
     searchType = "brands";
+    pageColour();
     getSearchValue();
     //console.log("Search Brand: ", searchValue, event);
     searchResults = [];
@@ -65,6 +83,7 @@ function searchBrand(event) {
 
 function searchProduct(event) {
     searchType = "parts";
+    pageColour();
     getSearchValue();
     //console.log("Search Product", searchValue, event);
     searchResults = [];

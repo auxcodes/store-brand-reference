@@ -1,22 +1,38 @@
+:root {
+    --product-color: rgb(2, 172, 53);
+    --brand-color: rgb(1, 136, 255);
+    --active-search-color: var(--brand-color);
+}
+
 body {
     font-family: arial;
     display: flex;
     flex-direction: column;
     font-size: 1rem;
     height: 100vh;
+    margin: 0;
 }
 
 header {
     flex-shrink: 0;
     position: relative;
     top: 0;
+    background: #eaeaea;
+}
+
+.header-base {
+    width: 100%;
+    height: 0.5em;
+    background-color: var(--active-search-color);
+    position: relative;
+    z-index: 1;
 }
 
 label {
-    margin: 0.25em;
-    font-size: 1.75rem;
+    font-size: 2.3rem;
     font-weight: bold;
-    color: #4b4949;
+    color: #f7f7f7;
+    text-shadow: -1px 1px 1px #777, 1px 1px 1px #777, 1px -1px 1px #777, -1px -1px 5px #777;
 }
 
 input,
@@ -51,55 +67,89 @@ button {
 }
 
 .search-bar {
-    /* background-image: linear-gradient(#e8e8e8, white, #a7a7a7); */
-    border-bottom: 1px #666 solid;
-    border-radius: 2em 2em;
     padding: 0 0.5em;
+    background: linear-gradient(#fff, var(--active-search-color));
 }
 
 .search-form {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    margin: 0.5em auto;
+    display: flex;
+    margin: 0 auto 0 auto;
+    width: 95%;
+    flex-wrap: wrap;
 }
 
 .search-label {
     text-align: center;
+    min-width: max-content;
+    margin: 0.55em 0 0 0;
 }
 
 .search-input {
-    padding: 0.2em 0.5em;
-    border-radius: 0.75em 0.75em;
-    border: 1px #666 solid;
-    grid-column: span 2;
+    padding: 0.4em 0.5em;
+    border-radius: 1em;
+    border: 2px #9e9e9e solid;
+    flex-grow: 2;
+    position: relative;
+    z-index: 1;
+    margin: 1em 1em 0 1em;
+    max-height: 1.3em;
 }
 
 .search-btn-container {
     min-width: max-content;
     display: flex;
+    margin: auto auto 0 auto;
 }
 
 .search-btn {
-    border-radius: 1.75em;
-    padding: 0.2em 0.5em;
+    padding: 0.3em 0.5em;
     width: 50%;
     cursor: pointer;
+    margin-bottom: 0;
+    border-radius: 1em 1em 0 0;
+    font-size: 1.4rem;
 }
 
 .brand-btn {
-    background-color: rgb(1, 136, 255);
-    border-radius: 0.75em 0 0 0.75em;
+    background-color: var(--brand-color);
     color: white;
+    box-shadow: 0px 7px 8px #000;
+    border: 1px var(--brand-color) solid, 1px var(--brand-color) solid, 1px var(--brand-color) solid, 1px #666 solid;
+}
+
+.brand-btn-active {
+    background-color: var(--brand-color);
+    color: white;
+    box-shadow: 0px 7px 20px #000;
+    border-top: 1px rgb(114, 189, 255) solid;
+    border-right: 1px rgb(114, 189, 255) solid;
+    border-left: 1px rgb(114, 189, 255) solid;
+    border-bottom: 1px var(--brand-color) solid;
 }
 
 .products-btn {
-    background-color: rgb(2, 172, 53);
-    border-radius: 0 0.75em 0.75em 0;
+    background-color: var(--product-color);
     color: white;
+    box-shadow: 0px 7px 8px #000;
+    border: 1px var(--product-color) solid, 1px var(--product-color) solid, 1px var(--product-color) solid,
+        1px #666 solid;
+}
+
+.products-btn-active {
+    background-color: var(--product-color);
+    color: white;
+    box-shadow: 0px 7px 20px #000;
+    border-top: 1px rgb(3, 213, 66) solid;
+    border-right: 1px rgb(3, 213, 66) solid;
+    border-left: 1px rgb(3, 213, 66) solid;
+    border-bottom: 1px var(--product-color) solid;
 }
 
 .content {
     flex: 1 0 auto;
+    background: linear-gradient(var(--active-search-color), #fff 10%);
+    position: relative;
+    z-index: 1;
 }
 
 .results-container {
