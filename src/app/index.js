@@ -1,6 +1,8 @@
 import { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords } from "./shop-data.js";
 import { signUpForm } from "./auth.js";
-import { } from "./components/search-result.js"
+import { shopDetailForm } from "./shop-detail.js";
+import { } from "./components/search-result.js";
+
 
 import { generateNotifications } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
@@ -45,7 +47,6 @@ function initTimeOut() {
             resetResults();
         }
     }, 50);
-
 }
 
 function searchText(event) {
@@ -85,7 +86,11 @@ function getSearchValue() {
 
 function onEditShop() {
     console.log("edit Shop");
-    document.getElementById('login-modal').style.display = 'block';
+    // document.getElementById('login-modal').style.display = 'block';
+    shopDetailForm();
+    document.getElementById('shop-detail-modal').style.display = 'block';
+    shopDetailModal = document.getElementById('shop-detail-modal');
+
 }
 
 function generateResults() {
@@ -133,11 +138,15 @@ function onLoginClick() {
 }
 
 // Get the modal
-const modal = document.getElementById('login-modal');
+const loginModal = document.getElementById('login-modal');
+let shopDetailModal = "";
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target.id === "login-modal") {
+        loginModal.style.display = "none";
+    }
+    if (event.target.id === "shop-detail-modal") {
+        shopDetailModal.style.display = "none";
     }
 }
