@@ -1,6 +1,6 @@
 import { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords, getSpecificShop } from "./shop-data.js";
 import { signUpForm } from "./auth.js";
-import { shopDetailForm } from "./shop-detail.js";
+import { shopDetailForm, openShopDetailModal } from "./shop-detail.js";
 import { } from "./components/search-result.js";
 
 
@@ -89,13 +89,7 @@ function onEditShop(shopId) {
     console.log("edit Shop", shopId);
     // document.getElementById('login-modal').style.display = 'block';
     shopDetailForm();
-    shopDetailModal = document.getElementById('shop-detail-modal');
-    shopDetailModal.onsubmit = (event) => event.preventDefault();
-    shopDetailModal.style.display = 'block';
-    const shopDetails = getSpecificShop(shopId);
-    console.log("Specific Shop: ", shopDetails);
-    shopDetailModal.shopDetail = shopDetails;
-
+    shopDetailModal = openShopDetailModal(shopId);
 }
 
 function generateResults() {

@@ -29,5 +29,19 @@ export function createNewShop(shopDetails) {
     addNewShop(newShop);
 }
 
+export function openShopDetailModal(shopId) {
+    let modal = document.getElementById('shop-detail-modal');
+    modal.style.display = 'block';
+    const shopDetails = getSpecificShop(shopId);
+    console.log("Specific Shop: ", shopDetails);
+    modal.shopDetail = shopDetails;
+    modal.onsubmit = (event) => {
+        console.log("OnsubmitEdit", event.target);
+        event.preventDefault();
+    };
+
+    return modal;
+}
+
 
 

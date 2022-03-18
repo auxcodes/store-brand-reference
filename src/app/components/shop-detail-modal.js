@@ -24,7 +24,7 @@ class ShopDetailModal extends HTMLElement {
             <div class="container">
                 <div class="btn-row">
                     <button id="add-btn" class="modal-btn add-btn" type="submit">Add</button>
-                    <button id="update-btn" class="modal-btn updae-btn" type="submit">Update</button>
+                    <button id="update-btn" class="modal-btn update-btn" type="submit">Update</button>
                 </div>
             </div>
         </form>

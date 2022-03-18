@@ -280,8 +280,13 @@ button {
     opacity: 0.8;
 }
 
-.login-btn {
+.login-btn,
+.add-btn {
     background-color: #04aa6d;
+}
+
+.update-btn {
+    background-color: #e68200;
 }
 
 /* Add padding to containers */
