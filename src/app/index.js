@@ -1,4 +1,4 @@
-import { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords } from "./shop-data.js";
+import { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords, getSpecificShop } from "./shop-data.js";
 import { signUpForm } from "./auth.js";
 import { shopDetailForm } from "./shop-detail.js";
 import { } from "./components/search-result.js";
@@ -27,6 +27,7 @@ let searchType = "";
 // form hack to stop page reload
 const searchForm = document.getElementById("form-search");
 searchForm.onsubmit = (event) => event.preventDefault();
+
 
 window.onEditShop = onEditShop;
 
@@ -84,12 +85,16 @@ function getSearchValue() {
     }
 }
 
-function onEditShop() {
-    console.log("edit Shop");
+function onEditShop(shopId) {
+    console.log("edit Shop", shopId);
     // document.getElementById('login-modal').style.display = 'block';
     shopDetailForm();
-    document.getElementById('shop-detail-modal').style.display = 'block';
     shopDetailModal = document.getElementById('shop-detail-modal');
+    shopDetailModal.onsubmit = (event) => event.preventDefault();
+    shopDetailModal.style.display = 'block';
+    const shopDetails = getSpecificShop(shopId);
+    console.log("Specific Shop: ", shopDetails);
+    shopDetailModal.shopDetail = shopDetails;
 
 }
 

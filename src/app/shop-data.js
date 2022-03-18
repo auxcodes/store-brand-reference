@@ -60,4 +60,13 @@ function getAllShops() {
     return allData;
 }
 
-export { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords }
+function getSpecificShop(shopId) {
+    return allData.find(shop => shop.shopId === shopId);
+}
+
+function addNewShop(newShop) {
+    console.log("Add new shop:", newShop)
+    allData.push(newShop);
+}
+
+export { initialised, ShopData, findBrand, findProduct, getAllShops, getSpecificShop, filterWords, addNewShop }
