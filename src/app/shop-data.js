@@ -69,4 +69,11 @@ function addNewShop(newShop) {
     allData.push(newShop);
 }
 
-export { initialised, ShopData, findBrand, findProduct, getAllShops, getSpecificShop, filterWords, addNewShop }
+function updateShop(shopDetail) {
+    console.log("Update shop:", shopDetail);
+    const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
+    allData[index] = shopDetail;
+    console.log('Updated shop: ', allData);
+}
+
+export { initialised, ShopData, findBrand, findProduct, getAllShops, getSpecificShop, filterWords, addNewShop, updateShop }

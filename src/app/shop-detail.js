@@ -1,5 +1,5 @@
 import { } from "./components/shop-detail-modal.js";
-import { getSpecificShop, addNewShop } from "./shop-data.js"
+import { getSpecificShop, addNewShop, updateShop } from "./shop-data.js"
 
 const main = document.querySelector('main');
 
@@ -9,11 +9,6 @@ export function shopDetailForm(shopDetail) {
     el.id = 'shop-detail-modal';
     el.modal = {};
     main.append(el);
-}
-
-export function updateShopDetail(shopId) {
-    let selectedShop = getSpecificShop(shopId);
-    console.log('Update Shop Detail:', selectedShop);
 }
 
 export function createNewShop(shopDetails) {
@@ -35,13 +30,29 @@ export function openShopDetailModal(shopId) {
     const shopDetails = getSpecificShop(shopId);
     console.log("Specific Shop: ", shopDetails);
     modal.shopDetail = shopDetails;
-    modal.onsubmit = (event) => {
-        console.log("OnsubmitEdit", event.target);
-        event.preventDefault();
-    };
-
     return modal;
 }
 
+export function processShopDetails(fields, submitter) {
+    const name = fields[0].value;
+    const url = fields[1].value;
+    const brands = fields[2].value;
+    const parts = fields[3].value;
+    const id = fields[4].value;
+    const shopDetails = {
+        shopId: id,
+        shopName: name,
+        shopURL: url,
+        brands: brands,
+        parts: parts
+    }
+    console.log("Process Details: ", shopDetails);
+    if (submitter === 'addButton') {
+        createNewShop(shopDetails);
+    }
+    if (submitter === 'updateButton') {
+        updateShop(shopDetails);
+    }
+}
 
 

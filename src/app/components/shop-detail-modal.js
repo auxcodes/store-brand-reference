@@ -19,12 +19,12 @@ class ShopDetailModal extends HTMLElement {
                 <label class="modal-field" for="shopProducts"><b>Products</b></label>
                 <input class="modal-field shop-field" type="text" placeholder="Product One, Product Two, Product Three" name="shopProducts" value="${shopData.parts}"
                     required>
-                    <span id="shopId" class="shop-id">${shopData.shopId}</span>
+                <input id="shopId" class="shop-id" value="${shopData.shopId}">
             </div>
             <div class="container">
                 <div class="btn-row">
-                    <button id="add-btn" class="modal-btn add-btn" type="submit">Add</button>
-                    <button id="update-btn" class="modal-btn update-btn" type="submit">Update</button>
+                    <button id="addButton" class="modal-btn add-btn" type="submit">Add</button>
+                    <button id="updateButton" class="modal-btn update-btn" type="submit">Update</button>
                 </div>
             </div>
         </form>

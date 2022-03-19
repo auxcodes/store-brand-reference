@@ -13,9 +13,8 @@ export class AppDataService {
     getData() {
         this.cloudStorageService.getStorage()
             .then(shopData => {
-                console.log(shopData);
-            }
-            );
+                console.log('Cloud storage data: ', shopData);
+            });
     }
 
     updateData(shopData) {
