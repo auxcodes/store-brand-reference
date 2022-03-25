@@ -47,6 +47,13 @@ const notificationObjects = [
         <span class="notif-text">Update 06/03: 'Did you mean?' results are now clickable! </span>    
         `,
         show: true
+    },
+        {
+        id: "notif-2503",
+        content: `
+        <span class="notif-text">Update 25/03: Added MTB Direct and its brands </span>    
+        `,
+        show: true
     }
 ];
 
