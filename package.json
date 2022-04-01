@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "firebase-admin": "^9.2.0"
+  },
   "devDependencies": {},
   "debug": "netlify dev --inspect",
   "repository": {
