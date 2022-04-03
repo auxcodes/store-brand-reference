@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const client = require('firebase/app');
+const clientAuth = require('firebase/auth');
 
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
@@ -33,7 +34,7 @@ admin.initializeApp({
 client.initializeApp(clientAccount);
 
 const db = admin.firestore();
-const clientAuth = client.auth();
+//const clientAuth = client.auth();
 
 exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
