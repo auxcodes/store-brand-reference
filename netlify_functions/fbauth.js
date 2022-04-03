@@ -24,12 +24,30 @@ exports.handler = async (event, context, callback) => {
     const errors = [];
     const email = body['auth'].email.toLowerCase();
 
-    if (email.includes("@99bikes.com.au")) {
-        callback(null, {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({ msg: JSON.stringify(serviceAccount), error: errors })
-        });
+    if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
+        firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+            .then(() => {
+                // The link was successfully sent. Inform the user.
+                // Save the email locally so you don't need to ask the user for it again
+                // if they open the link on the same device.
+                //window.localStorage.setItem('emailForSignIn', email);
+                // ...
+                callback(null, {
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify({ msg: JSON.stringify(serviceAccount), error: errors })
+                });
+            })
+            .catch((error) => {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                callback(null, {
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify({ msg: "Send Email Error:", error: { code: errorCode, msg: errorMessage } })
+                });
+                // ...
+            });
     }
     else {
         errors.push(new Error("Email was not valid"));

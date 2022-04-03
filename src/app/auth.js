@@ -30,6 +30,7 @@ export function signUp(email, password) {
         const status = request.status; // HTTP response status, e.g., 200 for "200 OK"
         const data = request.responseText; // Returned data, e.g., an HTML document.
         console.log(status, data);
+        window.localStorage.setItem('emailForSignIn', email);
     }
 
     request.onerror = (e) => {

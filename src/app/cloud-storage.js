@@ -31,7 +31,7 @@ export class CloudStorageService {
         let shopData = {};
         await get(this.dbWorkingRef).then((snapshot) => {
             if (snapshot.exists()) {
-                //console.log(snapshot.val());
+                console.log("Snapshot: ", snapshot.val());
                 shopData = snapshot.val();
             } else {
                 console.log("No data available");
