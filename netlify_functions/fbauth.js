@@ -1,4 +1,5 @@
-const admin = require('firebase-admin')
+const admin = require('firebase-admin');
+const client = require('firebase');
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
     project_id: process.env.FIREBASE_PROJECT_ID,
@@ -12,12 +13,26 @@ const serviceAccount = {
     client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
 };
 
+const clientAccount = {
+    apiKey: process.env.FIREBASE_CLIENT_API_KEY,
+    authDomain: process.env.FIREBASE_CLIENT_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_CLIENT_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_CLIENT_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_CLIENT_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_CLIENT_APP_ID,
+    measurementId: process.env.FIREBASE_CLIENT_MEASUREMENT_ID
+};
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
 });
 
+client.initializeApp(clientAccount);
+
 const db = admin.firestore();
+const clientAuth = client.auth();
 
 exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
@@ -26,7 +41,7 @@ exports.handler = async (event, context, callback) => {
     const actionCodeSettings = { url: 'https://storesearch.aux.codes' }
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
-        admin.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+        clientAuth.sendSignInLinkToEmail(email, actionCodeSettings)
             .then(() => {
                 // The link was successfully sent. Inform the user.
                 // Save the email locally so you don't need to ask the user for it again
