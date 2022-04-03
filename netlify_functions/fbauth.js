@@ -25,7 +25,7 @@ exports.handler = async (event, context, callback) => {
     const email = body['auth'].email.toLowerCase();
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
-        firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+        admin.auth().sendSignInLinkToEmail(email, actionCodeSettings)
             .then(() => {
                 // The link was successfully sent. Inform the user.
                 // Save the email locally so you don't need to ask the user for it again
