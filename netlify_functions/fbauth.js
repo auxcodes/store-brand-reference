@@ -23,6 +23,7 @@ exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
     const errors = [];
     const email = body['auth'].email.toLowerCase();
+    const actionCodeSettings = { url: 'https://storesearch.aux.codes' }
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
         admin.auth().sendSignInLinkToEmail(email, actionCodeSettings)
