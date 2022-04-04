@@ -32,6 +32,7 @@ admin.initializeApp({
 });
 
 client.initializeApp(clientAccount);
+const auth = clientAuth.getAuth();
 
 const db = admin.firestore();
 //const clientAuth = client.auth();
@@ -52,7 +53,7 @@ exports.handler = async (event, context, callback) => {
     };
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
-        const auth = clientAuth.getAuth();
+
         console.log('Check email was valid!', JSON.stringify(actionCodeSettings), auth);
         await clientAuth.sendSignInLinkToEmail(auth, email, actionCodeSettings)
             .then(() => {
