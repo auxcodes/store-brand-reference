@@ -46,8 +46,9 @@ exports.handler = async (event, context, callback) => {
     const errors = [];
     const email = body['auth'].email.toLowerCase();
     const actionCodeSettings = {
-        handleCodeInApp: 'false',
-        url: 'https://storesearch.aux.codes/?email=' + email
+        handleCodeInApp: false,
+        url: 'https://storesearch.aux.codes/?email=' + email,
+        dynamicLinkDomain: 'storesearch.aux.codes'
     };
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
