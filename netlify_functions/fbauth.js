@@ -36,6 +36,11 @@ client.initializeApp(clientAccount);
 const db = admin.firestore();
 //const clientAuth = client.auth();
 
+const headers = {
+    'Access-Control-Allow-Credentials': true,
+    'Access-Control-Allow-Headers': 'Authorization'
+};
+
 exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
     const errors = [];
