@@ -48,13 +48,10 @@ exports.handler = async (event, context, callback) => {
     const actionCodeSettings = { url: 'https://storesearch.aux.codes' }
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
-        clientAuth.sendSignInLinkToEmail(email, actionCodeSettings)
+        console.log('Check email was valid!');
+        await clientAuth.sendSignInLinkToEmail(email, actionCodeSettings)
             .then(() => {
-                // The link was successfully sent. Inform the user.
-                // Save the email locally so you don't need to ask the user for it again
-                // if they open the link on the same device.
-                //window.localStorage.setItem('emailForSignIn', email);
-                // ...
+                console.log('sent email !!');
                 callback(null, {
                     statusCode: 200,
                     headers,
@@ -64,6 +61,7 @@ exports.handler = async (event, context, callback) => {
             .catch((error) => {
                 let errorCode = error.code;
                 let errorMessage = error.message;
+                console.log('Some sort of error: ', errorCode, errorMessage);
                 callback(null, {
                     statusCode: 200,
                     headers,
