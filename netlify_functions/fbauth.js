@@ -45,7 +45,10 @@ exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
     const errors = [];
     const email = body['auth'].email.toLowerCase();
-    const actionCodeSettings = { url: 'https://storesearch.aux.codes' }
+    const actionCodeSettings = {
+        url: 'https://storesearch.aux.codes',
+        handleCodeInApp: false
+    };
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
         console.log('Check email was valid!');
