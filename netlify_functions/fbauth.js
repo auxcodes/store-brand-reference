@@ -52,8 +52,9 @@ exports.handler = async (event, context, callback) => {
     };
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
-        console.log('Check email was valid!', JSON.stringify(actionCodeSettings));
-        await clientAuth.sendSignInLinkToEmail(clientAuth.getAuth(), email, actionCodeSettings)
+        const auth = clientAuth.getAuth();
+        console.log('Check email was valid!', JSON.stringify(actionCodeSettings), auth);
+        await clientAuth.sendSignInLinkToEmail(auth, email, actionCodeSettings)
             .then(() => {
                 console.log('sent email !!');
                 callback(null, {
