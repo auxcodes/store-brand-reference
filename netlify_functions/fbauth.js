@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 const sdkAuth = require('firebase-admin/auth');
-const mailer = require('mailer');
+const mailer = require('./mailer');
 
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
