@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const auth = require('firebase-admin/auth');
+const sdkAuth = require('firebase-admin/auth');
 
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
@@ -19,6 +19,8 @@ const app = admin.initializeApp({
     databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
 });
 
+const auth = sdkAuth.getAuth();
+
 const headers = {
     'Access-Control-Allow-Credentials': true,
     'Access-Control-Allow-Headers': 'Authorization'
@@ -36,16 +38,15 @@ exports.handler = async (event, context, callback) => {
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
 
         console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app);
-        await auth.getAuth()
-            .generateSignInWithEmailLink(email, actionCodeSettings)
+        await auth.generateSignInWithEmailLink(email, actionCodeSettings)
             .then((link) => {
                 console.log('sent email !!');
                 callback(null, {
                     statusCode: 200,
                     headers,
-                    body: JSON.stringify({ msg: JSON.stringify(serviceAccount), error: errors })
+                    body: JSON.stringify({ msg: link, error: errors })
                 });
-                return sendSignInEmail(email, 'Barry', link);
+                return auth.sendSignInEmail(email, 'Barry', link);
             })
             .catch((error) => {
                 let errorCode = error.code;
