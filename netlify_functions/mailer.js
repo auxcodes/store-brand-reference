@@ -16,11 +16,23 @@ async function sendSignInEmail(emailAddress, link) {
         from: "noreply@aux.codes",
         subject: "Login Link for Store Search",
         html: `
-        <p>Please click the below link to login to Store Search:</p>
-        <a>${link}</a>
-        <p>If you didn’t try to login, you can ignore this email.</p>
-        <p>Thanks</p>
-        <p>Store Search Team</p>`
+        <div style="border: 2px #c1c1c1 solid; border-radius: 1em; padding: 1em; font-family: Arial, sans-serif;">
+        <p style="">Please click the below button to login to Store Search:</p>
+        <a href="${link}" style="background-color: #4CAF50;
+        border-radius: 1em;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 700">Login</a>
+        <p style="">If you didn’t try to login, you can ignore this email.</p>
+        <p style="">Thanks</p>
+        <p style="">Store Search Team</p>
+      </div>
+      `
     }
 
     await transporter.sendMail(mailOptions, (error, info) => {
