@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const sdkAuth = require('firebase-admin/auth');
+const mailer = require('mailer');
 
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
@@ -46,7 +47,7 @@ exports.handler = async (event, context, callback) => {
                     headers,
                     body: JSON.stringify({ msg: link, error: errors })
                 });
-                return auth.sendSignInEmail(email, 'Barry', link);
+                mailer.sendSignInEmail(email, link);
             })
             .catch((error) => {
                 let errorCode = error.code;
