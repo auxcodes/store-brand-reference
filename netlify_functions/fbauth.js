@@ -1,4 +1,5 @@
-const admin = require('firebase-admin');
+const admin = require('firebase-admin/app');
+const auth = require('firebase-admin/auth');
 
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
@@ -13,7 +14,7 @@ const serviceAccount = {
     client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
 };
 
-admin.initializeApp({
+const app = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
 });
@@ -35,8 +36,8 @@ exports.handler = async (event, context, callback) => {
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
 
-        console.log('Check email was valid!', JSON.stringify(actionCodeSettings), admin);
-        await getAuth()
+        console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app);
+        await auth.getAuth()
             .generateSignInWithEmailLink(usremail, actionCodeSettings)
             .then((link) => {
                 console.log('sent email !!');
