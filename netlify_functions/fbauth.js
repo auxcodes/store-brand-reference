@@ -1,41 +1,22 @@
-//const admin = require('firebase-admin');
-const clientApp = require('firebase/app');
-const clientAuth = require('firebase/auth');
+const admin = require('firebase-admin');
 
-// const serviceAccount = {
-//     type: process.env.FIREBASE_TYPE,
-//     project_id: process.env.FIREBASE_PROJECT_ID,
-//     private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-//     private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-//     client_email: process.env.FIREBASE_CLIENT_EMAIL,
-//     client_id: process.env.FIREBASE_CLIENT_ID,
-//     auth_uri: process.env.FIREBASE_AUTH_URI,
-//     token_uri: process.env.FIREBASE_TOKEN_URI,
-//     auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
-//     client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
-// };
-
-const clientAccount = {
-    apiKey: process.env.FIREBASE_CLIENT_API_KEY,
-    authDomain: process.env.FIREBASE_CLIENT_AUTH_DOMAIN,
-    databaseURL: process.env.FIREBASE_CLIENT_DATABASE_URL,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_CLIENT_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_CLIENT_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_CLIENT_APP_ID,
-    measurementId: process.env.FIREBASE_CLIENT_MEASUREMENT_ID
+const serviceAccount = {
+    type: process.env.FIREBASE_TYPE,
+    project_id: process.env.FIREBASE_PROJECT_ID,
+    private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.FIREBASE_CLIENT_EMAIL,
+    client_id: process.env.FIREBASE_CLIENT_ID,
+    auth_uri: process.env.FIREBASE_AUTH_URI,
+    token_uri: process.env.FIREBASE_TOKEN_URI,
+    auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+    client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
 };
 
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount),
-//     databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
-// });
-
-const app = clientApp.initializeApp(clientAccount);
-const auth = clientAuth.getAuth(app);
-
-// const db = admin.firestore();
-//const clientAuth = client.auth();
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
+});
 
 const headers = {
     'Access-Control-Allow-Credentials': true,
@@ -54,15 +35,17 @@ exports.handler = async (event, context, callback) => {
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
 
-        console.log('Check email was valid!', JSON.stringify(actionCodeSettings), auth);
-        await clientAuth.sendSignInLinkToEmail(auth, email, actionCodeSettings)
-            .then(() => {
+        console.log('Check email was valid!', JSON.stringify(actionCodeSettings), admin);
+        await getAuth()
+            .generateSignInWithEmailLink(usremail, actionCodeSettings)
+            .then((link) => {
                 console.log('sent email !!');
                 callback(null, {
                     statusCode: 200,
                     headers,
                     body: JSON.stringify({ msg: JSON.stringify(serviceAccount), error: errors })
                 });
+                return sendSignInEmail(email, 'Barry', link);
             })
             .catch((error) => {
                 let errorCode = error.code;
