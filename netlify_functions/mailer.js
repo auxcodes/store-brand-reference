@@ -10,7 +10,7 @@ let transporter = nodeMailer.createTransport({
     },
 });
 
-async function sendLoginLink(emailAddress, link) {
+async function sendSignInLink(emailAddress, link) {
     const mailOptions = {
         to: emailAddress,
         from: "noreply@aux.codes",
@@ -34,4 +34,4 @@ async function sendLoginLink(emailAddress, link) {
     });
 }
 
-module.exports = { sendLoginLink };
+module.exports = { sendSignInLink };
