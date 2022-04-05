@@ -38,7 +38,7 @@ exports.handler = async (event, context, callback) => {
 
         console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app);
         await auth.getAuth()
-            .generateSignInWithEmailLink(usremail, actionCodeSettings)
+            .generateSignInWithEmailLink(email, actionCodeSettings)
             .then((link) => {
                 console.log('sent email !!');
                 callback(null, {
