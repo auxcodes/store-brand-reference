@@ -1,5 +1,5 @@
 //const admin = require('firebase-admin');
-const client = require('firebase/app');
+const clientApp = require('firebase/app');
 const clientAuth = require('firebase/auth');
 
 // const serviceAccount = {
@@ -31,8 +31,8 @@ const clientAccount = {
 //     databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
 // });
 
-client.initializeApp(clientAccount);
-const auth = clientAuth.getAuth();
+const app = clientApp.initializeApp(clientAccount);
+const auth = clientAuth.getAuth(app);
 
 // const db = admin.firestore();
 //const clientAuth = client.auth();
