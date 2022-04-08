@@ -63,19 +63,17 @@ function generateNotifications() {
 }
 
 async function checkLocalStorage() {
-    await localStorageService.readEntry(storageKey).then(storage => {
-        if (storage) {
-            notificationHistory = storage;
-            notificationObjects.forEach(item => {
-                if (storage[item.id] === false) {
-                    item.show = false;
-                }
-            });
-        }
-        else {
-            toDisplay = notificationObjects;
-        }
-    })
+    await localStorageService.readEntry(storageKey)
+        .then(storage => {
+            if (storage) {
+                notificationHistory = storage;
+                notificationObjects.forEach(item => {
+                    if (storage[item.id] === false) {
+                        item.show = false;
+                    }
+                });
+            }
+        })
         .catch(e => console.log(e));
 }
 
