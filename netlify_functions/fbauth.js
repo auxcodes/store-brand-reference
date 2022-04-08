@@ -33,12 +33,12 @@ exports.handler = async (event, context, callback) => {
     const email = body['auth'].email.toLowerCase();
     const actionCodeSettings = {
         handleCodeInApp: false,
-        url: 'https://storesearch.aux.codes/?email=' + email
+        url: process.env.LOGIN_EMAIL_URL
     };
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
 
-        console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app);
+        console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app.Error);
         await auth.generateSignInWithEmailLink(email, actionCodeSettings)
             .then((link) => {
                 console.log('sent email !!');
