@@ -7,19 +7,14 @@ class LoginModal extends HTMLElement {
                     title="Close Modal">&times;</span>
             </div>
             <div class="container">
-                <label class="modal-field" for="uname"><b>Username</b></label>
-                <input class="modal-field login-field" type="text" placeholder="Enter Username" name="uname"
-                    required>
-                <label class="modal-field" for="psw"><b>Password</b></label>
-                <input class="modal-field login-field" type="password" placeholder="Enter Password" name="psw"
-                    required>
+                <p>To login enter your 99 Bikes email address, if valid you will receive an email with instruction for logging in.</p>
+                <label class="modal-field" for="uname"><b>Email</b></label>
+                <input class="modal-field login-field" type="text" placeholder="Enter Email Address" name="uname" required>
             </div>
             <div class="container">
                 <div class="btn-row">
                     <button id="login-btn" class="modal-btn login-btn" type="submit">Login</button>
-                    <button id="signup-btn" class="modal-btn signup-btn" type="submit">Sign Up</button>
                 </div>
-                <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
         </form>
     </div>
