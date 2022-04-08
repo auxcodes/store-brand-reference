@@ -10,10 +10,11 @@ export class CloudStorageService {
     dbWorkingRef = null;
 
     constructor(firebaseService) {
-        console.log('Init Cloud Storage Service');
+        console.log('CS - Init Cloud Storage Service');
         this.fbService = firebaseService;
         this.database = getDatabase(this.fbService.app);
         this.dbWorkingRef = ref(this.database, this.workingFile);
+        console.log('CS - DB ref: ', this.dbWorkingRef);
     }
 
     updateStorage(shopData) {
@@ -30,18 +31,19 @@ export class CloudStorageService {
 
     async getStorage() {
         let shopData = {};
-        await get(this.dbWorkingRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log("Snapshot: ", snapshot.val());
-                shopData = snapshot.val();
-            } else {
-                console.log("No data available");
-                shopData = { "error": "No Data Available" }
-            }
-        }).catch((error) => {
-            console.error(error);
-            shopData = { "error": error };
-        });
+        await get(this.dbWorkingRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log("CS - Snapshot: ", snapshot.val());
+                    shopData = snapshot.val();
+                } else {
+                    console.log("No data available");
+                    shopData = { "error": "No Data Available" }
+                }
+            }).catch((error) => {
+                console.error(error);
+                shopData = { "error": error };
+            });
 
         return shopData;
     }

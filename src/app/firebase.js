@@ -15,11 +15,15 @@ export class FirebaseService {
 
     app = null;
     analytics = null;
+    user = null;
 
     constructor() {
         // Initialize Firebase
+        console.log('FBS - Init Firebase');
         this.app = initializeApp(this.firebaseConfig);
         this.analytics = getAnalytics(this.app);
     }
+
+
 
 }

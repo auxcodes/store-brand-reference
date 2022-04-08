@@ -8,7 +8,7 @@ export class AppDataService {
     cloudStorageService = null;
 
     constructor() {
-        console.log('Init App Data Service');
+        console.log('AD - Init App Data Service');
         this.localStorageService = new LocalStorageService();
         this.cloudStorageService = new CloudStorageService(this.authService.firebaseService);
         this.getData();
@@ -17,7 +17,7 @@ export class AppDataService {
     getData() {
         this.cloudStorageService.getStorage()
             .then(shopData => {
-                console.log('Cloud storage data: ', shopData);
+                console.log('AD - Cloud storage data: ', shopData);
             });
     }
 

@@ -1,8 +1,6 @@
-import { LocalStorageService } from "./local-storage.js";
-
-const localStorageService = new LocalStorageService();
-const storageKey = 'notifications';
+let localStorageService = null;
 let notificationHistory = {};
+const storageKey = 'notifications';
 
 const notificationObjects = [
     {
@@ -46,6 +44,10 @@ const notificationObjects = [
 
 const notificationsContainer = document.getElementById("notifications");
 window.onCloseNotification = closeNotification;
+
+function setStorageService(storageService) {
+    localStorageService = storageService;
+}
 
 function generateNotifications() {
     checkLocalStorage().then(() => {
@@ -97,4 +99,4 @@ function setObject(key, value) {
     return obj;
 }
 
-export { generateNotifications, closeNotification }
+export { generateNotifications, closeNotification, setStorageService }

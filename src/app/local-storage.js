@@ -8,7 +8,7 @@ export class LocalStorageService {
     message = { msg: 'Either not supported or no entry found' };
 
     constructor() {
-        console.log('Init Local Storage Service');
+        console.log('LS - Init Local Storage Service');
 
         this.supported = window.localStorage ? true : false;
         if (this.hasEntry === false) {

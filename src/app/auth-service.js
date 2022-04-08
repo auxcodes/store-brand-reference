@@ -6,13 +6,20 @@ export class AuthService {
     firebaseService = new FirebaseService();
 
     constructor() {
-        console.log('fb service', this.firebaseService);
-        console.log('Init Auth Service');
-        this.emailLogin();
+        console.log('AS - FB Service', this.firebaseService);
+        console.log('AS - Init Auth Service');
+        this.checkURL();
+    }
+
+    checkURL() {
+        console.log('AS - Check URL...');
+        if (window.location.search.length > 0) {
+            this.emailLogin();
+        }
     }
 
     emailLogin() {
-        console.log('check email login');
+        console.log('AS - Check email login...');
         // Confirm the link is a sign-in with email link.
         const auth = getAuth();
         if (isSignInWithEmailLink(auth, window.location.href)) {
@@ -36,7 +43,7 @@ export class AuthService {
                     // Clear email from storage.
                     window.localStorage.removeItem('emailForSignIn');
                     this.user = result.user;
-                    console.log('user: ', result.additionalUserInfo.isNewUser, this.user);
+                    console.log('user: ', result, this.user);
                     // You can access the new user via result.user
                     // Additional user info profile not available via:
                     // result.additionalUserInfo.profile == null

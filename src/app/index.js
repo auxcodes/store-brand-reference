@@ -3,7 +3,7 @@ import { signUpForm } from "./auth.js";
 import { shopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
 import { } from "./components/search-result.js";
 
-import { generateNotifications } from "./notifications.js";
+import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 
 const shopData = new ShopData();
@@ -41,6 +41,7 @@ function initTimeOut() {
             console.log("waiting");
         }
         else {
+            setStorageService(appDataService.localStorageService);
             generateNotifications();
             resetResults();
         }
