@@ -1,4 +1,3 @@
-import { FirebaseService } from "./firebase.js";
 import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
 export class CloudStorageService {
@@ -6,14 +5,16 @@ export class CloudStorageService {
     dbUrl = 'https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/';
     workingFile = 'live';
     backupFile = 'backup';
+    fbService = null;
+    database = null;
+    dbWorkingRef = null;
 
-    constructor() {
+    constructor(firebaseService) {
         console.log('Init Cloud Storage Service');
+        this.fbService = firebaseService;
+        this.database = getDatabase(this.fbService.app);
+        this.dbWorkingRef = ref(this.database, this.workingFile);
     }
-
-    firebaseService = new FirebaseService();
-    database = getDatabase(this.firebaseService.app);
-    dbWorkingRef = ref(this.database, this.workingFile);
 
     updateStorage(shopData) {
         set(this.dbWorkingRef, shopData);

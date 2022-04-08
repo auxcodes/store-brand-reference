@@ -3,7 +3,6 @@ import { signUpForm } from "./auth.js";
 import { shopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
 import { } from "./components/search-result.js";
 
-
 import { generateNotifications } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 
@@ -28,15 +27,12 @@ let searchType = "";
 const searchForm = document.getElementById("form-search");
 searchForm.onsubmit = (event) => event.preventDefault();
 
-
 window.onEditShop = onEditShop;
 
 (function ShopList() {
-    generateNotifications();
     initTimeOut();
     signUpForm();
 })() //IIFE immediately invoked function expression
-
 
 function initTimeOut() {
     setTimeout(() => {
@@ -45,6 +41,7 @@ function initTimeOut() {
             console.log("waiting");
         }
         else {
+            generateNotifications();
             resetResults();
         }
     }, 50);

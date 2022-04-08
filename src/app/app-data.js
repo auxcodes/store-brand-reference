@@ -1,12 +1,16 @@
+import { AuthService } from "./auth-service.js";
 import { CloudStorageService } from "./cloud-storage.js";
 import { LocalStorageService } from "./local-storage.js";
 
 export class AppDataService {
-    localStorageService = new LocalStorageService();
-    cloudStorageService = new CloudStorageService();
+    authService = new AuthService();
+    localStorageService = null
+    cloudStorageService = null;
 
     constructor() {
         console.log('Init App Data Service');
+        this.localStorageService = new LocalStorageService();
+        this.cloudStorageService = new CloudStorageService(this.authService.firebaseService);
         this.getData();
     }
 
