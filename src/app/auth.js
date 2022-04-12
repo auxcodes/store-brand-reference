@@ -6,23 +6,6 @@ const shouldBeAsync = true;
 const main = document.querySelector('main');
 //let loginForm = null;
 
-window.addEventListener('hashchange', () => {
-    console.log("URL change event");
-    hashNavigation();
-});
-
-function hashNavigation() {
-    const currentHash = window.location.hash;
-    const hasHash = currentHash.length > 0;
-    const emailAuth = hasHash && (currentHash === '#emailauth');
-    console.log('hash navigation:', currentHash, hasHash, emailAuth);
-    if (emailAuth) {
-        console.log('emailauth')
-    }
-}
-
-
-
 export function signUp(email, password) {
     console.log('signup');
     const postData = JSON.stringify({ "auth": { "email": email, "password": password } });
@@ -73,9 +56,8 @@ export function signUpForm() {
 function siginInSubmitted(event) {
     if (event.submitter.id === 'signup-btn') {
         const username = event.target[0].value;
-        const pswd = event.target[1].value;
         console.log('signup button clicked', username);
-        signUp(username, pswd);
+        signInWithEmail(username);
     }
     if (event.submitter.id === 'login-btn') {
         console.log('login button clicked');
