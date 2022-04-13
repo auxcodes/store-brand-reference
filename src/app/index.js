@@ -1,5 +1,5 @@
 import { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords, getSpecificShop } from "./shop-data.js";
-import { signUpForm } from "./auth.js";
+import { signUpForm, userSignedIn } from "./auth.js";
 import { shopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
 import { } from "./components/search-result.js";
 
@@ -85,17 +85,17 @@ function getSearchValue() {
 
 function onEditShop(shopId) {
     console.log("edit Shop", shopId);
-    // document.getElementById('login-modal').style.display = 'block';
-    shopDetailForm();
-    shopDetailModal = openShopDetailModal(shopId);
-    shopDetailModal.onsubmit = (event) => {
-        //console.log("OnsubmitEdit", event.submitter.id, event.target);
-        processShopDetails(event.target, event.submitter.id);
-        clearResults();
-        resetResults();
-        event.preventDefault();
-        shopDetailModal.style.display = 'none';
-    };
+    if (shopDetailForm()) {
+        shopDetailModal = openShopDetailModal(shopId);
+        shopDetailModal.onsubmit = (event) => {
+            //console.log("OnsubmitEdit", event.submitter.id, event.target);
+            processShopDetails(event.target, event.submitter.id);
+            clearResults();
+            resetResults();
+            event.preventDefault();
+            shopDetailModal.style.display = 'none';
+        };
+    }
 }
 
 function generateResults() {

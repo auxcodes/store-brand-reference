@@ -1,42 +1,15 @@
 import { } from "./components/login-modal.js"
 
-const url = "http://localhost:8888/.netlify/functions/authentication";
+const url = "https://dev.storesearch.aux.codes/.netlify/functions/fbauth";
 const method = "POST";
 const shouldBeAsync = true;
 const main = document.querySelector('main');
 //let loginForm = null;
 
-export function signUp(email, password) {
-    console.log('signup');
-    const postData = JSON.stringify({ "auth": { "email": email, "password": password } });
-    const request = new XMLHttpRequest();
-    request.open(method, url, shouldBeAsync);
-    request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    request.setRequestHeader('Access-Control-Allow-Origin', '*')
-    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    // Or... request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-    request.send(postData);
-
-    request.upload.onprogress = (e) => {
-        console.log(`${e.loaded}B of  ${e.total}B uploaded`);
-    }
-
-    request.upload.onload = (e) => {
-        console.log('upload completed!');
-    }
-
-    request.onload = () => {
-        // You can get all kinds of information about the HTTP response.
-        const status = request.status; // HTTP response status, e.g., 200 for "200 OK"
-        const data = request.responseText; // Returned data, e.g., an HTML document.
-        console.log(status, data);
-        window.localStorage.setItem('emailForSignIn', email);
-    }
-
-    request.onerror = (e) => {
-        console.log(request.status);
-    }
-}
+window.addEventListener('hashchange', () => {
+    console.log("URL change event");
+    hashNavigation();
+});
 
 export function signUpForm() {
     const el = document.createElement('login-modal');
@@ -53,15 +26,14 @@ export function signUpForm() {
     };
 }
 
+export function userSignedIn() {
+    return false;
+}
+
 function siginInSubmitted(event) {
-    if (event.submitter.id === 'signup-btn') {
-        const username = event.target[0].value;
-        console.log('signup button clicked', username);
-        signInWithEmail(username);
-    }
-    if (event.submitter.id === 'login-btn') {
-        console.log('login button clicked');
-    }
+    const username = event.target[0].value;
+    console.log('signup button clicked', username);
+    signInWithEmail(username);
 }
 
 function signInWithEmail(email) {
@@ -91,6 +63,6 @@ function signInWithEmail(email) {
     }
 
     request.onerror = (e) => {
-        console.log(request.status);
+        console.error('A - Sign Error:', e, request.status);
     }
 }
