@@ -3,7 +3,7 @@ import { CloudStorageService } from "./cloud-storage.js";
 import { LocalStorageService } from "./local-storage.js";
 
 export class AppDataService {
-    authService = new AuthService();
+    authService = AuthService.getInstance();
     localStorageService = null
     cloudStorageService = null;
 

@@ -3,3 +3,7 @@
 .vs/VSWorkspaceState.json
 .vscode/launch.json
 node_modules
+netlify_functions/node_modules
+netlify_functions/.env
+# Local Netlify folder
+.netlify

@@ -27,7 +27,8 @@ export function signUpForm() {
 }
 
 export function userSignedIn() {
-    return false;
+    console.log('AU - AlreadyUser', authService.alreadyUser());
+    return authService.alreadyUser();
 }
 
 function siginInSubmitted(event) {
