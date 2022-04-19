@@ -1,9 +1,12 @@
 import { } from "./components/login-modal.js"
+import { AuthService } from "./auth-service.js";
 
-const url = "https://dev.storesearch.aux.codes/.netlify/functions/fbauth";
+const url = "http://localhost:8888/.netlify/functions/fbauth";
+//const url = "https://dev.storesearch.aux.codes/.netlify/functions/fbauth";
 const method = "POST";
 const shouldBeAsync = true;
 const main = document.querySelector('main');
+const authService = AuthService.getInstance();
 //let loginForm = null;
 
 window.addEventListener('hashchange', () => {

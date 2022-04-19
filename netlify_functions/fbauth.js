@@ -2,6 +2,8 @@ const admin = require('firebase-admin');
 const sdkAuth = require('firebase-admin/auth');
 const mailer = require('./mailer');
 
+const url = "http://localhost:8888/";
+
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
     project_id: process.env.FIREBASE_PROJECT_ID,
@@ -33,7 +35,7 @@ exports.handler = async (event, context, callback) => {
     const email = body['auth'].email.toLowerCase();
     const actionCodeSettings = {
         handleCodeInApp: false,
-        url: process.env.LOGIN_EMAIL_URL
+        url: url //process.env.LOGIN_EMAIL_URL
     };
 
     if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
