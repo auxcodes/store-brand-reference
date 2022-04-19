@@ -1,10 +1,29 @@
-export class LocalStorageService {
+export const LocalStorageService = (() => {
+    let instance = null;
+
+    function createInstance() {
+        let localStorage = new AppLocalStorage();
+        console.log('LS - Create instance: ', localStorage);
+        return localStorage;
+    }
+
+    return {
+        getInstance: () => {
+            if (!instance) {
+                instance = createInstance();
+            }
+            return instance;
+        }
+    }
+})();
+
+class AppLocalStorage {
 
     supported = true;
     storageKey = 'storesearch.aux.codes';
     notificationsKey = 'notifications';
     shopsKey = 'shops';
-    hasEntry = () => localStorage.length > 0;
+    hasEntry = () => localStorage.getItem(this.notificationsKey) !== null && localStorage.getItem(this.shopsKey) !== null;
     message = { msg: 'Either not supported or no entry found' };
 
     constructor() {

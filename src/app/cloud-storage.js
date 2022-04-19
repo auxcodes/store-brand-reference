@@ -1,6 +1,25 @@
 import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
-export class CloudStorageService {
+
+export const CloudStorageService = (() => {
+    let instance = null;
+
+    function createInstance(fbService) {
+        let cloudStorage = new AppCloudStorage(fbService);
+        return cloudStorage;
+    }
+
+    return {
+        getInstance: (firebaseService) => {
+            if (!instance) {
+                instance = createInstance(firebaseService);
+            }
+            return instance;
+        }
+    }
+})();
+
+export class AppCloudStorage {
 
     dbUrl = 'https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/';
     workingFile = 'live';

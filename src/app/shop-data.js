@@ -1,8 +1,22 @@
-const allData = [];
+import { CloudStorageService } from "./cloud-storage.js";
+import { LocalStorageService } from "./local-storage.js";
+
+let allData = [];
 let initialised = false;
 
-function ShopData() {
-    //console.log("Initialise data");
+function ShopData(shopData) {
+    console.log("SD - Initialised data from local or cloud", shopData);
+    if (shopData.length > 0) {
+        allData = shopData;
+        initialised = true;
+    }
+    else {
+        console.log('SD - Initialising from JSON:');
+        fetchJson();
+    }
+}
+
+function fetchJson() {
     fetch("./src/assets/shop-data.json")
         .then(response => {
             //console.log("init response: ", response);

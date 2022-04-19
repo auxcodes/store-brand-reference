@@ -7,7 +7,6 @@ const method = "POST";
 const shouldBeAsync = true;
 const main = document.querySelector('main');
 const authService = AuthService.getInstance();
-//let loginForm = null;
 
 window.addEventListener('hashchange', () => {
     console.log("URL change event");
@@ -23,7 +22,7 @@ export function signUpForm() {
 
     const loginForm = document.getElementById('login-form');
     loginForm.onsubmit = (event) => {
-        console.log('form submited', event);
+        console.log('AU - Signup form submitted', event);
         event.preventDefault();
         siginInSubmitted(event);
     };
@@ -36,12 +35,12 @@ export function userSignedIn() {
 
 function siginInSubmitted(event) {
     const username = event.target[0].value;
-    console.log('signup button clicked', username);
+    console.log('AU - Signup button clicked', username);
     signInWithEmail(username);
 }
 
 function signInWithEmail(email) {
-    console.log('Sign in with email');
+    console.log('AU - Sign in with email');
     const postData = JSON.stringify({ "auth": { "email": email } });
     const request = new XMLHttpRequest();
     request.open(method, url, shouldBeAsync);
@@ -50,23 +49,24 @@ function signInWithEmail(email) {
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(postData);
 
-    request.upload.onprogress = (e) => {
-        console.log(`${e.loaded}B of  ${e.total}B uploaded`);
+    request.upload.onprogress = (event) => {
+        console.log(`AU - ${event.loaded}B of  ${event.total}B uploaded`);
     }
 
-    request.upload.onload = (e) => {
-        console.log('upload completed!');
+    request.upload.onload = (event) => {
+        console.log('AU - Sign in upload completed!', event);
     }
 
     request.onload = () => {
         // You can get all kinds of information about the HTTP response.
         const status = request.status; // HTTP response status, e.g., 200 for "200 OK"
         const data = request.responseText; // Returned data, e.g., an HTML document.
-        console.log(status, data);
+        const error = request.error;
+        console.log('AU - onload: ', status, data, error);
         window.localStorage.setItem('emailForSignIn', email);
     }
 
     request.onerror = (e) => {
-        console.error('A - Sign Error:', e, request.status);
+        console.error('AU - Sign Error:', e, request.status);
     }
 }

@@ -6,7 +6,6 @@ import { } from "./components/search-result.js";
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 
-const shopData = new ShopData();
 const appDataService = new AppDataService();
 
 const searchField = document.getElementById("searchInput");
