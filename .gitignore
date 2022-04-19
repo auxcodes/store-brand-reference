@@ -7,3 +7,5 @@ netlify_functions/node_modules
 netlify_functions/.env
 # Local Netlify folder
 .netlify
+.env
+netlify_functions/package-lock.json
