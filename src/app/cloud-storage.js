@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+import { getDatabase, ref, set, get, push } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
 
 export const CloudStorageService = (() => {
@@ -20,8 +20,6 @@ export const CloudStorageService = (() => {
 })();
 
 export class AppCloudStorage {
-
-    dbUrl = 'https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/';
     workingFile = 'live';
     backupFile = 'backup';
     fbService = null;
@@ -36,8 +34,30 @@ export class AppCloudStorage {
         console.log('CS - DB ref: ', this.dbWorkingRef);
     }
 
-    updateStorage(shopData) {
-        set(this.dbWorkingRef, shopData);
+    updateStorage(allShopData) {
+        allShopData.forEach(shop => {
+            this.updateShop(shop);
+        });
+    }
+
+    updateShop(shopData) {
+        const shopRef = ref(this.database, this.workingFile + '/' + shopData.shopId);
+        set(shopRef, {
+            brands: shopData.brands,
+            parts: shopData.parts,
+            name: shopData.shopName,
+            link: shopData.shopURL
+        });
+    }
+
+    addShop(newShopData) {
+        const shopRef = ref(this.database, this.workingFile);
+        push(shopRef, {
+            brands: newShopData.brands,
+            parts: newShopData.parts,
+            name: newShopData.shopName,
+            link: newShopData.shopURL
+        });
     }
 
     backupStorage(shopData) {
@@ -54,7 +74,7 @@ export class AppCloudStorage {
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     console.log("CS - Snapshot: ", snapshot.val());
-                    shopData = snapshot.val();
+                    shopData = this.convertToLocalData(snapshot.val());
                 } else {
                     console.log("No data available");
                     shopData = { "error": "No Data Available" }
@@ -65,5 +85,23 @@ export class AppCloudStorage {
             });
 
         return shopData;
+    }
+
+    convertToLocalData(cloudData) {
+        let localData = [];
+
+        for (let key in cloudData) {
+            let value = cloudData[key];
+            const shop = {
+                shopId: key,
+                brands: value.brands,
+                parts: value.parts,
+                shopName: value.name,
+                shopURL: value.link
+            };
+            localData.push(shop);
+        }
+        console.log('CS - Convert data: ', localData)
+        return localData;
     }
 }

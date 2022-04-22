@@ -83,7 +83,7 @@ function getSearchValue() {
 }
 
 function onEditShop(shopId) {
-    console.log("edit Shop", shopId);
+    console.log("I - Edit Shop request...", shopId);
     if (shopDetailForm()) {
         shopDetailModal = openShopDetailModal(shopId);
         shopDetailModal.onsubmit = (event) => {

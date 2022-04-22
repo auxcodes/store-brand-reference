@@ -26,7 +26,7 @@ export function createNewShop(shopDetails) {
         "brands": shopDetails.brands,
         "parts": shopDetails.parts
     }
-    console.log("Create new shop: ", newShop);
+    console.log("SD - Create new shop: ", newShop);
     addNewShop(newShop);
 }
 
@@ -34,7 +34,7 @@ export function openShopDetailModal(shopId) {
     let modal = document.getElementById('shop-detail-modal');
     modal.style.display = 'block';
     const shopDetails = getSpecificShop(shopId);
-    console.log("Specific Shop: ", shopDetails);
+    console.log("SD - Specific Shop: ", shopDetails);
     modal.shopDetail = shopDetails;
     return modal;
 }
@@ -52,7 +52,7 @@ export function processShopDetails(fields, submitter) {
         brands: brands,
         parts: parts
     }
-    console.log("Process Details: ", shopDetails);
+    console.log("SD - Process Details: ", shopDetails);
     if (submitter === 'addButton') {
         createNewShop(shopDetails);
     }

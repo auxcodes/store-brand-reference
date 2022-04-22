@@ -1,12 +1,12 @@
 import { CloudStorageService } from "./cloud-storage.js";
-import { LocalStorageService } from "./local-storage.js";
 
 let allData = [];
 let initialised = false;
+let csService = null;
 
 function ShopData(shopData) {
-    console.log("SD - Initialised data from local or cloud", shopData);
     if (shopData.length > 0) {
+        console.log("SD - Initialised data from local storage or cloud", shopData);
         allData = shopData;
         initialised = true;
     }
@@ -14,6 +14,7 @@ function ShopData(shopData) {
         console.log('SD - Initialising from JSON:');
         fetchJson();
     }
+    csService = CloudStorageService.getInstance();
 }
 
 function fetchJson() {
@@ -81,12 +82,14 @@ function getSpecificShop(shopId) {
 function addNewShop(newShop) {
     console.log("Add new shop:", newShop)
     allData.push(newShop);
+    csService.addShop(newShop);
 }
 
 function updateShop(shopDetail) {
     console.log("Update shop:", shopDetail);
     const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
     allData[index] = shopDetail;
+    csService.updateShop(shopDetail);
     console.log('Updated shop: ', allData);
 }
 
