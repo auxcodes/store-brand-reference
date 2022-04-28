@@ -9,3 +9,5 @@ netlify_functions/.env
 .netlify
 .env
 netlify_functions/package-lock.json
+
+package-lock.json
