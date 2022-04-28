@@ -1,3 +1,20 @@
+/* 
+    1. Notification Bar
+    2. Menu
+    3. Search Bar
+    4. Body
+    5. Footer
+    Forms, Modals, Buttons
+*/
+
+/* Palette */
+:root{
+    --background: rgb(247, 247, 247);
+    --background-notif: rgb(223, 237, 242);
+    --colour-text: #4b4949;
+    --border-menu: #7c7c7c;
+}
+
 body {
     font-family: arial;
     display: flex;
@@ -14,7 +31,7 @@ header {
 
 h2, label {
     font-weight: bold;
-    color: #4b4949;
+    color: var(--colour-text);
 }
 
 label {
@@ -28,12 +45,12 @@ button {
     margin: 0.25em;
     font-size: 1.25rem;
 }
-
+/* 1. Notification Bar */
 .notification-bar {
     position: relative;
     border-radius: 0.5em;
     border: 2px solid rgb(0, 112, 146);
-    background-color: rgb(223, 237, 242);
+    background-color: var(--background-notif);
     padding: 0.5em 0.75em;
     max-width: max-content;
     margin: auto auto 0.25em auto;
@@ -52,7 +69,100 @@ button {
     color: rgb(0, 112, 146);
     cursor: pointer;
 }
-
+/* 2. Menu */
+.site-nav {
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    background: var(--background);
+    clip-path: circle(0px at top right);
+    transition: clip-path ease-in-out 700ms;
+    border-radius: 1em;
+    border: 2px solid var(--border-menu);
+  }
+  
+  .site-nav--open {
+    clip-path: circle(250% at top right);
+  }
+  
+  .site-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .site-nav li {
+    border-bottom: 1px solid var(--border-menu);
+  }
+  
+  .site-nav li:last-child {
+    border-bottom: none;
+  }
+  
+  .site-nav a {
+    color: var(--colour-text);
+    display: block;
+    padding: 2em 4em 2em 1.5em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  
+  .site-nav a:hover,
+  .site-nav a:focus {
+    background: #fff;
+    color: #464655;
+    border-radius: 0.85em;
+  }
+  
+  .site-nav--icon {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: 1em;
+    width: 1.1em;
+    text-align: right;
+    color: rgba(255,255,255,.4);
+  }
+  
+  .menu-toggle {
+    padding: 1em;
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    cursor: pointer;
+  }
+  
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    display: block;
+    background: #3d3d3d;
+    height: 3px;
+    width: 1.75em;
+    border-radius: 3px;
+    transition: all ease-in-out 500ms;
+  }
+  
+  .hamburger::before {
+    transform: translateY(-6px);
+  }
+  
+  .hamburger::after {
+    transform: translateY(3px);
+  }
+  
+  .open .hamburger {
+    transform: rotate(45deg);
+  }
+  
+  .open .hamburger::before {
+    opacity: 0;
+  }
+  
+  .open .hamburger::after {
+    transform: translateY(-3px) rotate(-90deg);
+  }
+/* 3. Search Bar */
 .search-bar {
     /* background-image: linear-gradient(#e8e8e8, white, #a7a7a7); */
     border-bottom: 1px #666 solid;
@@ -100,7 +210,7 @@ button {
     border-radius: 0 0.75em 0.75em 0;
     color: #fff;
 }
-
+/* 4. Body */
 .content {
     flex: 1 0 auto;
 }
@@ -186,7 +296,7 @@ button {
     margin: 0.4em;
 }
 
-/* Footer */
+/* 5. Footer */
 .footer-content {
     flex-shrink: 0;
     position: relative;

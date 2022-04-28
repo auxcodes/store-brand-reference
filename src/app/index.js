@@ -1,5 +1,6 @@
 import { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords, getSpecificShop } from "./shop-data.js";
 import { signUpForm, userSignedIn } from "./auth.js";
+import { siteMenu } from "./navigation.js";
 import { shopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
 import { } from "./components/search-result.js";
 
@@ -29,6 +30,7 @@ searchForm.onsubmit = (event) => event.preventDefault();
 window.onEditShop = onEditShop;
 
 (function ShopList() {
+    siteMenu();
     initTimeOut();
     signUpForm();
 })() //IIFE immediately invoked function expression
