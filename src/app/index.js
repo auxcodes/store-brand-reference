@@ -1,11 +1,13 @@
 import { initialised, ShopData, findBrand, findProduct, getAllShops, filterWords, getSpecificShop } from "./shop-data.js";
 import { signUpForm, userSignedIn } from "./auth.js";
 import { siteMenu } from "./navigation.js";
+import { pageColour } from "./ui.js";
 import { shopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
 import { } from "./components/search-result.js";
 
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
+
 
 const appDataService = new AppDataService();
 
@@ -56,6 +58,7 @@ function searchText(event) {
 
 function searchBrand(event) {
     searchType = "brands";
+    pageColour(searchType);
     getSearchValue();
     //console.log("Search Brand: ", searchValue, event);
     searchResults = [];
@@ -67,6 +70,7 @@ function searchBrand(event) {
 function searchProduct(event) {
     searchType = "parts";
     getSearchValue();
+    pageColour(searchType);
     //console.log("Search Product", searchValue, event);
     searchResults = [];
     searchResults = findProduct(searchValue);

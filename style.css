@@ -13,6 +13,9 @@
     --background-notif: rgb(223, 237, 242);
     --colour-text: #4b4949;
     --border-menu: #7c7c7c;
+    --product-color: rgb(2, 172, 53);
+    --brand-color: rgb(1, 136, 255);
+    --active-search-color: var(--brand-color);
 }
 
 body {
@@ -21,6 +24,7 @@ body {
     flex-direction: column;
     font-size: 1rem;
     height: 100vh;
+    margin: 0;
 }
 
 header {
@@ -72,13 +76,14 @@ button {
 /* 2. Menu */
 .site-nav {
     position: absolute;
-    top: 100%;
-    right: 0%;
+    top: 0.25em;
+    right: 0.85em;
     background: var(--background);
     clip-path: circle(0px at top right);
     transition: clip-path ease-in-out 700ms;
     border-radius: 1em;
-    border: 2px solid var(--border-menu);
+    z-index: 2;
+    box-shadow: -3px 6px 10px rgba(0, 0, 0, 0.45);
   }
   
   .site-nav--open {
@@ -129,6 +134,7 @@ button {
     top: .5em;
     right: .5em;
     cursor: pointer;
+    z-index: 3;
   }
   
   .hamburger,
@@ -164,27 +170,37 @@ button {
   }
 /* 3. Search Bar */
 .search-bar {
-    /* background-image: linear-gradient(#e8e8e8, white, #a7a7a7); */
-    border-bottom: 1px #666 solid;
-    border-radius: 2em 2em;
     padding: 0 0.5em;
+    box-shadow: inset 0px 0px 8px #000;
 }
 
 .search-form {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    margin: 0.5em auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0.5em 0 0 0;
+}
+
+.search-input-row {
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
 }
 
 .search-label {
     text-align: center;
+    width: max-content;
+    margin: auto;
 }
 
 .search-input {
     padding: 0.2em 0.5em;
     border-radius: 0.75em 0.75em;
     border: 1px #666 solid;
-    grid-column: span 2;
+    margin-right: 3em;
+    flex-grow: 2;
+    max-width: 500px;
+    min-width: 300px;
 }
 
 .search-btn-container {
@@ -196,23 +212,102 @@ button {
     border-radius: 1.75em;
     padding: 0.2em 0.5em;
     width: 50%;
+    max-width: 105px;
     cursor: pointer;
+    border-radius: 0.75em 0.75em 0 0;
+    margin: 0.25em 0.25em 0 0.25em;
 }
 
 .brand-btn {
-    background-color: rgb(1, 136, 255);
-    border-radius: 0.75em 0 0 0.75em;
-    color: #fff;
+    background-color: var(--brand-color);
+    color: white;
+    box-shadow: 0px 7px 8px #000;
+    border: 1px var(--brand-color) solid, 1px var(--brand-color) solid, 1px var(--brand-color) solid, 1px #666 solid;
+}
+
+.brand-btn-active {
+    background-color: var(--brand-color);
+    color: white;
+    box-shadow: 0px 7px 20px #000;
+    border-top: 1px rgb(114, 189, 255) solid;
+    border-right: 1px rgb(114, 189, 255) solid;
+    border-left: 1px rgb(114, 189, 255) solid;
+    border-bottom: 1px var(--brand-color) solid;
 }
 
 .products-btn {
-    background-color: rgb(2, 172, 53);
-    border-radius: 0 0.75em 0.75em 0;
-    color: #fff;
+    background-color: var(--product-color);
+    color: white;
+    box-shadow: 0px 7px 8px #000;
+    border: 1px var(--product-color) solid, 1px var(--product-color) solid, 1px var(--product-color) solid,
+        1px #666 solid;
 }
+
+.products-btn-active {
+    background-color: var(--product-color);
+    color: white;
+    box-shadow: 0px 7px 20px #000;
+    border-top: 1px rgb(3, 213, 66) solid;
+    border-right: 1px rgb(3, 213, 66) solid;
+    border-left: 1px rgb(3, 213, 66) solid;
+    border-bottom: 1px var(--product-color) solid;
+}
+
+@media screen and (max-width: 530px) {
+    body {
+        margin: 0;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .notifications-container {
+        position: relative;
+    }
+
+    .search-label {
+        margin: 0.15em 0 0 0;
+    }
+
+    .search-input-row {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .search-input {
+        margin: 0.5em 0 0.5em 0;
+        min-width: auto;
+    }
+
+    .search-form {
+        margin: 0;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .content .results-container {
+        margin: 0.5em 0 0 0;
+        padding: 0.5em 0;
+    }
+
+    .modal .modal-content {
+        width: auto;
+    }
+
+    .modal .modal-content .container {
+        margin: 0 0em 1em 0em;
+    }
+}
+
+
+
 /* 4. Body */
 .content {
     flex: 1 0 auto;
+    background: linear-gradient(var(--active-search-color), #fff 10%);
+    z-index: 1;
 }
 
 .results-container {
@@ -254,6 +349,7 @@ button {
 
 .no-results {
     margin: 0.5em auto;
+    padding: 0.5em;
     font-size: 1.25rem;
     grid-column: 1/-1;
 }
