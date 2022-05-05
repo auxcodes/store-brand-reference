@@ -278,6 +278,7 @@ button {
 
     .search-input {
         margin: 0.5em 0 0.5em 0;
+        width: 90%;
         min-width: auto;
     }
 
@@ -298,6 +299,16 @@ button {
 
     .modal .modal-content .container {
         margin: 0 0em 1em 0em;
+    }
+    
+    .site-nav{
+        top: 0.2em;
+        right: 0.2em;
+    }
+
+    .menu-toggle {
+        padding: 0.8em;
+        right: 0em;
     }
 }
 
