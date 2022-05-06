@@ -50,7 +50,7 @@ function signInWithEmail(email) {
     request.send(postData);
 
     request.upload.onprogress = (event) => {
-        console.log(`AU - ${event.loaded}B of  ${event.total}B uploaded`);
+        console.log(`AU - Progress: ${event.loaded}B of  ${event.total}B uploaded`);
     }
 
     request.upload.onload = (event) => {
@@ -62,7 +62,7 @@ function signInWithEmail(email) {
         const status = request.status; // HTTP response status, e.g., 200 for "200 OK"
         const data = request.responseText; // Returned data, e.g., an HTML document.
         const error = request.error;
-        console.log('AU - onload: ', status, data, error);
+        console.log('AU - onload: ', status, ', Data: ', data, 'Error: ', error);
         window.localStorage.setItem('emailForSignIn', email);
     }
 

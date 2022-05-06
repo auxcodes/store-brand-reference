@@ -17,7 +17,7 @@ const serviceAccount = {
     client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
 };
 
-const app = admin.initializeApp({
+const app = admin.apps && admin.apps.length > 0 ? admin.apps[0] : admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
 });
