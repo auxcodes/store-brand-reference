@@ -3,7 +3,7 @@ import { signUpForm, userSignedIn } from "./auth.js";
 import { siteMenu } from "./navigation.js";
 import { pageColour } from "./ui.js";
 import { shopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
-import { } from "./components/search-result.js";
+import { } from "./components/search-result-modal.js";
 
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
@@ -93,7 +93,7 @@ function onEditShop(shopId) {
     if (shopDetailForm()) {
         shopDetailModal = openShopDetailModal(shopId);
         shopDetailModal.onsubmit = (event) => {
-            //console.log("OnsubmitEdit", event.submitter.id, event.target);
+            console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event.target);
             processShopDetails(event.target, event.submitter.id);
             clearResults();
             resetResults();
@@ -110,7 +110,7 @@ function generateResults() {
     }
     //console.log(searchResults);
     searchResults.forEach(result => {
-        const el = document.createElement('search-result');
+        const el = document.createElement('search-result-modal');
         el.classList.add("result-row");
         el.result = result;
         searchResultElement.append(el);

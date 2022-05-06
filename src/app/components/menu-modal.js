@@ -3,9 +3,9 @@ class MenuModal extends HTMLElement {
         this.innerHTML = `
             <nav id="site-nav" class="site-nav">
                 <ul>
-                    <li><a href=""><i class="fa fa-plus site-nav--icon"></i>Add Shop</a></li>
-                    <li><a href=""><i class="fa fa-envelope site-nav--icon"></i>Contact</a></li>
-                    <li><a href=""><i class="fa fa-sign-out site-nav--icon"></i>Logout</a></li>
+                    <li><a id="add-shop-link"><i class="fa fa-plus site-nav--icon"></i>Add Shop</a></li>
+                    <li><a id="contact-link"><i class="fa fa-envelope site-nav--icon"></i>Contact</a></li>
+                    <li><a id="logout-link"><i class="fa fa-sign-out site-nav--icon"></i>Logout</a></li>
                 </ul>
             </nav>
             <div id="menu-toggle" class="menu-toggle">

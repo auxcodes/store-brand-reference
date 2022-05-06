@@ -10,4 +10,4 @@ class SearchResult extends HTMLElement {
     }
 }
 
-customElements.define('search-result', SearchResult);
+customElements.define('search-result-modal', SearchResult);

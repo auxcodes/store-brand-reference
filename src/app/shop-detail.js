@@ -9,6 +9,10 @@ export function shopDetailForm(shopDetail) {
         document.getElementById('login-modal').style.display = 'block';
         return false;
     }
+    const modal = document.getElementById('shop-detail-modal');
+    if (modal) {
+        return true;
+    }
     const el = document.createElement('shop-detail-modal');
     el.classList.add('modal');
     el.id = 'shop-detail-modal';
@@ -30,9 +34,19 @@ export function createNewShop(shopDetails) {
     addNewShop(newShop);
 }
 
-export function addNewShopDetailModal() {
+export function openShopDetailModal(shopId) {
     let modal = document.getElementById('shop-detail-modal');
     modal.style.display = 'block';
+    if (shopId) {
+        modal.shopDetail = openEditShopDetailModal(shopId);
+    }
+    else {
+        modal.shopDetail = openAddShopDetailModal();
+    }
+    return modal;
+}
+
+function openAddShopDetailModal() {
     const shopDetails = {
         "title": 'Add Store',
         "shopName": '',
@@ -41,21 +55,17 @@ export function addNewShopDetailModal() {
         "parts": '',
         "button": '<button id="addButton" class="modal-btn add-btn" type="submit">Add</button>'
     }
-    console.log("SD - New Shop: ", shopDetails);
-    modal.shopDetail = shopDetails;
+    return shopDetails;
 }
 
-export function openShopDetailModal(shopId) {
-    let modal = document.getElementById('shop-detail-modal');
-    modal.style.display = 'block';
+function openEditShopDetailModal(shopId) {
     const shopDetails = {
         "title": 'Edit Store',
         ...getSpecificShop(shopId),
         "button": '<button id="updateButton" class="modal-btn update-btn" type="submit">Update</button>'
     }
     console.log("SD - Specific Shop: ", shopDetails);
-    modal.shopDetail = shopDetails;
-    return modal;
+    return shopDetails;
 }
 
 export function processShopDetails(fields, submitter) {
