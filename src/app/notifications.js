@@ -79,6 +79,10 @@ async function checkLocalStorage() {
         .catch(e => console.log(e));
 }
 
+function toggleNotifications() {
+    notificationsContainer.classList.toggle('notifications-container--hidden');
+}
+
 function closeNotification(id) {
     document.getElementById(id).style.display = 'none';
     notificationHistory = updateHistory(id, false);
@@ -99,4 +103,4 @@ function setObject(key, value) {
     return obj;
 }
 
-export { generateNotifications, closeNotification, setStorageService }
+export { generateNotifications, closeNotification, setStorageService, toggleNotifications }

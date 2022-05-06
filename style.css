@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css');
+
 /* 
     1. Notification Bar
     2. Menu
@@ -13,6 +15,7 @@
     --background-notif: rgb(223, 237, 242);
     --colour-text: #4b4949;
     --border-menu: #7c7c7c;
+    --bg-color-menu: #3d3d3d;
     --product-color: rgb(2, 172, 53);
     --brand-color: rgb(1, 136, 255);
     --active-search-color: var(--brand-color);
@@ -50,13 +53,48 @@ button {
     font-size: 1.25rem;
 }
 /* 1. Notification Bar */
+.notification-toggle {
+    position: absolute;
+    z-index: 2;
+    right: 0.8em;
+    top: 2.25em;
+    padding: 1em;
+    cursor: pointer;
+}
+
+.notification-toggle .notif-toggle--icon {
+    font-size: 1.25rem;
+    color: var(--bg-color-menu);
+}
+
+.notifications-container {
+    position: absolute;
+    height: fit-content;
+    z-index: 2;
+    background: #fff;
+    top: 5.5em;
+    right: 0.5em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: -3px 6px 10px rgba(0,0,0,0.45);
+    clip-path: circle(250% at top right);
+    opacity: 1;
+    transition: 
+        clip-path ease-in-out 700ms,
+        opacity ease-in-out 700ms;
+}
+
+.notifications-container--hidden {
+    opacity: 0;
+    clip-path: circle(0px at top right);
+}
+
 .notification-bar {
     position: relative;
     border-radius: 0.5em;
     border: 2px solid rgb(0, 112, 146);
     background-color: var(--background-notif);
     padding: 0.5em 0.75em;
-    max-width: max-content;
     margin: auto auto 0.25em auto;
 }
 
@@ -80,13 +118,17 @@ button {
     right: 0.85em;
     background: var(--background);
     clip-path: circle(0px at top right);
-    transition: clip-path ease-in-out 700ms;
+    opacity: 0;
+    transition: 
+        clip-path ease-in-out 700ms,
+        opacity ease-in-out 700ms;
     border-radius: 1em;
-    z-index: 2;
+    z-index: 3;
     box-shadow: -3px 6px 10px rgba(0, 0, 0, 0.45);
   }
   
   .site-nav--open {
+    opacity: 1;
     clip-path: circle(250% at top right);
   }
   
@@ -123,9 +165,9 @@ button {
     display: inline-block;
     font-size: 1.5em;
     margin-right: 1em;
-    width: 1.1em;
+    width: 1em;
     text-align: right;
-    color: rgba(255,255,255,.4);
+    color: rgba(0,0,0,0.4);
   }
   
   .menu-toggle {
@@ -142,7 +184,7 @@ button {
   .hamburger::after {
     content: '';
     display: block;
-    background: #3d3d3d;
+    background-color: var(--bg-color-menu);
     height: 3px;
     width: 1.75em;
     border-radius: 3px;
@@ -263,8 +305,19 @@ button {
         flex-direction: column;
     }
 
+    .notification-toggle {
+        right: 3.5em;
+        top: 0em;
+        padding: 0.75em 1em;
+    }
+
+    .notification-toggle .notif-toggle--icon {
+        font-size: 1.2rem;
+    }
+
     .notifications-container {
-        position: relative;
+        top: 2.5em;
+        right: 0;
     }
 
     .search-label {
