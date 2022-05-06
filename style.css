@@ -80,8 +80,8 @@ button {
     clip-path: circle(250% at top right);
     opacity: 1;
     transition: 
-        clip-path ease-in-out 700ms,
-        opacity ease-in-out 700ms;
+        clip-path ease-in-out 500ms,
+        opacity ease-in-out 450ms;
 }
 
 .notifications-container--hidden {
@@ -120,8 +120,8 @@ button {
     clip-path: circle(0px at top right);
     opacity: 0;
     transition: 
-        clip-path ease-in-out 700ms,
-        opacity ease-in-out 700ms;
+        clip-path ease-in-out 500ms,
+        opacity ease-in-out 450ms;
     border-radius: 1em;
     z-index: 3;
     box-shadow: -3px 6px 10px rgba(0, 0, 0, 0.45);
@@ -140,6 +140,7 @@ button {
   
   .site-nav li {
     border-bottom: 1px solid var(--border-menu);
+    cursor: pointer;
   }
   
   .site-nav li:last-child {
@@ -521,7 +522,7 @@ button {
 
 .login-info {
     padding: 0.45em;
-    margin: 0 0.45em;
+    margin: 0.65em auto 0.45em 0.45em;
 }
 
 /* Full-width inputs */
@@ -531,7 +532,6 @@ button {
     box-sizing: border-box;
     padding: 0.45em;
     margin: 0.25em 0.45em;
-    font-size: 1.25rem;
     border-radius: 0.85em;
 }
 
@@ -546,17 +546,19 @@ button {
 /* Set a style for all buttons */
 .btn-row {
     display: flex;
+    border-bottom: 1px var(--border-menu) solid;
 }
 
 .modal-btn {
     width: 100%;
     background-color: #045aaa;
     color: white;
-    padding: 0.45em;
-    margin: 0.45em;
+    padding: 0.45em 1em;
+    margin: 0.45em auto;
     border: none;
     cursor: pointer;
     border-radius: 0.85em;
+    width: fit-content;
 }
 
 /* Add a hover effect for buttons */
@@ -566,13 +568,11 @@ button {
 
 .login-btn,
 .add-btn {
-    background-color: #04aa6d;
-    width: 50%;
+    background-color: #04aa6d;   
 }
 
 .update-btn {
     background-color: #e68200;
-    width: 50%;
 }
 
 /* Add padding to containers */
@@ -615,6 +615,14 @@ span.psw {
     padding-top: 60px;
 }
 
+.modal-title {
+    font-weight: bold;
+    color: var(--colour-text);
+    font-size: 1.5rem;
+    padding: 0.45em;
+    margin: 0 auto;
+}
+
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
@@ -628,7 +636,7 @@ span.psw {
 /* The Close Button */
 .close {
     position: relative;
-    margin-left: auto;
+    margin-left: -1em;
     margin-right: 0.45em;
     color: #000;
     font-size: 35px;
@@ -651,17 +659,21 @@ span.psw {
 @-webkit-keyframes animatezoom {
     from {
         -webkit-transform: scale(0);
+        opacity: 0;
     }
     to {
         -webkit-transform: scale(1);
+        opacity: 1;
     }
 }
 
 @keyframes animatezoom {
     from {
         transform: scale(0);
+        opacity: 0;
     }
     to {
         transform: scale(1);
+        opacity: 1;
     }
 }

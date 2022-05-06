@@ -3,6 +3,7 @@ class ShopDetailModal extends HTMLElement {
         this.innerHTML = `
         <form id="shop-form" class="shop-form modal-content animate">
             <div class="btn-row">
+                <span class="modal-title">${shopData.title}</span>
                 <span onclick="document.getElementById('shop-detail-modal').style.display='none'" class="close"
                     title="Close Modal">&times;</span>
             </div>
@@ -23,8 +24,7 @@ class ShopDetailModal extends HTMLElement {
             </div>
             <div class="container">
                 <div class="btn-row">
-                    <button id="addButton" class="modal-btn add-btn" type="submit">Add</button>
-                    <button id="updateButton" class="modal-btn update-btn" type="submit">Update</button>
+                    ${shopData.button}                   
                 </div>
             </div>
         </form>

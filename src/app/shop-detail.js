@@ -30,10 +30,29 @@ export function createNewShop(shopDetails) {
     addNewShop(newShop);
 }
 
+export function addNewShopDetailModal() {
+    let modal = document.getElementById('shop-detail-modal');
+    modal.style.display = 'block';
+    const shopDetails = {
+        "title": 'Add Store',
+        "shopName": '',
+        "shopURL": '',
+        "brands": '',
+        "parts": '',
+        "button": '<button id="addButton" class="modal-btn add-btn" type="submit">Add</button>'
+    }
+    console.log("SD - New Shop: ", shopDetails);
+    modal.shopDetail = shopDetails;
+}
+
 export function openShopDetailModal(shopId) {
     let modal = document.getElementById('shop-detail-modal');
     modal.style.display = 'block';
-    const shopDetails = getSpecificShop(shopId);
+    const shopDetails = {
+        "title": 'Edit Store',
+        ...getSpecificShop(shopId),
+        "button": '<button id="updateButton" class="modal-btn update-btn" type="submit">Update</button>'
+    }
     console.log("SD - Specific Shop: ", shopDetails);
     modal.shopDetail = shopDetails;
     return modal;
