@@ -1,5 +1,6 @@
 import { } from "./components/login-modal.js"
 import { AuthService } from "./auth-service.js";
+import { onCloseLogin } from "./modal-controller.js";
 
 const url = "http://localhost:8888/.netlify/functions/fbauth";
 //const url = "https://dev.storesearch.aux.codes/.netlify/functions/fbauth";
@@ -48,6 +49,7 @@ function signInWithEmail(email) {
     request.setRequestHeader('Access-Control-Allow-Origin', '*')
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(postData);
+    console.log('AU - Sent data: ', postData);
 
     request.upload.onprogress = (event) => {
         console.log(`AU - Progress: ${event.loaded}B of  ${event.total}B uploaded`);
@@ -64,6 +66,7 @@ function signInWithEmail(email) {
         const error = request.error;
         console.log('AU - onload: ', status, ', Data: ', data, 'Error: ', error);
         window.localStorage.setItem('emailForSignIn', email);
+        onCloseLogin();
     }
 
     request.onerror = (e) => {

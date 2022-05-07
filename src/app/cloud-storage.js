@@ -47,17 +47,24 @@ export class AppCloudStorage {
             parts: shopData.parts,
             name: shopData.shopName,
             link: shopData.shopURL
-        });
+        })
+            .catch((error) => {
+                console.error('CS - Error Updating Shop in Cloud: ', error);
+            });
     }
 
     addShop(newShopData) {
+        console.log('CS - Add Shop: ', newShopData);
         const shopRef = ref(this.database, this.workingFile);
         push(shopRef, {
             brands: newShopData.brands,
             parts: newShopData.parts,
             name: newShopData.shopName,
             link: newShopData.shopURL
-        });
+        })
+            .catch((error) => {
+                console.error('CS - Error Adding Shop to Cloud: ', error);
+            });
     }
 
     backupStorage(shopData) {

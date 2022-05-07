@@ -23,7 +23,8 @@ export const AuthService = (() => {
 class UserAuthentication {
 
     firebaseService = new FirebaseService();
-    user = new User();
+    auth = null;
+    user = null;
     tokenExpirationTimer = null;
     dataName = 'ss_userdata';
 
@@ -37,13 +38,25 @@ class UserAuthentication {
         return this.user ? true : false;
     }
 
+    currentUser() {
+        if (this.user) {
+            return this.user
+        }
+        else {
+            this.auth = getAuth();
+            this.user = this.auth.currentUser;
+            return this.user;
+        }
+    }
+
     checkURL() {
         console.log('AS - Check URL...');
         if (window.location.search.length > 0) {
             this.emailLogin();
         }
         else {
-            this.autoLogin();
+            this.currentUser();
+            console.log('AS - Current User: ', this.auth.currentUser);
         }
     }
 
@@ -63,8 +76,8 @@ class UserAuthentication {
                     signInWithEmailLink(auth, email, window.location.href)
                         .then((result) => {
                             window.localStorage.removeItem('emailForSignIn');
-                            console.log('user: ', result);
-                            this.completeAuthentication(result.user, result._tokenResponse.expiresIn);
+                            console.log('AS - Sign in with Email Link - user: ', result);
+                            this.currentUser();
                         })
                         .catch((error) => {
                             console.error('Email Login Error: ', error)
@@ -74,54 +87,5 @@ class UserAuthentication {
                     console.error('Error setting persistence: ', error)
                 });
         }
-    }
-
-    completeAuthentication(userObject, expiresIn) {
-        const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-        const user = new User(userObject.email, userObject.uid, userObject.accessToken, expirationDate);
-        this.user.next(user);
-        this.autoLogout(expiresIn * 1000);
-        localStorage.setItem(this.dataName, JSON.stringify(user));
-    }
-
-    autoLogin() {
-        const storedData = localStorage.getItem(this.dataName);
-        const userData = storedData ? JSON.parse(storedData) : null;
-
-        if (!userData) {
-            this.user = null;
-            return;
-        }
-
-        const loadedUser = new User(
-            userData.email,
-            userData.id,
-            userData.token,
-            new Date(userData.tokenExpirationDate)
-        );
-
-        if (loadedUser.token) {
-            this.user.next(loadedUser);
-            const expirationDuration =
-                new Date(userData._tokenExpirationDate).getTime() -
-                new Date().getTime();
-            this.autoLogout(expirationDuration);
-        }
-    }
-
-    autoLogout(expirationDuration) {
-        this.tokenExpirationTimer = setTimeout(() => {
-            this.logout();
-        }, expirationDuration);
-    }
-
-    logout() {
-        this.user.next(null);
-        // do some UI stuff - 
-        localStorage.setItem(this.dataName, JSON.stringify({}));
-        if (this.tokenExpirationTimer) {
-            clearTimeout(this.tokenExpirationTimer);
-        }
-        this.tokenExpirationTimer = null;
     }
 }

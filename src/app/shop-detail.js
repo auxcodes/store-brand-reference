@@ -1,6 +1,6 @@
 import { } from "./components/shop-detail-modal.js";
 import { getSpecificShop, addNewShop, updateShop } from "./shop-data.js"
-import { userSignedIn, signUpForm } from "./auth.js";
+import { userSignedIn } from "./auth.js";
 
 const main = document.querySelector('main');
 
@@ -16,6 +16,7 @@ export function shopDetailForm(shopDetail) {
     const el = document.createElement('shop-detail-modal');
     el.classList.add('modal');
     el.id = 'shop-detail-modal';
+    // el.style = `top: ${round(10, 50)}%; left: ${round(0, 100)}%; width: ${round(6, 8)}px; height: ${round(3, 4)}px; animation-delay: ${(round(0, 30) / 10)}s;`;
     el.modal = {};
     main.append(el);
     return true;
