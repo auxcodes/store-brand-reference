@@ -25,7 +25,7 @@ export function signUpForm() {
     loginForm.onsubmit = (event) => {
         console.log('AU - Signup form submitted', event);
         event.preventDefault();
-        siginInSubmitted(event);
+        signInSubmitted(event);
     };
 }
 
@@ -34,7 +34,7 @@ export function userSignedIn() {
     return authService.alreadyUser();
 }
 
-function siginInSubmitted(event) {
+function signInSubmitted(event) {
     const username = event.target[0].value;
     console.log('AU - Signup button clicked', username);
     signInWithEmail(username);

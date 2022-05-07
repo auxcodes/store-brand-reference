@@ -35,6 +35,7 @@ class UserAuthentication {
     }
 
     alreadyUser() {
+        //return true;
         return this.user ? true : false;
     }
 
@@ -62,8 +63,8 @@ class UserAuthentication {
 
     emailLogin() {
         console.log('AS - Check email login...');
-        const auth = getAuth();
-        if (isSignInWithEmailLink(auth, window.location.href)) {
+        this.auth = getAuth();
+        if (isSignInWithEmailLink(this.auth, window.location.href)) {
             let email = window.localStorage.getItem('emailForSignIn');
             if (!email) {
                 email = window.prompt('Please provide your email for confirmation');
@@ -71,9 +72,9 @@ class UserAuthentication {
                 console.log(email);
             }
             console.log('Try to sign in with email link...');
-            auth.setPersistence(browserLocalPersistence)
+            this.auth.setPersistence(browserLocalPersistence)
                 .then(() => {
-                    signInWithEmailLink(auth, email, window.location.href)
+                    signInWithEmailLink(this.auth, email, window.location.href)
                         .then((result) => {
                             window.localStorage.removeItem('emailForSignIn');
                             console.log('AS - Sign in with Email Link - user: ', result);
