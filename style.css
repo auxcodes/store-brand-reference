@@ -575,6 +575,10 @@ button {
     background-color: #e68200;
 }
 
+.delete-btn {
+    background-color: #e63a00;
+}
+
 /* Add padding to containers */
 .container {
     margin: 0 1em 1em 1em;

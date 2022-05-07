@@ -1,5 +1,5 @@
 import { } from "./components/shop-detail-modal.js";
-import { getSpecificShop, addNewShop, updateShop } from "./shop-data.js"
+import { getSpecificShop, addNewShop, updateShop, deleteShop } from "./shop-data.js"
 import { userSignedIn } from "./auth.js";
 
 const main = document.querySelector('main');
@@ -16,7 +16,6 @@ export function shopDetailForm(shopDetail) {
     const el = document.createElement('shop-detail-modal');
     el.classList.add('modal');
     el.id = 'shop-detail-modal';
-    // el.style = `top: ${round(10, 50)}%; left: ${round(0, 100)}%; width: ${round(6, 8)}px; height: ${round(3, 4)}px; animation-delay: ${(round(0, 30) / 10)}s;`;
     el.modal = {};
     main.append(el);
     return true;
@@ -31,7 +30,7 @@ export function createNewShop(shopDetails) {
         "brands": shopDetails.brands,
         "parts": shopDetails.parts
     }
-    console.log("SD - Create new shop: ", newShop);
+    console.log("SDTL - Create new shop: ", newShop);
     addNewShop(newShop);
 }
 
@@ -63,9 +62,12 @@ function openEditShopDetailModal(shopId) {
     const shopDetails = {
         "title": 'Edit Store',
         ...getSpecificShop(shopId),
-        "button": '<button id="updateButton" class="modal-btn update-btn" type="submit">Update</button>'
+        "button": `
+        <button id="deleteButton" class="modal-btn delete-btn" type="submit">Delete</button>
+        <button id="updateButton" class="modal-btn update-btn" type="submit">Update</button>
+        `
     }
-    console.log("SD - Specific Shop: ", shopDetails);
+    console.log("SDTL - Specific Shop: ", shopDetails);
     return shopDetails;
 }
 
@@ -82,12 +84,15 @@ export function processShopDetails(fields, submitter) {
         brands: brands,
         parts: parts
     }
-    console.log("SD - Process Details: ", shopDetails);
+    console.log("SDTL - Process Details: ", shopDetails);
     if (submitter === 'addButton') {
         createNewShop(shopDetails);
     }
     if (submitter === 'updateButton') {
         updateShop(shopDetails);
+    }
+    if (submitter === 'deleteButton') {
+        deleteShop(shopDetails);
     }
 }
 

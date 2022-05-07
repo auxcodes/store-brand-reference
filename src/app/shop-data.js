@@ -80,17 +80,33 @@ function getSpecificShop(shopId) {
 }
 
 function addNewShop(newShop) {
-    console.log("Add new shop:", newShop)
-    allData.push(newShop);
-    csService.addShop(newShop);
+    console.log("SD - Add new shop:", newShop)
+    csService.addShop(newShop)
+        .then(() => {
+            console.log('add then');
+            allData.push(newShop);
+        });
 }
 
 function updateShop(shopDetail) {
-    console.log("Update shop:", shopDetail);
+    console.log("SD - Update shop:", shopDetail);
     const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
-    allData[index] = shopDetail;
-    csService.updateShop(shopDetail);
-    console.log('Updated shop: ', allData);
+    csService.updateShop(shopDetail)
+        .then(() => {
+            console.log('update then');
+            allData[index] = shopDetail;
+        });
+    console.log('SD - Updated shop: ', allData);
 }
 
-export { initialised, ShopData, findBrand, findProduct, getAllShops, getSpecificShop, filterWords, addNewShop, updateShop }
+function deleteShop(shopDetail) {
+    console.log("SD - Update shop:", shopDetail);
+    const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
+    csService.deleteShop(shopDetail)
+        .then(() => {
+            console.log('delete then');
+            allData.splice(index, 1);
+        });
+}
+
+export { initialised, ShopData, findBrand, findProduct, getAllShops, getSpecificShop, filterWords, addNewShop, updateShop, deleteShop }
