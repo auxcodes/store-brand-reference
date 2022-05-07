@@ -23,6 +23,13 @@ function searchText(event) {
     //console.log("Search Text", searchValue);
 }
 
+export function refreshResults() {
+    searchResults = [];
+    searchResults = searchType === "brands" ? findBrand(searchValue) : findProduct(searchValue);
+    clearResults();
+    generateResults();
+}
+
 function searchBrand(event) {
     searchType = "brands";
     pageColour(searchType);

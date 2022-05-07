@@ -1,4 +1,5 @@
 import { CloudStorageService } from "./cloud-storage.js";
+import { refreshResults } from "./search.js";
 
 let allData = [];
 let initialised = false;
@@ -79,12 +80,18 @@ function getSpecificShop(shopId) {
     return allData.find(shop => shop.shopId === shopId);
 }
 
+function sortData() {
+    allData = allData.sort((sa, sb) => sa.shopName > sb.shopName);
+}
+
 function addNewShop(newShop) {
     console.log("SD - Add new shop:", newShop)
     csService.addShop(newShop)
         .then(() => {
             console.log('add then');
             allData.push(newShop);
+            sortData();
+            refreshResults();
         });
 }
 
@@ -95,6 +102,8 @@ function updateShop(shopDetail) {
         .then(() => {
             console.log('update then');
             allData[index] = shopDetail;
+            sortData();
+            refreshResults();
         });
     console.log('SD - Updated shop: ', allData);
 }
@@ -106,6 +115,7 @@ function deleteShop(shopDetail) {
         .then(() => {
             console.log('delete then');
             allData.splice(index, 1);
+            refreshResults();
         });
 }
 
