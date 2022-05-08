@@ -14,6 +14,10 @@ window.addEventListener('hashchange', () => {
     hashNavigation();
 });
 
+export function userEmail() {
+    return authService.currentUser().email;
+}
+
 export function signUpForm() {
     const el = document.createElement('login-modal');
     el.classList.add('modal');

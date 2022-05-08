@@ -1,6 +1,5 @@
 import { FirebaseService } from "./firebase.js";
 import { getAuth, isSignInWithEmailLink, signInWithEmailLink, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-import { User } from "./user.js";
 
 export const AuthService = (() => {
     let instance = null;
@@ -40,12 +39,14 @@ class UserAuthentication {
     }
 
     currentUser() {
+        console.log(this.user);
         if (this.user) {
             return this.user
         }
         else {
             this.auth = getAuth();
             this.user = this.auth.currentUser;
+            console.log(this.user);
             return this.user;
         }
     }

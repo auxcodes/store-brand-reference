@@ -1,6 +1,5 @@
 import { getDatabase, ref, set, get, push, remove } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
-
 export const CloudStorageService = (() => {
     let instance = null;
 
@@ -31,6 +30,7 @@ export class AppCloudStorage {
         this.fbService = firebaseService;
         this.database = getDatabase(this.fbService.app);
         this.dbWorkingRef = ref(this.database, this.workingFile);
+
         console.log('CS - DB ref: ', this.dbWorkingRef);
     }
 
@@ -48,10 +48,6 @@ export class AppCloudStorage {
             name: shopData.shopName,
             link: shopData.shopURL
         })
-            .then((result) => {
-                console.log('CS - Update then backup', result);
-                this.backupChange(shopData, 'update');
-            })
             .catch((error) => {
                 console.error('CS - Error Updating Shop in Cloud: ', error);
             });
@@ -75,28 +71,24 @@ export class AppCloudStorage {
         const shopRef = ref(this.database, this.workingFile + '/' + shopData.shopId);
         let result = false;
         await remove(shopRef)
-            .then((result) => {
-                console.log('CS - Delete then backup', result);
-                this.backupChange(shopData, 'delete');
-                result = true;
-            })
             .catch((error) => {
                 console.error('CS - Error Removing Shop from Cloud: ', error);
             });
         return result;
     }
 
-    backupChange(shopData, updateType) {
-        console.log('CS - Backup Shop Change: ', shopData);
+    backupChange(originalShopData, newShopData) {
+        console.log('CS - Backup Shop Change: ', originalShopData);
         const shopRef = ref(this.database, this.backupFile);
         push(shopRef, {
             timeStamp: Date.now(),
-            change: updateType,
-            shopId: shopData.shopId,
-            brands: shopData.brands,
-            parts: shopData.parts,
-            name: shopData.shopName,
-            link: shopData.shopURL
+            change: newShopData.changeType,
+            shopId: originalShopData.shopId,
+            brands: originalShopData.brands,
+            parts: originalShopData.parts,
+            name: originalShopData.shopName,
+            link: originalShopData.shopURL,
+            user: newShopData.user
         })
             .catch((error) => {
                 console.error('CS - Error Backing up change to Shop in Cloud: ', error);

@@ -98,6 +98,7 @@ function addNewShop(newShop) {
 function updateShop(shopDetail) {
     console.log("SD - Update shop:", shopDetail);
     const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
+    backupChange(index, shopDetail);
     csService.updateShop(shopDetail)
         .then(() => {
             console.log('update then');
@@ -111,12 +112,18 @@ function updateShop(shopDetail) {
 function deleteShop(shopDetail) {
     console.log("SD - Update shop:", shopDetail);
     const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
+    backupChange(index, shopDetail);
     csService.deleteShop(shopDetail)
         .then(() => {
             console.log('delete then');
             allData.splice(index, 1);
             refreshResults();
         });
+}
+
+function backupChange(originalShopIndex, updatedShop) {
+    const original = allData[originalShopIndex];
+    csService.backupChange(original, updatedShop);
 }
 
 export { initialised, ShopData, findBrand, findProduct, getAllShops, getSpecificShop, filterWords, addNewShop, updateShop, deleteShop }

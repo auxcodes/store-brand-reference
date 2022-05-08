@@ -1,6 +1,6 @@
 import { } from "./components/shop-detail-modal.js";
 import { getSpecificShop, addNewShop, updateShop, deleteShop } from "./shop-data.js"
-import { userSignedIn } from "./auth.js";
+import { userSignedIn, userEmail } from "./auth.js";
 
 const main = document.querySelector('main');
 
@@ -19,19 +19,6 @@ export function shopDetailForm(shopDetail) {
     el.modal = {};
     main.append(el);
     return true;
-}
-
-export function createNewShop(shopDetails) {
-    const shopId = crypto.randomUUID();
-    let newShop = {
-        "shopId": shopId,
-        "shopName": shopDetails.shopName,
-        "shopURL": shopDetails.shopURL,
-        "brands": shopDetails.brands,
-        "parts": shopDetails.parts
-    }
-    console.log("SDTL - Create new shop: ", newShop);
-    addNewShop(newShop);
 }
 
 export function openShopDetailModal(shopId) {
@@ -77,21 +64,30 @@ export function processShopDetails(fields, submitter) {
     const brands = fields[2].value;
     const parts = fields[3].value;
     const id = fields[4].value;
-    const shopDetails = {
+    let shopDetails = {
         shopId: id,
         shopName: name,
         shopURL: url,
         brands: brands,
         parts: parts
     }
-    console.log("SDTL - Process Details: ", shopDetails);
     if (submitter === 'addButton') {
-        createNewShop(shopDetails);
+        shopDetails = {
+            ...shopDetails,
+            user: userEmail(),
+            shopId: crypto.randomUUID()
+        }
+        addNewShop(shopDetails);
+        return;
     }
+    console.log("SDTL - Process Details: ", shopDetails);
     if (submitter === 'updateButton') {
+        shopDetails = { ...shopDetails, user: userEmail(), changeType: 'updated' }
         updateShop(shopDetails);
+        return;
     }
     if (submitter === 'deleteButton') {
+        shopDetails = { ...shopDetails, user: userEmail(), changeType: 'deleted' }
         deleteShop(shopDetails);
     }
 }
