@@ -1,4 +1,4 @@
-import { shopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
+import { hasShopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
 import { clearResults, resetResults, } from "./search.js";
 
 let loginModal = null;
@@ -6,7 +6,7 @@ let shopDetailModal = null;
 
 export function onOpenShop(shopId) {
     console.log("I - Edit Shop request...", shopId);
-    if (shopDetailForm()) {
+    if (hasShopDetailForm()) {
         shopDetailModal = openShopDetailModal(shopId);
         shopDetailModal.onsubmit = (event) => {
             console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event.target);
@@ -14,28 +14,39 @@ export function onOpenShop(shopId) {
             clearResults();
             resetResults();
             event.preventDefault();
-            shopDetailModal.style.display = 'none';
+            shopDetailModal.classList.toggle('modal-open');
         };
+    }
+    checkForModals();
+}
+
+
+function checkForModals() {
+    if (loginModal === null) {
+        loginModal = document.getElementById('login-modal');
+    }
+    if (shopDetailModal === null) {
+        shopDetailModal = document.getElementById('shop-detail-modal');
     }
 }
 
 function onLoginClick() {
-    document.getElementById('login-modal').style.display = 'block';
+    document.getElementById('login-modal').classList.toggle('modal-open');
 }
 
 export function onCloseLogin() {
     if (loginModal === null) {
         loginModal = document.getElementById('login-modal');
     }
-    loginModal.style.display = "none";
+    loginModal.classList.toggle('modal-open');
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target.id === "login-modal") {
-        loginModal.style.display = "none";
+        loginModal.classList.toggle('modal-open');
     }
     if (event.target.id === "shop-detail-modal") {
-        shopDetailModal.style.display = "none";
+        shopDetailModal.classList.toggle('modal-open');
     }
 }

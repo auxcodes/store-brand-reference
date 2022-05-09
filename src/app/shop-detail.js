@@ -2,11 +2,12 @@ import { } from "./components/shop-detail-modal.js";
 import { getSpecificShop, addNewShop, updateShop, deleteShop } from "./shop-data.js"
 import { userSignedIn, userEmail } from "./auth.js";
 
-const main = document.querySelector('main');
+const body = document.querySelector('body');
 
-export function shopDetailForm(shopDetail) {
+export function hasShopDetailForm(shopDetail) {
     if (userSignedIn() === false) {
-        document.getElementById('login-modal').style.display = 'block';
+        document.getElementById('login-modal').classList.toggle('modal-open');
+        document.getElementById('login-email-input').focus();
         return false;
     }
     const modal = document.getElementById('shop-detail-modal');
@@ -17,19 +18,20 @@ export function shopDetailForm(shopDetail) {
     el.classList.add('modal');
     el.id = 'shop-detail-modal';
     el.modal = {};
-    main.append(el);
+    body.append(el);
     return true;
 }
 
 export function openShopDetailModal(shopId) {
     let modal = document.getElementById('shop-detail-modal');
-    modal.style.display = 'block';
+    modal.classList.toggle('modal-open');
     if (shopId) {
         modal.shopDetail = openEditShopDetailModal(shopId);
     }
     else {
         modal.shopDetail = openAddShopDetailModal();
     }
+    document.getElementById('shop-detail-modal-name').focus();
     return modal;
 }
 

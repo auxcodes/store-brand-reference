@@ -1,6 +1,6 @@
 import { } from "./components/menu-modal.js"
 import { toggleNotifications } from "./notifications.js";
-import { shopDetailForm, openShopDetailModal } from "./shop-detail.js"
+import { hasShopDetailForm, openShopDetailModal } from "./shop-detail.js"
 
 const header = document.querySelector('header');
 
@@ -32,7 +32,7 @@ export function siteMenu() {
     addShop.onclick = (event) => {
         console.log('NAV - Add shop menu item clicked');
         toggleMenu();
-        if (shopDetailForm()) {
+        if (hasShopDetailForm()) {
             openShopDetailModal();
         }
     }

@@ -6,7 +6,7 @@ const url = "http://localhost:8888/.netlify/functions/fbauth";
 //const url = "https://dev.storesearch.aux.codes/.netlify/functions/fbauth";
 const method = "POST";
 const shouldBeAsync = true;
-const main = document.querySelector('main');
+const body = document.querySelector('body');
 const authService = AuthService.getInstance();
 
 window.addEventListener('hashchange', () => {
@@ -23,7 +23,7 @@ export function signUpForm() {
     el.classList.add('modal');
     el.id = 'login-modal';
     el.modal = {};
-    main.append(el);
+    body.append(el);
 
     const loginForm = document.getElementById('login-form');
     loginForm.onsubmit = (event) => {

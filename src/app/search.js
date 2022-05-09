@@ -2,6 +2,7 @@ import { initialised, findBrand, findProduct, getAllShops, filterWords } from ".
 import { pageColour } from "./ui.js";
 
 const searchField = document.getElementById("searchInput");
+searchField.focus();
 let searchValue = "";
 searchField.addEventListener("change", searchText);
 
