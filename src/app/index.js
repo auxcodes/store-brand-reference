@@ -4,16 +4,18 @@ import { siteMenu } from "./navigation.js";
 import { } from "./components/search-result-modal.js";
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
-import { resetResults } from "./search.js";
+import { resetResults, generateLoadingRow, removeLoadingRows } from "./search.js";
 import { onOpenShop } from "./modal-controller.js";
 
 const appDataService = new AppDataService();
 
 window.onOpenShop = onOpenShop;
+let loadingCount = 0;
 
 (function ShopList() {
     siteMenu();
     initTimeOut();
+    loadingProgress();
     signUpForm();
 })() //IIFE immediately invoked function expression
 
@@ -29,4 +31,17 @@ function initTimeOut() {
             resetResults();
         }
     }, 50);
+}
+
+function loadingProgress() {
+    loadingCount++;
+    setTimeout(() => {
+        if (!initialised || (loadingCount > 20)) {
+            generateLoadingRow(loadingCount);
+            loadingProgress();
+        }
+        else {
+            removeLoadingRows();
+        }
+    }, 150);
 }

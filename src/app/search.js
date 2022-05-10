@@ -1,5 +1,6 @@
 import { initialised, findBrand, findProduct, getAllShops, filterWords } from "./shop-data.js";
 import { pageColour } from "./ui.js";
+import { } from "./components/search-result-loading.js";
 
 const searchField = document.getElementById("searchInput");
 searchField.focus();
@@ -19,6 +20,8 @@ let searchType = "";
 const searchForm = document.getElementById("form-search");
 searchForm.onsubmit = (event) => event.preventDefault();
 
+let fakeResults = [];
+
 function searchText(event) {
     searchValue = event.target.value;
     //console.log("Search Text", searchValue);
@@ -29,6 +32,26 @@ export function refreshResults() {
     searchResults = searchType === "brands" ? findBrand(searchValue) : findProduct(searchValue);
     clearResults();
     generateResults();
+}
+
+export function generateLoadingRow(count) {
+    if (count > 1) {
+        const lastEl = document.getElementById('search-result-loading' + (count - 1));
+        lastEl.classList.toggle('fake-result-row-visible');
+    }
+    const el = document.createElement('search-result-loading');
+    el.id = 'search-result-loading' + count;
+    el.classList.add("result-row", "fake-result-row");
+    el.resultLoading = {};
+    searchResultElement.append(el);
+    fakeResults.push(el.id);
+}
+
+export function removeLoadingRows() {
+    fakeResults.forEach(elementId => {
+        const el = document.getElementById(elementId);
+        el.remove();
+    });
 }
 
 function searchBrand(event) {
@@ -73,6 +96,7 @@ export function generateResults() {
         const el = document.createElement('search-result-modal');
         el.classList.add("result-row");
         el.result = result;
+        el.id = result.shopId;
         searchResultElement.append(el);
     });
 }

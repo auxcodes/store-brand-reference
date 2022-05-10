@@ -17,7 +17,7 @@ export function hasShopDetailForm(shopDetail) {
     const el = document.createElement('shop-detail-modal');
     el.classList.add('modal');
     el.id = 'shop-detail-modal';
-    el.modal = {};
+    el.shopDetail = {};
     body.append(el);
     return true;
 }

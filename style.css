@@ -393,6 +393,20 @@ button {
     border-radius: 1em;
 }
 
+.fake-result-row{
+    clip-path: circle(0px at top left);
+    opacity: 0;
+    transition: 
+        clip-path ease-in-out 500ms,
+        opacity ease-in-out 450ms;
+}
+
+.fake-result-row-visible {
+    clip-path: circle(250% at top left);
+    opacity: 1;
+}
+
+
 .result-row:hover,
 .result-row:focus-within {
     border-radius: 1em;
@@ -429,10 +443,47 @@ button {
     margin: 0.5em;
 }
 
+.result-row .fake-brand-name {
+    margin: 0.5em;
+    filter: blur(2px);
+    animation: grow-blur 2s ease-in-out infinite;
+}
+
 .result-row .brand-url {
     margin: 0.5em;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.result-row .fake-brand-url {
+    margin: 0.5em;
+    overflow: hidden;
+    white-space: nowrap;
+    color: blue;
+    text-decoration: underline;
+    filter: blur(2px);
+    animation: grow-blur 2s ease-in-out infinite;
+}
+
+@keyframes grow-blur {
+    0% {
+        filter: blur(3px);
+    }
+    20% {
+        filter: blur(4px);
+    }
+    40% {
+        filter: blur(5px);
+    }
+    60% {
+        filter: blur(4px);
+    }
+    80% {
+        filter: blur(3px);
+    }
+    100% {
+        filter: blur(2px);
+    }
 }
 
 .result-row .brand-list {
@@ -455,6 +506,11 @@ button {
     background-color: transparent;
     padding: 0.5em;
     margin: 0.4em;
+}
+
+.result-row .fake-btn {
+    filter: blur(2px);
+    animation: grow-blur 2s ease-in-out infinite;
 }
 
 /* 5. Footer */
