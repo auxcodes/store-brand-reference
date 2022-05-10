@@ -1,5 +1,5 @@
 import { FirebaseService } from "./firebase.js";
-import { getAuth, isSignInWithEmailLink, signInWithEmailLink, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { getAuth, isSignInWithEmailLink, signInWithEmailLink, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
 export const AuthService = (() => {
     let instance = null;

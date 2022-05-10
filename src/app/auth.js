@@ -1,9 +1,8 @@
 import { } from "./components/login-modal.js"
 import { AuthService } from "./auth-service.js";
 import { onCloseLogin } from "./modal-controller.js";
+import { getFunctionUrl } from "./environment.js";
 
-const url = "http://localhost:8888/.netlify/functions/fbauth";
-//const url = "https://dev.storesearch.aux.codes/.netlify/functions/fbauth";
 const method = "POST";
 const shouldBeAsync = true;
 const body = document.querySelector('body');
@@ -46,6 +45,7 @@ function signInSubmitted(event) {
 
 function signInWithEmail(email) {
     console.log('AU - Sign in with email');
+    const url = getFunctionUrl();
     const postData = JSON.stringify({ "auth": { "email": email } });
     const request = new XMLHttpRequest();
     request.open(method, url, shouldBeAsync);
@@ -66,11 +66,16 @@ function signInWithEmail(email) {
     request.onload = () => {
         // You can get all kinds of information about the HTTP response.
         const status = request.status; // HTTP response status, e.g., 200 for "200 OK"
-        const data = request.responseText; // Returned data, e.g., an HTML document.
+        const data = JSON.parse(request.responseText); // Returned data, e.g., an HTML document.
         const error = request.error;
-        console.log('AU - onload: ', status, ', Data: ', data, 'Error: ', error);
-        window.localStorage.setItem('emailForSignIn', email);
-        onCloseLogin();
+        console.log('AU - onload: ', status, ', Data.msg: ', data.msg, 'Error: ', error);
+        if (data.msg !== "Validation Failed") {
+            window.localStorage.setItem('emailForSignIn', email);
+            onCloseLogin();
+        }
+        else {
+            alert("The email you entered was not accepted!\nPlease check the spelling or contact us to have it whitelisted.");
+        }
     }
 
     request.onerror = (e) => {
