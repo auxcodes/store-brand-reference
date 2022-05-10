@@ -18,9 +18,9 @@ class ContactModal extends HTMLElement {
                 <input class="modal-field shop-field" type="text" placeholder="What you message is about..." name="subject"
                     required>
                 <label class="modal-field" for="message"><b>Message</b></label>
-                <input class="modal-field shop-field" type="text" placeholder="Message text..." name="message"
-                    required>
-                </div>
+                <textarea rows="5" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Message text..." name="message"
+                    required></textarea>
+            </div>
                 <div class="container">
                     <div class="btn-row">
                         <button id="contact-btn" class="modal-btn contact-btn" type="submit">Send</button>

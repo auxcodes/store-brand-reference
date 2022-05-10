@@ -43,8 +43,15 @@ export function onOpenContact() {
     };
     body.append(contactModal);
     contactModal.classList.toggle('modal-open');
+    removeHiddenContact();
 }
 
+function removeHiddenContact() {
+    const hiddenContact = contactModal = document.getElementById('hidden-contact');
+    if (hiddenContact) {
+        hiddenContact.remove();
+    }
+}
 
 function checkForModals() {
     if (loginModal === null) {

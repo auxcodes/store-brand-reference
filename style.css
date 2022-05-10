@@ -704,6 +704,10 @@ span.psw {
     border-radius: 1em;
 }
 
+.modal-textarea {
+    resize: vertical;
+}
+
 /* The Close Button */
 .close {
     position: relative;
