@@ -2,8 +2,6 @@ const admin = require('firebase-admin');
 const sdkAuth = require('firebase-admin/auth');
 const mailer = require('./mailer');
 
-const url = "http://localhost:8888/";
-
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
     project_id: process.env.FIREBASE_PROJECT_ID,
@@ -23,6 +21,7 @@ const app = admin.apps && admin.apps.length > 0 ? admin.apps[0] : admin.initiali
 });
 
 const auth = sdkAuth.getAuth();
+const whiteList = (process.env.EMAIL_WHITELIST).split(",");
 
 const headers = {
     'Access-Control-Allow-Credentials': true,
@@ -35,11 +34,12 @@ exports.handler = async (event, context, callback) => {
     const email = body['auth'].email.toLowerCase();
     const actionCodeSettings = {
         handleCodeInApp: false,
-        url: url //process.env.LOGIN_EMAIL_URL
+        url: process.env.LOGIN_EMAIL_URL
     };
 
-    if (email.includes("@99bikes.com.au") || email.includes("@aux.codes")) {
+    console.log(window.location.href);
 
+    if (validEmail()) {
         console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app.Error);
         await auth.generateSignInWithEmailLink(email, actionCodeSettings)
             .then((link) => {
@@ -70,5 +70,14 @@ exports.handler = async (event, context, callback) => {
             headers,
             body: JSON.stringify({ msg: "Validation Failed", error: errors })
         });
+    }
+
+    function validEmail() {
+        let result = false;
+        whiteList.forEach(domain => {
+            console.log(domain);
+            result = email.includes(domain.trim());
+        });
+        return result;
     }
 }
