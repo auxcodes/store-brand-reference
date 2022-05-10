@@ -1,4 +1,5 @@
 import { } from "./components/menu-modal.js"
+import { onOpenContact } from "./modal-controller.js";
 import { toggleNotifications } from "./notifications.js";
 import { hasShopDetailForm, openShopDetailModal } from "./shop-detail.js"
 
@@ -41,6 +42,7 @@ export function siteMenu() {
     contact.onclick = (event) => {
         console.log('NAV - Contact menu item clicked');
         toggleMenu();
+        onOpenContact();
     }
 
     const logout = document.getElementById('logout-link');

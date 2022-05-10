@@ -1,8 +1,13 @@
 import { hasShopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
 import { clearResults, resetResults, } from "./search.js";
 
+import { } from "./components/contact-modal.js";
+
+const body = document.querySelector('body');
+
 let loginModal = null;
 let shopDetailModal = null;
+let contactModal = null;
 
 export function onOpenShop(shopId) {
     console.log("I - Edit Shop request...", shopId);
@@ -18,6 +23,26 @@ export function onOpenShop(shopId) {
         };
     }
     checkForModals();
+}
+
+export function onOpenContact() {
+    console.log('MC - Open contact modal request...');
+    contactModal = document.getElementById('contact-modal');
+    if (contactModal) {
+        contactModal.classList.toggle('modal-open');
+        return;
+    }
+    contactModal = document.createElement('contact-modal');
+    contactModal.classList.add('modal');
+    contactModal.id = 'contact-modal';
+    contactModal.contactForm = {};
+    contactModal.onsubmit = (event) => {
+        console.log('MC - Contact form submitted');
+        event.preventDefault();
+        contactModal.classList.toggle('modal-open');
+    };
+    body.append(contactModal);
+    contactModal.classList.toggle('modal-open');
 }
 
 
