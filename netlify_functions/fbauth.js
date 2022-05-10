@@ -22,6 +22,7 @@ const app = admin.apps && admin.apps.length > 0 ? admin.apps[0] : admin.initiali
 
 const auth = sdkAuth.getAuth();
 const whiteList = (process.env.EMAIL_WHITELIST).split(",");
+const environmentURLs = (process.env.LOGIN_EMAIL_URL).split(",");
 
 const headers = {
     'Access-Control-Allow-Credentials': true,
@@ -34,10 +35,10 @@ exports.handler = async (event, context, callback) => {
     const email = body['auth'].email.toLowerCase();
     const actionCodeSettings = {
         handleCodeInApp: false,
-        url: process.env.LOGIN_EMAIL_URL
+        url: setEnvironment()
     };
 
-    console.log(window.location.href);
+    console.log('Set Environment: ', setEnvironment());
 
     if (validEmail()) {
         console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app.Error);
@@ -77,6 +78,17 @@ exports.handler = async (event, context, callback) => {
         whiteList.forEach(domain => {
             console.log(domain);
             result = email.includes(domain.trim());
+        });
+        return result;
+    }
+
+    function setEnvironment() {
+        const requestUrl = event.headers.referer;
+        let result = '';
+        environmentURLs.forEach(url => {
+            if (url.includes(requestUrl)) {
+                result = url;
+            }
         });
         return result;
     }
