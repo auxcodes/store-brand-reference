@@ -38,7 +38,7 @@ export function onOpenContact() {
     contactModal.contactForm = {};
     contactModal.onsubmit = (event) => {
         console.log('MC - Contact form submitted');
-        event.preventDefault();
+        // event.preventDefault();
         contactModal.classList.toggle('modal-open');
     };
     body.append(contactModal);
