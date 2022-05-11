@@ -19,6 +19,10 @@
     --product-color: rgb(2, 172, 53);
     --brand-color: rgb(1, 136, 255);
     --active-search-color: var(--brand-color);
+    --positive-alert-color: rgb(2, 172, 53);
+    --positive-alert-bgcolor: rgb(229, 255, 220);
+    --negative-alert-color: rgb(172, 2, 2);
+    --negative-alert-bgcolor: rgb(215, 215, 215);
 }
 
 body {
@@ -52,6 +56,57 @@ button {
     margin: 0.25em;
     font-size: 1.25rem;
 }
+/* Alerts Bar */
+.alert-container {
+    display: flex;
+    position: relative;
+    width: max-content;
+    background: #fff;
+    margin: 0.5em auto;
+    border-radius: 0.75em;
+    box-shadow: inset 0px 0px 5px #000;
+    height: 0;
+    overflow: hidden;
+    transition: height ease-in-out 500s;
+}
+
+.alert-container--open {
+    height: 100px; /* Get modal height, set it, then add */
+}
+
+.alert-modal {
+    background: #fff;
+    width: max-content;
+    border-radius: 0.5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    margin: 0.65em;
+    box-shadow: 0px 0px -1px #000;
+    position: relative;
+}
+
+.positive-alert {
+    color: var(--positive-alert-color);
+    background-color: var(--positive-alert-bgcolor);
+    border: 2px solid var(--positive-alert-color);
+}
+
+.negative-alert {
+    color: var(--positive-alert-color);
+    background-color: var(--positive-alert-bgcolor);
+    border: 2px solid var(--positive-alert-color);
+}
+
+.alert-close {
+    position: absolute;
+    right: 3px;
+    top: -4px;
+    font-size: 1.5em;
+    color: var(--positive-alert-color);
+    cursor: pointer;
+}
+
 /* 1. Notification Bar */
 .notification-toggle {
     position: absolute;
