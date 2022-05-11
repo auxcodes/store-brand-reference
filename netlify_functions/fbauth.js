@@ -33,12 +33,13 @@ exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
     const errors = [];
     const email = body['auth'].email.toLowerCase();
+    const envURL = setEnvironment();
     const actionCodeSettings = {
         handleCodeInApp: false,
-        url: setEnvironment()
+        url: envURL
     };
 
-    console.log('Set Environment: ', setEnvironment());
+    console.log('Set Environment: ', actionCodeSettings);
 
     if (validEmail()) {
         console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app.Error);
@@ -76,7 +77,7 @@ exports.handler = async (event, context, callback) => {
     function validEmail() {
         let result = false;
         whiteList.forEach(domain => {
-            console.log(domain);
+            console.log('Whitelisted Email: ', domain);
             result = email.includes(domain.trim());
         });
         return result;
@@ -86,6 +87,7 @@ exports.handler = async (event, context, callback) => {
         const requestUrl = event.headers.referer;
         let result = '';
         environmentURLs.forEach(url => {
+            console.log('Environment URL: ', url);
             if (url.includes(requestUrl)) {
                 result = url;
             }
