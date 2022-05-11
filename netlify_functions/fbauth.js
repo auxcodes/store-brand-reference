@@ -85,6 +85,7 @@ exports.handler = async (event, context, callback) => {
 
     function setEnvironment() {
         const requestUrl = event.headers.referer;
+        console.log('Request URL: ', requestUrl);
         let result = '';
         environmentURLs.forEach(url => {
             console.log('Environment URL: ', url);
