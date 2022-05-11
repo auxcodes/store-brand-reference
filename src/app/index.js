@@ -11,6 +11,7 @@ const appDataService = new AppDataService();
 
 window.onOpenShop = onOpenShop;
 let loadingCount = 0;
+let maxWaitCount = 100;
 
 (function ShopList() {
     siteMenu();
@@ -21,23 +22,26 @@ let loadingCount = 0;
 
 function initTimeOut() {
     setTimeout(() => {
-        if (!initialised) {
+        if (!initialised && maxWaitCount > 0) {
             initTimeOut();
-            console.log("waiting");
+            console.log("waiting...");
         }
         else {
             setStorageService(appDataService.localStorageService);
             generateNotifications();
             resetResults();
         }
+        maxWaitCount--;
     }, 50);
 }
 
 function loadingProgress() {
     loadingCount++;
     setTimeout(() => {
-        if (!initialised || (loadingCount > 20)) {
-            generateLoadingRow(loadingCount);
+        if (!initialised) {
+            if (loadingCount < 20) {
+                generateLoadingRow(loadingCount);
+            }
             loadingProgress();
         }
         else {
