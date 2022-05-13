@@ -6,6 +6,7 @@ import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 import { resetResults, generateLoadingRow, removeLoadingRows } from "./search.js";
 import { onOpenShop } from "./modal-controller.js";
+import { onOpenAlert } from "./alerts.js";
 
 const appDataService = new AppDataService();
 
@@ -46,6 +47,7 @@ function loadingProgress() {
         }
         else {
             removeLoadingRows();
+            onOpenAlert({ text: 'Some text to display in the alert', alertType: 'negative-alert' });
         }
     }, 150);
 }

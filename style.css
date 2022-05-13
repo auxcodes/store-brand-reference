@@ -21,8 +21,8 @@
     --active-search-color: var(--brand-color);
     --positive-alert-color: rgb(2, 172, 53);
     --positive-alert-bgcolor: rgb(229, 255, 220);
-    --negative-alert-color: rgb(172, 2, 2);
-    --negative-alert-bgcolor: rgb(215, 215, 215);
+    --negative-alert-color: rgb(203, 0, 0);
+    --negative-alert-bgcolor: rgb(255, 214, 214);
 }
 
 body {
@@ -59,31 +59,37 @@ button {
 /* Alerts Bar */
 .alert-container {
     display: flex;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: max-content;
     background: #fff;
-    margin: 0.5em auto;
-    border-radius: 0.75em;
-    box-shadow: inset 0px 0px 5px #000;
-    height: 0;
-    overflow: hidden;
-    transition: height ease-in-out 500s;
+    margin: 0.5em auto 0.5em 0;
+    border-radius: 0 0.75em 0.75em 0;
+    box-shadow: 3px 4px 15px #000;
+    height: fit-content;
+    clip-path: circle(0px at left);
+    opacity: 0;
+    transition: 
+    clip-path ease-in-out 500ms,
+    opacity ease-in-out 450ms;
 }
 
-.alert-container--open {
-    height: 100px; /* Get modal height, set it, then add */
+.alert--open {
+    opacity: 1;
+    clip-path: circle(250% at left);
 }
 
 .alert-modal {
-    background: #fff;
-    width: max-content;
-    border-radius: 0.5em;
-    padding: 1em;
     display: flex;
     flex-direction: column;
+    position: relative;
+    width: max-content;
+    background: #fff;
+    border-radius: 0.5em;
+    padding: 1.5em 1.5em 1.2em 1.5em;;
     margin: 0.65em;
     box-shadow: 0px 0px -1px #000;
-    position: relative;
 }
 
 .positive-alert {
@@ -93,17 +99,21 @@ button {
 }
 
 .negative-alert {
-    color: var(--positive-alert-color);
-    background-color: var(--positive-alert-bgcolor);
-    border: 2px solid var(--positive-alert-color);
+    color: var(--negative-alert-color);
+    background-color: var(--negative-alert-bgcolor);
+    border: 2px solid var(--negative-alert-color);
+}
+
+.alert-text {
+    font-weight: 600;
+    font-size: 1.25rem;
 }
 
 .alert-close {
     position: absolute;
-    right: 3px;
+    right: 4px;
     top: -4px;
-    font-size: 1.5em;
-    color: var(--positive-alert-color);
+    font-size: 1.75rem;
     cursor: pointer;
 }
 
