@@ -34,19 +34,18 @@ class UserAuthentication {
     }
 
     alreadyUser() {
-        //return true;
-        return this.user ? true : false;
+        return true;
+        //return this.user ? true : false;
     }
 
     currentUser() {
-        console.log(this.user);
+        console.log('AS - Current User: ', this.user);
         if (this.user) {
             return this.user
         }
         else {
             this.auth = getAuth();
             this.user = this.auth.currentUser;
-            console.log(this.user);
             return this.user;
         }
     }

@@ -118,6 +118,10 @@ button {
     top: -4px;
     font-size: 1.75rem;
     cursor: pointer;
+    color: var(--negative-alert-color);
+    background-color: unset;
+    padding: unset;
+    margin: unset;
 }
 
 /* 1. Notification Bar */
