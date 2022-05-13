@@ -1,4 +1,5 @@
 import { } from "./components/login-modal.js"
+import { onOpenAlert } from "./alerts.js";
 import { AuthService } from "./auth-service.js";
 import { onCloseLogin } from "./modal-controller.js";
 import { getFunctionUrl } from "./environment.js";
@@ -72,13 +73,24 @@ function signInWithEmail(email) {
         if (data.msg !== "Validation Failed") {
             window.localStorage.setItem('emailForSignIn', email);
             onCloseLogin();
+            onOpenAlert({
+                text: `An email has been sent to ${email} with a link for logging in.`,
+                alertType: 'positive-alert'
+            });
         }
         else {
-            alert("The email you entered was not accepted!\nPlease check the spelling or contact us to have it whitelisted.");
+            onOpenAlert({
+                text: `The email ${email} was not valid!<br>Please check the spelling or contact us to have it whitelisted.`,
+                alertType: 'negative-alert'
+            });
         }
     }
 
     request.onerror = (e) => {
         console.error('AU - Sign Error:', e, request.status);
+        onOpenAlert({
+            text: 'An error occurred during the login process!',
+            alertType: 'negative-alert'
+        });
     }
 }

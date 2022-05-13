@@ -69,10 +69,12 @@ button {
     box-shadow: 3px 4px 15px #000;
     height: fit-content;
     clip-path: circle(0px at left);
-    opacity: 0;
+    opacity: 0.5;
     transition: 
     clip-path ease-in-out 500ms,
     opacity ease-in-out 450ms;
+    max-width: 100%;
+    z-index: 11;
 }
 
 .alert--open {
@@ -107,6 +109,7 @@ button {
 .alert-text {
     font-weight: 600;
     font-size: 1.25rem;
+    line-height: 2rem;
 }
 
 .alert-close {

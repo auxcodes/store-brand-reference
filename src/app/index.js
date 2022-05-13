@@ -47,7 +47,6 @@ function loadingProgress() {
         }
         else {
             removeLoadingRows();
-            onOpenAlert({ text: 'Some text to display in the alert', alertType: 'negative-alert' });
         }
     }, 150);
 }
