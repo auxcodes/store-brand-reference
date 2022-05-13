@@ -7,9 +7,6 @@ window.onCloseAlert = onCloseAlert;
 let lastAlertStyle = '';
 
 export function onOpenAlert(content) {
-    //content should contain
-    //- text, css class...
-    //- perhaps a callback function
     console.log('onOpenAlert');
     alertModal.id = 'alert-modal';
     alertModal.alertContent = content;
@@ -17,6 +14,7 @@ export function onOpenAlert(content) {
     alertModal.classList.add('alert-modal');
     alertContainer.classList.add('alert--open');
     alertContainer.append(alertModal);
+    alertModal.querySelector('button').focus()
 }
 
 function alertTypeStyle(alertType) {
