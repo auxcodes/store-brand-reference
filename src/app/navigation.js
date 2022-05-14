@@ -102,7 +102,6 @@ class SiteMenu {
             console.log('NAV - Logout menu item clicked');
             this.toggleMenu();
             signOutUser();
-            this.toggleLoginLogout();
         }
     }
 

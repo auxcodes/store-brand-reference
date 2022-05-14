@@ -42,17 +42,13 @@ export function userSignedIn() {
 
 export function signOutUser() {
     authService.signOut();
-    siteMenu.toggleLoginButton();
-    onOpenAlert({
-        text: `You have been successfully signed out.`,
-        alertType: 'positive-alert'
-    });
 }
 
 export function signInUser() {
+    const email = authService.alreadyUser().email;
     siteMenu.toggleLogoutButton();
     onOpenAlert({
-        text: `You have been successfully signed in.`,
+        text: `${email} is now signed in.`,
         alertType: 'positive-alert'
     });
 }

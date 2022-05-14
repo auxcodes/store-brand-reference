@@ -1,12 +1,11 @@
 import { initialised } from "./shop-data.js";
-import { signUpForm } from "./auth.js";
+import { signInUser, signUpForm, userSignedIn } from "./auth.js";
 import { NavigationService } from "./navigation.js";
 import { } from "./components/search-result-modal.js";
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 import { resetResults, generateLoadingRow, removeLoadingRows } from "./search.js";
 import { onOpenShop } from "./modal-controller.js";
-import { onOpenAlert } from "./alerts.js";
 
 const siteMenu = NavigationService.getInstance();
 const appDataService = new AppDataService();
@@ -28,7 +27,7 @@ function initTimeOut() {
             console.log("waiting...");
         }
         else {
-            siteMenu.toggleLoginLogout();
+            userSignedInOnInitalised();
             setStorageService(appDataService.localStorageService);
             generateNotifications();
             resetResults();
@@ -50,4 +49,14 @@ function loadingProgress() {
             removeLoadingRows();
         }
     }, 150);
+}
+
+function userSignedInOnInitalised() {
+    const user = userSignedIn();
+    if (user !== null) {
+        signInUser();
+    }
+    else {
+        siteMenu.toggleLoginButton();
+    }
 }

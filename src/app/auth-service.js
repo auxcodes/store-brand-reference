@@ -1,6 +1,7 @@
 import { FirebaseService } from "./firebase.js";
 import { getAuth, isSignInWithEmailLink, signInWithEmailLink, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { onOpenAlert } from "./alerts.js";
+import { NavigationService } from "./navigation.js";
 
 export const AuthService = (() => {
     let instance = null;
@@ -27,6 +28,7 @@ class UserAuthentication {
     user = null;
     tokenExpirationTimer = null;
     dataName = 'ss_userdata';
+    siteMenu = NavigationService.getInstance();
 
     constructor() {
         console.log('AS - FB Service', this.firebaseService);
@@ -66,13 +68,38 @@ class UserAuthentication {
 
     signOut() {
         if (this.auth) {
-            this.auth.signOut();
+            this.auth.signOut()
+                .then(() => {
+                    this.siteMenu.toggleLoginButton();
+                    onOpenAlert({
+                        text: `You have been successfully signed out.`,
+                        alertType: 'positive-alert'
+                    });
+                })
+                .catch((error) => {
+                    console.error('A - SignOut Error: ', error);
+                    onOpenAlert({
+                        text: `Something went wrong during signing out.`,
+                        alertType: 'negative-alert'
+                    });
+                });
+        }
+        else {
+            onOpenAlert({
+                text: `Something went wrong during signing out.`,
+                alertType: 'negative-alert'
+            });
         }
     }
 
     emailLogin() {
         console.log('AS - Check email login...');
         this.auth = getAuth();
+        const user = this.auth.currentUser;
+        if (user !== null) {
+            email = window.alert(`User ${user.email} is already logged in.`);
+            console.log('Already a user logged in: ', user);
+        }
         if (isSignInWithEmailLink(this.auth, window.location.href)) {
             let email = window.localStorage.getItem('emailForSignIn');
             if (!email) {
@@ -81,11 +108,6 @@ class UserAuthentication {
                 console.log(email);
             }
             console.log('Try to sign in with email link...');
-            const user = this.currentUser();
-            if (user !== null) {
-                email = window.alert(`User ${user.email} is already logged in.`);
-                console.log('Already a user logged in: ', user);
-            }
             this.auth.setPersistence(browserLocalPersistence)
                 .then(() => {
                     signInWithEmailLink(this.auth, email, window.location.href)
@@ -93,12 +115,24 @@ class UserAuthentication {
                             window.localStorage.removeItem('emailForSignIn');
                             console.log('AS - Sign in with Email Link - user: ', result);
                             this.currentUser();
-                            this.auth.signInUser();
+                            this.siteMenu.toggleLogoutButton();
+                            onOpenAlert({
+                                text: `You have been successfully signed in.`,
+                                alertType: 'positive-alert'
+                            });
                         })
                         .catch((error) => {
-                            console.error('Email Login Error: ', error)
+                            console.error('Email Login Error: ', error.message, error.code)
+                            let msg = '';
+                            if (error.code === 'auth/invalid-action-code') {
+                                msg = 'The email link has already been used.'
+                            }
+                            else {
+                                msg = 'An error occurred whilst logging in.'
+                            }
+
                             onOpenAlert({
-                                text: `An error occurred whilst logging in. <br>Please try refreshing the page or contact us.`,
+                                text: `${msg} <br>Please try logging in again or contact us.`,
                                 alertType: 'negative-alert'
                             });
                         });

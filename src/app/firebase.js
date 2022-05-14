@@ -23,7 +23,4 @@ export class FirebaseService {
         this.app = initializeApp(this.firebaseConfig);
         this.analytics = getAnalytics(this.app);
     }
-
-
-
 }
