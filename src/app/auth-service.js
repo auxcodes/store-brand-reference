@@ -1,5 +1,6 @@
 import { FirebaseService } from "./firebase.js";
 import { getAuth, isSignInWithEmailLink, signInWithEmailLink, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { onOpenAlert } from "./alerts.js";
 
 export const AuthService = (() => {
     let instance = null;
@@ -34,20 +35,22 @@ class UserAuthentication {
     }
 
     alreadyUser() {
-        return true;
-        //return this.user ? true : false;
+        return this.currentUser();
+    }
+
+    tokenExpired() {
+        const currentTime = Date.now();
+        const expirationTime = this.auth.currentUser.stsTokenManager.expirationTime;
+        console.log('AS - Token Expired: ', Date.parse(expirationTime), currentTime, expirationTime);
+        const expired = expirationTime > currentTime;
+        return expired;
     }
 
     currentUser() {
-        console.log('AS - Current User: ', this.user);
-        if (this.user) {
-            return this.user
-        }
-        else {
-            this.auth = getAuth();
-            this.user = this.auth.currentUser;
-            return this.user;
-        }
+        this.auth = getAuth();
+        this.user = this.auth.currentUser;
+        console.log('AS - Current User: ', (this.user === null ? 'none' : this.user.email));
+        return this.user;
     }
 
     checkURL() {
@@ -57,7 +60,13 @@ class UserAuthentication {
         }
         else {
             this.currentUser();
-            console.log('AS - Current User: ', this.auth.currentUser);
+            console.log('AS - Check current user ');
+        }
+    }
+
+    signOut() {
+        if (this.auth) {
+            this.auth.signOut();
         }
     }
 
@@ -72,6 +81,11 @@ class UserAuthentication {
                 console.log(email);
             }
             console.log('Try to sign in with email link...');
+            const user = this.currentUser();
+            if (user !== null) {
+                email = window.alert(`User ${user.email} is already logged in.`);
+                console.log('Already a user logged in: ', user);
+            }
             this.auth.setPersistence(browserLocalPersistence)
                 .then(() => {
                     signInWithEmailLink(this.auth, email, window.location.href)
@@ -79,9 +93,14 @@ class UserAuthentication {
                             window.localStorage.removeItem('emailForSignIn');
                             console.log('AS - Sign in with Email Link - user: ', result);
                             this.currentUser();
+                            this.auth.signInUser();
                         })
                         .catch((error) => {
                             console.error('Email Login Error: ', error)
+                            onOpenAlert({
+                                text: `An error occurred whilst logging in. <br>Please try refreshing the page or contact us.`,
+                                alertType: 'negative-alert'
+                            });
                         });
                 })
                 .catch((error) => {

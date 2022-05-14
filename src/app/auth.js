@@ -3,11 +3,13 @@ import { onOpenAlert } from "./alerts.js";
 import { AuthService } from "./auth-service.js";
 import { onCloseLogin } from "./modal-controller.js";
 import { getFunctionUrl } from "./environment.js";
+import { NavigationService } from "./navigation.js";
 
 const method = "POST";
 const shouldBeAsync = true;
 const body = document.querySelector('body');
 const authService = AuthService.getInstance();
+const siteMenu = NavigationService.getInstance();
 
 window.addEventListener('hashchange', () => {
     console.log("URL change event");
@@ -34,8 +36,25 @@ export function signUpForm() {
 }
 
 export function userSignedIn() {
-    console.log('AU - AlreadyUser', authService.alreadyUser());
+    console.log('AU - Is User Signed In');
     return authService.alreadyUser();
+}
+
+export function signOutUser() {
+    authService.signOut();
+    siteMenu.toggleLoginButton();
+    onOpenAlert({
+        text: `You have been successfully signed out.`,
+        alertType: 'positive-alert'
+    });
+}
+
+export function signInUser() {
+    siteMenu.toggleLogoutButton();
+    onOpenAlert({
+        text: `You have been successfully signed in.`,
+        alertType: 'positive-alert'
+    });
 }
 
 function signInSubmitted(event) {

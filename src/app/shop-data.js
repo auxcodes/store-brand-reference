@@ -1,5 +1,6 @@
 import { CloudStorageService } from "./cloud-storage.js";
 import { refreshResults } from "./search.js";
+import { onOpenAlert } from "./alerts.js";
 
 let allData = [];
 let initialised = false;
@@ -88,10 +89,16 @@ function addNewShop(newShop) {
     console.log("SD - Add new shop:", newShop)
     csService.addShop(newShop)
         .then(() => {
-            console.log('add then');
             allData.push(newShop);
             sortData();
             refreshResults();
+            onOpenAlert({
+                text: `${newShop.shopName} was successfully added.`,
+                alertType: 'positive-alert'
+            });
+        })
+        .catch((error) => {
+            console.log('SD - Add new shop error: ', error);
         });
 }
 
@@ -105,6 +112,10 @@ function updateShop(shopDetail) {
             allData[index] = shopDetail;
             sortData();
             refreshResults();
+            onOpenAlert({
+                text: `${shopDetail.shopName} was successfully updated.`,
+                alertType: 'positive-alert'
+            });
         });
     console.log('SD - Updated shop: ', allData);
 }
@@ -118,6 +129,16 @@ function deleteShop(shopDetail) {
             console.log('delete then');
             allData.splice(index, 1);
             refreshResults();
+            onOpenAlert({
+                text: `${shopDetail.shopName} was successfully deleted.`,
+                alertType: 'positive-alert'
+            });
+        })
+        .catch(() => {
+            onOpenAlert({
+                text: `Something went wrong while trying to delete ${shopDetail.shopName}`,
+                alertType: 'negative-alert'
+            });
         });
 }
 

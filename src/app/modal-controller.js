@@ -2,6 +2,7 @@ import { hasShopDetailForm, openShopDetailModal, processShopDetails } from "./sh
 import { clearResults, resetResults, } from "./search.js";
 
 import { } from "./components/contact-modal.js";
+import { userEmail, userSignedIn } from "./auth.js";
 
 const body = document.querySelector('body');
 
@@ -9,17 +10,27 @@ let loginModal = null;
 let shopDetailModal = null;
 let contactModal = null;
 
+
+
 export function onOpenShop(shopId) {
-    console.log("I - Edit Shop request...", shopId);
+    console.log("MC - Open Shop request...", shopId);
     if (hasShopDetailForm()) {
         shopDetailModal = openShopDetailModal(shopId);
         shopDetailModal.onsubmit = (event) => {
-            console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event.target);
-            processShopDetails(event.target, event.submitter.id);
-            clearResults();
-            resetResults();
-            event.preventDefault();
-            shopDetailModal.classList.toggle('modal-open');
+            console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event.target, userEmail());
+            if (userSignedIn() !== null) {
+                processShopDetails(event.target, event.submitter.id);
+                clearResults();
+                resetResults();
+                event.preventDefault();
+                shopDetailModal.classList.toggle('modal-open');
+            }
+            else {
+                onOpenAlert({
+                    text: `You are not currently logged in. Not sure how you got here??`,
+                    alertType: 'negative-alert'
+                });
+            }
         };
     }
     checkForModals();
@@ -38,7 +49,6 @@ export function onOpenContact() {
     contactModal.contactForm = {};
     contactModal.onsubmit = (event) => {
         console.log('MC - Contact form submitted');
-        // event.preventDefault();
         contactModal.classList.toggle('modal-open');
     };
     body.append(contactModal);
@@ -62,11 +72,16 @@ function checkForModals() {
     }
 }
 
-function onLoginClick() {
-    document.getElementById('login-modal').classList.toggle('modal-open');
+export function onLoginClick() {
+    toggleLoginModal();
+    loginModal.querySelector('login-email-input').focus();
 }
 
 export function onCloseLogin() {
+    toggleLoginModal();
+}
+
+export function toggleLoginModal() {
     if (loginModal === null) {
         loginModal = document.getElementById('login-modal');
     }

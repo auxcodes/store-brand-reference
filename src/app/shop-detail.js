@@ -5,7 +5,7 @@ import { userSignedIn, userEmail } from "./auth.js";
 const body = document.querySelector('body');
 
 export function hasShopDetailForm(shopDetail) {
-    if (userSignedIn() === false) {
+    if (userSignedIn() === null) {
         document.getElementById('login-modal').classList.toggle('modal-open');
         document.getElementById('login-email-input').focus();
         return false;

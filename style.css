@@ -118,10 +118,10 @@ button {
     top: -4px;
     font-size: 1.75rem;
     cursor: pointer;
-    color: var(--negative-alert-color);
     background-color: unset;
     padding: unset;
     margin: unset;
+    color: inherit;
 }
 
 /* 1. Notification Bar */
@@ -282,6 +282,10 @@ button {
   
   .open .hamburger::after {
     transform: translateY(-3px) rotate(-90deg);
+  }
+
+  .nav-btn--toggle {
+      display: none !important;
   }
 /* 3. Search Bar */
 .search-bar {

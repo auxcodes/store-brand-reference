@@ -7,7 +7,6 @@ window.onCloseAlert = onCloseAlert;
 let lastAlertStyle = '';
 
 export function onOpenAlert(content) {
-    console.log('onOpenAlert');
     alertModal.id = 'alert-modal';
     alertModal.alertContent = content;
     alertTypeStyle(content.alertType);
@@ -26,8 +25,5 @@ function alertTypeStyle(alertType) {
 }
 
 export function onCloseAlert(event) {
-    // do something
-    // - passed callback function
-    console.log('onCloseAlert');
     alertContainer.classList.toggle('alert--open');
 }
