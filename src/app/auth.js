@@ -46,7 +46,7 @@ export function signOutUser() {
 
 export function signInUser() {
     const email = authService.alreadyUser().email;
-    siteMenu.toggleLogoutButton();
+    siteMenu.toggleLogoutButtonOn();
     onOpenAlert({
         text: `${email} is now signed in.`,
         alertType: 'positive-alert'

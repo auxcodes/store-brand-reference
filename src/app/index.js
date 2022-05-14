@@ -57,6 +57,6 @@ function userSignedInOnInitalised() {
         signInUser();
     }
     else {
-        siteMenu.toggleLoginButton();
+        siteMenu.toggleLoginButtonOn();
     }
 }

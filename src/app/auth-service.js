@@ -70,7 +70,7 @@ class UserAuthentication {
         if (this.auth) {
             this.auth.signOut()
                 .then(() => {
-                    this.siteMenu.toggleLoginButton();
+                    this.siteMenu.toggleLoginButtonOn();
                     onOpenAlert({
                         text: `You have been successfully signed out.`,
                         alertType: 'positive-alert'
@@ -115,7 +115,7 @@ class UserAuthentication {
                             window.localStorage.removeItem('emailForSignIn');
                             console.log('AS - Sign in with Email Link - user: ', result);
                             this.currentUser();
-                            this.siteMenu.toggleLogoutButton();
+                            this.siteMenu.toggleLogoutButtonOn();
                             onOpenAlert({
                                 text: `You have been successfully signed in.`,
                                 alertType: 'positive-alert'

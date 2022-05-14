@@ -60,7 +60,7 @@ class SiteMenu {
         this.logoutButton = this.siteNav.querySelector('#logout-link');
         this.setLogoutButtonOnClick()
 
-        this.toggleLoginButton();
+        this.toggleLoginButtonOn();
     }
 
     setMenuOnclick() {
@@ -113,24 +113,26 @@ class SiteMenu {
         }
     }
 
-    toggleLogoutButton() {
-        this.logoutButton.classList.add('nav-btn--toggle');
-        this.loginButton.classList.remove('nav-btn--toggle');
+    toggleLogoutButtonOn() {
+        console.log('Toggle Logout On');
+        this.logoutButton.classList.remove('nav-btn--hide');
+        this.loginButton.classList.add('nav-btn--hide');
     }
 
-    toggleLoginButton() {
-        this.loginButton.classList.add('nav-btn--toggle');
-        this.logoutButton.classList.remove('nav-btn--toggle');
+    toggleLoginButtonOn() {
+        console.log('Toggle Login On');
+        this.loginButton.classList.remove('nav-btn--hide');
+        this.logoutButton.classList.add('nav-btn--hide');
     }
 
     toggleLoginLogout() {
-        console.log('toggle login/logout');
+        console.log('Toggle login/logout');
         if (userSignedIn() === null) {
-            this.toggleLogoutButton();
+            this.toggleLogoutButtonOn();
             console.log('display login');
         }
         else {
-            this.toggleLoginButton
+            this.toggleLoginButtonOn
             console.log('display logout');
         }
     }
