@@ -1,6 +1,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css');
 
 /* 
+    0. Alerts Bar
     1. Notification Bar
     2. Menu
     3. Search Bar
@@ -56,7 +57,7 @@ button {
     margin: 0.25em;
     font-size: 1.25rem;
 }
-/* Alerts Bar */
+/* 0. Alerts Bar */
 .alert-container {
     display: flex;
     position: absolute;
@@ -159,6 +160,18 @@ button {
 .notifications-container--hidden {
     opacity: 0;
     clip-path: circle(0px at top right);
+}
+
+.notifications-empty-msg {
+    margin: 0 auto 0.25em auto;
+    position: relative;
+    padding: 0.5em 5em;
+    border-bottom: 1px solid #666;
+    display: none;
+}
+
+.notif-show-nomsg {
+    display: block;
 }
 
 .notification-bar {

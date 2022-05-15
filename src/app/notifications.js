@@ -59,9 +59,8 @@ function generateNotifications() {
                 div.innerHTML = `<span onclick="onCloseNotification('${item.id}')" class="notif-close" title="Close Modal">&times;</span>` + item.content;
                 notificationsContainer.append(div);
             }
-        })
+        });
     });
-
 }
 
 async function checkLocalStorage() {
@@ -69,14 +68,24 @@ async function checkLocalStorage() {
         .then(storage => {
             if (storage) {
                 notificationHistory = storage;
+                let count = 0;
                 notificationObjects.forEach(item => {
                     if (storage[item.id] === false) {
                         item.show = false;
+                        count++;
                     }
                 });
+                if (count === notificationObjects.length) {
+                    toggleNoMsg()
+                }
             }
         })
         .catch(e => console.log(e));
+}
+
+function toggleNoMsg() {
+    const noMsg = notificationsContainer.querySelector('#notif-no-msg');
+    noMsg.classList.toggle('notif-show-nomsg');
 }
 
 function toggleNotifications() {
@@ -87,6 +96,15 @@ function closeNotification(id) {
     document.getElementById(id).style.display = 'none';
     notificationHistory = updateHistory(id, false);
     localStorageService.updateEntry(storageKey, JSON.stringify(notificationHistory));
+    if (hasOpenNotifications()) {
+        toggleNoMsg();
+    }
+}
+
+function hasOpenNotifications() {
+    const notifs = Array.from(notificationsContainer.children)
+    const count = notifs.filter(child => !!child.offsetParent).length;
+    return count === 0;
 }
 
 function updateHistory(key, value) {
