@@ -706,6 +706,13 @@ button {
     width: fit-content;
 }
 
+.link-button {
+    background-color: transparent;
+    font-size: 1.1rem;
+    color: blue;
+    cursor: pointer;
+}
+
 /* Add a hover effect for buttons */
 .login-btn:hover {
     opacity: 0.8;

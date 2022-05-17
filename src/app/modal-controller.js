@@ -10,8 +10,6 @@ let loginModal = null;
 let shopDetailModal = null;
 let contactModal = null;
 
-
-
 export function onOpenShop(shopId) {
     console.log("MC - Open Shop request...", shopId);
     if (hasShopDetailForm()) {
@@ -38,11 +36,21 @@ export function onOpenShop(shopId) {
 
 export function onOpenContact() {
     console.log('MC - Open contact modal request...');
+    if (loginModal !== null && loginModal.classList.contains('modal-open')) {
+        onCloseLogin();
+    }
     contactModal = document.getElementById('contact-modal');
     if (contactModal) {
         contactModal.classList.toggle('modal-open');
+        setTimeout(() => {
+            contactModal.querySelector('#contact-modal-name').focus();
+        }, 50);
         return;
     }
+    createContactModal();
+}
+
+function createContactModal() {
     contactModal = document.createElement('contact-modal');
     contactModal.classList.add('modal');
     contactModal.id = 'contact-modal';
@@ -52,6 +60,7 @@ export function onOpenContact() {
         contactModal.classList.toggle('modal-open');
     };
     body.append(contactModal);
+    contactModal.querySelector('#contact-modal-name').focus();
     contactModal.classList.toggle('modal-open');
     removeHiddenContact();
 }
@@ -74,7 +83,7 @@ function checkForModals() {
 
 export function onLoginClick() {
     toggleLoginModal();
-    loginModal.querySelector('login-email-input').focus();
+    loginModal.querySelector('#login-email-input').focus();
 }
 
 export function onCloseLogin() {

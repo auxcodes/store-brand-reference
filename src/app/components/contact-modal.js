@@ -9,7 +9,7 @@ class ContactModal extends HTMLElement {
             </div>
             <div class="container">
                 <label class="modal-field" for="name"><b>Name</b></label>
-                <input id="shop-detail-modal-name" class="modal-field shop-field" type="text" placeholder="Your Name" name="name"
+                <input id="contact-modal-name" class="modal-field shop-field" type="text" placeholder="Your Name" name="name"
                     required>
                 <label class="modal-field" for="email"><b>Email</b></label>
                 <input class="modal-field shop-field" type="email" placeholder="you@youremail.com" name="email"
