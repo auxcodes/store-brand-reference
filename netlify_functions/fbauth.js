@@ -60,7 +60,7 @@ exports.handler = async (event, context, callback) => {
                 callback(null, {
                     statusCode: 200,
                     headers,
-                    body: JSON.stringify({ msg: "Send Email Error:", error: { code: errorCode, msg: errorMessage } })
+                    body: JSON.stringify({ msg: "Send Email Error:", error: error })
                 });
                 // ...
             });
@@ -76,23 +76,14 @@ exports.handler = async (event, context, callback) => {
 
     function validEmail() {
         let result = false;
-        whiteList.forEach(domain => {
-            console.log('Whitelisted Email: ', domain);
-            result = email.includes(domain.trim());
-        });
-        return result;
+        result = whiteList.find(domain => email.includes(domain.trim()));
+        return result === undefined ? false : true;
     }
 
     function setEnvironment() {
         const requestUrl = event.headers.referer;
         console.log('Request URL: ', requestUrl);
-        let result = '';
-        environmentURLs.forEach(url => {
-            console.log('Environment URL: ', url);
-            if (url.includes(requestUrl)) {
-                result = url;
-            }
-        });
-        return result;
+        let result = environmentURLs.find(envUrl => requestUrl.includes(envUrl));
+        return result === undefined ? '' : result;
     }
 }
