@@ -1,5 +1,5 @@
 import { } from "./components/menu-modal.js"
-import { onOpenContact, onOpenShop, toggleLoginModal } from "./modal-controller.js";
+import { onLoginClick, onOpenContact, onOpenShop } from "./modal-controller.js";
 import { toggleNotifications } from "./notifications.js";
 import { hasShopDetailForm } from "./shop-detail.js"
 import { signOutUser, userSignedIn } from "./auth.js";
@@ -109,7 +109,7 @@ class SiteMenu {
         this.loginButton.onclick = (event) => {
             console.log('NAV - Login menu item clicked');
             this.toggleMenu();
-            toggleLoginModal();
+            onLoginClick();
         }
     }
 

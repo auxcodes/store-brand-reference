@@ -103,9 +103,7 @@ class UserAuthentication {
         if (isSignInWithEmailLink(this.auth, window.location.href)) {
             let email = window.localStorage.getItem('emailForSignIn');
             if (!email) {
-                email = window.prompt('Please provide your email for confirmation');
-                window.localStorage.setItem('emailForSignIn', email);
-                console.log(email);
+                this.storeEmailPrompt();
             }
             console.log('Try to sign in with email link...');
             this.auth.setPersistence(browserLocalPersistence)
@@ -127,19 +125,34 @@ class UserAuthentication {
                             if (error.code === 'auth/invalid-action-code') {
                                 msg = 'The email link has already been used.'
                             }
+                            if (error.code === 'auth/invalid-email') {
+                                this.emailLoginErrorAlert('The last email sent from this browser was different from the one provided for this link');
+                                this.storeEmailPrompt();
+                                this.emailLogin();
+                                return;
+                            }
                             else {
                                 msg = 'An error occurred whilst logging in.'
                             }
 
-                            onOpenAlert({
-                                text: `${msg} <br>Please try logging in again or contact us.`,
-                                alertType: 'negative-alert'
-                            });
+                            this.emailLoginErrorAlert(msg);
                         });
                 })
                 .catch((error) => {
                     console.error('Error setting persistence: ', error)
                 });
         }
+    }
+
+    emailLoginErrorAlert(msg) {
+        onOpenAlert({
+            text: `${msg} <br>Please try logging in again or    <button onclick="onOpenContact()" class="link-button">Contact us.</button> `,
+            alertType: 'negative-alert'
+        });
+    }
+
+    storeEmailPrompt() {
+        const email = window.prompt('Please provide your email for confirmation.');
+        window.localStorage.setItem('emailForSignIn', email);
     }
 }

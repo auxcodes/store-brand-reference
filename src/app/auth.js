@@ -71,13 +71,8 @@ function signInWithEmail(email) {
     request.send(postData);
     console.log('AU - Sent data: ', postData);
 
-    request.upload.onprogress = (event) => {
-        console.log(`AU - Progress: ${event.loaded}B of  ${event.total}B uploaded`);
-    }
-
-    request.upload.onload = (event) => {
-        console.log('AU - Sign in upload completed!', event);
-    }
+    const loginProgressBar = document.getElementById('login-progress');
+    loginProgress();
 
     request.onload = () => {
         // You can get all kinds of information about the HTTP response.
@@ -85,6 +80,8 @@ function signInWithEmail(email) {
         const data = JSON.parse(request.responseText); // Returned data, e.g., an HTML document.
         const error = request.error;
         console.log('AU - onload: ', status, ', Data.msg: ', data.msg, 'Error: ', error);
+        progress = 100;
+        loginProgressBar.style.width = '100%';
         if (data.msg !== "Validation Failed") {
             window.localStorage.setItem('emailForSignIn', email);
             onCloseLogin();
@@ -107,5 +104,18 @@ function signInWithEmail(email) {
             text: 'An error occurred during the login process!',
             alertType: 'negative-alert'
         });
+    }
+
+    const total = 100;
+    let progress = 25;
+
+    function loginProgress() {
+        setTimeout(() => {
+            loginProgressBar.style.width = progress + '%';
+            if (progress < total) {
+                progress += (total - progress) / 2;
+                loginProgress();
+            }
+        }, 250);
     }
 }

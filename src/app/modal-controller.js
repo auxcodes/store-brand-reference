@@ -83,11 +83,13 @@ function checkForModals() {
 
 export function onLoginClick() {
     toggleLoginModal();
+    loginModal.querySelector('#login-progress').style.width = '0%';
     loginModal.querySelector('#login-email-input').focus();
 }
 
 export function onCloseLogin() {
     toggleLoginModal();
+    loginModal.querySelector('#login-progress').style.width = '0%';
 }
 
 export function toggleLoginModal() {
