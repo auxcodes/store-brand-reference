@@ -97,8 +97,12 @@ function addNewShop(newShop) {
                 alertType: 'positive-alert'
             });
         })
-        .catch((error) => {
-            console.log('SD - Add new shop error: ', error);
+        .catch(() => {
+            console.error('SD - Add new shop error: ', error);
+            onOpenAlert({
+                text: `Something went wrong while trying to delete ${shopDetail.shopName}`,
+                alertType: 'negative-alert'
+            });
         });
 }
 
@@ -116,8 +120,14 @@ function updateShop(shopDetail) {
                 text: `${shopDetail.shopName} was successfully updated.`,
                 alertType: 'positive-alert'
             });
+        })
+        .catch(() => {
+            console.error('SD - Update shop error: ', error);
+            onOpenAlert({
+                text: `Something went wrong while trying to update ${shopDetail.shopName}`,
+                alertType: 'negative-alert'
+            });
         });
-    console.log('SD - Updated shop: ', allData);
 }
 
 function deleteShop(shopDetail) {
@@ -135,6 +145,7 @@ function deleteShop(shopDetail) {
             });
         })
         .catch(() => {
+            console.error('SD - Delete shop error: ', error);
             onOpenAlert({
                 text: `Something went wrong while trying to delete ${shopDetail.shopName}`,
                 alertType: 'negative-alert'
