@@ -175,11 +175,12 @@ button {
 }
 
 .notification-bar {
+    display: block;
     position: relative;
     border-radius: 0.5em;
     border: 2px solid rgb(0, 112, 146);
     background-color: var(--background-notif);
-    padding: 0.5em 0.75em;
+    padding: 0.75em 0.75em;
     margin: auto auto 0.25em auto;
 }
 
@@ -190,9 +191,9 @@ button {
 
 .notif-close {
     position: absolute;
-    right: 2px;
-    top: -6px;
-    font-size: 1.5em;
+    right: 3px;
+    top: -4px;
+    font-size: 1.75rem;
     color: rgb(0, 112, 146);
     cursor: pointer;
 }
