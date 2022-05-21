@@ -1,6 +1,7 @@
 import { CloudStorageService } from "./cloud-storage.js";
 import { refreshResults } from "./search.js";
 import { onOpenAlert } from "./alerts.js";
+import { createNotification } from "./notifications.js";
 
 let allData = [];
 let initialised = false;
@@ -87,6 +88,10 @@ function sortData() {
 
 function addNewShop(newShop) {
     console.log("SD - Add new shop:", newShop)
+
+    backupChange(-1, newShop);
+    createNotification({ name: newShop.shopName, user: newShop.user, type: newShop.changeType, date: newShop.date });
+
     csService.addShop(newShop)
         .then(() => {
             allData.push(newShop);
@@ -109,7 +114,10 @@ function addNewShop(newShop) {
 function updateShop(shopDetail) {
     console.log("SD - Update shop:", shopDetail);
     const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
+
     backupChange(index, shopDetail);
+    createNotification({ name: shopDetail.shopName, user: shopDetail.user, type: shopDetail.changeType, date: shopDetail.date });
+
     csService.updateShop(shopDetail)
         .then(() => {
             console.log('update then');
@@ -133,7 +141,10 @@ function updateShop(shopDetail) {
 function deleteShop(shopDetail) {
     console.log("SD - Update shop:", shopDetail);
     const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
+
     backupChange(index, shopDetail);
+    createNotification({ name: shopDetail.shopName, user: shopDetail.user, type: shopDetail.changeType, date: shopDetail.date });
+
     csService.deleteShop(shopDetail)
         .then(() => {
             console.log('delete then');
@@ -154,7 +165,7 @@ function deleteShop(shopDetail) {
 }
 
 function backupChange(originalShopIndex, updatedShop) {
-    const original = allData[originalShopIndex];
+    const original = (originalShopIndex === -1) ? updatedShop : allData[originalShopIndex];
     csService.backupChange(original, updatedShop);
 }
 

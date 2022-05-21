@@ -81,7 +81,7 @@ export class AppCloudStorage {
         console.log('CS - Backup Shop Change: ', originalShopData);
         const shopRef = ref(this.database, this.backupFile);
         push(shopRef, {
-            timeStamp: Date.now(),
+            timeStamp: newShopData.date,
             change: newShopData.changeType,
             shopId: originalShopData.shopId,
             brands: originalShopData.brands,
@@ -112,6 +112,49 @@ export class AppCloudStorage {
             });
 
         return shopData;
+    }
+
+    async getItems(refName) {
+        let items = [];
+        const dbRef = ref(this.database, refName);
+        await get(dbRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log("CS - Get Items Snapshot: ", snapshot.val());
+                    items = snapshot.val();
+                } else {
+                    console.log("CS - No data available");
+                    items = { error: "No Data Available" };
+                }
+            }).catch((error) => {
+                console.error("CS - Error getting items: ", error);
+                items = { "error": error };
+            });
+
+        return items;
+    }
+
+    async addItem(refName, item) {
+        console.log('CS - Add Item: ', refName, item);
+        const dbRef = ref(this.database, refName);
+        await push(dbRef, item)
+            .then(response => console.log('CS - AddItem: ', response))
+            .catch(error => {
+                console.error('CS - Error Adding Shop to Cloud: ', error);
+                return error;
+            });
+    }
+
+    objectToArray(objects) {
+        let localData = [];
+
+        for (let key in objects) {
+            let value = objects[key];
+            const obj = { id: key, ...value };
+            localData.push(obj);
+        }
+        //console.log('CS - Convert objects: ', localData)
+        return localData;
     }
 
     convertToLocalData(cloudData) {

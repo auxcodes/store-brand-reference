@@ -66,18 +66,21 @@ export function processShopDetails(fields, submitter) {
     const brands = fields[2].value;
     const parts = fields[3].value;
     const id = fields[4].value;
+    const date = Date.now();
     let shopDetails = {
         shopId: id,
         shopName: name,
         shopURL: url,
         brands: brands,
-        parts: parts
+        parts: parts,
+        date: date
     }
     if (submitter === 'addButton') {
         shopDetails = {
             ...shopDetails,
             user: userEmail(),
-            shopId: crypto.randomUUID()
+            shopId: crypto.randomUUID(),
+            changeType: 'added',
         }
         addNewShop(shopDetails);
         return;

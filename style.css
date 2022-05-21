@@ -180,12 +180,12 @@ button {
     border-radius: 0.5em;
     border: 2px solid rgb(0, 112, 146);
     background-color: var(--background-notif);
-    padding: 0.75em 0.75em;
+    padding: 0.75em 1.3em 0.75em 0.75em;
     margin: auto auto 0.25em auto;
 }
 
 .notif-text {
-    margin: 0 0.25em 0.25em 0.25em;
+    margin: 0;
     color: #666;
 }
 

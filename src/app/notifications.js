@@ -1,64 +1,65 @@
+import { CloudStorageService } from "./cloud-storage.js";
 import { } from "./components/notification-modal.js";
 
 let localStorageService = null;
+let cloudService = null;
 let notificationHistory = {};
+let notificationObjects = [];
 const storageKey = 'notifications';
-
-const notificationObjects = [
-    {
-        id: "notif-01",
-        text: `
-        This is currently a proof of concept; shop information is currently incomplete as it is being added manually.<br />
-        Search results will not provide all available options.<br />
-        Future updates will include: update/edit shop information, add new shop and login only access.
-        `,
-        show: true
-    },
-    {
-        id: "notif-2501",
-        text: "Update 25/01: Added link to PSI's new website.",
-        show: true
-    },
-    {
-        id: "notif-2402",
-        text: "Update 24/02: Added POC, Updated LinkSports, Jetblack, Family Distribution",
-        show: true
-    },
-    {
-        id: "notif-2602",
-        text: "Update 26/02: Updated Advanced Traders, Groupe Sportif",
-        show: true
-    },
-    {
-        id: "notif-0203",
-        text: "Update 02/03: Added Shepards Scott B2B, Updated Garmin",
-        show: true
-    }
-];
 
 const notificationsContainer = document.getElementById("notifications");
 window.onCloseNotification = closeNotification;
 
-function setStorageService(storageService) {
+function getCloudService() {
+    if (cloudService === null) {
+        cloudService = CloudStorageService.getInstance();
+    }
+    return cloudService;
+}
+
+export function setStorageService(storageService) {
     localStorageService = storageService;
 }
 
-function generateNotifications() {
-    checkLocalStorage().then(() => {
-        notificationObjects.forEach(item => {
-            if (item.show) {
-                const modal = document.createElement('notification-modal');
-                modal.id = item.id;
-                modal.classList.add('notification-bar');
-                modal.notification = item;
-
-                notificationsContainer.append(modal);
+async function getNotifications() {
+    const cs = getCloudService();
+    let result = {};
+    await cs.getItems(storageKey)
+        .then(notifs => {
+            if (notifs) {
+                result = cs.objectToArray(notifs);
             }
         });
+    return result;
+}
+
+export function generateNotifications() {
+    notificationObjects = [];
+    getNotifications().then(notifications => {
+        notificationObjects = notifications.sort((na, nb) => na.date < nb.date);
+        checkLocalStorage()
+            .then(() => {
+                notificationObjects.forEach(item => {
+                    if (item.show === false) {
+                        return;
+                    }
+                    else {
+                        const date = new Date(item.date);
+                        const modal = document.createElement('notification-modal');
+                        modal.id = item.id;
+                        modal.classList.add('notification-bar');
+                        item.date = date.toLocaleDateString();
+                        modal.notification = item;
+                        notificationsContainer.append(modal);
+                    }
+                });
+            })
+            .catch(error => console.log('checked local storage error: ', error));
     });
 }
 
 async function checkLocalStorage() {
+    notificationHistory = [];
     await localStorageService.readEntry(storageKey)
         .then(storage => {
             if (storage) {
@@ -66,7 +67,7 @@ async function checkLocalStorage() {
                 let count = 0;
                 notificationObjects.forEach(item => {
                     if (storage[item.id] === false) {
-                        item.show = false;
+                        item["show"] = false;
                         count++;
                     }
                 });
@@ -75,7 +76,12 @@ async function checkLocalStorage() {
                 }
             }
         })
-        .catch(e => console.log(e));
+        .catch(error => console.log('local storage error: ', error));
+}
+
+function refreshNotifications() {
+    notificationsContainer.innerHTML = "";
+    generateNotifications();
 }
 
 function toggleNoMsg() {
@@ -83,11 +89,11 @@ function toggleNoMsg() {
     noMsg.classList.toggle('notif-show-nomsg');
 }
 
-function toggleNotifications() {
+export function toggleNotifications() {
     notificationsContainer.classList.toggle('notifications-container--hidden');
 }
 
-function closeNotification(id) {
+export function closeNotification(id) {
     document.getElementById(id).style.display = 'none';
     notificationHistory = updateHistory(id, false);
     localStorageService.updateEntry(storageKey, JSON.stringify(notificationHistory));
@@ -116,4 +122,21 @@ function setObject(key, value) {
     return obj;
 }
 
-export { generateNotifications, closeNotification, setStorageService, toggleNotifications }
+export function createNotification(changeObj) {
+    const notification = {
+        "date": changeObj.date,
+        "text": `${changeObj.name} has been ${changeObj.type} by ${changeObj.user}`
+    };
+    const cs = getCloudService();
+    cs.addItem(storageKey, notification)
+        .then(notifs => {
+            if (notifs) {
+                result = cs.objectToArray(notifs);
+            }
+        })
+        .catch(error => {
+            console.error('N - Error Adding Notification: ', error);
+        });
+    refreshNotifications();
+    return notification;
+}
