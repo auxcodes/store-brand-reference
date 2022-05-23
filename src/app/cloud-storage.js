@@ -40,41 +40,37 @@ export class AppCloudStorage {
         });
     }
 
-    async updateShop(shopData) {
+    updateShop(shopData) {
         const shopRef = ref(this.database, this.workingFile + '/' + shopData.shopId);
-        await set(shopRef, {
+        return set(shopRef, {
             brands: shopData.brands,
             parts: shopData.parts,
             name: shopData.shopName,
             link: shopData.shopURL
-        })
-            .catch((error) => {
-                console.error('CS - Error Updating Shop in Cloud: ', error);
-            });
+        });
     }
 
     async addShop(newShopData) {
         console.log('CS - Add Shop: ', newShopData);
-        const shopRef = ref(this.database, this.workingFile);
-        await push(shopRef, {
-            brands: newShopData.brands,
-            parts: newShopData.parts,
-            name: newShopData.shopName,
-            link: newShopData.shopURL
-        })
-            .catch((error) => {
-                console.error('CS - Error Adding Shop to Cloud: ', error);
+        try {
+            const shopRef = ref(this.database, this.workingFile);
+            const newShopRef = push(shopRef, {
+                brands: newShopData.brands,
+                parts: newShopData.parts,
+                name: newShopData.shopName,
+                link: newShopData.shopURL
             });
+            return newShopRef.key;
+        }
+        catch (error) {
+            console.error('CS - Failed to add new shop: ', error)
+            return error;
+        }
     }
 
-    async deleteShop(shopData) {
+    deleteShop(shopData) {
         const shopRef = ref(this.database, this.workingFile + '/' + shopData.shopId);
-        let result = false;
-        await remove(shopRef)
-            .catch((error) => {
-                console.error('CS - Error Removing Shop from Cloud: ', error);
-            });
-        return result;
+        return remove(shopRef)
     }
 
     backupChange(originalShopData, newShopData) {

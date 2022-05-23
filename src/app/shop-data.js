@@ -88,12 +88,12 @@ function sortData() {
 
 function addNewShop(newShop) {
     console.log("SD - Add new shop:", newShop)
-
-    backupChange(-1, newShop);
     createNotification({ name: newShop.shopName, user: newShop.user, type: newShop.changeType, date: newShop.date });
 
     csService.addShop(newShop)
-        .then(() => {
+        .then(newShopId => {
+            newShop.shopId = newShopId;
+            backupChange(-1, newShop);
             allData.push(newShop);
             sortData();
             refreshResults();
@@ -102,10 +102,10 @@ function addNewShop(newShop) {
                 alertType: 'positive-alert'
             });
         })
-        .catch(() => {
+        .catch(error => {
             console.error('SD - Add new shop error: ', error);
             onOpenAlert({
-                text: `Something went wrong while trying to delete ${shopDetail.shopName}`,
+                text: `Something went wrong while trying to delete ${newShop.shopName}`,
                 alertType: 'negative-alert'
             });
         });
@@ -120,7 +120,6 @@ function updateShop(shopDetail) {
 
     csService.updateShop(shopDetail)
         .then(() => {
-            console.log('update then');
             allData[index] = shopDetail;
             sortData();
             refreshResults();
@@ -129,7 +128,7 @@ function updateShop(shopDetail) {
                 alertType: 'positive-alert'
             });
         })
-        .catch(() => {
+        .catch(error => {
             console.error('SD - Update shop error: ', error);
             onOpenAlert({
                 text: `Something went wrong while trying to update ${shopDetail.shopName}`,
@@ -147,7 +146,6 @@ function deleteShop(shopDetail) {
 
     csService.deleteShop(shopDetail)
         .then(() => {
-            console.log('delete then');
             allData.splice(index, 1);
             refreshResults();
             onOpenAlert({
@@ -155,7 +153,7 @@ function deleteShop(shopDetail) {
                 alertType: 'positive-alert'
             });
         })
-        .catch(() => {
+        .catch(error => {
             console.error('SD - Delete shop error: ', error);
             onOpenAlert({
                 text: `Something went wrong while trying to delete ${shopDetail.shopName}`,
