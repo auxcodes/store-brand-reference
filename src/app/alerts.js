@@ -14,6 +14,9 @@ export function onOpenAlert(content) {
     alertContainer.classList.add('alert--open');
     alertContainer.append(alertModal);
     alertModal.querySelector('button').focus()
+    setTimeout(() => {
+        onCloseAlert();
+    }, 5000);
 }
 
 function alertTypeStyle(alertType) {
