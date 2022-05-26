@@ -23,6 +23,10 @@ const firebaseEnv = {
     }
 };
 
+export function debugOn() {
+    return getEnvironment() === 'dev' ? false : false;
+}
+
 export function getFirebaseEnv() {
     return firebaseEnv[getEnvironment()];
 }

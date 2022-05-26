@@ -3,6 +3,7 @@ import { onLoginClick, onOpenContact, onOpenShop } from "./modal-controller.js";
 import { toggleNotifications } from "./notifications.js";
 import { hasShopDetailForm } from "./shop-detail.js"
 import { signOutUser, userSignedIn } from "./auth.js";
+import { debugOn } from "./environment.js";
 
 export const NavigationService = (() => {
     let instance = null;
@@ -65,7 +66,7 @@ class SiteMenu {
 
     setMenuOnclick() {
         this.menu.onclick = (event) => {
-            console.log('NAV - Menu Clicked', event);
+            if (debugOn()) { console.log('NAV - Menu Clicked', event); }
             this.toggleMenu();
         };
     }
@@ -81,7 +82,7 @@ class SiteMenu {
 
     setAddShopOnClick() {
         this.addShopButton.onclick = (event) => {
-            console.log('NAV - Add shop menu item clicked');
+            if (debugOn()) { console.log('NAV - Add shop menu item clicked'); }
             this.toggleMenu();
             if (hasShopDetailForm()) {
                 onOpenShop();
@@ -91,7 +92,7 @@ class SiteMenu {
 
     setContactButtonOnClick() {
         this.contactButton.onclick = (event) => {
-            console.log('NAV - Contact menu item clicked');
+            if (debugOn()) { console.log('NAV - Contact menu item clicked'); }
             this.toggleMenu();
             onOpenContact();
         }
@@ -99,7 +100,7 @@ class SiteMenu {
 
     setLogoutButtonOnClick() {
         this.logoutButton.onclick = (event) => {
-            console.log('NAV - Logout menu item clicked');
+            if (debugOn()) { console.log('NAV - Logout menu item clicked'); }
             this.toggleMenu();
             signOutUser();
         }
@@ -107,33 +108,31 @@ class SiteMenu {
 
     setLoginButtonOnClick() {
         this.loginButton.onclick = (event) => {
-            console.log('NAV - Login menu item clicked');
+            if (debugOn()) { console.log('NAV - Login menu item clicked'); }
             this.toggleMenu();
             onLoginClick();
         }
     }
 
     toggleLogoutButtonOn() {
-        console.log('Toggle Logout On');
+        if (debugOn()) { console.log('Toggle Logout On'); }
         this.logoutButton.classList.remove('nav-btn--hide');
         this.loginButton.classList.add('nav-btn--hide');
     }
 
     toggleLoginButtonOn() {
-        console.log('Toggle Login On');
+        if (debugOn()) { console.log('Toggle Login On'); }
         this.loginButton.classList.remove('nav-btn--hide');
         this.logoutButton.classList.add('nav-btn--hide');
     }
 
     toggleLoginLogout() {
-        console.log('Toggle login/logout');
+        if (debugOn()) { console.log('Toggle login/logout'); }
         if (userSignedIn() === null) {
             this.toggleLogoutButtonOn();
-            console.log('display login');
         }
         else {
             this.toggleLoginButtonOn
-            console.log('display logout');
         }
     }
 

@@ -4,6 +4,7 @@ import { AuthService } from "./auth-service.js";
 import { onCloseLogin } from "./modal-controller.js";
 import { getFunctionUrl } from "./environment.js";
 import { NavigationService } from "./navigation.js";
+import { debugOn } from "./environment.js";
 
 const method = "POST";
 const shouldBeAsync = true;
@@ -12,7 +13,7 @@ const authService = AuthService.getInstance();
 const siteMenu = NavigationService.getInstance();
 
 window.addEventListener('hashchange', () => {
-    console.log("URL change event");
+    if (debugOn()) { console.log("URL change event"); }
     hashNavigation();
 });
 
@@ -36,7 +37,7 @@ export function signUpForm() {
 }
 
 export function userSignedIn() {
-    console.log('AU - Is User Signed In');
+    if (debugOn()) { console.log('AU - Is User Signed In'); }
     return authService.alreadyUser();
 }
 
@@ -55,12 +56,12 @@ export function signInUser() {
 
 function signInSubmitted(event) {
     const username = event.target[0].value;
-    console.log('AU - Sign in process form...', username);
+    if (debugOn()) { console.log('AU - Sign in process form...', username); }
     signInWithEmail(username);
 }
 
 function signInWithEmail(email) {
-    console.log('AU - Sign in with email link');
+    if (debugOn()) { console.log('AU - Sign in with email link'); }
     const url = getFunctionUrl();
     const postData = JSON.stringify({ "auth": { "email": email } });
     const request = new XMLHttpRequest();
@@ -69,17 +70,16 @@ function signInWithEmail(email) {
     request.setRequestHeader('Access-Control-Allow-Origin', '*')
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(postData);
-    console.log('AU - Sent data: ', postData);
+    if (debugOn()) { console.log('AU - Sent data: ', postData); }
 
     const loginProgressBar = document.getElementById('login-progress');
     loginProgress();
 
     request.onload = () => {
-        // You can get all kinds of information about the HTTP response.
-        const status = request.status; // HTTP response status, e.g., 200 for "200 OK"
-        const data = JSON.parse(request.responseText); // Returned data, e.g., an HTML document.
+        const status = request.status;
+        const data = JSON.parse(request.responseText);
         const error = request.error;
-        console.log('AU - onload: ', status, ', Data.msg: ', data.msg, 'Error: ', error);
+        if (debugOn()) { console.log('AU - onload: ', status, ', Data.msg: ', data.msg, 'Error: ', error); }
         progress = 100;
         loginProgressBar.style.width = '100%';
         if (data.msg !== "Validation Failed") {
@@ -99,7 +99,7 @@ function signInWithEmail(email) {
     }
 
     request.onerror = (e) => {
-        console.error('AU - Sign Error:', e, request.status);
+        if (debugOn()) { console.error('AU - Sign Error:', e, request.status); }
         onOpenAlert({
             text: 'An error occurred during the login process!',
             alertType: 'negative-alert'

@@ -2,6 +2,7 @@ import { AuthService } from "./auth-service.js";
 import { CloudStorageService } from "./cloud-storage.js";
 import { LocalStorageService } from "./local-storage.js";
 import { getAllShops, ShopData } from "./shop-data.js";
+import { debugOn } from "./environment.js";
 
 export class AppDataService {
     authService = AuthService.getInstance();
@@ -10,10 +11,9 @@ export class AppDataService {
     shopData = null;
 
     constructor() {
-        console.log('AD - Init App Data Service');
+        if (debugOn()) { console.log('AD - Init App Data Service'); }
         this.localStorageService = LocalStorageService.getInstance();
         this.cloudStorageService = CloudStorageService.getInstance(this.authService.firebaseService);
-        //this.shopData = new ShopData();
         this.getData();
     }
 
@@ -31,16 +31,16 @@ export class AppDataService {
                     this.checkCloudStorage();
                 }
             })
-            .catch(error => { console.log('AD - Error checking local data:', error); });
+            .catch(error => { console.error('AD - Error checking local data:', error); });
     }
 
     checkCloudStorage() {
         this.cloudStorageService.getStorage()
             .then(shopData => {
-                console.log('AD - Cloud storage data: ', shopData);
+                if (debugOn()) { console.log('AD - Cloud storage data: ', shopData); }
                 ShopData(shopData);
             })
-            .catch(error => { console.log('AD - Error checking cloud data:', error); });
+            .catch(error => { console.error('AD - Error checking cloud data:', error); });
     }
 
     updateShop(shopData) {
@@ -65,6 +65,6 @@ export class AppDataService {
     }
 
     backupDate(shopData) {
-        console.log("Backup App Data");
+        if (debugOn()) { console.log("Backup App Data"); }
     }
 }

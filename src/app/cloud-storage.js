@@ -1,4 +1,5 @@
 import { getDatabase, ref, set, get, push, remove } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+import { debugOn } from "./environment.js";
 
 export const CloudStorageService = (() => {
     let instance = null;
@@ -26,12 +27,12 @@ export class AppCloudStorage {
     dbWorkingRef = null;
 
     constructor(firebaseService) {
-        console.log('CS - Init Cloud Storage Service');
+        if (debugOn()) { console.log('CS - Init Cloud Storage Service') };
         this.fbService = firebaseService;
         this.database = getDatabase(this.fbService.app);
         this.dbWorkingRef = ref(this.database, this.workingFile);
 
-        console.log('CS - DB ref: ', this.dbWorkingRef);
+        if (debugOn()) { console.log('CS - DB ref: ', this.dbWorkingRef) };
     }
 
     updateStorage(allShopData) {
@@ -51,7 +52,7 @@ export class AppCloudStorage {
     }
 
     async addShop(newShopData) {
-        console.log('CS - Add Shop: ', newShopData);
+        if (debugOn()) { console.log('CS - Add Shop: ', newShopData); }
         try {
             const shopRef = ref(this.database, this.workingFile);
             const newShopRef = push(shopRef, {
@@ -74,7 +75,7 @@ export class AppCloudStorage {
     }
 
     backupChange(originalShopData, newShopData) {
-        console.log('CS - Backup Shop Change: ', originalShopData);
+        if (debugOn()) { console.log('CS - Backup Shop Change: ', originalShopData); }
         const shopRef = ref(this.database, this.backupFile);
         push(shopRef, {
             timeStamp: newShopData.date,
@@ -96,7 +97,7 @@ export class AppCloudStorage {
         await get(this.dbWorkingRef)
             .then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log("CS - Snapshot: ", snapshot.val());
+                    if (debugOn()) { console.log("CS - Snapshot: ", snapshot.val()) };
                     shopData = this.convertToLocalData(snapshot.val());
                 } else {
                     console.log("No data available");
@@ -116,7 +117,7 @@ export class AppCloudStorage {
         await get(dbRef)
             .then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log("CS - Get Items Snapshot: ", snapshot.val());
+                    if (debugOn()) { console.log("CS - Get Items Snapshot: ", snapshot.val()); }
                     items = snapshot.val();
                 } else {
                     console.log("CS - No data available");
@@ -131,7 +132,7 @@ export class AppCloudStorage {
     }
 
     async addItem(refName, item) {
-        console.log('CS - Add Item: ', refName, item);
+        if (debugOn()) { console.log('CS - Add Item: ', refName, item); }
         const dbRef = ref(this.database, refName);
         await push(dbRef, item)
             .then(response => console.log('CS - AddItem: ', response))
@@ -149,7 +150,7 @@ export class AppCloudStorage {
             const obj = { id: key, ...value };
             localData.push(obj);
         }
-        //console.log('CS - Convert objects: ', localData)
+        if (debugOn()) { console.log('CS - Convert objects: ', localData); }
         return localData;
     }
 
@@ -167,7 +168,7 @@ export class AppCloudStorage {
             };
             localData.push(shop);
         }
-        console.log('CS - Convert data: ', localData)
+        if (debugOn()) { console.log('CS - Convert data: ', localData); }
         return localData;
     }
 }

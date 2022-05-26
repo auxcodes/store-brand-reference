@@ -2,7 +2,7 @@ const activeColour = document.querySelector(':root');
 const brandColour = 'var(--brand-color)';
 const productColour = 'var(--product-color)';
 
-function pageColour(searchType) {
+export function pageColour(searchType) {
     if (searchType === 'brands') {
         activeColour.style.setProperty('--active-search-color', brandColour);
         activeColour.style.setProperty('--show-brands', 'block');
@@ -18,5 +18,3 @@ function pageColour(searchType) {
         searchProductBtn.className = 'search-btn products-btn-active';
     }
 }
-
-export { pageColour }

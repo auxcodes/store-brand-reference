@@ -1,9 +1,11 @@
+import { debugOn } from "./environment.js";
+
 export const LocalStorageService = (() => {
     let instance = null;
 
     function createInstance() {
         let localStorage = new AppLocalStorage();
-        console.log('LS - Create instance: ', localStorage);
+        if (debugOn()) { console.log('LS - Create instance: ', localStorage); }
         return localStorage;
     }
 
@@ -27,7 +29,7 @@ class AppLocalStorage {
     message = { msg: 'Either not supported or no entry found' };
 
     constructor() {
-        console.log('LS - Init Local Storage Service');
+        if (debugOn()) { console.log('LS - Init Local Storage Service'); }
 
         this.supported = window.localStorage ? true : false;
         if (this.hasEntry === false) {

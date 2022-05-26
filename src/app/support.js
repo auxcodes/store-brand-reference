@@ -1,19 +1,23 @@
 
-function productSearchEvent(searchTerm) {
+export function onStoreClick(storeName) {
+    storeClickEvent(storeName);
+}
+
+export function productSearchEvent(searchTerm) {
     gtag('event', 'search_products', {
         'event_category': 'search',
         'event_label': searchTerm
     });
 }
 
-function brandSearchEvent(searchTerm) {
+export function brandSearchEvent(searchTerm) {
     gtag('event', 'search_brands', {
         'event_category': 'search',
         'event_label': searchTerm
     });
 }
 
-function noResultEvent(searchTerm) {
+export function noResultEvent(searchTerm) {
     gtag('event', 'failed_search', {
         'event_category': 'search',
         'event_label': searchTerm
@@ -27,5 +31,3 @@ function storeClickEvent(storeName) {
         //,'debug_mode': true
     });
 }
-
-export { productSearchEvent, brandSearchEvent, noResultEvent, storeClickEvent }

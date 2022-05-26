@@ -12,7 +12,7 @@ class ShopDetailModal extends HTMLElement {
                 <input id="shop-detail-modal-name" class="modal-field shop-field" type="text" placeholder="Enter Shop Name" name="shopName" value="${shopData.shopName}"
                     required>
                 <label class="modal-field" for="shopUrl"><b>Shop Link</b></label>
-                <input class="modal-field shop-field" type="Link" placeholder="https://linktoshop.com" name="shopUrl" value="${shopData.shopURL}"
+                <input class="modal-field shop-field" type="url" placeholder="https://linktoshop.com" name="shopUrl" value="${shopData.shopURL}"
                     required>
                 <label class="modal-field" for="shopBrands"><b>Brands</b></label>
                 <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Brand One, Brand Two, Brand Three" name="shopBrands"

@@ -2,6 +2,7 @@ import { CloudStorageService } from "./cloud-storage.js";
 import { refreshResults } from "./search.js";
 import { onOpenAlert } from "./alerts.js";
 import { createNotification } from "./notifications.js";
+import { debugOn } from "./environment.js";
 
 let allData = [];
 let initialised = false;
@@ -9,7 +10,7 @@ let csService = null;
 
 function ShopData(shopData) {
     if (shopData.length > 0) {
-        console.log("SD - Initialised data from local storage or cloud", shopData);
+        if (debugOn()) { console.log("SD - Initialised data from local storage or cloud", shopData); }
         allData = shopData;
         initialised = true;
     }
@@ -23,12 +24,12 @@ function ShopData(shopData) {
 function fetchJson() {
     fetch("./src/assets/shop-data.json")
         .then(response => {
-            //console.log("init response: ", response);
+            if (debugOn()) { console.log("init response: ", response); }
             return response.json();
         })
         .then(data => {
             initialised = true;
-            //console.log("Shop Data: ", data);
+            if (debugOn()) { console.log("Shop Data: ", data); }
             data.forEach(shop => {
                 allData.push(shop);
             });
@@ -58,7 +59,18 @@ function filterWords(searchTerm, property) {
         });
         searchTerm = searchTerm.slice(0, -1);
     }
+    results = generateButtons(property, new Set(results.map(result => result.toLowerCase())));
     return results.join(", ");
+}
+
+function generateButtons(searchType, searchTerms) {
+    let buttons = [];
+    searchTerms.forEach(searchTerm => {
+        const searchEvent = JSON.stringify({ 'searchType': searchType, 'searchTerm': searchTerm });
+        const searchButton = `<button class='alt-search' onclick='onAltSearch(${searchEvent})' title="Search for this...">${searchTerm}</button>`;
+        buttons.push(searchButton);
+    })
+    return buttons;
 }
 
 function findWord(searchTerm, stringArray) {
@@ -87,7 +99,7 @@ function sortData() {
 }
 
 function addNewShop(newShop) {
-    console.log("SD - Add new shop:", newShop)
+    if (debugOn()) { console.log("SD - Add new shop:", newShop); }
     createNotification({ name: newShop.shopName, user: newShop.user, type: newShop.changeType, date: newShop.date });
 
     csService.addShop(newShop)
@@ -103,7 +115,7 @@ function addNewShop(newShop) {
             });
         })
         .catch(error => {
-            console.error('SD - Add new shop error: ', error);
+            if (debugOn()) { console.error('SD - Add new shop error: ', error); }
             onOpenAlert({
                 text: `Something went wrong while trying to delete ${newShop.shopName}`,
                 alertType: 'negative-alert'
@@ -112,7 +124,7 @@ function addNewShop(newShop) {
 }
 
 function updateShop(shopDetail) {
-    console.log("SD - Update shop:", shopDetail);
+    if (debugOn()) { console.log("SD - Update shop:", shopDetail); }
     const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
 
     backupChange(index, shopDetail);
@@ -138,7 +150,7 @@ function updateShop(shopDetail) {
 }
 
 function deleteShop(shopDetail) {
-    console.log("SD - Update shop:", shopDetail);
+    if (debugOn()) { console.log("SD - Update shop:", shopDetail); }
     const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
 
     backupChange(index, shopDetail);

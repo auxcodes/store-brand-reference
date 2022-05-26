@@ -2,6 +2,7 @@ import { FirebaseService } from "./firebase.js";
 import { getAuth, isSignInWithEmailLink, signInWithEmailLink, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { onOpenAlert } from "./alerts.js";
 import { NavigationService } from "./navigation.js";
+import { debugOn } from "./environment.js";
 
 export const AuthService = (() => {
     let instance = null;
@@ -31,8 +32,10 @@ class UserAuthentication {
     siteMenu = NavigationService.getInstance();
 
     constructor() {
-        console.log('AS - FB Service', this.firebaseService);
-        console.log('AS - Init Auth Service');
+        if (debugOn()) {
+            console.log('AS - FB Service', this.firebaseService);
+            console.log('AS - Init Auth Service');
+        }
         this.checkURL();
     }
 
@@ -43,7 +46,7 @@ class UserAuthentication {
     tokenExpired() {
         const currentTime = Date.now();
         const expirationTime = this.auth.currentUser.stsTokenManager.expirationTime;
-        console.log('AS - Token Expired: ', Date.parse(expirationTime), currentTime, expirationTime);
+        if (debugOn()) { console.log('AS - Token Expired: ', Date.parse(expirationTime), currentTime, expirationTime); }
         const expired = expirationTime > currentTime;
         return expired;
     }
@@ -51,18 +54,18 @@ class UserAuthentication {
     currentUser() {
         this.auth = getAuth();
         this.user = this.auth.currentUser;
-        console.log('AS - Current User: ', (this.user === null ? 'none' : this.user.email));
+        if (debugOn()) { console.log('AS - Current User: ', (this.user === null ? 'none' : this.user.email)); }
         return this.user;
     }
 
     checkURL() {
-        console.log('AS - Check URL...');
+        if (debugOn()) { console.log('AS - Check URL...'); }
         if (window.location.search.length > 0) {
             this.emailLogin();
         }
         else {
             this.currentUser();
-            console.log('AS - Check current user ');
+            if (debugOn()) { console.log('AS - Check current user '); }
         }
     }
 
@@ -93,25 +96,25 @@ class UserAuthentication {
     }
 
     emailLogin() {
-        console.log('AS - Check email login...');
+        if (debugOn()) { console.log('AS - Check email login...'); }
         this.auth = getAuth();
         const user = this.auth.currentUser;
         if (user !== null) {
             email = window.alert(`User ${user.email} is already logged in.`);
-            console.log('Already a user logged in: ', user);
+            if (debugOn()) { console.log('Already a user logged in: ', user); }
         }
         if (isSignInWithEmailLink(this.auth, window.location.href)) {
             let email = window.localStorage.getItem('emailForSignIn');
             if (!email) {
                 this.storeEmailPrompt();
             }
-            console.log('Try to sign in with email link...');
+            if (debugOn()) { console.log('Try to sign in with email link...'); }
             this.auth.setPersistence(browserLocalPersistence)
                 .then(() => {
                     signInWithEmailLink(this.auth, email, window.location.href)
                         .then((result) => {
                             window.localStorage.removeItem('emailForSignIn');
-                            console.log('AS - Sign in with Email Link - user: ', result);
+                            if (debugOn()) { console.log('AS - Sign in with Email Link - user: ', result); }
                             this.currentUser();
                             this.siteMenu.toggleLogoutButtonOn();
                             onOpenAlert({

@@ -9,7 +9,7 @@ class LoginModal extends HTMLElement {
             </div>
             <div class="container">
                 <p class="login-info">Enter your 99 Bikes email to receive a login link.</p>
-                <input id="login-email-input" class="modal-field login-field" type="text" placeholder="Enter Email Address" name="uname" required>
+                <input id="login-email-input" class="modal-field login-field" type="email" placeholder="Enter Email Address" name="uname" required>
                 <button id="login-btn" class="modal-btn login-btn" type="submit">Login/SignUp</button>
                 <div id="login-progress-bar" class="login-progress-bar">
                     <span id="login-progress" class="login-progress"></span>

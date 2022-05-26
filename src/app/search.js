@@ -1,30 +1,44 @@
 import { initialised, findBrand, findProduct, getAllShops, filterWords } from "./shop-data.js";
 import { pageColour } from "./ui.js";
 import { } from "./components/search-result-loading.js";
-
-const searchField = document.getElementById("searchInput");
-searchField.focus();
-let searchValue = "";
-searchField.addEventListener("change", searchText);
-
-const searchBrandBtn = document.getElementById("searchBrandBtn");
-searchBrandBtn.addEventListener("click", searchBrand);
-
-const searchProductBtn = document.getElementById("searchProductBtn");
-searchProductBtn.addEventListener("click", searchProduct);
-
-const searchResultElement = document.getElementById("searchResults");
-let searchResults = [];
-let searchType = "";
+import { brandSearchEvent, noResultEvent, productSearchEvent } from "./support.js";
+import { debugOn } from "./environment.js";
 
 const searchForm = document.getElementById("form-search");
 searchForm.onsubmit = (event) => event.preventDefault();
 
+const searchField = searchForm.querySelector("#searchInput");
+searchField.addEventListener("keypress", onSearch);
+searchField.addEventListener("change", searchText);
+searchField.focus();
+let searchValue = "";
+
+const searchBrandBtn = searchForm.querySelector("#searchBrandBtn");
+searchBrandBtn.addEventListener("click", searchBrand);
+
+const searchProductBtn = searchForm.querySelector("#searchProductBtn");
+searchProductBtn.addEventListener("click", searchProduct);
+
+const searchResultElement = document.getElementById("searchResults");
 let fakeResults = [];
+let searchResults = [];
+let searchType = "brands";
 
 function searchText(event) {
     searchValue = event.target.value;
-    //console.log("Search Text", searchValue);
+}
+
+function onSearch(event) {
+    if (event.key === "Enter") {
+        if (searchType === 'brands') {
+            searchBrand(event);
+            return;
+        }
+        if (searchType === 'parts') {
+            searchProduct(event);
+            return;
+        }
+    }
 }
 
 export function refreshResults() {
@@ -58,7 +72,8 @@ function searchBrand(event) {
     searchType = "brands";
     pageColour(searchType);
     getSearchValue();
-    //console.log("Search Brand: ", searchValue, event);
+    brandSearchEvent(searchValue);
+    if (debugOn()) { console.log("Search Brand: ", searchValue, event); }
     searchResults = [];
     searchResults = findBrand(searchValue);
     clearResults();
@@ -67,23 +82,33 @@ function searchBrand(event) {
 
 function searchProduct(event) {
     searchType = "parts";
-    getSearchValue();
     pageColour(searchType);
-    //console.log("Search Product", searchValue, event);
+    getSearchValue();
+    productSearchEvent(searchValue);
+    if (debugOn()) { console.log("Search Product", searchValue, event); }
     searchResults = [];
     searchResults = findProduct(searchValue);
     clearResults();
     generateResults();
 }
 
+export function onAltSearch(altSearch) {
+    searchField.value = altSearch.searchTerm;
+    searchValue = "";
+    if (altSearch.searchType === 'brands') {
+        searchBrand(altSearch);
+    }
+    if (altSearch.searchType === 'parts') {
+        searchProduct(altSearch);
+    }
+}
+
 function getSearchValue() {
     if (!initialised) {
-        console.log("data not initialised");
+        console.error("S - Data not initialised");
+        return;
     }
-    if (searchValue === "") {
-        //console.log(searchField);
-        searchValue = searchField.value;
-    }
+    searchValue = searchField.value;
 }
 
 export function generateResults() {
@@ -106,12 +131,12 @@ function checkCompletness(result) {
 }
 
 function noResultsFound() {
+    noResultEvent(searchValue);
     const alternates = filterWords(searchValue, searchType);
-
     const div = document.createElement("div");
     div.classList.add("no-result-row");
     if (alternates.length > 0) {
-        div.innerHTML = "<span class='no-results'>Did you mean: <span class='alt-search'>" + alternates + "</span>  <br><br>No results were found matching your search term.</span>";
+        div.innerHTML = `<span class='no-results'> Did you mean? ${alternates} <br><br>No results were found matching your search term.</span>`;
     }
     else {
         div.innerHTML = "<span class='no-results'> No results were found matching your search term. </span>";
@@ -126,6 +151,6 @@ export function clearResults() {
 export function resetResults() {
     searchResults = [];
     searchResults = getAllShops().sort((sa, sb) => sa.shopName > sb.shopName);
-    //console.log("reset: ", searchResults);
+    if (debugOn()) { console.log("S - Reset results: ", searchResults); }
     generateResults();
 }

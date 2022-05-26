@@ -3,10 +3,10 @@ class MenuModal extends HTMLElement {
         this.innerHTML = `
             <nav id="site-nav" class="site-nav">
                 <ul>
-                    <li><a id="add-shop-link"><i class="fa fa-plus site-nav--icon"></i>Add Shop</a></li>
-                    <li><a id="contact-link"><i class="fa fa-envelope site-nav--icon"></i>Contact</a></li>
-                    <li><a id="logout-link"><i class="fa fa-sign-out site-nav--icon"></i>Logout</a></li>
-                    <li><a id="login-link"><i class="fa fa-sign-in site-nav--icon"></i>Login</a></li>
+                    <li id="add-shop-link"><a ><i class="fa fa-plus site-nav--icon"></i>Add Shop</a></li>
+                    <li id="contact-link"><a ><i class="fa fa-envelope site-nav--icon"></i>Contact</a></li>
+                    <li id="logout-link"><a ><i class="fa fa-sign-out site-nav--icon"></i>Logout</a></li>
+                    <li id="login-link"><a ><i class="fa fa-sign-in site-nav--icon"></i>Login</a></li>
                 </ul>
             </nav>
             <div id="menu-toggle" class="menu-toggle">
