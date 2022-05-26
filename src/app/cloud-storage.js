@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, get, push, remove } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+import { getDatabase, ref, set, get, push, remove, query, limitToFirst, startAt } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 import { debugOn } from "./environment.js";
 
 export const CloudStorageService = (() => {
@@ -94,26 +94,30 @@ export class AppCloudStorage {
 
     async getStorage() {
         let shopData = {};
-        await get(this.dbWorkingRef)
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                    if (debugOn()) { console.log("CS - Snapshot: ", snapshot.val()) };
-                    shopData = this.convertToLocalData(snapshot.val());
-                } else {
-                    console.log("No data available");
-                    shopData = { "error": "No Data Available" }
-                }
-            }).catch((error) => {
-                console.error(error);
-                shopData = { "error": error };
-            });
 
-        return shopData;
+        try {
+            const shopRef = this.dbWorkingRef;
+            await get(shopRef)
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        if (debugOn()) { console.log("CS - Snapshot: ", snapshot.val()); }
+                        shopData = this.convertToLocalData(snapshot.val());
+                    } else {
+                        console.log("No data available");
+                        shopData = { "error": "No Data Available" }
+                    }
+                })
+            console.log('After get', shopData);
+            return shopData;
+        }
+        catch (error) {
+            console.error(error);
+            return shopData = { "error": error };
+        }
     }
 
-    async getItems(refName) {
+    async getItems(dbRef) {
         let items = [];
-        const dbRef = ref(this.database, refName);
         await get(dbRef)
             .then((snapshot) => {
                 if (snapshot.exists()) {
@@ -140,6 +144,18 @@ export class AppCloudStorage {
                 console.error('CS - Error Adding Shop to Cloud: ', error);
                 return error;
             });
+    }
+
+    dbReference(dataPath) {
+        return ref(this.database, dataPath);
+    }
+
+    limitFilterRef(count, dataPath) {
+        return query(this.dbReference(dataPath), limitToFirst(count));
+    }
+
+    startAtFilterRef(startPos, dataPath) {
+        return query(this.dbReference(dataPath), startAt(startPos));
     }
 
     objectToArray(objects) {
