@@ -24,7 +24,7 @@ const firebaseEnv = {
 };
 
 export function debugOn() {
-    return getEnvironment() === 'dev' ? false : false;
+    return getEnvironment() === 'dev' ? true : false;
 }
 
 export function getFirebaseEnv() {
