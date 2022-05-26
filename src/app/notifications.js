@@ -24,8 +24,11 @@ export function setStorageService(storageService) {
 async function getNotifications() {
     const cs = getCloudService();
     let result = {};
-    await cs.getItems(storageKey)
+    //const dbRef = cs.dbReference(storageKey);
+    const dbRef = cs.limitFilterRef(10, storageKey);
+    await cs.getItems(dbRef)
         .then(notifs => {
+            console.log(notifs);
             if (notifs) {
                 result = cs.objectToArray(notifs);
             }
@@ -35,27 +38,28 @@ async function getNotifications() {
 
 export function generateNotifications() {
     notificationObjects = [];
-    getNotifications().then(notifications => {
-        notificationObjects = notifications.sort((na, nb) => na.date < nb.date);
-        checkLocalStorage()
-            .then(() => {
-                notificationObjects.forEach(item => {
-                    if (item.show === false) {
-                        return;
-                    }
-                    else {
-                        const date = new Date(item.date);
-                        const modal = document.createElement('notification-modal');
-                        modal.id = item.id;
-                        modal.classList.add('notification-bar');
-                        item.date = date.toLocaleDateString();
-                        modal.notification = item;
-                        notificationsContainer.append(modal);
-                    }
-                });
-            })
-            .catch(error => console.log('checked local storage error: ', error));
-    });
+    getNotifications()
+        .then(notifications => {
+            notificationObjects = sortNotifications(notifications);
+            checkLocalStorage()
+                .then(() => {
+                    notificationObjects.forEach(item => {
+                        if (item.show === false) {
+                            return;
+                        }
+                        else {
+                            const date = new Date(item.date);
+                            const modal = document.createElement('notification-modal');
+                            modal.id = item.id;
+                            modal.classList.add('notification-bar');
+                            item.date = date.toLocaleDateString();
+                            modal.notification = item;
+                            notificationsContainer.append(modal);
+                        }
+                    });
+                })
+                .catch(error => console.log('checked local storage error: ', error));
+        });
 }
 
 async function checkLocalStorage() {
@@ -139,4 +143,18 @@ export function createNotification(changeObj) {
         });
     refreshNotifications();
     return notification;
+}
+
+function sortNotifications(notifArray) {
+    return notifArray.sort((na, nb) => {
+        if (na.date > nb.date) {
+            return 1;
+        }
+        else if (na.date < nb.date) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    });
 }
