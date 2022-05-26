@@ -91,14 +91,18 @@ export function generateResults() {
         noResultsFound();
         return;
     }
-    //console.log(searchResults);
     searchResults.forEach(result => {
         const el = document.createElement('search-result-modal');
-        el.classList.add("result-row");
+        const isIncomplete = checkCompletness(result) ? "result-row-incomplete" : "complete";
+        el.classList.add("result-row", isIncomplete);
         el.result = result;
         el.id = result.shopId;
         searchResultElement.append(el);
     });
+}
+
+function checkCompletness(result) {
+    return result.parts.length === 0 || result.brands.length === 0;
 }
 
 function noResultsFound() {

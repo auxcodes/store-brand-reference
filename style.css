@@ -485,6 +485,10 @@ button {
     border-radius: 1em;
 }
 
+.result-row-incomplete {
+    background-color: #fea96b;
+}
+
 .fake-result-row{
     clip-path: circle(0px at top left);
     opacity: 0;
