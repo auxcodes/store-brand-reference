@@ -20,6 +20,8 @@
     --product-color: rgb(2, 172, 53);
     --brand-color: rgb(1, 136, 255);
     --active-search-color: var(--brand-color);
+    --show-brands: block;
+    --show-products: none;
     --positive-alert-color: rgb(2, 172, 53);
     --positive-alert-bgcolor: rgb(229, 255, 220);
     --negative-alert-color: rgb(203, 0, 0);
@@ -584,7 +586,18 @@ button {
 
 .result-row:hover .brand-list,
 .result-row:focus-within .brand-list {
-    display: block;
+    display: var(--show-brands);
+}
+
+.result-row .product-list {
+    display: none;
+    grid-column: 1/-1;
+    margin: 0.5em;
+}
+
+.result-row:hover .product-list,
+.result-row:focus-within .product-list {
+    display: var(--show-products);
 }
 
 .result-row .edit-btn {
@@ -780,7 +793,7 @@ span.psw {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
