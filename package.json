@@ -1,0 +1,21 @@
+{
+  "name": "store-brand-reference",
+  "version": "1.0.0",
+  "description": "Search Stores for Brands and Products",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {},
+  "debug": "netlify dev --inspect",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/auxcodes/store-brand-reference.git"
+  },
+  "author": "auxcodes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/auxcodes/store-brand-reference/issues"
+  },
+  "homepage": "https://github.com/auxcodes/store-brand-reference#readme"
+}

@@ -1,0 +1,13 @@
+{
+    "name": "functions",
+    "version": "1.0.0",
+    "description": "",
+    "main": "fbauth.js",
+    "scripts": {},
+    "author": "",
+    "dependencies": {
+        "firebase": "^9.6.10",
+        "firebase-admin": "^10.0.2",
+        "nodemailer": "^6.7.3"
+    }
+}
