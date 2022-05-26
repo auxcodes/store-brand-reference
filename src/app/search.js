@@ -150,7 +150,21 @@ export function clearResults() {
 
 export function resetResults() {
     searchResults = [];
-    searchResults = getAllShops().sort((sa, sb) => sa.shopName > sb.shopName);
+    searchResults = sortResults(getAllShops());
     if (debugOn()) { console.log("S - Reset results: ", searchResults); }
     generateResults();
+}
+
+function sortResults(results) {
+    return results.sort((sa, sb) => {
+        if (sa.shopName > sb.shopName) {
+            return 1;
+        }
+        else if (sa.shopName < sb.shopName) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    });
 }
