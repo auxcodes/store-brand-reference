@@ -11,6 +11,7 @@ const storageKey = 'notifications';
 const notificationsContainer = document.getElementById("notifications");
 const notificationsList = notificationsContainer.querySelector("#notifications-list");
 const loadMoreButton = notificationsContainer.querySelector("#more-notifications-btn");
+const noNotificationMsg = notificationsContainer.querySelector('#notif-no-msg');
 loadMoreButton.addEventListener("click", onLoadMore);
 let defaultShow = 10;
 let lastNotification = 0;
@@ -85,6 +86,9 @@ function addNotificationModals() {
         }
         else {
             addNotifModal(item);
+            if (noNotificationMsg.classList.contains('notif-show-nomsg')) {
+                toggleNoMsg();
+            }
         }
     });
     if (hasOpenNotifications()) {
@@ -144,8 +148,7 @@ function refreshNotifications() {
 }
 
 function toggleNoMsg() {
-    const noMsg = notificationsContainer.querySelector('#notif-no-msg');
-    noMsg.classList.toggle('notif-show-nomsg');
+    noNotificationMsg.classList.toggle('notif-show-nomsg');
 }
 
 export function toggleNotifications() {
