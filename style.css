@@ -259,16 +259,21 @@ button {
     border-bottom: none;
   }
   
-  .site-nav a {
-    color: var(--colour-text);
+  .site-nav button {
     display: block;
+    color: var(--colour-text);
     padding: 2em 4em 2em 1.5em;
     text-transform: uppercase;
     text-decoration: none;
+    font-size: 1rem;
+    background: transparent;
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
   }
   
-  .site-nav a:hover,
-  .site-nav a:focus {
+  .site-nav button:hover,
+  .site-nav button:focus {
     background: #fff;
     color: #464655;
     border-radius: 0.85em;
@@ -299,9 +304,13 @@ button {
     display: block;
     background-color: var(--bg-color-menu);
     height: 3px;
-    width: 1.75em;
+    width: 1.4em;
     border-radius: 3px;
     transition: all ease-in-out 500ms;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
   }
   
   .hamburger::before {
