@@ -5,6 +5,7 @@ const alertModal = document.createElement('alert-modal');
 window.onCloseAlert = onCloseAlert;
 
 let lastAlertStyle = '';
+const alertDisplayTime = 5000;
 
 export function onOpenAlert(content) {
     alertModal.id = 'alert-modal';
@@ -16,7 +17,7 @@ export function onOpenAlert(content) {
     alertModal.querySelector('button').focus()
     setTimeout(() => {
         onCloseAlert();
-    }, 5000);
+    }, alertDisplayTime);
 }
 
 function alertTypeStyle(alertType) {
