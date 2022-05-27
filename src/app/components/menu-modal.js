@@ -12,7 +12,7 @@ class MenuModal extends HTMLElement {
             <div id="menu-toggle" class="menu-toggle">
                 <div class="hamburger"></div>
             </div>
-            <div id="notif-toggle" class="notification-toggle"><i id="notif-icon" class="fa fa-bell notif-toggle--icon"></i></div>
+            <button id="notif-toggle" class="notification-toggle" title="Notifications"><i id="notif-icon" class="fa fa-bell notif-toggle--icon"></i></button>
         `;
     }
 }

@@ -15,8 +15,12 @@
 <body>
     <header>
         <div id="notifications" class="notifications-container notifications-container--hidden">
+            <span class="notifications-title">Notifications</span>
             <span id="notif-no-msg" class="notifications-empty-msg">Nothing new to see here...<a href="#">View change
                     history</a></span>
+            <div id="notifications-list"></div>
+            <button id="more-notifications-btn" class="more-notifications-btn" title="Load more notifications...">Show
+                More</button>
         </div>
         <div class="search-bar">
             <form id="form-search" class="search-form">
@@ -26,8 +30,10 @@
                         placeholder="Search for brands or products..." />
                 </div>
                 <div class="search-btn-container">
-                    <button class="search-btn brand-btn" id="searchBrandBtn" type="button">Brands</button>
-                    <button class="search-btn products-btn" id="searchProductBtn" type="button">Products</button>
+                    <button class="search-btn brand-btn" id="searchBrandBtn" type="button"
+                        title="Search for Brands">Brands</button>
+                    <button class="search-btn products-btn" id="searchProductBtn" type="button"
+                        title="Search for Products">Products</button>
                 </div>
             </form>
         </div>
@@ -49,6 +55,10 @@
                 </path>
             </svg>
         </a>
+        <div class="footer-acknowledgement">
+            <span>Another +1% Tool from the Preston Workshop</span>
+            <span>From Spreadsheet to Website by Phill B</span>
+        </div>
         <a class="copyright" href="https://aux.codes" target="_blank">&copy; 2022 AuxCodes <span
                 class="logo"></span></a>
     </footer>

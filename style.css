@@ -422,10 +422,14 @@ button {
         flex-direction: column;
     }
 
+    label {
+        font-size: 1.5rem;
+    }
+
     .notification-toggle {
-        right: 3.5em;
+        right: 2.25em;
         top: 0em;
-        padding: 0.75em 1em;
+        padding: 0.25em 1em 1em 1em;
     }
 
     .notification-toggle .notif-toggle--icon {
@@ -480,6 +484,20 @@ button {
         padding: 0.8em;
         right: 0em;
     }
+
+    .footer-content {
+        flex-direction: column !important;
+    }
+    .footer-content .github-link {
+        margin: auto;
+    }
+    .footer-acknowledgement {
+        margin: 0.5em auto;
+    }
+    .footer-content .copyright {
+        margin: auto !important;
+    }
+
 }
 
 
@@ -666,7 +684,7 @@ button {
     color: #6c6c6c;
 }
 .footer-content .copyright {
-    margin: auto 0 auto auto;
+    margin: auto 0;
     display: flex;
     cursor: pointer;
     text-decoration: none;
@@ -700,6 +718,14 @@ button {
     width: 35px;
     margin: auto 10px auto auto;
     fill: #6c6c6c;
+}
+
+.footer-acknowledgement {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 0.8rem;
 }
 
 /* Login Form */
