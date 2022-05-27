@@ -8,6 +8,13 @@ let notificationObjects = [];
 const storageKey = 'notifications';
 
 const notificationsContainer = document.getElementById("notifications");
+const notificationsList = notificationsContainer.querySelector("#notifications-list");
+const loadMoreButton = notificationsContainer.querySelector("#more-notifications-btn");
+loadMoreButton.addEventListener("click", onLoadMore);
+let defaultShow = 10;
+let lastNotification = 0;
+
+
 window.onCloseNotification = closeNotification;
 
 function getCloudService() {
@@ -23,68 +30,107 @@ export function setStorageService(storageService) {
 
 async function getNotifications() {
     const cs = getCloudService();
-    let result = {};
-    //const dbRef = cs.dbReference(storageKey);
-    const dbRef = cs.limitFilterRef(10, storageKey);
+    const dbRef = cs.limitFilterRef(defaultShow, storageKey);
     await cs.getItems(dbRef)
         .then(notifs => {
-            console.log(notifs);
             if (notifs) {
-                result = cs.objectToArray(notifs);
+                let result = cs.objectToArray(notifs);
+                lastNotification = result[result.length - 1].date;
+                notificationObjects = result;
+                checkReadHistory();
+            }
+            console.log('get notifs...', lastNotification, notifs);
+        });
+}
+
+function onLoadMore(amount) {
+    const cs = getCloudService();
+    const loadCount = amount < defaultShow ? amount : defaultShow;
+    const options = { childName: 'date', startPos: lastNotification, count: loadCount, dataPath: storageKey }
+    const dbRef = cs.startAfterFilterRef(options);
+    cs.getItems(dbRef)
+        .then(notifs => {
+            if (notifs) {
+                let result = cs.objectToArray(notifs);
+                lastNotification = result[result.length - 1].date;
+                notificationObjects = notificationObjects.concat(result);
+                checkReadHistory();
+            }
+            else {
+                addNotificationModals();
+                loadMoreButton.style.cssText = 'cursor: auto; background-color: rgb(212, 212, 212)';
+                loadMoreButton.disabled = true;
             }
         });
-    return result;
 }
 
 export function generateNotifications() {
-    notificationObjects = [];
-    getNotifications()
-        .then(notifications => {
-            notificationObjects = sortNotifications(notifications);
-            checkLocalStorage()
-                .then(() => {
-                    notificationObjects.forEach(item => {
-                        if (item.show === false) {
-                            return;
-                        }
-                        else {
-                            const date = new Date(item.date);
-                            const modal = document.createElement('notification-modal');
-                            modal.id = item.id;
-                            modal.classList.add('notification-bar');
-                            item.date = date.toLocaleDateString();
-                            modal.notification = item;
-                            notificationsContainer.append(modal);
-                        }
-                    });
-                })
-                .catch(error => console.log('checked local storage error: ', error));
-        });
+    getNotifications();
 }
 
-async function checkLocalStorage() {
-    notificationHistory = [];
-    await localStorageService.readEntry(storageKey)
+function addNotificationModals() {
+    notificationsList.innerHTML = "";
+    notificationObjects.forEach(item => {
+        if (item.show === false) {
+            return;
+        }
+        else {
+            addNotifModal(item);
+        }
+    });
+    if (hasOpenNotifications()) {
+        toggleNoMsg();
+    }
+}
+
+function addNotifModal(item) {
+    const date = new Date(item.date);
+    const modal = document.createElement('notification-modal');
+    modal.id = item.id;
+    modal.classList.add('notification-bar');
+    modal.notification = { id: item.id, date: date.toLocaleDateString(), text: item.text };
+    notificationsList.append(modal);
+}
+
+function checkReadHistory() {
+    let tempNotifications = [];
+    if (Object.keys(notificationHistory).length === 0) {
+        getStorageHistory();
+    }
+    else {
+        notificationObjects.forEach(item => {
+            if (notificationHistory[item.id] === false) {
+                item["show"] = false;
+            }
+            else {
+                tempNotifications.push(item);
+            }
+        });
+        notificationObjects = sortNotifications(tempNotifications);
+        if (tempNotifications.length < defaultShow) {
+            onLoadMore(defaultShow - tempNotifications.length);
+        }
+        else {
+            addNotificationModals();
+        }
+    }
+}
+
+function getStorageHistory() {
+    localStorageService.readEntry(storageKey)
         .then(storage => {
             if (storage) {
                 notificationHistory = storage;
-                let count = 0;
-                notificationObjects.forEach(item => {
-                    if (storage[item.id] === false) {
-                        item["show"] = false;
-                        count++;
-                    }
-                });
-                if (count === notificationObjects.length) {
-                    toggleNoMsg()
-                }
             }
-        })
-        .catch(error => console.log('local storage error: ', error));
+            else {
+                notificationHistory = { none: 'no history' }
+            }
+            checkReadHistory();
+        });
 }
 
 function refreshNotifications() {
-    notificationsContainer.innerHTML = "";
+    notificationsList.innerHTML = "";
     generateNotifications();
 }
 
@@ -107,7 +153,7 @@ export function closeNotification(id) {
 }
 
 function hasOpenNotifications() {
-    const notifs = Array.from(notificationsContainer.children)
+    const notifs = Array.from(notificationsList.children)
     const count = notifs.filter(child => !!child.offsetParent).length;
     return count === 0;
 }

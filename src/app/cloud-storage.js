@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, get, push, remove, query, limitToFirst, startAt } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+import { getDatabase, ref, set, get, push, remove, query, orderByChild, limitToFirst, startAfter } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 import { debugOn } from "./environment.js";
 
 export const CloudStorageService = (() => {
@@ -103,11 +103,11 @@ export class AppCloudStorage {
                         if (debugOn()) { console.log("CS - Snapshot: ", snapshot.val()); }
                         shopData = this.convertToLocalData(snapshot.val());
                     } else {
-                        console.log("No data available");
-                        shopData = { "error": "No Data Available" }
+                        if (debugOn()) { console.log("No data available"); }
+                        shopData = null;
                     }
                 })
-            console.log('After get', shopData);
+            if (debugOn()) { console.log('After get', shopData); }
             return shopData;
         }
         catch (error) {
@@ -117,19 +117,19 @@ export class AppCloudStorage {
     }
 
     async getItems(dbRef) {
-        let items = [];
+        let items = {};
         await get(dbRef)
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     if (debugOn()) { console.log("CS - Get Items Snapshot: ", snapshot.val()); }
                     items = snapshot.val();
                 } else {
-                    console.log("CS - No data available");
-                    items = { error: "No Data Available" };
+                    if (debugOn()) { console.log("CS - No data available"); }
+                    items = null;
                 }
             }).catch((error) => {
                 console.error("CS - Error getting items: ", error);
-                items = { "error": error };
+                items = null;
             });
 
         return items;
@@ -139,7 +139,9 @@ export class AppCloudStorage {
         if (debugOn()) { console.log('CS - Add Item: ', refName, item); }
         const dbRef = ref(this.database, refName);
         await push(dbRef, item)
-            .then(response => console.log('CS - AddItem: ', response))
+            .then(response => {
+                if (debugOn()) { console.log('CS - AddItem: ', response) }
+            })
             .catch(error => {
                 console.error('CS - Error Adding Shop to Cloud: ', error);
                 return error;
@@ -154,8 +156,10 @@ export class AppCloudStorage {
         return query(this.dbReference(dataPath), limitToFirst(count));
     }
 
-    startAtFilterRef(startPos, dataPath) {
-        return query(this.dbReference(dataPath), startAt(startPos));
+    // options { childName: 'date', startPos: '12345678', count: 10, dataPath: 'notifications'}
+    startAfterFilterRef(options) {
+        const queryConstraints = [orderByChild(options.childName), startAfter(options.startPos), limitToFirst(options.count)];
+        return query(this.dbReference(options.dataPath), ...queryConstraints);
     }
 
     objectToArray(objects) {
