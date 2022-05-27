@@ -28,5 +28,5 @@ function alertTypeStyle(alertType) {
 }
 
 export function onCloseAlert(event) {
-    alertContainer.classList.toggle('alert--open');
+    alertContainer.classList.remove('alert--open');
 }
