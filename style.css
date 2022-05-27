@@ -185,6 +185,14 @@ button {
     display: none;
 }
 
+.view-history-btn {
+    background-color: transparent;
+    font-size: 1rem;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .notif-show-nomsg {
     display: block;
 }
@@ -742,6 +750,7 @@ button {
     flex-grow: 1;
     text-align: center;
     font-size: 0.8rem;
+    color: #d2d2d2;
 }
 
 /* Login Form */

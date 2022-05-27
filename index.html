@@ -16,8 +16,9 @@
     <header>
         <div id="notifications" class="notifications-container notifications-container--hidden">
             <span class="notifications-title">Notifications</span>
-            <span id="notif-no-msg" class="notifications-empty-msg">Nothing new to see here...<a href="#">View change
-                    history</a></span>
+            <div id="notif-no-msg" class="notifications-empty-msg">Nothing new to see here...<button
+                    class="view-history-btn" onclick="onViewHistory()">View change history</button>
+            </div>
             <div id="notifications-list"></div>
             <button id="more-notifications-btn" class="more-notifications-btn" title="Load more notifications...">Show
                 More</button>

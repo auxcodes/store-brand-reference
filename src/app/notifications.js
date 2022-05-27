@@ -1,3 +1,4 @@
+import { onOpenAlert } from "./alerts.js";
 import { CloudStorageService } from "./cloud-storage.js";
 import { } from "./components/notification-modal.js";
 
@@ -16,6 +17,14 @@ let lastNotification = 0;
 
 
 window.onCloseNotification = closeNotification;
+window.onViewHistory = onOpenHistory;
+
+function onOpenHistory() {
+    onOpenAlert({
+        text: `This feature is not currently available. :(`,
+        alertType: 'negative-alert'
+    });
+}
 
 function getCloudService() {
     if (cloudService === null) {
