@@ -918,6 +918,7 @@ span.psw {
     width: 80%;
     max-width: 500px;
     border-radius: 1em;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.45);
 }
 
 .modal-textarea {
