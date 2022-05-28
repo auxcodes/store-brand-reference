@@ -1,6 +1,7 @@
 import { } from "./components/shop-detail-modal.js";
 import { getSpecificShop, addNewShop, updateShop, deleteShop } from "./shop-data.js"
 import { userSignedIn, userEmail } from "./auth.js";
+import { debugOn } from "./environment.js";
 
 const body = document.querySelector('body');
 
@@ -56,16 +57,16 @@ function openEditShopDetailModal(shopId) {
         <button id="updateButton" class="modal-btn update-btn" type="submit">Update</button>
         `
     }
-    console.log("SDTL - Specific Shop: ", shopDetails);
+    if (debugOn()) { console.log("SDTL - Specific Shop: ", shopDetails); }
     return shopDetails;
 }
 
 export function processShopDetails(fields, submitter) {
-    const name = fields[0].value;
-    const url = fields[1].value;
-    const brands = fields[2].value;
-    const parts = fields[3].value;
-    const id = fields[4].value;
+    const name = fields[1].value;
+    const url = fields[2].value;
+    const brands = fields[3].value;
+    const parts = fields[4].value;
+    const id = fields[5].value;
     const date = Date.now();
     let shopDetails = {
         shopId: id,
@@ -85,7 +86,7 @@ export function processShopDetails(fields, submitter) {
         addNewShop(shopDetails);
         return;
     }
-    console.log("SDTL - Process Details: ", shopDetails);
+    if (debugOn()) { console.log("SDTL - Process Details: ", shopDetails); }
     if (submitter === 'updateButton') {
         shopDetails = { ...shopDetails, user: userEmail(), changeType: 'updated' }
         updateShop(shopDetails);

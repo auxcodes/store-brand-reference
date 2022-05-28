@@ -3,6 +3,7 @@ import { clearResults, resetResults, } from "./search.js";
 
 import { } from "./components/contact-modal.js";
 import { userEmail, userSignedIn } from "./auth.js";
+import { debugOn } from "./environment.js";
 
 const body = document.querySelector('body');
 
@@ -11,11 +12,11 @@ let shopDetailModal = null;
 let contactModal = null;
 
 export function onOpenShop(shopId) {
-    console.log("MC - Open Shop request...", shopId);
+    if (debugOn()) { console.log("MC - Open Shop request...", shopId); }
     if (hasShopDetailForm()) {
         shopDetailModal = openShopDetailModal(shopId);
         shopDetailModal.onsubmit = (event) => {
-            console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event.target, userEmail());
+            if (debugOn()) { console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event.target, userEmail()); }
             if (userSignedIn() !== null) {
                 processShopDetails(event.target, event.submitter.id);
                 clearResults();
@@ -35,7 +36,7 @@ export function onOpenShop(shopId) {
 }
 
 export function onOpenContact() {
-    console.log('MC - Open contact modal request...');
+    if (debugOn()) { console.log('MC - Open contact modal request...'); }
     if (loginModal !== null && loginModal.classList.contains('modal-open')) {
         onCloseLogin();
     }
@@ -56,7 +57,7 @@ function createContactModal() {
     contactModal.id = 'contact-modal';
     contactModal.contactForm = {};
     contactModal.onsubmit = (event) => {
-        console.log('MC - Contact form submitted');
+        if (debugOn()) { console.log('MC - Contact form submitted'); }
         contactModal.classList.toggle('modal-open');
     };
     body.append(contactModal);

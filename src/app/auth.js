@@ -30,7 +30,7 @@ export function signUpForm() {
 
     const loginForm = document.getElementById('login-form');
     loginForm.onsubmit = (event) => {
-        if (debugOn()) { console.log('AU - Sign in form submitted...'); }
+        if (debugOn()) { console.log('AU - Sign in form submitted...', event); }
         event.preventDefault();
         signInSubmitted(event);
     };
@@ -55,13 +55,13 @@ export function signInUser() {
 }
 
 function signInSubmitted(event) {
-    const username = event.target[0].value;
+    const username = event.target[1].value;
     if (debugOn()) { console.log('AU - Sign in process form...', username); }
     signInWithEmail(username);
 }
 
 function signInWithEmail(email) {
-    if (debugOn()) { console.log('AU - Sign in with email link'); }
+    if (debugOn()) { console.log('AU - Sign in with email link', email); }
     const url = getFunctionUrl();
     const postData = JSON.stringify({ "auth": { "email": email } });
     const request = new XMLHttpRequest();

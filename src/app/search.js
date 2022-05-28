@@ -145,6 +145,7 @@ function noResultsFound() {
 }
 
 export function clearResults() {
+    if (debugOn()) { console.log('S - Clear Search Results'); }
     searchResultElement.innerHTML = "";
 }
 

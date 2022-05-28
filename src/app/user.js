@@ -2,12 +2,12 @@ export class User {
     fbUser = {};
 
     constructor(email, userId, token, expirationDate) {
-        console.log('U - Init User Object');
+        if (debugOn()) { console.log('U - Init User Object'); }
         this.fbUser = { email: email, id: userId, token: token, tokenExpirationDate: expirationDate }
     }
 
     next(user) {
-        console.log('User - setUser:');
+        if (debugOn()) { console.log('User - setUser:'); }
         this.fbUser = user;
     }
 }

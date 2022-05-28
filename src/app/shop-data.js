@@ -15,7 +15,7 @@ function ShopData(shopData) {
         initialised = true;
     }
     else {
-        console.log('SD - Initialising from JSON:');
+        if (debugOn()) { console.log('SD - Initialising from JSON:'); }
         fetchJson();
     }
     csService = CloudStorageService.getInstance();
