@@ -23,6 +23,11 @@ const firebaseEnv = {
     }
 };
 
+export function getGaId() {
+    const env = getEnvironment();
+    return env === 'prod' ? firebaseEnv.prod.measurementId : firebaseEnv.dev.measurementId;
+}
+
 export function debugOn() {
     return getEnvironment() === 'dev' ? true : false;
 }

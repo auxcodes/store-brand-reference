@@ -1,3 +1,13 @@
+import { getGaId } from "./environment.js";
+
+export function insertGaScript() {
+    const gaID = getGaId();
+    const gaTag = document.getElementById('ga-tag');
+    gaTag.innerHTML = `window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '${gaID}');`;
+}
 
 export function onStoreClick(storeName) {
     storeClickEvent(storeName);
@@ -28,6 +38,6 @@ function storeClickEvent(storeName) {
     gtag('event', 'store_clicked', {
         'event_category': 'click',
         'event_label': storeName
-        //,'debug_mode': true
+        //, 'debug_mode': true
     });
 }

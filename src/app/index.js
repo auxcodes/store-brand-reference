@@ -6,7 +6,7 @@ import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 import { resetResults, generateLoadingRow, removeLoadingRows, onAltSearch } from "./search.js";
 import { onOpenShop, onOpenContact } from "./modal-controller.js";
-import { onStoreClick } from "./support.js";
+import { insertGaScript, onStoreClick } from "./support.js";
 
 const siteMenu = NavigationService.getInstance();
 const appDataService = new AppDataService();
@@ -20,6 +20,7 @@ let loadingCount = 0;
 let maxWaitCount = 100;
 
 (function ShopList() {
+    insertGaScript();
     initTimeOut();
     loadingProgress();
     signUpForm();
