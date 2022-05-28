@@ -4,8 +4,8 @@ class ContactModal extends HTMLElement {
         <form id="shop-form" class="shop-form modal-content" name="contact" method="POST">
             <div class="btn-row">
                 <span class="modal-title">Contact Us</span>
-                <span onclick="document.getElementById('contact-modal').classList.toggle('modal-open')" class="close"
-                    title="Close Modal">&times;</span>
+                <button type="button" onclick="document.getElementById('contact-modal').classList.toggle('modal-open')" class="close"
+                    title="Close Modal">&times;</button>
             </div>
             <div class="container">
                 <label class="modal-field" for="name"><b>Name</b></label>

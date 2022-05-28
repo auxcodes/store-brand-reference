@@ -30,7 +30,7 @@ export function signUpForm() {
 
     const loginForm = document.getElementById('login-form');
     loginForm.onsubmit = (event) => {
-        console.log('AU - Sign in form submitted...');
+        if (debugOn()) { console.log('AU - Sign in form submitted...'); }
         event.preventDefault();
         signInSubmitted(event);
     };

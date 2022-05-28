@@ -811,6 +811,7 @@ button {
 .btn-row {
     display: flex;
     border-bottom: 1px var(--border-menu) solid;
+    position: relative;
 }
 
 .modal-btn {
@@ -925,17 +926,15 @@ span.psw {
 
 /* The Close Button */
 .close {
-    position: relative;
-    margin-left: -1em;
-    margin-right: 0.45em;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-/* Close button on hover */
-.close:hover,
-.close:focus {
-    color: rgb(179, 7, 7);
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 0 4px 5px 5px;
+    color: var(--colour-text);
+    font-size: 2.2rem;
+    background: transparent;
+    line-height: 0.8;
+    top: 7px;
+    right: 7px;
     cursor: pointer;
 }

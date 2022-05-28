@@ -4,8 +4,8 @@ class LoginModal extends HTMLElement {
         <form id="login-form" class="login-form modal-content">
             <div class="btn-row">
                 <span class="modal-title">Login/Signup</span>
-                <span onclick="document.getElementById('login-modal').classList.toggle('modal-open')" class="close"
-                    title="Close Modal">&times;</span>
+                <button type="button" onclick="document.getElementById('login-modal').classList.toggle('modal-open')" class="close"
+                    title="Close Modal">&times;</button>
             </div>
             <div class="container">
                 <p class="login-info">Enter your 99 Bikes email to receive a login link.</p>
