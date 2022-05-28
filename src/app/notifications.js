@@ -15,7 +15,7 @@ const noNotificationMsg = notificationsContainer.querySelector('#notif-no-msg');
 loadMoreButton.addEventListener("click", onLoadMore);
 let defaultShow = 10;
 let lastNotification = 0;
-
+let endOfData = false;
 
 window.onCloseNotification = closeNotification;
 window.onViewHistory = onOpenHistory;
@@ -47,9 +47,12 @@ async function getNotifications() {
                 let result = cs.objectToArray(notifs);
                 lastNotification = result[result.length - 1].date;
                 notificationObjects = result;
+                endOfData = result.length < defaultShow;
                 checkReadHistory();
             }
-            console.log('get notifs...', lastNotification, notifs);
+            if (endOfData) {
+                disableLoadMore();
+            }
         });
 }
 
@@ -64,14 +67,19 @@ function onLoadMore(amount) {
                 let result = cs.objectToArray(notifs);
                 lastNotification = result[result.length - 1].date;
                 notificationObjects = notificationObjects.concat(result);
+                endOfData = result.length < defaultShow;
                 checkReadHistory();
             }
             else {
                 addNotificationModals();
-                loadMoreButton.style.cssText = 'cursor: auto; background-color: rgb(212, 212, 212)';
-                loadMoreButton.disabled = true;
+                disableLoadMore();
             }
         });
+}
+
+function disableLoadMore() {
+    loadMoreButton.style.cssText = 'cursor: auto; background-color: rgb(212, 212, 212)';
+    loadMoreButton.disabled = true;
 }
 
 export function generateNotifications() {
@@ -120,7 +128,7 @@ function checkReadHistory() {
             }
         });
         notificationObjects = sortNotifications(tempNotifications);
-        if (tempNotifications.length < defaultShow) {
+        if (tempNotifications.length < defaultShow && !endOfData) {
             onLoadMore(defaultShow - tempNotifications.length);
         }
         else {
