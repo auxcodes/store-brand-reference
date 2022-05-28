@@ -19,7 +19,7 @@ const firebaseEnv = {
         storageBucket: "store-search-d8833.appspot.com",
         messagingSenderId: "948158688295",
         appId: "1:948158688295:web:7419eb9dd62a78a2933202",
-        measurementId: "G-1CCKDF5P4T"
+        measurementId: "G-7TJVQJRDFJ"
     }
 };
 
