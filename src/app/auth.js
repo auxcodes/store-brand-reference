@@ -55,7 +55,7 @@ export function signInUser() {
 }
 
 function signInSubmitted(event) {
-    const username = event.target[1].value;
+    const username = event.target['uname'].value;
     if (debugOn()) { console.log('AU - Sign in process form...', username); }
     signInWithEmail(username);
 }

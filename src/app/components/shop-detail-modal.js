@@ -20,7 +20,7 @@ class ShopDetailModal extends HTMLElement {
                 <label class="modal-field" for="shopProducts"><b>Products</b></label>
                 <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Product One, Product Two, Product Three" name="shopProducts"
                 required>${shopData.parts}</textarea>
-                <input id="shopId" class="shop-id" value="${shopData.shopId}">
+                <input id="shopId" class="shop-id" value="${shopData.shopId}" name="shopId">
             </div>
             <div class="container">
                 <div class="btn-row">

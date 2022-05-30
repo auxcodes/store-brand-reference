@@ -62,11 +62,11 @@ function openEditShopDetailModal(shopId) {
 }
 
 export function processShopDetails(fields, submitter) {
-    const name = fields[1].value;
-    const url = fields[2].value;
-    const brands = fields[3].value;
-    const parts = fields[4].value;
-    const id = fields[5].value;
+    const name = fields['shopName'].value;
+    const url = fields['shopUrl'].value;
+    const brands = fields['shopBrands'].value;
+    const parts = fields['shopProducts'].value;
+    const id = fields['shopId'].value;
     const date = Date.now();
     let shopDetails = {
         shopId: id,
