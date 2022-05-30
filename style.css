@@ -527,8 +527,6 @@ button {
 
 }
 
-
-
 /* 4. Body */
 .content {
     flex: 1 0 auto;
@@ -569,6 +567,12 @@ button {
 .fake-result-row-visible {
     clip-path: circle(250% at top left);
     opacity: 1;
+}
+
+.text-highlight {
+    background-color: #00ff10;
+    padding: 0 0.2em;
+    border-radius: 0.2em;
 }
 
 

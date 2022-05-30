@@ -120,10 +120,25 @@ export function generateResults() {
         const el = document.createElement('search-result-modal');
         const isIncomplete = checkCompletness(result) ? "result-row-incomplete" : "complete";
         el.classList.add("result-row", isIncomplete);
+        if (searchValue.length > 0) {
+            result = highlightSearchTerm(result);
+        }
         el.result = result;
         el.id = result.shopId;
         searchResultElement.append(el);
     });
+}
+
+function highlightSearchTerm(storeResult) {
+    const replace = new RegExp(searchValue, 'i');
+    const highLight = `<span class="text-highlight">${searchValue.toUpperCase()}</span>`;
+    if (searchType === 'brands') {
+        storeResult.brands = storeResult.brands.replace(replace, highLight);
+    }
+    if (searchType === 'parts') {
+        storeResult.parts = storeResult.parts.replace(replace, highLight);
+    }
+    return storeResult;
 }
 
 function checkCompletness(result) {
