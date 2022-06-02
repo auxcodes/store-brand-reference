@@ -45,7 +45,8 @@ function findProduct(productName) {
 }
 
 function filterShops(searchTerm, property) {
-    return allData.filter(shop => shop[property].toLowerCase().includes(searchTerm.toLowerCase()));
+    const results = allData.filter(shop => shop[property].toLowerCase().includes(searchTerm.toLowerCase()));
+    return JSON.parse(JSON.stringify(results));
 }
 
 function filterWords(searchTerm, property) {

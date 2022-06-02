@@ -569,7 +569,7 @@ button {
     opacity: 1;
 }
 
-.text-highlight {
+.result-text-highlight {
     background-color: #00ff10;
     padding: 0 0.2em;
     border-radius: 0.2em;

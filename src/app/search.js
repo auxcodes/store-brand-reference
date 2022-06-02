@@ -131,7 +131,7 @@ export function generateResults() {
 
 function highlightSearchTerm(storeResult) {
     const replace = new RegExp(searchValue, 'i');
-    const highLight = `<span class="text-highlight">${searchValue.toUpperCase()}</span>`;
+    const highLight = `<span class="result-text-highlight">${searchValue.toUpperCase()}</span>`;
     if (searchType === 'brands') {
         storeResult.brands = storeResult.brands.replace(replace, highLight);
     }
