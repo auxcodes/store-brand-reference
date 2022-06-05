@@ -108,8 +108,9 @@ function addNotifModal(item) {
     const date = new Date(item.date);
     const modal = document.createElement('notification-modal');
     modal.id = item.id;
-    modal.classList.add('notification-bar');
-    modal.notification = { id: item.id, date: date.toLocaleDateString(), text: item.text };
+    const colorClass = notificationColor(item.type);
+    modal.classList.add('notification-bar', colorClass);
+    modal.notification = { id: item.id, date: date.toLocaleDateString(), text: item.text, color: colorClass };
     notificationsList.append(modal);
 }
 
@@ -195,7 +196,8 @@ function setObject(key, value) {
 export function createNotification(changeObj) {
     const notification = {
         "date": changeObj.date,
-        "text": `${changeObj.name} has been ${changeObj.type} by ${changeObj.user}`
+        "text": `${changeObj.name} has been ${changeObj.type} by ${changeObj.user}`,
+        "type": changeObj.type
     };
     const cs = getCloudService();
     cs.addItem(storageKey, notification)
@@ -209,6 +211,13 @@ export function createNotification(changeObj) {
         });
     refreshNotifications();
     return notification;
+}
+
+function notificationColor(type) {
+    if (type === 'added') { return 'notif-color--add'; }
+    if (type === 'updated') { return 'notif-color--update'; }
+    if (type === 'deleted') { return 'notif-color--delete'; }
+    else { return 'notif-color--website'; }
 }
 
 function sortNotifications(notifArray) {
