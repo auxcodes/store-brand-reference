@@ -5,10 +5,11 @@ import { createNotification } from "./notifications.js";
 import { debugOn } from "./environment.js";
 
 let allData = [];
-let initialised = false;
 let csService = null;
 
-function ShopData(shopData) {
+export let initialised = false;
+
+export function ShopData(shopData) {
     if (shopData.length > 0) {
         if (debugOn()) { console.log("SD - Initialised data from local storage or cloud", shopData); }
         allData = shopData;
@@ -36,20 +37,23 @@ function fetchJson() {
         });
 }
 
-function findBrand(brandName) {
+export function findBrand(brandName) {
     return filterShops(brandName, "brands");
 }
 
-function findProduct(productName) {
+export function findProduct(productName) {
     return filterShops(productName, "parts");
 }
 
 function filterShops(searchTerm, property) {
-    const results = allData.filter(shop => shop[property].toLowerCase().includes(searchTerm.toLowerCase()));
-    return JSON.parse(JSON.stringify(results));
+    let results = allData;
+    if (searchTerm !== "") {
+        results = allData.filter(shop => shop[property].toLowerCase().includes(searchTerm.toLowerCase()));
+    }
+    return deepCopy(results);
 }
 
-function filterWords(searchTerm, property) {
+export function filterWords(searchTerm, property) {
     let results = [];
     while (results.length === 0 && searchTerm.length > 0) {
         allData.forEach(shop => {
@@ -87,89 +91,105 @@ function findWord(searchTerm, stringArray) {
     return results;
 }
 
-function getAllShops() {
-    return allData;
+export function getAllShops() {
+    return deepCopy(allData);
 }
 
-function getSpecificShop(shopId) {
-    return allData.find(shop => shop.shopId === shopId);
+export function getSpecificShop(shopId) {
+    const shop = allData.find(shop => shop.shopId === shopId);
+    return deepCopy(shop);
 }
 
 function sortData() {
     allData = allData.sort((sa, sb) => sa.shopName > sb.shopName);
 }
 
-function addNewShop(newShop) {
+export function addNewShop(newShop) {
     if (debugOn()) { console.log("SD - Add new shop:", newShop); }
-    createNotification({ name: newShop.shopName, user: newShop.user, type: newShop.changeType, date: newShop.date });
+    createNotification({
+        name: newShop.shopDetail.shopName,
+        user: newShop.user,
+        type: newShop.changeType,
+        date: newShop.date
+    });
 
-    csService.addShop(newShop)
+    csService.addShop(newShop.shopDetail)
         .then(newShopId => {
-            newShop.shopId = newShopId;
+            newShop.shopDetail.shopId = newShopId;
             backupChange(-1, newShop);
-            allData.push(newShop);
+            allData.push(newShop.shopDetail);
             sortData();
             refreshResults();
             onOpenAlert({
-                text: `${newShop.shopName} was successfully added.`,
+                text: `${newShop.shopDetail.shopName} was successfully added.`,
                 alertType: 'positive-alert'
             });
         })
         .catch(error => {
             if (debugOn()) { console.error('SD - Add new shop error: ', error); }
             onOpenAlert({
-                text: `Something went wrong while trying to delete ${newShop.shopName}`,
+                text: `Something went wrong while trying to add ${newShop.shopDetail.shopName}`,
                 alertType: 'negative-alert'
             });
         });
 }
 
-function updateShop(shopDetail) {
-    if (debugOn()) { console.log("SD - Update shop:", shopDetail); }
-    const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
+export function updateShop(updatedShop) {
+    if (debugOn()) { console.log("SD - Update shop:", updatedShop); }
+    const index = allData.findIndex(shop => shop.shopId === updatedShop.shopDetail.shopId);
 
-    backupChange(index, shopDetail);
-    createNotification({ name: shopDetail.shopName, user: shopDetail.user, type: shopDetail.changeType, date: shopDetail.date });
+    backupChange(index, updatedShop);
+    createNotification({
+        name: updatedShop.shopDetail.shopName,
+        user: updatedShop.user,
+        type: updatedShop.changeType,
+        date: updatedShop.date
+    });
 
-    csService.updateShop(shopDetail)
+    csService.updateShop(updatedShop.shopDetail)
         .then(() => {
-            allData[index] = shopDetail;
+            allData[index] = updatedShop.shopDetail;
             sortData();
             refreshResults();
             onOpenAlert({
-                text: `${shopDetail.shopName} was successfully updated.`,
+                text: `${updatedShop.shopDetail.shopName} was successfully updated.`,
                 alertType: 'positive-alert'
             });
         })
         .catch(error => {
             console.error('SD - Update shop error: ', error);
             onOpenAlert({
-                text: `Something went wrong while trying to update ${shopDetail.shopName}`,
+                text: `Something went wrong while trying to update ${updatedShop.shopDetail.shopName}`,
                 alertType: 'negative-alert'
             });
         });
 }
 
-function deleteShop(shopDetail) {
-    if (debugOn()) { console.log("SD - Update shop:", shopDetail); }
-    const index = allData.findIndex(shop => shop.shopId === shopDetail.shopId);
+export function deleteShop(deletedShop) {
+    if (debugOn()) { console.log("SD - Update shop:", deletedShop); }
+    const index = allData.findIndex(shop => shop.shopId === deletedShop.shopDetail.shopId);
 
-    backupChange(index, shopDetail);
-    createNotification({ name: shopDetail.shopName, user: shopDetail.user, type: shopDetail.changeType, date: shopDetail.date });
+    backupChange(index, deletedShop);
+    createNotification({
+        name: deletedShop.shopDetail.shopName,
+        user: deletedShop.user,
+        type: deletedShop.changeType,
+        date: deletedShop.date
+    });
 
-    csService.deleteShop(shopDetail)
+    csService.deleteShop(deletedShop.shopDetail)
         .then(() => {
             allData.splice(index, 1);
             refreshResults();
             onOpenAlert({
-                text: `${shopDetail.shopName} was successfully deleted.`,
+                text: `${deletedShop.shopDetail.shopName} was successfully deleted.`,
                 alertType: 'positive-alert'
             });
         })
         .catch(error => {
             console.error('SD - Delete shop error: ', error);
             onOpenAlert({
-                text: `Something went wrong while trying to delete ${shopDetail.shopName}`,
+                text: `Something went wrong while trying to delete ${deletedShop.shopDetail.shopName}`,
                 alertType: 'negative-alert'
             });
         });
@@ -180,4 +200,6 @@ function backupChange(originalShopIndex, updatedShop) {
     csService.backupChange(original, updatedShop);
 }
 
-export { initialised, ShopData, findBrand, findProduct, getAllShops, getSpecificShop, filterWords, addNewShop, updateShop, deleteShop }
+function deepCopy(convert) {
+    return JSON.parse(JSON.stringify(convert))
+}

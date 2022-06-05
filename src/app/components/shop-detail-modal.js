@@ -23,6 +23,11 @@ class ShopDetailModal extends HTMLElement {
                 <input id="shopId" class="shop-id" value="${shopData.shopId}" name="shopId">
             </div>
             <div class="container">
+                <div id="changeNotes" class="change-notes">
+                    <label class="modal-field" for="changeNotes">Change Notes   </label>
+                    <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Notes, reason for update/deletion" name="changeNotes"
+                    required></textarea>
+                </div>
                 <div class="btn-row">
                     ${shopData.button}                   
                 </div>

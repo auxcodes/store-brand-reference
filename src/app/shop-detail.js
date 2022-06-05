@@ -67,34 +67,50 @@ export function processShopDetails(fields, submitter) {
     const brands = fields['shopBrands'].value;
     const parts = fields['shopProducts'].value;
     const id = fields['shopId'].value;
+    const notes = fields['changeNotes'].value;
     const date = Date.now();
     let shopDetails = {
         shopId: id,
         shopName: name,
         shopURL: url,
         brands: brands,
-        parts: parts,
-        date: date
+        parts: parts
     }
     if (submitter === 'addButton') {
         shopDetails = {
-            ...shopDetails,
+            shopDetail: shopDetails,
+            date: date,
             user: userEmail(),
             shopId: crypto.randomUUID(),
             changeType: 'added',
-        }
+            notes: notes
+        };
         addNewShop(shopDetails);
+        if (debugOn()) { console.log("SDTL - Process Details: ", shopDetails); }
         return;
     }
-    if (debugOn()) { console.log("SDTL - Process Details: ", shopDetails); }
     if (submitter === 'updateButton') {
-        shopDetails = { ...shopDetails, user: userEmail(), changeType: 'updated' }
+        shopDetails = {
+            shopDetail: shopDetails,
+            user: userEmail(),
+            changeType: 'updated',
+            notes: notes,
+            date: date
+        };
         updateShop(shopDetails);
+        if (debugOn()) { console.log("SDTL - Process Details: ", shopDetails); }
         return;
     }
     if (submitter === 'deleteButton') {
-        shopDetails = { ...shopDetails, user: userEmail(), changeType: 'deleted' }
+        shopDetails = {
+            shopDetail: shopDetails,
+            user: userEmail(),
+            changeType: 'deleted',
+            notes: notes,
+            date: date
+        };
         deleteShop(shopDetails);
+        if (debugOn()) { console.log("SDTL - Process Details: ", shopDetails); }
     }
 }
 

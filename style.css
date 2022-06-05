@@ -922,7 +922,7 @@ span.psw {
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
+    padding-top: 1em;
     opacity: 0;
     clip-path: circle(0px at center);
     transition: 
@@ -959,6 +959,21 @@ span.psw {
     resize: vertical;
 }
 
+.change-notes {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding-top: 1em;
+    padding: 0;
+    border-top: 1px solid var(--border-menu);
+}
+
+.change-notes label {
+    padding-bottom: 0;
+    margin-left: 0.25em;
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
 /* The Close Button */
 .close {
     display: block;
