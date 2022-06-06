@@ -15,10 +15,10 @@ class ShopDetailModal extends HTMLElement {
                 <input class="modal-field shop-field" type="url" placeholder="https://linktoshop.com" name="shopUrl" value="${shopData.shopURL}"
                     required>
                 <label class="modal-field" for="shopBrands"><b>Brands</b></label>
-                <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Brand One, Brand Two, Brand Three" name="shopBrands"
+                <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Brand Names, Fox, Shimano, SRAM, Rock Shox" name="shopBrands"
                 required>${shopData.brands}</textarea>
                 <label class="modal-field" for="shopProducts"><b>Products</b></label>
-                <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Product One, Product Two, Product Three" name="shopProducts"
+                <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Product Types, Seatposts, Handlebars, Forks, Wheels, Disc Brakes" name="shopProducts"
                 required>${shopData.parts}</textarea>
                 <input id="shopId" class="shop-id" value="${shopData.shopId}" name="shopId">
             </div>
