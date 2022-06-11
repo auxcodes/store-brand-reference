@@ -83,7 +83,7 @@ exports.handler = async (event, context, callback) => {
     function setEnvironment() {
         const requestUrl = event.headers.referer;
         console.log('Request URL: ', requestUrl);
-        let result = environmentURLs.find(envUrl => requestUrl.includes(envUrl));
+        let result = environmentURLs.find(envUrl => requestUrl.includes('dev') ? requestUrl.includes('dev') : requestUrl.includes(envUrl));
         return result === undefined ? '' : result;
     }
 }
