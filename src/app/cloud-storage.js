@@ -78,8 +78,10 @@ export class AppCloudStorage {
         if (debugOn()) { console.log('CS - Backup Shop Change: ', originalShopData, newShopData); }
         const shopRef = ref(this.database, this.backupFile);
         push(shopRef, {
-            timeStamp: newShopData.date,
+            change: newShopData.changeType,
+            notes: newShopData.notes,
             original: originalShopData,
+            timeStamp: newShopData.date,
             updated: newShopData.shopDetail,
             user: newShopData.user
         })
