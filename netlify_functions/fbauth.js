@@ -55,7 +55,7 @@ exports.handler = async (event, context, callback) => {
                 callback(null, {
                     statusCode: 200,
                     headers,
-                    body: JSON.stringify({ msg: 'Validation SuccessFul', error: errors })
+                    body: JSON.stringify({ msg: 'Validation Successful', error: errors })
                 });
                 mailer.sendSignInEmail(email, link);
             })
