@@ -2,22 +2,24 @@ const admin = require('firebase-admin');
 const sdkAuth = require('firebase-admin/auth');
 const mailer = require('./mailer');
 
+const env = currentEnv();
+
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
-    project_id: process.env.FIREBASE_PROJECT_ID,
-    private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    client_email: process.env.FIREBASE_CLIENT_EMAIL,
-    client_id: process.env.FIREBASE_CLIENT_ID,
+    project_id: env === 'dev' ? process.env.DEV_FIREBASE_PROJECT_ID : process.env.FIREBASE_PROJECT_ID,
+    private_key_id: env === 'dev' ? process.env.DEV_FIREBASE_PRIVATE_KEY_ID : process.env.FIREBASE_PRIVATE_KEY_ID,
+    private_key: env === 'dev' ? process.env.DEV_FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n') : process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: env === 'dev' ? process.env.DEV_FIREBASE_CLIENT_EMAIL : process.env.FIREBASE_CLIENT_EMAIL,
+    client_id: env === 'dev' ? process.env.DEV_FIREBASE_CLIENT_ID : process.env.FIREBASE_CLIENT_ID,
     auth_uri: process.env.FIREBASE_AUTH_URI,
     token_uri: process.env.FIREBASE_TOKEN_URI,
     auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
-    client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
+    client_x509_cert_url: env === 'dev' ? process.env.DEV_FIREBASE_CLIENT_X509_CERT_URL : process.env.FIREBASE_CLIENT_X509_CERT_URL,
 };
 
 const app = admin.apps && admin.apps.length > 0 ? admin.apps[0] : admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
+    databaseURL: env === 'dev' ? process.env.DEV_FIREBASE_DATABASE_URL : process.env.FIREBASE_DATABASE_URL
 });
 
 const auth = sdkAuth.getAuth();
@@ -28,6 +30,10 @@ const headers = {
     'Access-Control-Allow-Credentials': true,
     'Access-Control-Allow-Headers': 'Authorization'
 };
+
+function currentEnv() {
+    return process.env.CONTEXT === 'dev' ? 'dev' : 'prod';
+}
 
 exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
@@ -84,9 +90,9 @@ exports.handler = async (event, context, callback) => {
         const requestUrl = event.headers.referer;
         console.log('Request URL: ', requestUrl);
         let result = environmentURLs.find(envUrl => requestUrl.includes(envUrl));
-        if (requestUrl.includes('dev') || requestUrl.includes('local')) {
-            const env = requestUrl.includes('dev') ? 'dev' : 'local';
-            result = environmentURLs.find(envUrl => envUrl.includes(env));
+        if (env === 'dev') {
+            const envUrlText = requestUrl.includes('dev') ? 'dev' : 'local';
+            result = environmentURLs.find(envUrl => envUrl.includes(envUrlText));
         }
         return result === undefined ? '' : result;
     }
