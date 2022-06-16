@@ -60,14 +60,14 @@ async function getNotifications() {
 function onLoadMore(amount) {
     const cs = getCloudService();
     const loadCount = amount < defaultShow ? amount : defaultShow;
-    if (debugOn) { console.log('N - onLoadMore: ', lastNotification); }
+    if (debugOn()) { console.log('N - onLoadMore: ', lastNotification); }
     const options = { childName: 'date', startPos: lastNotification, count: loadCount, dataPath: storageKey }
     const dbRef = cs.startAfterFilterRef(options);
     cs.getItems(dbRef)
         .then(notifs => {
             if (notifs) {
                 let result = cs.objectToArray(notifs);
-                if (debugOn) { console.log('N - new last notif: ', lastNotification); }
+                if (debugOn()) { console.log('N - new last notif: ', lastNotification); }
                 const displayedNotifs = new Set(notificationObjects.map(notif => notif.id));
                 notificationObjects = notificationObjects.concat(result.filter(notif => !displayedNotifs.has(notif.id)));
                 const lastResultDate = notificationObjects[notificationObjects.length - 1].date;
