@@ -9,7 +9,7 @@ export function insertGaScript() {
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', '${gaID}');`;
-    console.log('body element: ', bodyEl);
+    gaTag.type = 'text/javascript';
     bodyEl.append(gaTag);
 }
 
