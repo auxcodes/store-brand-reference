@@ -34,7 +34,7 @@ export function brandSearchEvent(searchTerm) {
         'debug_mode': debugOn()
     };
     gtag('event', 'search_brands', eventInfo);
-    if (debugOn()) { console.log('GA - Brand Search Event: ', searchTerm); }
+    if (debugOn()) { console.log('GA - Brand Search Event: ', eventInfo); }
 }
 
 export function noResultEvent(searchTerm) {
@@ -44,7 +44,7 @@ export function noResultEvent(searchTerm) {
         'debug_mode': debugOn()
     };
     gtag('event', 'failed_search', eventInfo);
-    if (debugOn()) { console.log('GA - Failed Search Event: ', searchTerm); }
+    if (debugOn()) { console.log('GA - Failed Search Event: ', eventInfo); }
 }
 
 function storeClickEvent(storeName) {
@@ -54,5 +54,5 @@ function storeClickEvent(storeName) {
         'debug_mode': debugOn()
     };
     gtag('event', 'store_clicked', eventInfo);
-    if (debugOn()) { console.log('GA - Store Click Event: ', storeName); }
+    if (debugOn()) { console.log('GA - Store Click Event: ', eventInfo); }
 }

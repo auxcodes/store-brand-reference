@@ -1,3 +1,4 @@
+import { getGaId } from "../environment.js";
 
 // Copyright 2012 Google Inc. All rights reserved.
 (function () {
@@ -7,7 +8,7 @@
             "version": "1",
 
             "macros": [{ "function": "__e" }, { "function": "__aev", "vtp_varType": "URL", "vtp_component": "IS_OUTBOUND", "vtp_affiliatedDomains": ["list"] }, { "function": "__v", "vtp_name": "gtm.triggers", "vtp_dataLayerVersion": 2, "vtp_setDefaultValue": true, "vtp_defaultValue": "" }, { "function": "__v", "vtp_name": "gtm.elementId", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.elementClasses", "vtp_dataLayerVersion": 1 }, { "function": "__aev", "vtp_varType": "URL", "vtp_component": "URL_NO_FRAGMENT" }, { "function": "__aev", "vtp_varType": "URL", "vtp_component": "HOST", "vtp_stripWww": true }, { "function": "__aev", "vtp_varType": "URL", "vtp_component": "EXTENSION" }, { "function": "__aev", "vtp_varType": "TEXT" }, { "function": "__aev", "vtp_varType": "URL", "vtp_component": "PATH" }, { "function": "__v", "vtp_name": "gtm.videoStatus", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.videoUrl", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.videoTitle", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.videoProvider", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.videoCurrentTime", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.videoDuration", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.videoPercent", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.videoVisible", "vtp_dataLayerVersion": 1 }, { "function": "__u", "vtp_component": "QUERY", "vtp_queryKey": "q,s,search,query,keyword", "vtp_multiQueryKeys": true, "vtp_ignoreEmptyQueryParam": true, "vtp_enableMultiQueryKeys": false, "vtp_enableIgnoreEmptyQueryParam": false }, { "function": "__v", "vtp_name": "gtm.scrollThreshold", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.historyChangeSource", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.oldUrl", "vtp_dataLayerVersion": 1 }, { "function": "__v", "vtp_name": "gtm.newUrl", "vtp_dataLayerVersion": 1 }, { "function": "__c", "vtp_value": "google.com.au" }, { "function": "__c", "vtp_value": 0 }, { "vtp_signal": 0, "function": "__c", "vtp_value": 0 }],
-            "tags": [{ "function": "__gct", "vtp_trackingId": "G-1CCKDF5P4T", "vtp_sessionDuration": 0, "tag_id": 1 }, { "function": "__get", "vtp_eventName": "click", "vtp_settings": ["map", "streamId", "G-1CCKDF5P4T", "eventParameters", ["map", "link_id", ["macro", 3], "link_classes", ["macro", 4], "link_url", ["macro", 5], "link_domain", ["macro", 6], "outbound", true]], "vtp_deferrable": false, "tag_id": 11 }, { "function": "__get", "vtp_eventName": "file_download", "vtp_settings": ["map", "streamId", "G-1CCKDF5P4T", "eventParameters", ["map", "link_id", ["macro", 3], "link_text", ["macro", 8], "link_url", ["macro", 5], "file_name", ["macro", 9], "file_extension", ["macro", 7]]], "vtp_deferrable": false, "tag_id": 18 }, { "function": "__get", "vtp_eventName": ["template", "video_", ["macro", 10]], "vtp_settings": ["map", "streamId", "G-1CCKDF5P4T", "eventParameters", ["map", "video_url", ["macro", 11], "video_title", ["macro", 12], "video_provider", ["macro", 13], "video_current_time", ["macro", 14], "video_duration", ["macro", 15], "video_percent", ["macro", 16], "visible", ["macro", 17]]], "vtp_deferrable": false, "tag_id": 21 }, { "function": "__get", "vtp_eventName": "view_search_results", "vtp_settings": ["map", "streamId", "G-1CCKDF5P4T", "eventParameters", ["map", "search_term", ["macro", 18]]], "vtp_deferrable": true, "tag_id": 26 }, { "function": "__get", "vtp_eventName": "scroll", "vtp_settings": ["map", "streamId", "G-1CCKDF5P4T", "eventParameters", ["map", "percent_scrolled", ["macro", 19]]], "vtp_deferrable": false, "tag_id": 29 }, { "function": "__get", "vtp_eventName": "page_view", "vtp_settings": ["map", "streamId", "G-1CCKDF5P4T", "eventParameters", ["map", "page_referrer", ["macro", 21]]], "vtp_deferrable": false, "tag_id": 32 }, { "function": "__dlm", "vtp_userInput": ["list", ["map", "key", "gtm.gtagReferrer.G-1CCKDF5P4T", "value", ["macro", 21]]], "tag_id": 33 }, { "function": "__set_product_settings", "original_activity_id": 3001, "vtp_foreignTldMacroResult": ["macro", 23], "vtp_isChinaVipRegionMacroResult": ["macro", 24], "tag_id": 36 }, { "function": "__ogt_event_settings", "original_activity_id": 3002, "vtp_eventSettings": ["list", ["map", "name", "purchase", "conversion", true]], "tag_id": 37 }, { "function": "__ogt_google_signals", "original_activity_id": 3003, "vtp_googleSignals": "DISABLED", "vtp_serverMacroResult": ["macro", 25], "tag_id": 38 }, { "function": "__lcl", "vtp_waitForTags": false, "vtp_checkValidation": true, "vtp_uniqueTriggerId": "1_9", "tag_id": 39 }, { "function": "__lcl", "vtp_waitForTags": false, "vtp_checkValidation": true, "vtp_uniqueTriggerId": "1_16", "tag_id": 40 }, { "function": "__ytl", "vtp_captureStart": true, "vtp_captureComplete": true, "vtp_captureProgress": true, "vtp_progressThresholdsPercent": "10,25,50,75", "vtp_triggerStartOption": "DOM_READY", "vtp_uniqueTriggerId": "1_19", "vtp_enableTriggerStartOption": true, "tag_id": 41 }, { "function": "__sdl", "vtp_verticalThresholdUnits": "PERCENT", "vtp_verticalThresholdsPercent": "90", "vtp_verticalThresholdOn": true, "vtp_horizontalThresholdOn": false, "vtp_triggerStartOption": "WINDOW_LOAD", "vtp_uniqueTriggerId": "1_27", "vtp_enableTriggerStartOption": true, "tag_id": 42 }, { "function": "__ehl", "vtp_groupEvents": true, "vtp_groupEventsInterval": 1000, "vtp_uniqueTriggerId": "1_30", "tag_id": 43 }],
+            "tags": [{ "function": "__gct", "vtp_trackingId": getGaId(), "vtp_sessionDuration": 0, "tag_id": 1 }, { "function": "__get", "vtp_eventName": "click", "vtp_settings": ["map", "streamId", getGaId(), "eventParameters", ["map", "link_id", ["macro", 3], "link_classes", ["macro", 4], "link_url", ["macro", 5], "link_domain", ["macro", 6], "outbound", true]], "vtp_deferrable": false, "tag_id": 11 }, { "function": "__get", "vtp_eventName": "file_download", "vtp_settings": ["map", "streamId", getGaId(), "eventParameters", ["map", "link_id", ["macro", 3], "link_text", ["macro", 8], "link_url", ["macro", 5], "file_name", ["macro", 9], "file_extension", ["macro", 7]]], "vtp_deferrable": false, "tag_id": 18 }, { "function": "__get", "vtp_eventName": ["template", "video_", ["macro", 10]], "vtp_settings": ["map", "streamId", getGaId(), "eventParameters", ["map", "video_url", ["macro", 11], "video_title", ["macro", 12], "video_provider", ["macro", 13], "video_current_time", ["macro", 14], "video_duration", ["macro", 15], "video_percent", ["macro", 16], "visible", ["macro", 17]]], "vtp_deferrable": false, "tag_id": 21 }, { "function": "__get", "vtp_eventName": "view_search_results", "vtp_settings": ["map", "streamId", getGaId(), "eventParameters", ["map", "search_term", ["macro", 18]]], "vtp_deferrable": true, "tag_id": 26 }, { "function": "__get", "vtp_eventName": "scroll", "vtp_settings": ["map", "streamId", getGaId(), "eventParameters", ["map", "percent_scrolled", ["macro", 19]]], "vtp_deferrable": false, "tag_id": 29 }, { "function": "__get", "vtp_eventName": "page_view", "vtp_settings": ["map", "streamId", getGaId(), "eventParameters", ["map", "page_referrer", ["macro", 21]]], "vtp_deferrable": false, "tag_id": 32 }, { "function": "__dlm", "vtp_userInput": ["list", ["map", "key", "gtm.gtagReferrer.${getGaId()}", "value", ["macro", 21]]], "tag_id": 33 }, { "function": "__set_product_settings", "original_activity_id": 3001, "vtp_foreignTldMacroResult": ["macro", 23], "vtp_isChinaVipRegionMacroResult": ["macro", 24], "tag_id": 36 }, { "function": "__ogt_event_settings", "original_activity_id": 3002, "vtp_eventSettings": ["list", ["map", "name", "purchase", "conversion", true]], "tag_id": 37 }, { "function": "__ogt_google_signals", "original_activity_id": 3003, "vtp_googleSignals": "DISABLED", "vtp_serverMacroResult": ["macro", 25], "tag_id": 38 }, { "function": "__lcl", "vtp_waitForTags": false, "vtp_checkValidation": true, "vtp_uniqueTriggerId": "1_9", "tag_id": 39 }, { "function": "__lcl", "vtp_waitForTags": false, "vtp_checkValidation": true, "vtp_uniqueTriggerId": "1_16", "tag_id": 40 }, { "function": "__ytl", "vtp_captureStart": true, "vtp_captureComplete": true, "vtp_captureProgress": true, "vtp_progressThresholdsPercent": "10,25,50,75", "vtp_triggerStartOption": "DOM_READY", "vtp_uniqueTriggerId": "1_19", "vtp_enableTriggerStartOption": true, "tag_id": 41 }, { "function": "__sdl", "vtp_verticalThresholdUnits": "PERCENT", "vtp_verticalThresholdsPercent": "90", "vtp_verticalThresholdOn": true, "vtp_horizontalThresholdOn": false, "vtp_triggerStartOption": "WINDOW_LOAD", "vtp_uniqueTriggerId": "1_27", "vtp_enableTriggerStartOption": true, "tag_id": 42 }, { "function": "__ehl", "vtp_groupEvents": true, "vtp_groupEventsInterval": 1000, "vtp_uniqueTriggerId": "1_30", "tag_id": 43 }],
             "predicates": [{ "function": "_eq", "arg0": ["macro", 0], "arg1": "gtm.js" }, { "function": "_eq", "arg0": ["macro", 1], "arg1": true }, { "function": "_eq", "arg0": ["macro", 0], "arg1": "gtm.linkClick" }, { "function": "_re", "arg0": ["macro", 2], "arg1": "(^$|((^|,)1_9($|,)))" }, { "function": "_re", "arg0": ["macro", 7], "arg1": "pdf|xlsx?|docx?|txt|rtf|csv|exe|key|pp(s|t|tx)|7z|pkg|rar|gz|zip|avi|mov|mp4|mpe?g|wmv|midi?|mp3|wav|wma", "ignore_case": true }, { "function": "_re", "arg0": ["macro", 2], "arg1": "(^$|((^|,)1_16($|,)))" }, { "function": "_eq", "arg0": ["macro", 0], "arg1": "gtm.video" }, { "function": "_re", "arg0": ["macro", 2], "arg1": "(^$|((^|,)1_19($|,)))" }, { "function": "_eq", "arg0": ["macro", 18], "arg1": "undefined" }, { "function": "_eq", "arg0": ["macro", 0], "arg1": "gtm.scrollDepth" }, { "function": "_re", "arg0": ["macro", 2], "arg1": "(^$|((^|,)1_27($|,)))" }, { "function": "_eq", "arg0": ["macro", 20], "arg1": ["list", "pushState", "popstate", "replaceState"], "any_of": true }, { "function": "_eq", "arg0": ["macro", 21], "arg1": ["macro", 22] }, { "function": "_eq", "arg0": ["macro", 0], "arg1": "gtm.historyChange-v2" }, { "function": "_re", "arg0": ["macro", 2], "arg1": "(^$|((^|,)1_30($|,)))" }, { "function": "_eq", "arg0": ["macro", 0], "arg1": "gtm.init" }, { "function": "_eq", "arg0": ["macro", 0], "arg1": "gtm.dom" }, { "function": "_eq", "arg0": ["macro", 0], "arg1": "gtm.load" }],
             "rules": [[["if", 0], ["add", 0, 11, 12, 15]], [["if", 1, 2, 3], ["add", 1]], [["if", 2, 4, 5], ["add", 2]], [["if", 6, 7], ["add", 3]], [["if", 0], ["unless", 8], ["add", 4]], [["if", 9, 10], ["add", 5]], [["if", 11, 13, 14], ["unless", 12], ["add", 6, 7]], [["if", 15], ["add", 8, 9, 10]], [["if", 16], ["add", 13]], [["if", 17], ["add", 14]]]
         },
@@ -195,7 +196,7 @@
             }
         }
     }; function xf(a) { return "" + a }
-    function yf(a, b) { var c = []; return c }; var zf = function (a, b) { var c = new ib(a, function () { for (var d = Array.prototype.slice.call(arguments, 0), e = 0; e < d.length; e++)d[e] = z(this, d[e]); return b.apply(this, d) }); c.Lb(); return c }, Af = function (a, b) { var c = new mb, d; for (d in b) if (b.hasOwnProperty(d)) { var e = b[d]; Ea(e) ? c.set(d, zf(a + "_" + d, e)) : (Ha(e) || Fa(e) || "boolean" == typeof e) && c.set(d, e) } c.Lb(); return c }; var Bf = function (a, b) { O(G(this), ["apiName:!string", "message:?string"], arguments); var c = {}, d = new mb; return d = Af("AssertApiSubject", c) }; var Cf = function (a, b) { O(G(this), ["actual:?*", "message:?string"], arguments); if (a instanceof rc) throw Error("Argument actual cannot have type Promise. Assertions on asynchronous code aren't supported."); var c = {}, d = new mb; return d = Af("AssertThatSubject", c) }; function Df(a) { return function () { for (var b = [], c = this.g, d = 0; d < arguments.length; ++d)b.push(yc(arguments[d], c)); return xc(a.apply(null, b)) } } var Ff = function () { for (var a = Math, b = Ef, c = {}, d = 0; d < b.length; d++) { var e = b[d]; a.hasOwnProperty(e) && (c[e] = Df(a[e].bind(a))) } return c }; var Gf = function (a) { var b; return b }; var Hf = function (a) { var b; return b }; var If = function (a) { return encodeURI(a) }; var Jf = function (a) { return encodeURIComponent(a) }; var Kf = function (a) { O(G(this), ["message:?string"], arguments); }; var Lf = function (a, b) { O(G(this), ["min:!number", "max:!number"], arguments); return La(a, b) }; var P = function (a, b, c) { var d = a.g.g; if (!d) throw Error("Missing program state."); d.dj.apply(null, Array.prototype.slice.call(arguments, 1)) }; var Mf = function () { P(this, "read_container_data"); var a = new mb; a.set("containerId", 'G-1CCKDF5P4T'); a.set("version", '1'); a.set("environmentName", ''); a.set("debugMode", Ue); a.set("previewMode", We); a.set("environmentMode", Ve); a.Lb(); return a }; var Nf = {}; Nf.sstECEnableData = !0; Nf.enableAdsEc = !0; Nf.sstFFConversionEnabled = !0; Nf.sstEnableAuid = !0; Nf.enableGbraidUpdate = !0;
+    function yf(a, b) { var c = []; return c }; var zf = function (a, b) { var c = new ib(a, function () { for (var d = Array.prototype.slice.call(arguments, 0), e = 0; e < d.length; e++)d[e] = z(this, d[e]); return b.apply(this, d) }); c.Lb(); return c }, Af = function (a, b) { var c = new mb, d; for (d in b) if (b.hasOwnProperty(d)) { var e = b[d]; Ea(e) ? c.set(d, zf(a + "_" + d, e)) : (Ha(e) || Fa(e) || "boolean" == typeof e) && c.set(d, e) } c.Lb(); return c }; var Bf = function (a, b) { O(G(this), ["apiName:!string", "message:?string"], arguments); var c = {}, d = new mb; return d = Af("AssertApiSubject", c) }; var Cf = function (a, b) { O(G(this), ["actual:?*", "message:?string"], arguments); if (a instanceof rc) throw Error("Argument actual cannot have type Promise. Assertions on asynchronous code aren't supported."); var c = {}, d = new mb; return d = Af("AssertThatSubject", c) }; function Df(a) { return function () { for (var b = [], c = this.g, d = 0; d < arguments.length; ++d)b.push(yc(arguments[d], c)); return xc(a.apply(null, b)) } } var Ff = function () { for (var a = Math, b = Ef, c = {}, d = 0; d < b.length; d++) { var e = b[d]; a.hasOwnProperty(e) && (c[e] = Df(a[e].bind(a))) } return c }; var Gf = function (a) { var b; return b }; var Hf = function (a) { var b; return b }; var If = function (a) { return encodeURI(a) }; var Jf = function (a) { return encodeURIComponent(a) }; var Kf = function (a) { O(G(this), ["message:?string"], arguments); }; var Lf = function (a, b) { O(G(this), ["min:!number", "max:!number"], arguments); return La(a, b) }; var P = function (a, b, c) { var d = a.g.g; if (!d) throw Error("Missing program state."); d.dj.apply(null, Array.prototype.slice.call(arguments, 1)) }; var Mf = function () { P(this, "read_container_data"); var a = new mb; a.set("containerId", getGaId()); a.set("version", '1'); a.set("environmentName", ''); a.set("debugMode", Ue); a.set("previewMode", We); a.set("environmentMode", Ve); a.Lb(); return a }; var Nf = {}; Nf.sstECEnableData = !0; Nf.enableAdsEc = !0; Nf.sstFFConversionEnabled = !0; Nf.sstEnableAuid = !0; Nf.enableGbraidUpdate = !0;
     Nf.enable1pScripts = !0; Nf.enableGlobalEventDeveloperIds = !1; Nf.enableGa4OnoRemarketing = !1;
     Nf.omitAuidIfWbraidPresent = !1; Nf.sstEnableDclid = !0; Nf.reconcileCampaignFields = !1;
     Nf.enableEmFormCcd = !1; Nf.enableEmFormCcdPart2 = !1; Nf.enableUrlPassthrough = !0;
@@ -222,7 +223,7 @@
             var h = g.entries, k = h[a] || {}, n = k.region, p = c && Fa(c) ? c.toUpperCase() : void 0; d = d.toUpperCase(); e = e.toUpperCase(); if ("" === d || p === e || (p === d ? n !== e : !p && !n)) {
                 var q = !!(f && 0 < f && void 0 === k.update), r = { region: p, initial: "granted" === b, update: k.update, quiet: q }; if ("" !== d || !1 !== k.initial) h[a] = r; q && m.setTimeout(function () {
                     h[a] ===
-                    r && r.quiet && (r.quiet = !1, yg(a), xg(), lg("TAGGING", 2))
+                        r && r.quiet && (r.quiet = !1, yg(a), xg(), lg("TAGGING", 2))
                 }, f)
             }
         }
@@ -257,7 +258,7 @@
                         function (c, d) { b({ vd: c, Sk: d }) })
                 })
             } catch (b) { }
-        }, jh = Object.freeze(["email", "phone_number", "first_name", "last_name", "street"]); var L = {}, U = m.google_tag_manager = m.google_tag_manager || {}, sh = Math.random(); L.K = "G-1CCKDF5P4T"; L.Jd = ""; L.ae = "320"; L.ca = "dataLayer"; L.$h = "ChEIgLGMkQYQ2vj51+SliMv2ARIlABto/dxK2qwKSWZ5cgemdTJY0C8u7MlXejQnjePqVqVHg4vJWxoC49M\x3d"; var th = { __cl: !0, __ecl: !0, __ehl: !0, __evl: !0, __fal: !0, __fil: !0, __fsl: !0, __hl: !0, __jel: !0, __lcl: !0, __sdl: !0, __tl: !0, __ytl: !0 }, uh = { __paused: !0, __tg: !0 }, Ch; for (Ch in th) th.hasOwnProperty(Ch) && (uh[Ch] = !0); L.Kd = "www.googletagmanager.com"; var Dh, Eh = L.Kd + "/gtm.js"; Eh = L.Kd + "/gtag/js";
+        }, jh = Object.freeze(["email", "phone_number", "first_name", "last_name", "street"]); var L = {}, U = m.google_tag_manager = m.google_tag_manager || {}, sh = Math.random(); L.K = getGaId(); L.Jd = ""; L.ae = "320"; L.ca = "dataLayer"; L.$h = "ChEIgLGMkQYQ2vj51+SliMv2ARIlABto/dxK2qwKSWZ5cgemdTJY0C8u7MlXejQnjePqVqVHg4vJWxoC49M\x3d"; var th = { __cl: !0, __ecl: !0, __ehl: !0, __evl: !0, __fal: !0, __fil: !0, __fsl: !0, __hl: !0, __jel: !0, __lcl: !0, __sdl: !0, __tl: !0, __ytl: !0 }, uh = { __paused: !0, __tg: !0 }, Ch; for (Ch in th) th.hasOwnProperty(Ch) && (uh[Ch] = !0); L.Kd = "www.googletagmanager.com"; var Dh, Eh = L.Kd + "/gtm.js"; Eh = L.Kd + "/gtag/js";
     Dh = Eh; var Fh = Sa(""), Gh = null, Hh = null, Ih = "https://www.googletagmanager.com/a?id=" + L.K + "&cv=1", Jh = {}, Kh = {}, Lh = function () { var a = U.sequence || 1; U.sequence = a + 1; return a }; L.Zh = ""; var Mh = ""; L.$c = Mh; var Nh = new Ma, Oh = {}, Ph = {}, Sh = { name: L.ca, set: function (a, b) { wc(eb(a, b), Oh); Qh() }, get: function (a) { return Rh(a, 2) }, reset: function () { Nh = new Ma; Oh = {}; Qh() } }, Rh = function (a, b) { return 2 != b ? Nh.get(a) : Th(a) }, Th = function (a, b) { var c = a.split("."); b = b || []; for (var d = Oh, e = 0; e < c.length; e++) { if (null === d) return !1; if (void 0 === d) break; d = d[c[e]]; if (-1 !== b.indexOf(d)) return } return d }, Uh = function (a, b) { Ph.hasOwnProperty(a) || (Nh.set(a, b), wc(eb(a, b), Oh), Qh()) }, Vh = function () {
         for (var a = ["gtm.allowlist", "gtm.blocklist", "gtm.whitelist",
             "gtm.blacklist", "tagTypeBlacklist"], b = 0; b < a.length; b++) { var c = a[b], d = Rh(c, 1); if (Ja(d) || vc(d)) d = wc(d); Ph[c] = d }
@@ -297,7 +298,7 @@
                         var f = a.parentElement; if (f) {
                             for (var g = 0; g < f.childElementCount; g++)if (f.children[g] === a) {
                                 e =
-                                g + 1; break a
+                                    g + 1; break a
                             } e = -1
                         } else e = 1
                     } d = vi(a.parentElement) + ">:nth-child(" + e + ")"
@@ -449,12 +450,12 @@
                     0, d = [], e = 0; e < a; ++e)d.push(0); return { Lj: function () { return c < a ? !1 : Xa() - d[c % a] < b }, ik: function () { var f = c++ % a; d[f] = Xa() } }
             }(Cm, 1E3), lm = 1E3, Em = function (a, b) { if (zm && !jm[a] && fm !== a) { am(); fm = a; nm = hm = ""; rm[a] = "&e=" + cm(b) + "&eid=" + a; em(); } }, Fm = function (a,
                 b, c, d) {
-                    if (zm && b) {
-                        var e, f = String(b[Pd.Jb] || "").replace(/_/g, ""); 0 === f.indexOf("cvt") && (f = "cvt"); e = f; var g = c + e; if (!jm[a]) {
-                            a !== fm && (am(), fm = a); hm = hm ? hm + "." + g : "&tr=" + g; var h = b["function"]; if (!h) throw Error("Error: No function name given for function call.");
-                            var k = (se[h] ? "1" : "2") + e; nm = nm ? nm + "." + k : "&ti=" + k; em(); bm()
-                        }
+                if (zm && b) {
+                    var e, f = String(b[Pd.Jb] || "").replace(/_/g, ""); 0 === f.indexOf("cvt") && (f = "cvt"); e = f; var g = c + e; if (!jm[a]) {
+                        a !== fm && (am(), fm = a); hm = hm ? hm + "." + g : "&tr=" + g; var h = b["function"]; if (!h) throw Error("Error: No function name given for function call.");
+                        var k = (se[h] ? "1" : "2") + e; nm = nm ? nm + "." + k : "&ti=" + k; em(); bm()
                     }
+                }
             }; var Mm = function (a, b, c) { if (zm && !jm[a]) { a !== fm && (am(), fm = a); var d = c + b; im = im ? im + "." + d : "&epr=" + d; em(); bm() } }, Nm = function (a,
                 b, c) { }; function Om(a, b, c, d) { var e = qe[a], f = Pm(a, b, c, d); if (!f) return null; var g = ye(e[Pd.Pg], c, []); if (g && g.length) { var h = g[0]; f = Om(h.index, { onSuccess: f, onFailure: 1 === h.lh ? b.terminate : f, terminate: b.terminate }, c, d) } return f }
     function Pm(a, b, c, d) {
@@ -493,7 +494,7 @@
             for (var c = a.o, d = 0; 50 > d; ++d) {
                 var e; try { e = !(!c.frames || !c.frames.__tcfapiLocator) } catch (h) {
                     e =
-                    !1
+                        !1
                 } if (e) { b = c; break a } var f; b: { try { var g = c.parent; if (g && g != c) { f = g; break b } } catch (h) { } f = null } if (!(c = f)) break
             } b = null
         } a.g = b; return a.g
@@ -505,10 +506,10 @@
                     c && (clearTimeout(c), c = null); if (0 !== d.internalErrorState) Vn(a), Wn(a); else {
                         var e; a.gdprApplies = d.gdprApplies; if (!1 === d.gdprApplies) e = Xn(), b.removeEventListener(d); else if ("tcloaded" ===
                             d.eventStatus || "useractioncomplete" === d.eventStatus || "cmpuishown" === d.eventStatus) {
-                                var f = {}, g; for (g in Qn) if (Qn.hasOwnProperty(g)) if ("1" === g) {
-                                    var h = d, k = !0; k = void 0 === k ? !1 : k; var n; var p = h; !1 === p.gdprApplies ? n = !0 : (void 0 === p.internalErrorState && (p.internalErrorState = In(p)), n = "error" === p.cmpStatus || 0 !== p.internalErrorState || "loaded" === p.cmpStatus && ("tcloaded" === p.eventStatus || "useractioncomplete" === p.eventStatus) ? !0 : !1); f["1"] = n ? !1 === h.gdprApplies || "tcunavailable" === h.tcString || void 0 === h.gdprApplies &&
-                                        !k || "string" !== typeof h.tcString || !h.tcString.length ? !0 : Mn(h, "1", 0) : !1
-                                } else f[g] = Mn(d, g, Qn[g]); e = f
+                            var f = {}, g; for (g in Qn) if (Qn.hasOwnProperty(g)) if ("1" === g) {
+                                var h = d, k = !0; k = void 0 === k ? !1 : k; var n; var p = h; !1 === p.gdprApplies ? n = !0 : (void 0 === p.internalErrorState && (p.internalErrorState = In(p)), n = "error" === p.cmpStatus || 0 !== p.internalErrorState || "loaded" === p.cmpStatus && ("tcloaded" === p.eventStatus || "useractioncomplete" === p.eventStatus) ? !0 : !1); f["1"] = n ? !1 === h.gdprApplies || "tcunavailable" === h.tcString || void 0 === h.gdprApplies &&
+                                    !k || "string" !== typeof h.tcString || !h.tcString.length ? !0 : Mn(h, "1", 0) : !1
+                            } else f[g] = Mn(d, g, Qn[g]); e = f
                         } e && (a.tcString = d.tcString || "tcempty", a.Ad = e, Wn(a))
                     }
                 })
@@ -527,10 +528,10 @@
         if (d.V) {
             var e = cr(a, d.V), f = e.s; if (f) {
                 var g = wc(c), h = wc(e.targetConfig[d.V]), k = wc(e.containerConfig), n = wc(e.remoteConfig),
-                p = wc(a.s), q = Rh("gtm.uniqueEventId"), r = ro(d.V).prefix, t = Za(function () { var v = g[T.kc]; v && I(v) }), u = vn(un(wn(tn(rn(sn(qn(pn(on(g), h), k), n), p), function () { Mm(q, r, "2"); t() }), function () { Mm(q, r, "3"); t() }), function (v, y) { a.C[v] = y }), function (v) { return a.C[v] }); try {
-                    Mm(q, r, "1"), ln(d.type, d.V, u); f(d.V,
-                        b, d.s, u)
-                } catch (v) { Mm(q, r, "4"); }
+                    p = wc(a.s), q = Rh("gtm.uniqueEventId"), r = ro(d.V).prefix, t = Za(function () { var v = g[T.kc]; v && I(v) }), u = vn(un(wn(tn(rn(sn(qn(pn(on(g), h), k), n), p), function () { Mm(q, r, "2"); t() }), function () { Mm(q, r, "3"); t() }), function (v, y) { a.C[v] = y }), function (v) { return a.C[v] }); try {
+                        Mm(q, r, "1"), ln(d.type, d.V, u); f(d.V,
+                            b, d.s, u)
+                    } catch (v) { Mm(q, r, "4"); }
             }
         }
     }; l = Tq.prototype;
@@ -610,7 +611,7 @@
         }; var d = a.slice(0); Is.push.apply(Is, d); if (Us()) {
             I(Ts)
         }
-    }; var Us = function () { var a = !0; return a }; function Xs(a) { if (null == a || 0 === a.length) return !1; var b = Number(a), c = Xa(); return b < c + 3E5 && b > c - 9E5 }; var Ys = { Ah: "G-1CCKDF5P4T" }, Zs = function () { var a = []; Ys.Ah && (a = Ys.Ah.split("|")); return a }; var $s = {}; $s.Xd = new String("undefined");
+    }; var Us = function () { var a = !0; return a }; function Xs(a) { if (null == a || 0 === a.length) return !1; var b = Number(a), c = Xa(); return b < c + 3E5 && b > c - 9E5 }; var Ys = { Ah: getGaId() }, Zs = function () { var a = []; Ys.Ah && (a = Ys.Ah.split("|")); return a }; var $s = {}; $s.Xd = new String("undefined");
     var ct = function (a, b, c) { var d = { event: b, "gtm.element": a, "gtm.elementClasses": fc(a, "className"), "gtm.elementId": a["for"] || ac(a, "id") || "", "gtm.elementTarget": a.formTarget || fc(a, "target") || "" }; c && (d["gtm.triggers"] = c.join(",")); d["gtm.elementUrl"] = (a.attributes && a.attributes.formaction ? a.formAction : "") || a.action || fc(a, "href") || a.src || a.code || a.codebase || ""; return d }, dt = function (a) {
         U.hasOwnProperty("autoEventsSettings") || (U.autoEventsSettings = {}); var b = U.autoEventsSettings; b.hasOwnProperty(a) || (b[a] = {});
         return b[a]
@@ -723,7 +724,7 @@
                     e, function (g) { b.g.stop(); f(g); b.Kf() && b.g.start() })
             }; c(m, "focus", function () { b.s = !0 }); c(m, "blur", function () { b.s = !1 }); c(m, "pageshow", function (d) { b.isActive = !0; d.persisted && og(56); b.I && b.I() }); c(m, "pagehide", function () { b.isActive = !1; b.C && b.C() }); c(H, "visibilitychange", function () { b.isVisible = !H.hidden }); a.Ma() && -1 === (Ob.userAgent || "").indexOf("Firefox") && -1 === (Ob.userAgent || "").indexOf("FxiOS") && c(m, "beforeunload", function () {
                 aA =
-                !0
+                    !0
             }); this.Tf(); this.o = 0
         }
     }; l.Tf = function () { this.o += this.se(); this.g = hA(this); this.Kf() && this.g.start() }; l.Bk = function (a) { var b = this.se(); a.ab = b }; l.Hj = function (a) { iA ? a.H[T.Nd] = void 0 : a.ab = 0; this.Tf(); this.o = 0 }; l.Kf = function () { return this.s && this.isVisible && this.isActive }; l.Cj = function () {
@@ -771,16 +772,16 @@
         var c = new m.XMLHttpRequest; c.withCredentials = !0; var d = b ? "POST" : "GET", e = "", f = 0, g = pi(a), h = iB(g), k = hB(g); c.onprogress = function (n) {
             if (200 ===
                 c.status) {
-                    e += c.responseText.substring(f); f = n.loaded; for (var p = gB(e, h), q = p.indexOf("\n\n"); -1 !== q;) {
-                        var r; a: { var t = ea(p.substring(0, q).split("\n")), u = t.next().value, v = t.next().value; if (u.startsWith("event: message") && v.startsWith("data: ")) try { r = JSON.parse(v.substring(v.indexOf(":") + 1)); break a } catch (Q) { } r = void 0 } if (r) {
-                            var y = r.send_pixel || []; if (Array.isArray(y)) for (var x = 0; x < y.length; x++) {
-                                var w = y[x], A = Cn('', 0); if (1 === A) {
-                                    var B = Math.floor(2 * Math.random()) +
-                                        1, D, C = w, E = B, F = 0 < C.indexOf("?") ? "&" : "?"; D = "" + C + F + "gtmexpsb=" + E; 2 === B ? ec(D) : Yb(D)
-                                } else 2 === A ? ec(w) : Yb(w)
-                            }
-                        } p = p.substring(q + 2); q = p.indexOf("\n\n")
-                    } e = p
+                e += c.responseText.substring(f); f = n.loaded; for (var p = gB(e, h), q = p.indexOf("\n\n"); -1 !== q;) {
+                    var r; a: { var t = ea(p.substring(0, q).split("\n")), u = t.next().value, v = t.next().value; if (u.startsWith("event: message") && v.startsWith("data: ")) try { r = JSON.parse(v.substring(v.indexOf(":") + 1)); break a } catch (Q) { } r = void 0 } if (r) {
+                        var y = r.send_pixel || []; if (Array.isArray(y)) for (var x = 0; x < y.length; x++) {
+                            var w = y[x], A = Cn('', 0); if (1 === A) {
+                                var B = Math.floor(2 * Math.random()) +
+                                    1, D, C = w, E = B, F = 0 < C.indexOf("?") ? "&" : "?"; D = "" + C + F + "gtmexpsb=" + E; 2 === B ? ec(D) : Yb(D)
+                            } else 2 === A ? ec(w) : Yb(w)
+                        }
+                    } p = p.substring(q + 2); q = p.indexOf("\n\n")
+                } e = p
             }
         }; c.open(d, k); c.send(b)
     };
@@ -971,7 +972,7 @@
         } function n(u) {
             var v = !!u.vtp_captureStart, y = !!u.vtp_captureComplete, x = !!u.vtp_capturePause, w = g(u.vtp_progressThresholdsPercent + ""), A = h(u.vtp_progressThresholdsTimeInSeconds + ""), B = !!u.vtp_fixMissingApi; if (v || y || x || w.length || A.length) {
                 var D = { fd: v, dd: y, ed: x, xd: w, yd: A, yb: B, Ya: void 0 === u.vtp_uniqueTriggerId ? "" : u.vtp_uniqueTriggerId },
-                C = X("YT"), E = function () { e(D) }; I(u.vtp_gtmOnSuccess); if (C) C.ready && C.ready(E); else { var F = X("onYouTubeIframeAPIReady"); Jt("onYouTubeIframeAPIReady", function () { F && F(); E() }); I(function () { for (var Q = X("document"), K = Q.getElementsByTagName("script"), J = K.length, R = 0; R < J; R++) { var N = K[R].getAttribute("src"); if (b(N, "iframe_api") || b(N, "player_api")) return } for (var M = Q.getElementsByTagName("iframe"), V = M.length, ba = 0; ba < V; ba++)if (!t && c(M[ba], D.yb)) { W("https://www.youtube.com/iframe_api"); t = !0; break } }) }
+                    C = X("YT"), E = function () { e(D) }; I(u.vtp_gtmOnSuccess); if (C) C.ready && C.ready(E); else { var F = X("onYouTubeIframeAPIReady"); Jt("onYouTubeIframeAPIReady", function () { F && F(); E() }); I(function () { for (var Q = X("document"), K = Q.getElementsByTagName("script"), J = K.length, R = 0; R < J; R++) { var N = K[R].getAttribute("src"); if (b(N, "iframe_api") || b(N, "player_api")) return } for (var M = Q.getElementsByTagName("iframe"), V = M.length, ba = 0; ba < V; ba++)if (!t && c(M[ba], D.yb)) { W("https://www.youtube.com/iframe_api"); t = !0; break } }) }
             } else I(u.vtp_gtmOnSuccess)
         }
         var p = ["www.youtube.com", "www.youtube-nocookie.com"], q = { UNSTARTED: -1, ENDED: 0, PLAYING: 1, PAUSED: 2, BUFFERING: 3, CUED: 5 }, r, t = !1; (function (u) { Z.__ytl = u; Z.__ytl.m = "ytl"; Z.__ytl.isVendorTemplate = !0; Z.__ytl.priorityOverride = 0 })(function (u) { u.vtp_triggerStartOption ? n(u) : ul(function () { n(u) }) })
@@ -993,12 +994,12 @@
             return v && ac(v, t) || u
         } var k = /^https?:\/\//i, n = {}, p = [], q = { ATTRIBUTE: "elementAttribute", CLASSES: "elementClasses", ELEMENT: "element", ID: "elementId", HISTORY_CHANGE_SOURCE: "historyChangeSource", HISTORY_NEW_STATE: "newHistoryState", HISTORY_NEW_URL_FRAGMENT: "newUrlFragment", HISTORY_OLD_STATE: "oldHistoryState", HISTORY_OLD_URL_FRAGMENT: "oldUrlFragment", TARGET: "elementTarget" }; (function (r) { Z.__aev = r; Z.__aev.m = "aev"; Z.__aev.isVendorTemplate = !0; Z.__aev.priorityOverride = 0 })(function (r) {
             var t = r.vtp_gtmEventId, u = r.vtp_defaultValue,
-            v = r.vtp_varType, y = r.vtp_gtmCachedValues.gtm; switch (v) {
-                case "TAG_NAME": var x = y.element; return x && x.tagName || u; case "TEXT": return a(y, t, v, bc) || u; case "URL": var w; a: { var A = String(y.elementUrl || u || ""), B = pi(A), D = String(r.vtp_component || "URL"); switch (D) { case "URL": w = A; break a; case "IS_OUTBOUND": w = c(A, r.vtp_affiliatedDomains); break a; default: w = ni(B, D, r.vtp_stripWww, r.vtp_defaultPages, r.vtp_queryKey) } } return w; case "ATTRIBUTE": var C; if (void 0 === r.vtp_attribute) C = b(y, v, u); else {
-                    var E = y.element; C = E && ac(E, r.vtp_attribute) ||
-                        u || ""
-                } return C; case "MD": var F = r.vtp_mdValue, Q = a(y, t, "MD", wt); return F && Q ? zt(Q, F) || u : Q || u; case "FORM": return e(String(r.vtp_component || "SUBMIT_TEXT"), y, t, u); default: var K = b(y, v, u); Pt(K, "aev", r.vtp_gtmEventId); return K
-            }
+                v = r.vtp_varType, y = r.vtp_gtmCachedValues.gtm; switch (v) {
+                    case "TAG_NAME": var x = y.element; return x && x.tagName || u; case "TEXT": return a(y, t, v, bc) || u; case "URL": var w; a: { var A = String(y.elementUrl || u || ""), B = pi(A), D = String(r.vtp_component || "URL"); switch (D) { case "URL": w = A; break a; case "IS_OUTBOUND": w = c(A, r.vtp_affiliatedDomains); break a; default: w = ni(B, D, r.vtp_stripWww, r.vtp_defaultPages, r.vtp_queryKey) } } return w; case "ATTRIBUTE": var C; if (void 0 === r.vtp_attribute) C = b(y, v, u); else {
+                        var E = y.element; C = E && ac(E, r.vtp_attribute) ||
+                            u || ""
+                    } return C; case "MD": var F = r.vtp_mdValue, Q = a(y, t, "MD", wt); return F && Q ? zt(Q, F) || u : Q || u; case "FORM": return e(String(r.vtp_component || "SUBMIT_TEXT"), y, t, u); default: var K = b(y, v, u); Pt(K, "aev", r.vtp_gtmEventId); return K
+                }
         })
     }();
     Z.h.dlm = ["google"], function () { (function (a) { Z.__dlm = a; Z.__dlm.m = "dlm"; Z.__dlm.isVendorTemplate = !0; Z.__dlm.priorityOverride = 0 })(function (a) { var b = Oy(a.vtp_userInput || [], "key", "value") || {}; a.vtp_synchronousWrite ? Pa(b, function (c, d) { Uh(c, d) }) : It(b); I(a.vtp_gtmOnSuccess) }) }();
