@@ -4,6 +4,7 @@ import { clearResults, resetResults, } from "./search.js";
 import { } from "./components/contact-modal.js";
 import { userEmail, userSignedIn } from "./auth.js";
 import { debugOn } from "./environment.js";
+import { sendContactData } from "./contact.js";
 
 const body = document.querySelector('body');
 
@@ -57,7 +58,9 @@ function createContactModal() {
     contactModal.id = 'contact-modal';
     contactModal.contactForm = {};
     contactModal.onsubmit = (event) => {
-        if (debugOn()) { console.log('MC - Contact form submitted'); }
+        if (debugOn()) { console.log('MC - Contact form submitted', event.target); }
+        event.preventDefault();
+        sendContactData(event.target);
         contactModal.classList.toggle('modal-open');
     };
     body.append(contactModal);
