@@ -66,14 +66,6 @@ function createContactModal() {
     body.append(contactModal);
     contactModal.querySelector('#contact-modal-name').focus();
     contactModal.classList.toggle('modal-open');
-    removeHiddenContact();
-}
-
-function removeHiddenContact() {
-    const hiddenContact = contactModal = document.getElementById('hidden-contact');
-    if (hiddenContact) {
-        hiddenContact.remove();
-    }
 }
 
 function checkForModals() {

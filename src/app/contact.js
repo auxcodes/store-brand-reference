@@ -32,7 +32,6 @@ export function sendContactData(formData) {
             errorAlert();
             console.error('Contact form response error: ', response);
         }
-        console.log(formData);
         formData.parentElement.classList.toggle('modal-open');
     };
 
