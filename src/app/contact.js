@@ -20,9 +20,13 @@ export function sendContactData(formData) {
         subject: formData['subject'].value
     });
 
+    const contactProgressBar = parentEl.querySelector('#contact-progress');
+    contactProgress();
+
     XHR.onload = (event) => {
         const response = JSON.parse(event.target.responseText);
         if (debugOn()) { console.log('C - Contact form response: ', response) }
+        progress = 100;
         if (response.msg === "Contact Successful") {
             onOpenAlert({
                 text: `Thank you ${name} for contacting us, we shall respond as soon as we can.`,
@@ -49,4 +53,19 @@ export function sendContactData(formData) {
             alertType: 'negative-alert'
         });
     }
+
+    const total = 100;
+    let progress = 25;
+
+    function contactProgress() {
+        setTimeout(() => {
+            contactProgressBar.style.width = progress + '%';
+            if (progress < total) {
+                progress += (total - progress) / 2;
+                contactProgress();
+            }
+        }, 250);
+    }
+
+
 }

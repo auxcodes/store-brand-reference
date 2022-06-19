@@ -22,8 +22,9 @@ class ContactModal extends HTMLElement {
                     required></textarea>
             </div>
             <div class="container">
-                <div class="btn-row">
-                    <button id="contact-btn" class="modal-btn contact-btn" type="submit">Send</button>
+                <button id="contact-btn" class="modal-btn contact-btn" type="submit">Send</button>
+                <div id="contact-progress-bar" class="contact-progress-bar">
+                    <span id="contact-progress" class="contact-progress"></span>
                 </div>
             </div>
             <input type="hidden" name="form-name" value="contact" />
