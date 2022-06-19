@@ -1,5 +1,6 @@
 import { onOpenAlert } from "./alerts.js";
 import { debugOn, getContactUrl } from "./environment.js";
+import { contactEvent } from "./support.js";
 
 const method = "POST";
 const shouldBeAsync = true;
@@ -13,8 +14,9 @@ export function sendContactData(formData) {
     XHR.setRequestHeader('Access-Control-Allow-Origin', '*')
     XHR.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     const name = formData['name'].value;
+    const email = formData['email'].value;
     const formContent = JSON.stringify({
-        email: formData['email'].value,
+        email: email,
         message: formData['message'].value,
         name: name,
         subject: formData['subject'].value
@@ -22,6 +24,7 @@ export function sendContactData(formData) {
 
     const contactProgressBar = parentEl.querySelector('#contact-progress');
     contactProgress();
+    contactEvent(email);
 
     XHR.onload = (event) => {
         const response = JSON.parse(event.target.responseText);

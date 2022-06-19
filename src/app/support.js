@@ -47,6 +47,16 @@ export function noResultEvent(searchTerm) {
     if (debugOn()) { console.log('GA - Failed Search Event: ', eventInfo); }
 }
 
+export function contactEvent(email) {
+    const eventInfo = {
+        'event_category': 'contact',
+        'event_label': email,
+        'debug_mode': debugOn()
+    };
+    gtag('event', 'contact_sent', eventInfo);
+    if (debugOn()) { console.log('GA - Contact Us Event: ', eventInfo); }
+}
+
 function storeClickEvent(storeName) {
     const eventInfo = {
         'event_category': 'click',
