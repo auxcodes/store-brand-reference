@@ -21,12 +21,12 @@ class ContactModal extends HTMLElement {
                 <textarea rows="5" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Message text..." name="message"
                     required></textarea>
             </div>
-                <div class="container">
-                    <div class="btn-row">
-                        <button id="contact-btn" class="modal-btn contact-btn" type="submit">Send</button>
-                    </div>
+            <div class="container">
+                <div class="btn-row">
+                    <button id="contact-btn" class="modal-btn contact-btn" type="submit">Send</button>
                 </div>
-                <input type="hidden" name="form-name" value="contact" />
+            </div>
+            <input type="hidden" name="form-name" value="contact" />
         </form>
     </div>
         `;

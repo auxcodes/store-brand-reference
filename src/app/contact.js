@@ -7,6 +7,7 @@ const shouldBeAsync = true;
 export function sendContactData(formData) {
     const XHR = new XMLHttpRequest();
     const url = getContactUrl();
+    const parentEl = formData.parentElement;
     XHR.open(method, url, shouldBeAsync);
     XHR.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     XHR.setRequestHeader('Access-Control-Allow-Origin', '*')
@@ -32,7 +33,7 @@ export function sendContactData(formData) {
             errorAlert();
             console.error('Contact form response error: ', response);
         }
-        formData.parentElement.classList.toggle('modal-open');
+        parentEl.classList.toggle('modal-open');
     };
 
     XHR.onerror = (event) => {

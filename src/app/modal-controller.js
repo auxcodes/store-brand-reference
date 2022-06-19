@@ -61,7 +61,6 @@ function createContactModal() {
         if (debugOn()) { console.log('MC - Contact form submitted', event.target); }
         event.preventDefault();
         sendContactData(event.target);
-        contactModal.classList.toggle('modal-open');
     };
     body.append(contactModal);
     contactModal.querySelector('#contact-modal-name').focus();

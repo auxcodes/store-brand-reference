@@ -79,10 +79,10 @@ function signInWithEmail(email) {
         const status = request.status;
         const data = JSON.parse(request.responseText);
         const error = request.error;
-        if (debugOn()) { console.log('AU - onload: ', status, ', Data.msg: ', data.msg, 'Error: ', error); }
+        if (debugOn()) { console.log('AU - onload: ', status, ', Data.msg: ', data.msg, ', Error: ', error); }
         progress = 100;
         loginProgressBar.style.width = '100%';
-        if (data.msg !== "Validation Successful") {
+        if (data.msg === "Validation Successful") {
             window.localStorage.setItem('emailForSignIn', email);
             onCloseLogin();
             onOpenAlert({
@@ -96,7 +96,7 @@ function signInWithEmail(email) {
                 alertType: 'negative-alert'
             });
         }
-    }
+    };
 
     request.onerror = (e) => {
         if (debugOn()) { console.error('AU - Sign Error:', e, request.status); }
@@ -104,7 +104,7 @@ function signInWithEmail(email) {
             text: 'An error occurred during the login process!',
             alertType: 'negative-alert'
         });
-    }
+    };
 
     const total = 100;
     let progress = 25;
