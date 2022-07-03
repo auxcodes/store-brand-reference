@@ -26,6 +26,14 @@
     --positive-alert-bgcolor: rgb(229, 255, 220);
     --negative-alert-color: rgb(203, 0, 0);
     --negative-alert-bgcolor: rgb(255, 214, 214);
+    --notif-added-color:rgb(2, 172, 53);
+    --notif-added-bgcolor:rgb(229, 255, 220);
+    --notif-updated-color:rgb(203, 105, 0);
+    --notif-updated-bgcolor:rgb(255, 236, 214);
+    --notif-deleted-color:rgb(203, 0, 0);
+    --notif-deleted-bgcolor:rgb(255, 214, 214);
+    --notif-website-color:rgb(0, 118, 203);
+    --notif-website-bgcolor:rgb(214, 239, 255);
 }
 
 body {
@@ -204,15 +212,37 @@ button {
     display: block;
     position: relative;
     border-radius: 0.5em;
-    border: 2px solid rgb(0, 112, 146);
-    background-color: var(--background-notif);
     padding: 0.75em 1.3em 0.75em 0.75em;
     margin: auto auto 0.25em auto;
 }
 
 .notif-text {
     margin: 0;
-    color: #666;
+    border: none !important;
+}
+
+.notif-color--add {
+    color: var(--notif-added-color);
+    background-color: var(--notif-added-bgcolor);
+    border: 2px solid var(--notif-added-color);
+}
+
+.notif-color--update {
+    color: var(--notif-updated-color);
+    background-color: var(--notif-updated-bgcolor);
+    border: 2px solid var(--notif-updated-color);
+}
+
+.notif-color--delete {
+    color: var(--notif-deleted-color);
+    background-color: var(--notif-deleted-bgcolor);
+    border: 2px solid var(--notif-deleted-color);
+}
+
+.notif-color--website {
+    color: var(--notif-website-color);
+    background-color: var(--notif-website-bgcolor);
+    border: 2px solid var(--notif-website-color);
 }
 
 .notif-close {
@@ -220,7 +250,6 @@ button {
     right: 2px;
     top: 2px;
     font-size: 1.35rem;
-    color: rgb(0, 112, 146);
     cursor: pointer;
     font-size: 1.35rem;
     margin: 0;
@@ -229,6 +258,7 @@ button {
     font-weight: bold;
     line-height: 0.82;
     border-radius: 1em;
+    border: none;
 }
 
 .more-notifications-btn {
@@ -918,7 +948,7 @@ span.psw {
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
+    padding-top: 1em;
     opacity: 0;
     clip-path: circle(0px at center);
     transition: 
@@ -954,6 +984,38 @@ span.psw {
 .modal-textarea {
     resize: vertical;
 }
+
+.change-notes {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding-top: 1em;
+    padding: 0;
+    border-top: 1px solid var(--border-menu);
+}
+
+.change-notes label {
+    padding-bottom: 0;
+    margin-left: 0.25em;
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
+
+.contact-progress-bar {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-bottom: 1px solid #666;
+    margin: 0.25em 0 0.25em 0;
+}
+
+.contact-progress-bar .contact-progress {
+    display: block;
+    height: 100%;
+    background-color: #2696ff;
+    width: 0%;
+}
+
 
 /* The Close Button */
 .close {

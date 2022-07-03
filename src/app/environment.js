@@ -1,5 +1,6 @@
 
 const functionURLs = { local: "http://localhost:8888/.netlify/functions/fbauth", dev: "https://dev.storesearch.aux.codes/.netlify/functions/fbauth", prod: "https://storesearch.aux.codes/.netlify/functions/fbauth" };
+const contactURLs = { local: "http://localhost:8888/.netlify/functions/contact", dev: "https://dev.storesearch.aux.codes/.netlify/functions/contact", prod: "https://storesearch.aux.codes/.netlify/functions/contact" };
 const firebaseEnv = {
     dev: {
         apiKey: "AIzaSyAgMoqCYbnNy2e-yXpe20IOmgbDzzO_Neg",
@@ -48,6 +49,16 @@ export function getFunctionUrl() {
     if (env === 'dev') {
         const currentUrl = window.location.host;
         result = currentUrl.includes('localhost') ? functionURLs.local : functionURLs.dev;
+    }
+    return result;
+}
+
+export function getContactUrl() {
+    let result = contactURLs.prod;
+    const env = getEnvironment();
+    if (env === 'dev') {
+        const currentUrl = window.location.host;
+        result = currentUrl.includes('localhost') ? contactURLs.local : contactURLs.dev;
     }
     return result;
 }

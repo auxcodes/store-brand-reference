@@ -5,6 +5,7 @@ import { } from "./components/contact-modal.js";
 import { userEmail, userSignedIn } from "./auth.js";
 import { debugOn } from "./environment.js";
 import { openHistory } from "./history.js";
+import { sendContactData } from "./contact.js";
 
 const body = document.querySelector('body');
 
@@ -66,20 +67,13 @@ function createContactModal() {
     contactModal.id = 'contact-modal';
     contactModal.contactForm = {};
     contactModal.onsubmit = (event) => {
-        if (debugOn()) { console.log('MC - Contact form submitted'); }
-        contactModal.classList.toggle('modal-open');
+        if (debugOn()) { console.log('MC - Contact form submitted', event.target); }
+        event.preventDefault();
+        sendContactData(event.target);
     };
     body.append(contactModal);
     contactModal.querySelector('#contact-modal-name').focus();
     contactModal.classList.toggle('modal-open');
-    removeHiddenContact();
-}
-
-function removeHiddenContact() {
-    const hiddenContact = contactModal = document.getElementById('hidden-contact');
-    if (hiddenContact) {
-        hiddenContact.remove();
-    }
 }
 
 function checkForModals() {

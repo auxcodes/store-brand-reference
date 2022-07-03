@@ -43,10 +43,6 @@ export class AppDataService {
             .catch(error => { console.error('AD - Error checking cloud data:', error); });
     }
 
-    updateShop(shopData) {
-        this.cloudStorageService.updateShop(shopData);
-    }
-
     updateAllData(allShopData) {
         this.cloudStorageService.updateStorage(allShopData);
     }
@@ -62,9 +58,5 @@ export class AppDataService {
                 }
             );
         });
-    }
-
-    backupDate(shopData) {
-        if (debugOn()) { console.log("Backup App Data"); }
     }
 }

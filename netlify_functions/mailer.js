@@ -46,4 +46,37 @@ async function sendSignInEmail(emailAddress, link) {
     });
 }
 
-module.exports = { sendSignInEmail };
+async function sendContactEmail(contactInfo) {
+    const mailOptions = {
+        to: "info@aux.codes",
+        from: "noreply@aux.codes",
+        subject: "Contact Form: " + contactInfo.subject,
+        html: `
+        <div style="border: 2px #c1c1c1 solid; border-radius: 1em; padding: 1em; font-family: Arial, sans-serif;">
+        <p style="">Email: ${contactInfo.email}</p>
+        <p style="">Name: ${contactInfo.name}</p>
+        <p style="">Subject: ${contactInfo.subject}</p>
+        <p style="">Message: ${contactInfo.message}</p>
+      </div>
+      `
+    }
+
+    try {
+        await transporter.sendMail(mailOptions, (error, info) => {
+            if (info) {
+                console.log('Contact form sent email:', info);
+                return info;
+            }
+
+            if (error) {
+                console.error('Error sending contact email: ', error);
+                return error;
+            }
+        });
+    } catch (error) {
+        console.error('Error sending contact email: ', error);
+        return error;
+    }
+}
+
+module.exports = { sendSignInEmail, sendContactEmail };

@@ -2,6 +2,7 @@ import { onOpenAlert } from "./alerts.js";
 import { CloudStorageService } from "./cloud-storage.js";
 import { } from "./components/notification-modal.js";
 import { openHistory } from "./history.js";
+import { debugOn } from "./environment.js";
 
 let localStorageService = null;
 let cloudService = null;
@@ -62,21 +63,29 @@ async function getNotifications() {
 function onLoadMore(amount) {
     const cs = getCloudService();
     const loadCount = amount < defaultShow ? amount : defaultShow;
+    if (debugOn()) { console.log('N - onLoadMore: ', lastNotification); }
     const options = { childName: 'date', startPos: lastNotification, count: loadCount, dataPath: storageKey }
     const dbRef = cs.startAfterFilterRef(options);
     cs.getItems(dbRef)
         .then(notifs => {
             if (notifs) {
                 let result = cs.objectToArray(notifs);
-                lastNotification = result[result.length - 1].date;
-                notificationObjects = notificationObjects.concat(result);
-                endOfData = result.length < defaultShow;
+                if (debugOn()) { console.log('N - new last notif: ', lastNotification); }
+                const displayedNotifs = new Set(notificationObjects.map(notif => notif.id));
+                notificationObjects = notificationObjects.concat(result.filter(notif => !displayedNotifs.has(notif.id)));
+                const lastResultDate = notificationObjects[notificationObjects.length - 1].date;
+                endOfData = result.length < defaultShow || lastNotification === lastResultDate;
+                lastNotification = lastResultDate;
                 checkReadHistory();
+                if (endOfData) {
+                    disableLoadMore();
+                }
             }
             else {
                 addNotificationModals();
                 disableLoadMore();
             }
+
         });
 }
 
@@ -111,8 +120,9 @@ function addNotifModal(item) {
     const date = new Date(item.date);
     const modal = document.createElement('notification-modal');
     modal.id = item.id;
-    modal.classList.add('notification-bar');
-    modal.notification = { id: item.id, date: date.toLocaleDateString(), text: item.text };
+    const colorClass = notificationColor(item.type);
+    modal.classList.add('notification-bar', colorClass);
+    modal.notification = { id: item.id, date: date.toLocaleDateString(), text: item.text, color: colorClass };
     notificationsList.append(modal);
 }
 
@@ -123,10 +133,12 @@ function checkReadHistory() {
     }
     else {
         notificationObjects.forEach(item => {
-            if (notificationHistory[item.id] === false) {
+            const showNotification = notificationHistory[item.id];
+            if (showNotification === false) {
                 item["show"] = false;
             }
             else {
+
                 tempNotifications.push(item);
             }
         });
@@ -198,7 +210,8 @@ function setObject(key, value) {
 export function createNotification(changeObj) {
     const notification = {
         "date": changeObj.date,
-        "text": `${changeObj.name} has been ${changeObj.type} by ${changeObj.user}`
+        "text": `${changeObj.name} has been ${changeObj.type} by ${changeObj.user}`,
+        "type": changeObj.type
     };
     const cs = getCloudService();
     cs.addItem(storageKey, notification)
@@ -212,6 +225,13 @@ export function createNotification(changeObj) {
         });
     refreshNotifications();
     return notification;
+}
+
+function notificationColor(type) {
+    if (type === 'added') { return 'notif-color--add'; }
+    if (type === 'updated') { return 'notif-color--update'; }
+    if (type === 'deleted') { return 'notif-color--delete'; }
+    else { return 'notif-color--website'; }
 }
 
 function sortNotifications(notifArray) {

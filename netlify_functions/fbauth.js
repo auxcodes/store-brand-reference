@@ -2,6 +2,8 @@ const admin = require('firebase-admin');
 const sdkAuth = require('firebase-admin/auth');
 const mailer = require('./mailer');
 
+const env = currentEnv();
+
 const serviceAccount = {
     type: process.env.FIREBASE_TYPE,
     project_id: process.env.FIREBASE_PROJECT_ID,
@@ -17,7 +19,7 @@ const serviceAccount = {
 
 const app = admin.apps && admin.apps.length > 0 ? admin.apps[0] : admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app/"
+    databaseURL: process.env.FIREBASE_DATABASE_URL
 });
 
 const auth = sdkAuth.getAuth();
@@ -28,6 +30,10 @@ const headers = {
     'Access-Control-Allow-Credentials': true,
     'Access-Control-Allow-Headers': 'Authorization'
 };
+
+function currentEnv() {
+    return process.env.CONTEXT === 'dev' ? 'dev' : 'prod';
+}
 
 exports.handler = async (event, context, callback) => {
     const body = JSON.parse(event.body);
@@ -49,7 +55,7 @@ exports.handler = async (event, context, callback) => {
                 callback(null, {
                     statusCode: 200,
                     headers,
-                    body: JSON.stringify({ msg: 'Validation SuccessFul', error: errors })
+                    body: JSON.stringify({ msg: 'Validation Successful', error: errors })
                 });
                 mailer.sendSignInEmail(email, link);
             })
@@ -84,6 +90,10 @@ exports.handler = async (event, context, callback) => {
         const requestUrl = event.headers.referer;
         console.log('Request URL: ', requestUrl);
         let result = environmentURLs.find(envUrl => requestUrl.includes(envUrl));
+        if (env === 'dev') {
+            const envUrlText = requestUrl.includes('dev') ? 'dev' : 'local';
+            result = environmentURLs.find(envUrl => envUrl.includes(envUrlText));
+        }
         return result === undefined ? '' : result;
     }
 }
