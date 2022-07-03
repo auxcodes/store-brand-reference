@@ -4,6 +4,7 @@ import { clearResults, resetResults, } from "./search.js";
 import { } from "./components/contact-modal.js";
 import { userEmail, userSignedIn } from "./auth.js";
 import { debugOn } from "./environment.js";
+import { openHistory } from "./history.js";
 
 const body = document.querySelector('body');
 
@@ -33,6 +34,14 @@ export function onOpenShop(shopId) {
         };
     }
     checkForModals();
+}
+
+export function onOpenHistory() {
+    if (debugOn()) { console.log('MC - Open history modal request...'); }
+    if (loginModal !== null && loginModal.classList.contains('modal-open')) {
+        onCloseLogin();
+    }
+    openHistory();
 }
 
 export function onOpenContact() {

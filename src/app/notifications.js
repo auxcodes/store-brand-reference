@@ -1,6 +1,7 @@
 import { onOpenAlert } from "./alerts.js";
 import { CloudStorageService } from "./cloud-storage.js";
 import { } from "./components/notification-modal.js";
+import { openHistory } from "./history.js";
 
 let localStorageService = null;
 let cloudService = null;
@@ -25,6 +26,8 @@ function onOpenHistory() {
         text: `This feature is not currently available. :(`,
         alertType: 'negative-alert'
     });
+    toggleNotifications();
+    openHistory();
 }
 
 function getCloudService() {

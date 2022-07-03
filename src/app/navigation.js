@@ -1,5 +1,5 @@
 import { } from "./components/menu-modal.js"
-import { onLoginClick, onOpenContact, onOpenShop } from "./modal-controller.js";
+import { onLoginClick, onOpenContact, onOpenShop, onOpenHistory } from "./modal-controller.js";
 import { toggleNotifications } from "./notifications.js";
 import { hasShopDetailForm } from "./shop-detail.js"
 import { signOutUser, userSignedIn } from "./auth.js";
@@ -49,10 +49,13 @@ class SiteMenu {
         this.notifIcon = document.getElementById('notif-icon');
         this.setNotificationsOnClick();
 
-        this.addShopButton = document.getElementById('add-shop-link');
+        this.addShopButton = this.siteNav.querySelector('#add-shop-link');
         this.setAddShopOnClick();
 
-        this.contactButton = document.getElementById('contact-link');
+        this.historyButton = this.siteNav.querySelector('#history-link');
+        this.setHistoryOnClick();
+
+        this.contactButton = this.siteNav.querySelector('#contact-link');
         this.setContactButtonOnClick();
 
         this.loginButton = this.siteNav.querySelector('#login-link');
@@ -87,6 +90,14 @@ class SiteMenu {
             if (hasShopDetailForm()) {
                 onOpenShop();
             }
+        }
+    }
+
+    setHistoryOnClick() {
+        this.historyButton.onclick = (event) => {
+            if (debugOn()) { console.log('NAV - History menu item clicked'); }
+            this.toggleMenu();
+            onOpenHistory();
         }
     }
 

@@ -760,6 +760,32 @@ button {
     color: #d2d2d2;
 }
 
+/* History */
+.history-modal {
+    padding: 0 !important;
+}
+
+.history-content {
+    max-width: none !important;
+}
+
+.history-container {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #0000008f;
+    height: 100vh;
+    width: 100%;
+}
+
+.history-row {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border-menu);
+    padding: 0.5em;
+}
+
 /* Login Form */
 /* Bordered form */
 .login-form {
