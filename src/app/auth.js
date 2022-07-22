@@ -5,6 +5,7 @@ import { onCloseLogin } from "./modal-controller.js";
 import { getFunctionUrl } from "./environment.js";
 import { NavigationService } from "./navigation.js";
 import { debugOn } from "./environment.js";
+import { loginEvent } from "./support.js";
 
 const method = "POST";
 const shouldBeAsync = true;
@@ -33,6 +34,7 @@ export function signUpForm() {
         if (debugOn()) { console.log('AU - Sign in form submitted...', event); }
         event.preventDefault();
         signInSubmitted(event);
+        loginEvent(event.target['uname'].value);
     };
 }
 

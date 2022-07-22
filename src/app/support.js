@@ -57,6 +57,16 @@ export function contactEvent(email) {
     if (debugOn()) { console.log('GA - Contact Us Event: ', eventInfo); }
 }
 
+export function loginEvent(email) {
+    const eventInfo = {
+        'event_category': 'login',
+        'event_label': email,
+        'debug_mode': debugOn()
+    };
+    gtag('event', 'login_attempt', eventInfo);
+    if (debugOn()) { console.log('GA - Login Event: ', eventInfo); }
+}
+
 function storeClickEvent(storeName) {
     const eventInfo = {
         'event_category': 'click',
