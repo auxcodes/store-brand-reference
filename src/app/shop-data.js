@@ -45,10 +45,18 @@ export function findProduct(productName) {
     return filterShops(productName, "parts");
 }
 
+export function findWarranty(warranty) {
+    return filterShops(warranty, "warranty");
+}
+
 function filterShops(searchTerm, property) {
     let results = allData;
     if (searchTerm !== "") {
-        results = allData.filter(shop => shop[property].toLowerCase().includes(searchTerm.toLowerCase()));
+        results = allData.filter(shop => {
+            if (shop[property] !== undefined) {
+                return shop[property].toLowerCase().includes(searchTerm.toLowerCase());
+            }
+        });
     }
     return deepCopy(results);
 }
@@ -57,9 +65,11 @@ export function filterWords(searchTerm, property) {
     let results = [];
     while (results.length === 0 && searchTerm.length > 0) {
         allData.forEach(shop => {
-            const found = findWord(searchTerm, shop[property].split(', '));
-            if (found.length > 0) {
-                results.push(...found);
+            if (shop[property] !== undefined) {
+                const found = findWord(searchTerm, shop[property].split(', '));
+                if (found.length > 0) {
+                    results.push(...found);
+                }
             }
         });
         searchTerm = searchTerm.slice(0, -1);

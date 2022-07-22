@@ -1,7 +1,7 @@
-import { initialised, findBrand, findProduct, getAllShops, filterWords } from "./shop-data.js";
+import { initialised, findBrand, findProduct, findWarranty, getAllShops, filterWords } from "./shop-data.js";
 import { pageColour } from "./ui.js";
 import { } from "./components/search-result-loading.js";
-import { brandSearchEvent, noResultEvent, productSearchEvent } from "./support.js";
+import { brandSearchEvent, noResultEvent, productSearchEvent, warrantySearchEvent } from "./support.js";
 import { debugOn } from "./environment.js";
 
 const searchForm = document.getElementById("form-search");
@@ -18,6 +18,9 @@ searchBrandBtn.addEventListener("click", searchBrand);
 
 const searchProductBtn = searchForm.querySelector("#searchProductBtn");
 searchProductBtn.addEventListener("click", searchProduct);
+
+const searchWarrantyBtn = searchForm.querySelector("#searchWarrantyBtn");
+searchWarrantyBtn.addEventListener("click", searchWarranty);
 
 const searchResultElement = document.getElementById("searchResults");
 let fakeResults = [];
@@ -88,6 +91,18 @@ function searchProduct(event) {
     if (debugOn()) { console.log("Search Product", searchValue, event); }
     searchResults = [];
     searchResults = findProduct(searchValue);
+    clearResults();
+    generateResults();
+}
+
+function searchWarranty(event) {
+    searchType = "warranty";
+    pageColour(searchType);
+    getSearchValue();
+    warrantySearchEvent(searchValue);
+    if (debugOn()) { console.log("Search Warranty", searchValue, event); }
+    searchResults = [];
+    searchResults = findWarranty(searchValue);
     clearResults();
     generateResults();
 }

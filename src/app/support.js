@@ -37,6 +37,16 @@ export function brandSearchEvent(searchTerm) {
     if (debugOn()) { console.log('GA - Brand Search Event: ', eventInfo); }
 }
 
+export function warrantySearchEvent(searchTerm) {
+    const eventInfo = {
+        'event_category': 'warranty',
+        'event_label': searchTerm,
+        'debug_mode': debugOn()
+    };
+    gtag('event', 'warranty_brands', eventInfo);
+    if (debugOn()) { console.log('GA - Brand Warranty Event: ', eventInfo); }
+}
+
 export function noResultEvent(searchTerm) {
     const eventInfo = {
         'event_category': 'search',

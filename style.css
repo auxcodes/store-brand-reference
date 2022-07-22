@@ -18,10 +18,15 @@
     --border-menu: #7c7c7c;
     --bg-color-menu: #3d3d3d;
     --product-color: rgb(2, 172, 53);
+    --product-border: rgb(3, 213, 66);
+    --warranty-color: rgb(227, 51, 57);
+    --warranty-border: rgb(231, 3, 3);
     --brand-color: rgb(1, 136, 255);
+    --brand-border: rgb(114, 189, 255);
     --active-search-color: var(--brand-color);
     --show-brands: block;
     --show-products: none;
+    --show-warranty: none;
     --positive-alert-color: rgb(2, 172, 53);
     --positive-alert-bgcolor: rgb(229, 255, 220);
     --negative-alert-color: rgb(203, 0, 0);
@@ -445,9 +450,9 @@ button {
     background-color: var(--brand-color);
     color: white;
     box-shadow: 0px 7px 20px #000;
-    border-top: 1px rgb(114, 189, 255) solid;
-    border-right: 1px rgb(114, 189, 255) solid;
-    border-left: 1px rgb(114, 189, 255) solid;
+    border-top: 1px var(--brand-border) solid;
+    border-right: 1px var(--brand-border) solid;
+    border-left: 1px var(--brand-border) solid;
     border-bottom: 1px var(--brand-color) solid;
 }
 
@@ -463,10 +468,28 @@ button {
     background-color: var(--product-color);
     color: white;
     box-shadow: 0px 7px 20px #000;
-    border-top: 1px rgb(3, 213, 66) solid;
-    border-right: 1px rgb(3, 213, 66) solid;
-    border-left: 1px rgb(3, 213, 66) solid;
+    border-top: 1px var(--product-border) solid;
+    border-right: 1px var(--product-border) solid;
+    border-left: 1px var(--product-border) solid;
     border-bottom: 1px var(--product-color) solid;
+}
+
+.warranty-btn {
+    background-color: var(--warranty-color);
+    color: white;
+    box-shadow: 0px 7px 8px #000;
+    border: 1px var(--warranty-color) solid, 1px var(--warranty-color) solid, 1px var(--warranty-color) solid,
+        1px #666 solid;
+}
+
+.warranty-btn-active {
+    background-color: var(--warranty-color);
+    color: white;
+    box-shadow: 0px 7px 20px #000;
+    border-top: 1px var(--warranty-border) solid;
+    border-right: 1px var(--warranty-border) solid;
+    border-left: 1px var(--warranty-border) solid;
+    border-bottom: 1px var(--warranty-color) solid;
 }
 
 @media screen and (max-width: 530px) {
