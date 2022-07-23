@@ -4,7 +4,7 @@ class MenuModal extends HTMLElement {
             <nav id="site-nav" class="site-nav">
                 <ul>
                     <li id="add-shop-link"><button title="Add new shop"><i class="fa fa-plus site-nav--icon"></i>Add Store</button></li>
-                    <li id="history-link"><button title="View change history"><i class="fa fa-history site-nav--icon"></i>History</button></li>
+                    <li id="history-link" style="display: none;"><button title="View change history"><i class="fa fa-history site-nav--icon"></i>History</button></li>
                     <li id="contact-link"><button title="Contact Us"><i class="fa fa-envelope site-nav--icon"></i>Contact</button></li>
                     <li id="logout-link"><button title="Logout"><i class="fa fa-sign-out site-nav--icon"></i>Logout</button></li>
                     <li id="login-link"><button title="Login"><i class="fa fa-sign-in site-nav--icon"></i>Login</button></li>
