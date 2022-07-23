@@ -122,7 +122,7 @@ function addNotifModal(item) {
     modal.id = item.id;
     const colorClass = notificationColor(item.type);
     modal.classList.add('notification-bar', colorClass);
-    modal.notification = { id: item.id, date: date.toLocaleDateString(), text: item.text, color: colorClass };
+    modal.notification = { id: item.id, date: date.toLocaleDateString('en-AU'), text: item.text, color: colorClass };
     notificationsList.append(modal);
 }
 
