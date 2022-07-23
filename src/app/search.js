@@ -139,6 +139,7 @@ export function generateResults() {
         noResultsFound();
         return;
     }
+    searchResults = sortResults(searchResults);
     searchResults.forEach(result => {
         const el = document.createElement('search-result-modal');
         const isIncomplete = checkCompletness(result) ? "result-row-incomplete" : "complete";
