@@ -43,6 +43,7 @@ function openAddShopDetailModal() {
         "shopURL": '',
         "brands": '',
         "parts": '',
+        "shopWarranty": '',
         "button": '<button id="addButton" class="modal-btn add-btn" type="submit">Add</button>'
     }
     return shopDetails;
@@ -61,21 +62,28 @@ function openEditShopDetailModal(shopId) {
     return shopDetails;
 }
 
+function formToLocal(formData) {
+    console.log(formData, formData['shopWarranty'].value, formData['shopWarranty']);
+    return {
+        shopId: formData['shopId'].value,
+        shopName: formData['shopName'].value,
+        shopURL: formData['shopUrl'].value,
+        brands: formData['shopBrands'].value,
+        parts: formData['shopProducts'].value,
+        shopWarranty: formData['shopWarranty'].value,
+        shopPhone: '',
+        shopEmail: '',
+        shopAddress: '',
+        shopInstagram: '',
+        shopFacebook: '',
+        shopNotes: ''
+    }
+}
+
 export function processShopDetails(fields, submitter) {
-    const name = fields['shopName'].value;
-    const url = fields['shopUrl'].value;
-    const brands = fields['shopBrands'].value;
-    const parts = fields['shopProducts'].value;
-    const id = fields['shopId'].value;
     const notes = fields['changeNotes'].value;
     const date = Date.now();
-    let shopDetails = {
-        shopId: id,
-        shopName: name,
-        shopURL: url,
-        brands: brands,
-        parts: parts
-    }
+    let shopDetails = formToLocal(fields);
     if (submitter === 'addButton') {
         shopDetails = {
             shopDetail: shopDetails,

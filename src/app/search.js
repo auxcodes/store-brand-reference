@@ -41,6 +41,9 @@ function onSearch(event) {
             searchProduct(event);
             return;
         }
+        if (searchType === 'warranty') {
+            searchWarranty(event);
+        }
     }
 }
 
@@ -112,9 +115,14 @@ export function onAltSearch(altSearch) {
     searchValue = "";
     if (altSearch.searchType === 'brands') {
         searchBrand(altSearch);
+        return;
     }
     if (altSearch.searchType === 'parts') {
         searchProduct(altSearch);
+        return;
+    }
+    if (altSearch.searchType === 'warranty') {
+        searchWarranty(altSearch);
     }
 }
 

@@ -1,7 +1,7 @@
 import { AuthService } from "./auth-service.js";
 import { CloudStorageService } from "./cloud-storage.js";
 import { LocalStorageService } from "./local-storage.js";
-import { getAllShops, ShopData } from "./shop-data.js";
+import { ShopData } from "./shop-data.js";
 import { debugOn } from "./environment.js";
 
 export class AppDataService {
@@ -54,7 +54,8 @@ export class AppDataService {
                     brands: shop.brands,
                     parts: shop.parts,
                     shopName: shop.shopName,
-                    shopURL: shop.shopURL
+                    shopURL: shop.shopURL,
+                    warranty: shop.shopWarranty
                 }
             );
         });

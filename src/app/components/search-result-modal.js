@@ -6,6 +6,7 @@ class SearchResult extends HTMLElement {
             <button id='editStoreBtn' class='edit-btn' title='Edit Store' onclick='onOpenShop("${result.shopId}")'></button> 
             <span class='brand-list'><b>Brands: </b>${result.brands}</span>
             <span class='product-list'><b>Products: </b>${result.parts}</span>
+            <span class='warranty-list'><b>Warranty: </b>${result.shopWarranty}</span>
             <span id='shopId' class='shop-id'>${result.shopId}</span>
         `;
     }

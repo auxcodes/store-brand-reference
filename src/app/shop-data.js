@@ -46,7 +46,17 @@ export function findProduct(productName) {
 }
 
 export function findWarranty(warranty) {
-    return filterShops(warranty, "warranty");
+    return warranty === "" ? allWarranty() : filterShops(warranty, "shopWarranty");
+}
+
+function allWarranty() {
+    let results = allData;
+    results = allData.filter(shop => {
+        if (shop["shopWarranty"] !== undefined && shop["shopWarranty"] !== '') {
+            return shop["shopWarranty"];
+        }
+    });
+    return deepCopy(results);
 }
 
 function filterShops(searchTerm, property) {

@@ -43,24 +43,16 @@ export class AppCloudStorage {
 
     updateShop(shopData) {
         const shopRef = ref(this.database, this.workingFile + '/' + shopData.shopId);
-        return set(shopRef, {
-            brands: shopData.brands,
-            parts: shopData.parts,
-            name: shopData.shopName,
-            link: shopData.shopURL
-        });
+        const newData = this.localToCloud(shopData);
+        return set(shopRef, newData);
     }
 
     async addShop(newShopData) {
         if (debugOn()) { console.log('CS - Add Shop: ', newShopData); }
         try {
             const shopRef = ref(this.database, this.workingFile);
-            const newShopRef = push(shopRef, {
-                brands: newShopData.brands,
-                parts: newShopData.parts,
-                name: newShopData.shopName,
-                link: newShopData.shopURL
-            });
+            const newData = this.localToCloud(newShopData);
+            const newShopRef = push(shopRef, newData);
             return newShopRef.key;
         }
         catch (error) {
@@ -99,7 +91,7 @@ export class AppCloudStorage {
                 .then((snapshot) => {
                     if (snapshot.exists()) {
                         if (debugOn()) { console.log("CS - Snapshot: ", snapshot.val()); }
-                        shopData = this.convertToLocalData(snapshot.val());
+                        shopData = this.convertAllToLocalData(snapshot.val());
                     } else {
                         if (debugOn()) { console.log("No data available"); }
                         shopData = null;
@@ -172,21 +164,49 @@ export class AppCloudStorage {
         return localData;
     }
 
-    convertToLocalData(cloudData) {
+    convertAllToLocalData(cloudData) {
         let localData = [];
 
         for (let key in cloudData) {
             let value = cloudData[key];
-            const shop = {
-                shopId: key,
-                brands: value.brands,
-                parts: value.parts,
-                shopName: value.name,
-                shopURL: value.link
-            };
+            const shop = this.cloudToLocal(key, value);
             localData.push(shop);
         }
         if (debugOn()) { console.log('CS - Convert data: ', localData); }
         return localData;
     }
+
+    cloudToLocal(shopId, cloudValue) {
+        return {
+            shopId: shopId,
+            brands: cloudValue.brands !== undefined ? cloudValue.brands : '',
+            parts: cloudValue.parts !== undefined ? cloudValue.parts : '',
+            shopName: cloudValue.name !== undefined ? cloudValue.name : '',
+            shopURL: cloudValue.link !== undefined ? cloudValue.link : '',
+            shopWarranty: cloudValue.warranty !== undefined ? cloudValue.warranty : '',
+            shopPhone: cloudValue.phone !== undefined ? cloudValue.phone : '',
+            shopEmail: cloudValue.email !== undefined ? cloudValue.email : '',
+            shopAddress: cloudValue.address !== undefined ? cloudValue.address : '',
+            shopInstagram: cloudValue.instagram !== undefined ? cloudValue.instagram : '',
+            shopFacebook: cloudValue.facebook !== undefined ? cloudValue.facebook : '',
+            shopNotes: cloudValue.notes !== undefined ? cloudValue.notes : ''
+        };
+    }
+
+    localToCloud(localValue) {
+        return {
+            brands: localValue.brands,
+            parts: localValue.parts,
+            name: localValue.shopName,
+            link: localValue.shopURL,
+            warranty: localValue.shopWarranty,
+            phone: localValue.shopPhone,
+            email: localValue.shopEmail,
+            address: localValue.shopAddress,
+            instagram: localValue.shopInstagram,
+            facebook: localValue.shopFacebook,
+            notes: localValue.shopNotes
+        };
+    }
+
 }

@@ -18,12 +18,12 @@ export function onOpenShop(shopId) {
     if (hasShopDetailForm()) {
         shopDetailModal = openShopDetailModal(shopId);
         shopDetailModal.onsubmit = (event) => {
-            if (debugOn()) { console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event.target, userEmail()); }
+            event.preventDefault();
+            if (debugOn()) { console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event, userEmail()); }
             if (userSignedIn() !== null) {
                 processShopDetails(event.target, event.submitter.id);
                 clearResults();
                 resetResults();
-                event.preventDefault();
                 shopDetailModal.classList.toggle('modal-open');
             }
             else {

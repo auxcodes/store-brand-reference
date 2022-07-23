@@ -11,7 +11,7 @@ class ShopDetailModal extends HTMLElement {
                 <label class="modal-field" for="shopName"><b>Name</b></label>
                 <input id="shop-detail-modal-name" class="modal-field shop-field" type="text" placeholder="Enter Shop Name" name="shopName" value="${shopData.shopName}"
                     required>
-                <label class="modal-field" for="shopUrl"><b>Shop Link</b></label>
+                <label class="modal-field" for="shopUrl"><b>Website</b></label>
                 <input class="modal-field shop-field" type="url" placeholder="https://linktoshop.com" name="shopUrl" value="${shopData.shopURL}"
                     required>
                 <label class="modal-field" for="shopBrands"><b>Brands</b></label>
@@ -20,6 +20,9 @@ class ShopDetailModal extends HTMLElement {
                 <label class="modal-field" for="shopProducts"><b>Products</b></label>
                 <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Product Types, Seatposts, Handlebars, Forks, Wheels, Disc Brakes" name="shopProducts"
                 required>${shopData.parts}</textarea>
+                <label class="modal-field" for="shopWarranty"><b>Warranty</b></label>
+                <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Warranty Support Brands, Fox, Shimano, SRAM" name="shopWarranty"
+                required>${shopData.shopWarranty}</textarea>
                 <input id="shopId" class="shop-id" value="${shopData.shopId}" name="shopId">
             </div>
             <div class="container">
