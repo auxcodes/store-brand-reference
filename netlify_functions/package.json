@@ -8,6 +8,7 @@
     "dependencies": {
         "firebase": "^9.6.10",
         "firebase-admin": "^10.0.2",
-        "nodemailer": "^6.7.3"
+        "nodemailer": "^6.7.3",
+        "zeptomail": "^3.0.1"
     }
 }

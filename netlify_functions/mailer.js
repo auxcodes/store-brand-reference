@@ -37,11 +37,11 @@ async function sendSignInEmail(emailAddress, link) {
 
     await transporter.sendMail(mailOptions, (error, info) => {
         if (info) {
-            console.log(info);
+            console.log('/n> Login email Sent', info);
         }
 
         if (error) {
-            console.error('Error sending email: ', error);
+            console.error('/n!! Error sending email: ', error);
         }
     });
 }
@@ -64,17 +64,17 @@ async function sendContactEmail(contactInfo) {
     try {
         await transporter.sendMail(mailOptions, (error, info) => {
             if (info) {
-                console.log('Contact form sent email:', info);
+                console.log('/n Contact form sent email:', info);
                 return info;
             }
 
             if (error) {
-                console.error('Error sending contact email: ', error);
+                console.error('/n!! Error sending contact email: ', error);
                 return error;
             }
         });
     } catch (error) {
-        console.error('Error sending contact email: ', error);
+        console.error('/n!! Error sending contact email: ', error);
         return error;
     }
 }

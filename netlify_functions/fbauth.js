@@ -1,6 +1,7 @@
 const admin = require('firebase-admin');
 const sdkAuth = require('firebase-admin/auth');
 const mailer = require('./mailer');
+const zeptoMailer = require('./zepto');
 
 const env = currentEnv();
 
@@ -40,36 +41,40 @@ exports.handler = async (event, context, callback) => {
     const errors = [];
     const email = body['auth'].email.toLowerCase();
     const envURL = setEnvironment();
+    const emailUrl = currentEnv() === 'dev' ? 'dev.storesearch.aux.codes' : 'storesearch.aux.codes';
     const actionCodeSettings = {
         handleCodeInApp: false,
         url: envURL
     };
 
-    console.log('Set Environment: ', actionCodeSettings);
+    console.log('\n> Set Environment: ', actionCodeSettings);
 
     if (validEmail()) {
         console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app.Error);
-        await auth.generateSignInWithEmailLink(email, actionCodeSettings)
-            .then((link) => {
-                console.log('sent email !!');
-                callback(null, {
-                    statusCode: 200,
-                    headers,
-                    body: JSON.stringify({ msg: 'Validation Successful', error: errors })
+        try {
+            const link = await auth.generateSignInWithEmailLink(email, actionCodeSettings);
+            console.log('link', link)
+            zeptoMailer.sendLoginTemplate(email, link, emailUrl)
+                .then(resp => {
+                    console.log('\n> FBAuth zepto sendLoginTemplate worked', resp);
+                    callback(null, {
+                        statusCode: 200,
+                        headers,
+                        body: JSON.stringify({ msg: 'Validation Successful', error: errors })
+                    });
+                })
+                .catch(error => {
+                    console.log('\n!! fbauth zepto sendLoginTemplate failed: /n', error);
+                    callback(null, {
+                        statusCode: 200,
+                        headers,
+                        body: JSON.stringify({ msg: "Send Email Error:", error: error })
+                    });
                 });
-                mailer.sendSignInEmail(email, link);
-            })
-            .catch((error) => {
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                console.log('Some sort of error: ', errorCode, errorMessage);
-                callback(null, {
-                    statusCode: 200,
-                    headers,
-                    body: JSON.stringify({ msg: "Send Email Error:", error: error })
-                });
-                // ...
-            });
+        }
+        catch (error) {
+            console.log('valid email error', error);
+        }
     }
     else {
         errors.push(new Error("Email was not valid"));
@@ -88,7 +93,7 @@ exports.handler = async (event, context, callback) => {
 
     function setEnvironment() {
         const requestUrl = event.headers.referer;
-        console.log('Request URL: ', requestUrl);
+        console.log('> FBAuth - SetEnv - Request URL: ', requestUrl);
         let result = environmentURLs.find(envUrl => requestUrl.includes(envUrl));
         if (env === 'dev') {
             const envUrlText = requestUrl.includes('dev') ? 'dev' : 'local';
