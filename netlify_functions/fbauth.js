@@ -33,7 +33,7 @@ const headers = {
 };
 
 function currentEnv() {
-    return process.env.CONTEXT === 'dev' ? 'dev' : 'prod';
+    return process.env.BUILD_CONTEXT === 'dev' ? 'dev' : 'prod';
 }
 
 exports.handler = async (event, context, callback) => {
