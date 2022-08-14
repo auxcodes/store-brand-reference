@@ -47,37 +47,31 @@ exports.handler = async (event, context, callback) => {
         url: envURL
     };
 
-    console.log('\n> Set Environment: ', actionCodeSettings);
+    console.log('\n> FBA - Set Environment: ', actionCodeSettings);
 
     if (validEmail()) {
-        console.log('Check email was valid!', JSON.stringify(actionCodeSettings), app.Error);
+        console.log('> FBA - Email valid: ', JSON.stringify(actionCodeSettings), app.Error);
         try {
             const link = await auth.generateSignInWithEmailLink(email, actionCodeSettings);
-            console.log('link', link)
-            zeptoMailer.sendLoginTemplate(email, link, emailUrl)
-                .then(resp => {
-                    console.log('\n> FBAuth zepto sendLoginTemplate worked', resp);
-                    callback(null, {
-                        statusCode: 200,
-                        headers,
-                        body: JSON.stringify({ msg: 'Validation Successful', error: errors })
-                    });
-                })
-                .catch(error => {
-                    console.log('\n!! fbauth zepto sendLoginTemplate failed: /n', error);
-                    callback(null, {
-                        statusCode: 200,
-                        headers,
-                        body: JSON.stringify({ msg: "Send Email Error:", error: error })
-                    });
-                });
+            console.log('> FBA - Link returned:', link);
+            const sendEmail = await zeptoMailer.sendLoginTemplate(email, link, emailUrl);
+            callback(null, {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({ msg: 'Validation Successful', error: errors })
+            });
         }
         catch (error) {
-            console.log('valid email error', error);
+            console.log('> FBA - valid email error', error);
+            callback(null, {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({ msg: "Failed Send", error: error })
+            });
         }
     }
     else {
-        errors.push(new Error("Email was not valid"));
+        errors.push(new Error("> FBA - Email was not valid"));
         callback(null, {
             statusCode: 200,
             headers,
@@ -93,7 +87,7 @@ exports.handler = async (event, context, callback) => {
 
     function setEnvironment() {
         const requestUrl = event.headers.referer;
-        console.log('> FBAuth - SetEnv - Request URL: ', requestUrl);
+        console.log('> FBA - SetEnv - Request URL: ', requestUrl);
         let result = environmentURLs.find(envUrl => requestUrl.includes(envUrl));
         if (env === 'dev') {
             const envUrlText = requestUrl.includes('dev') ? 'dev' : 'local';

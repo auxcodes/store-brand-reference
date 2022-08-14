@@ -8,9 +8,9 @@ let client = new zeptoMail.SendMailClient({ url, token });
 
 async function sendLoginTemplate(emailAddress, link, emailUrl) {
     try {
-        const bounceAddress = "noreply@bounce" + emailUrl;
+        const bounceAddress = "noreply@bounce." + emailUrl;
         const fromAddress = "noreply@" + emailUrl;
-        console.log('>------', emailUrl, bounceAddress, fromAddress);
+        console.log('> Z - Send ZeptoMail: ', emailUrl, bounceAddress, fromAddress);
         return client.sendMailWithTemplate({
             "mail_template_key": loginTemplateKey,
             "bounce_address": bounceAddress,
@@ -32,7 +32,7 @@ async function sendLoginTemplate(emailAddress, link, emailUrl) {
         })
     }
     catch (error) {
-        console.log("!! Zepto sendLoginTemplate error: ", error);
+        console.log("!! Z- SendLoginTemplate error: ", error);
         return error;
     }
 }

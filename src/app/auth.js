@@ -79,6 +79,7 @@ function signInWithEmail(email) {
 
     request.onload = () => {
         const status = request.status;
+        if (debugOn()) { console.log('Request response: ', request.responseText); }
         const data = JSON.parse(request.responseText);
         const error = request.error;
         if (debugOn()) { console.log('AU - onload: ', status, ', Data.msg: ', data.msg, ', Error: ', error); }
@@ -90,6 +91,12 @@ function signInWithEmail(email) {
             onOpenAlert({
                 text: `An email has been sent to ${email} with a link for logging in.`,
                 alertType: 'positive-alert'
+            });
+        }
+        else if (data.msg === "Failed Send") {
+            onOpenAlert({
+                text: `There was an issue sending the Login Email, please try again later or contact us.`,
+                alertType: 'negative-alert'
             });
         }
         else {
