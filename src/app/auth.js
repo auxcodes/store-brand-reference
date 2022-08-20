@@ -6,6 +6,7 @@ import { getFunctionUrl } from "./environment.js";
 import { NavigationService } from "./navigation.js";
 import { debugOn } from "./environment.js";
 import { loginEvent } from "./support.js";
+import { canManage } from "./manage.js";
 
 const method = "POST";
 const shouldBeAsync = true;
@@ -40,6 +41,7 @@ export function signUpForm() {
 
 export function userSignedIn() {
     if (debugOn()) { console.log('AU - Is User Signed In'); }
+    canManage();
     return authService.alreadyUser();
 }
 
