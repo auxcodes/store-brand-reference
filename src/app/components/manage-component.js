@@ -1,6 +1,11 @@
 class ManageComponent extends HTMLElement {
     set manageTools(content) {
-        this.innerHTML = content;
+        this.innerHTML = `
+            <style>
+                @import "./src/styles/manage.css";
+            </style>
+            ${content}
+            `;
     }
 }
 

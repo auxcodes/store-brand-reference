@@ -11,3 +11,5 @@ netlify_functions/.env
 netlify_functions/package-lock.json
 
 package-lock.json
+
+firebase-based-code.html

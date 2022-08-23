@@ -1,14 +1,29 @@
-/* Palette */
-:root{
-    --background: rgb(247, 247, 247);
-    --background-notif: rgb(223, 237, 242);
-    --background-form: rgb(255, 255, 255);
-    --colour-text: #4b4949;
-    --border-menu: #7c7c7c;
-    --bg-color-menu: #3d3d3d;
+
+.browse-btn {
+    border-radius: 1.75em;
+    padding: 0.2em 0.5em;
+    width: 50%;
+    max-width: 105px;
+    cursor: pointer;
+    border-radius: 0.75em 0.75em 0 0;
+    margin: 0.25em 0.25em 0 0.25em;
 }
 
-body {
+.manage-btn {
+    margin-left: auto;
+    background-color: #8c8c8c;
+    color: #fff;
+}
+
+.manage-btn-visible {
+    display: block !important;
+}
+
+.manage-visible {
+    display: block !important;
+}
+
+.site-manager {
     background-color: var(--background);
     font-family: arial;
     display: flex;
@@ -18,7 +33,7 @@ body {
     margin: 0;
 }
 
-.manage-form {
+.site-manager .manage-form {
     display: flex;
     flex-direction: column;
     margin: 1em auto;
@@ -30,35 +45,49 @@ body {
     background-color: var(--background-form);
 }
 
-.form-row {
+.manage-form .form-row {
     display: flex;
     width: auto;
 }
 
-.form-area {
+.manage-form .form-row > input, 
+.manage-form .form-row > button {
+    /* ignore other formatting */
+    border: revert;
+    font-size: revert;
+}
+
+.manage-form .form-area > input, 
+.manage-form .form-area > button {
+    /* ignore other formatting */
+    border: revert;
+    font-size: revert;
+}
+
+.manage-form .form-area {
     display: flex;
     flex-direction: column;
 }
 
-.label-form {
+.manage-form .label-form {
     margin: 0 auto 0.75em auto;
 }
 
-.input-field {
+.manage-form .input-field {
     margin-bottom: 0.75em;
     margin-right: 0.5em;
     flex-grow: 2;
 }
 
-.input-btn {
+.manage-form .input-btn {
     flex-grow: 0;
     margin: 0em 0em 0.75em 0em;
 }
 
-.textarea-field {
+.manage-form .textarea-field {
     margin-right: 0em;
 }
 
-.textarea-btn {
+.manage-form .textarea-btn {
     margin-left: auto;
 }
