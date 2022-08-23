@@ -587,6 +587,10 @@ button {
     z-index: 1;
 }
 
+.results-visible {
+    display: none !important;
+}
+
 .results-container {
     display: flex;
     flex-direction: column;
