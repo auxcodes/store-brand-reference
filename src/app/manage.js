@@ -45,4 +45,49 @@ function enableButton(manageEl) {
         searchContent.classList.toggle('results-visible');
         manageEl.classList.toggle('manage-visible');
     };
+    readyForms();
+}
+
+function readyForms() {
+    const updateAllForm = document.querySelector('#manage-update-all');
+    updateAllForm.onsubmit = (event) => {
+        event.preventDefault();
+        const formFields = event.target;
+        console.log('form submited: ', formFields, formFields['input-upload-file'].value);
+        openFile(formFields['input-upload-file'].files[0]);
+    }
+}
+
+function openFile(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+        const loadedJson = JSON.parse(reader.result.toString());
+        console.log('Loaded file: ', loadedJson);
+        const processedData = processLoadedData(loadedJson);
+        console.log(processedData);
+    }
+    reader.readAsText(file);
+}
+
+function processLoadedData(storesList) {
+    const result = storesList.map(store => {
+        return {
+            "address": store.address ? store.address : "",
+            "phoneNumber": store.phoneNumber ? store.phoneNumber : "",
+            "email": store.email ? store.email : "",
+            "facebook": store.facebook ? store.facebook : "",
+            "instagram": store.instagram ? store.instagram : "",
+            "storeName": store.storeName ? store.storeName : "",
+            "storeURL": store.storeURL ? store.storeURL : "",
+            "brands": store.brands ? store.brands : "",
+            "parts": store.parts ? store.parts : "",
+            "notes": store.notes ? store.notes : "",
+            "warranty": store.warranty ? store.warranty : ""
+        }
+    });
+    return result;
+}
+
+function mergeStores(loadedStores, existingStores) {
+
 }
