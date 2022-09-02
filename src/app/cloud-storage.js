@@ -138,6 +138,12 @@ export class AppCloudStorage {
             });
     }
 
+    async updateItem(refPath, item) {
+        if (debugOn()) { console.log('CS - Update Item: ', refPath, item); }
+        const dbRef = ref(this.database, refPath);
+        return set(dbRef, item);
+    }
+
     dbReference(dataPath) {
         return ref(this.database, dataPath);
     }
@@ -177,6 +183,7 @@ export class AppCloudStorage {
     }
 
     cloudToLocal(shopId, cloudValue) {
+        console.log(cloudValue.version);
         return {
             shopId: shopId,
             brands: cloudValue.brands !== undefined ? cloudValue.brands : '',
@@ -189,7 +196,8 @@ export class AppCloudStorage {
             shopAddress: cloudValue.address !== undefined ? cloudValue.address : '',
             shopInstagram: cloudValue.instagram !== undefined ? cloudValue.instagram : '',
             shopFacebook: cloudValue.facebook !== undefined ? cloudValue.facebook : '',
-            shopNotes: cloudValue.notes !== undefined ? cloudValue.notes : ''
+            shopNotes: cloudValue.notes !== undefined ? cloudValue.notes : '',
+            version: cloudValue.version !== undefined ? cloudValue.version : 0
         };
     }
 
@@ -205,7 +213,8 @@ export class AppCloudStorage {
             address: localValue.shopAddress,
             instagram: localValue.shopInstagram,
             facebook: localValue.shopFacebook,
-            notes: localValue.shopNotes
+            notes: localValue.shopNotes,
+            version: localValue.version
         };
     }
 

@@ -1,6 +1,7 @@
 import { CloudStorageService } from "./cloud-storage.js";
 import { } from "./components/manage-component.js";
 import { debugOn } from "./environment.js";
+import { getAllShops } from "./shop-data.js";
 
 export async function canManage() {
     const content = await getPage();
@@ -65,29 +66,79 @@ function openFile(file) {
         console.log('Loaded file: ', loadedJson);
         const processedData = processLoadedData(loadedJson);
         console.log(processedData);
+        const existingStores = getAllShops()
+        console.log(existingStores);
+        mergeStores(processedData, existingStores);
     }
     reader.readAsText(file);
+}
+
+function updateShop(cloudRef, mergedShopData) {
+    console.log("Update Shop", mergedShopData);
+    cloudRef.service.updateItem(cloudRef.ref, mergedShopData);
+}
+
+function addShop(cloudRef, shopData) {
+    console.log("Add Shop", shopData);
+    cloudRef.service.addItem(cloudRef.ref, shopData);
 }
 
 function processLoadedData(storesList) {
     const result = storesList.map(store => {
         return {
             "address": store.address ? store.address : "",
-            "phoneNumber": store.phoneNumber ? store.phoneNumber : "",
+            "phone": store.phone ? store.phone : "",
             "email": store.email ? store.email : "",
             "facebook": store.facebook ? store.facebook : "",
             "instagram": store.instagram ? store.instagram : "",
-            "storeName": store.storeName ? store.storeName : "",
-            "storeURL": store.storeURL ? store.storeURL : "",
+            "name": store.name ? store.name : "",
+            "link": store.link ? store.link : "",
             "brands": store.brands ? store.brands : "",
             "parts": store.parts ? store.parts : "",
             "notes": store.notes ? store.notes : "",
-            "warranty": store.warranty ? store.warranty : ""
+            "warranty": store.warranty ? store.warranty : "",
+            "version": store.version
         }
     });
     return result;
 }
 
 function mergeStores(loadedStores, existingStores) {
+    const cs = CloudStorageService.getInstance();
 
+    loadedStores.forEach(store => {
+        const eStore = existingStores.find(item => {
+            const match = item.shopName.toLowerCase().includes(store.name.toLowerCase());
+            return match;
+        });
+        if (eStore !== undefined) {
+            if (eStore.version && eStore.version >= store.version) {
+                console.log('Skip Shop');
+                return
+            };
+            const mergedShop = mergeData(store, eStore);
+            updateShop({ 'service': cs, 'ref': `live/${eStore.shopId}` }, mergedShop);
+        }
+        else {
+            addShop({ 'service': cs, 'ref': 'live' }, store);
+        }
+    });
+}
+
+function mergeData(newData, existingData) {
+    const merged = {
+        "address": newData.address,
+        "phone": newData.phone,
+        "email": newData.email,
+        "facebook": newData.facebook,
+        "instagram": newData.instagram,
+        "name": newData.name,
+        "link": newData.link,
+        "brands": existingData.brands ? `${existingData.brands}, ${newData.brands}` : newData.brands,
+        "parts": existingData.parts ? `${existingData.parts}, ${newData.parts}` : newData.parts,
+        "notes": existingData.notes ? `${existingData.shopNotes}, ${newData.notes}` : newData.notes,
+        "warranty": existingData.warranty ? `${existingData.shopWarranty}, ${newData.warranty}` : newData.warranty,
+        "version": newData.version
+    };
+    return merged
 }
