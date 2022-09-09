@@ -183,7 +183,6 @@ export class AppCloudStorage {
     }
 
     cloudToLocal(shopId, cloudValue) {
-        console.log(cloudValue.version);
         return {
             shopId: shopId,
             brands: cloudValue.brands !== undefined ? cloudValue.brands : '',

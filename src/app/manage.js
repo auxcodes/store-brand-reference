@@ -55,16 +55,16 @@ function readyForms() {
         event.preventDefault();
         const formFields = event.target;
         console.log('form submited: ', formFields, formFields['input-upload-file'].value);
-        openFile(formFields['input-upload-file'].files[0]);
+        openFile(formFields['input-upload-file'].files[0], formFields['input-upload-version'].value);
     }
 }
 
-function openFile(file) {
+function openFile(file, version) {
     const reader = new FileReader();
     reader.onload = () => {
         const loadedJson = JSON.parse(reader.result.toString());
         console.log('Loaded file: ', loadedJson);
-        const processedData = processLoadedData(loadedJson);
+        const processedData = processLoadedData(loadedJson, version);
         console.log(processedData);
         const existingStores = getAllShops()
         console.log(existingStores);
@@ -83,7 +83,7 @@ function addShop(cloudRef, shopData) {
     cloudRef.service.addItem(cloudRef.ref, shopData);
 }
 
-function processLoadedData(storesList) {
+function processLoadedData(storesList, version) {
     const result = storesList.map(store => {
         return {
             "address": store.address ? store.address : "",
@@ -97,7 +97,7 @@ function processLoadedData(storesList) {
             "parts": store.parts ? store.parts : "",
             "notes": store.notes ? store.notes : "",
             "warranty": store.warranty ? store.warranty : "",
-            "version": store.version
+            "version": version
         }
     });
     return result;
