@@ -1,4 +1,4 @@
-import { hasShopDetailForm, openShopDetailModal, processShopDetails } from "./shop-detail.js";
+import { hasShopViewModal, hasShopDetailForm, openShopViewModal, openShopDetailModal, processShopDetails } from "./shop-detail.js";
 import { clearResults, resetResults, } from "./search.js";
 
 import { } from "./components/contact-modal.js";
@@ -10,8 +10,23 @@ import { sendContactData } from "./contact.js";
 const body = document.querySelector('body');
 
 let loginModal = null;
+let shopViewModal = null;
 let shopDetailModal = null;
 let contactModal = null;
+
+export function onViewShop(shopId) {
+    if (debugOn()) { console.log("MC - View Shop request...", shopId); }
+    if (hasShopViewModal()) {
+        shopViewModal = openShopViewModal(shopId);
+        shopViewModal.onsubmit = (event) => {
+            shopViewModal.classList.toggle('modal-open');
+            event.preventDefault();
+            const editShopId = event.target['shopId'].value;
+            onOpenShop(editShopId);
+        }
+    }
+    checkForModals();
+}
 
 export function onOpenShop(shopId) {
     if (debugOn()) { console.log("MC - Open Shop request...", shopId); }
@@ -79,6 +94,9 @@ function createContactModal() {
 function checkForModals() {
     if (loginModal === null) {
         loginModal = document.getElementById('login-modal');
+    }
+    if (shopViewModal === null) {
+        shopViewModal = document.getElementById('shop-view-modal');
     }
     if (shopDetailModal === null) {
         shopDetailModal = document.getElementById('shop-detail-modal');

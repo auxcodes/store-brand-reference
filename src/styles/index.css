@@ -1,4 +1,4 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css');
+@import url('https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css');
 
 /* 
     0. Alerts Bar
@@ -756,12 +756,10 @@ button {
 .result-row .edit-btn {
     display: block;
     cursor: pointer;
-    background-image: url("../assets/edit-icon.svg");
     min-width: 1em;
     background-repeat: no-repeat;
     background-color: transparent;
-    padding: 0.5em;
-    margin: 0.4em;
+    margin-right: -0.5em;
 }
 
 .result-row .fake-btn {
@@ -897,6 +895,12 @@ button {
     border-radius: 0.85em;
 }
 
+.modal-field-label {
+
+    padding: 0.45em 0.45em 0 0.45em;
+    margin: 0.25em 0.45em 0 0.45em;
+}
+
 .login-field {
     border: 1px solid #ccc;
 }
@@ -1011,10 +1015,10 @@ span.psw {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 0.25em auto;
+    margin: 0 auto 2em auto;
     border: 1px solid #888;
     width: 80%;
-    max-width: 500px;
+    max-width: 900px;
     border-radius: 1em;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.45);
 }

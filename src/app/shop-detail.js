@@ -1,9 +1,23 @@
 import { } from "./components/shop-detail-modal.js";
+import { } from "./components/shop-view-modal.js";
 import { getSpecificShop, addNewShop, updateShop, deleteShop } from "./shop-data.js"
 import { userSignedIn, userEmail } from "./auth.js";
 import { debugOn } from "./environment.js";
 
 const body = document.querySelector('body');
+
+export function hasShopViewModal(shopDetail) {
+    const modal = document.getElementById('shop-view-modal');
+    if (modal) {
+        return true;
+    }
+    const el = document.createElement('shop-view-modal');
+    el.classList.add('modal');
+    el.id = 'shop-view-modal';
+    el.shopDetail = {};
+    body.append(el);
+    return true;
+}
 
 export function hasShopDetailForm(shopDetail) {
     if (userSignedIn() === null) {
@@ -21,6 +35,13 @@ export function hasShopDetailForm(shopDetail) {
     el.shopDetail = {};
     body.append(el);
     return true;
+}
+
+export function openShopViewModal(shopId) {
+    let modal = document.getElementById('shop-view-modal');
+    modal.classList.toggle('modal-open');
+    modal.shopView = generateShopViewModal(shopId);
+    return modal;
 }
 
 export function openShopDetailModal(shopId) {
@@ -51,14 +72,27 @@ function openAddShopDetailModal() {
 
 function openEditShopDetailModal(shopId) {
     const shopDetails = {
-        "title": 'Edit Store',
+        "title": 'Edit Shop',
         ...getSpecificShop(shopId),
         "button": `
         <button id="deleteButton" class="modal-btn delete-btn" type="submit">Delete</button>
         <button id="updateButton" class="modal-btn update-btn" type="submit">Update</button>
         `
     }
-    if (debugOn()) { console.log("SDTL - Specific Shop: ", shopDetails); }
+    if (debugOn()) { console.log("SDTL - Edit Specific Shop: ", shopDetails); }
+    return shopDetails;
+}
+
+function generateShopViewModal(shopId) {
+    const shopToDisplay = getSpecificShop(shopId);
+    const shopDetails = {
+        "title": shopToDisplay.shopName,
+        ...shopToDisplay,
+        "button": `
+        <button id='editStoreBtn' class='modal-btn edit-btn' title='Edit Shop' type="submit")'>Edit</button>
+        `
+    }
+    if (debugOn()) { console.log("SDTL - View Specific Shop: ", shopDetails); }
     return shopDetails;
 }
 

@@ -1,0 +1,17 @@
+ul {
+    padding: 2em;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+    padding: 0.25em;
+}
+
+.shop-view-notes {
+    white-space: pre-wrap;
+}
+
+.shop-id {
+    display: none;
+}
