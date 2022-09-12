@@ -14,7 +14,7 @@ class ShopViewModal extends HTMLElement {
                 <div>
                     <ul>                    
                         <li><b>Name:</b> ${shopData.shopName}</li>
-                        <li><b>Link:</b> <a href='${shopData.shopURL}' target='_blank'>${shopData.shopURL}</a></li>
+                        <li><b>Website:</b> <a href='${shopData.shopURL}' target='_blank'>${shopData.shopURL}</a></li>
                         <li><b>Phone:</b> ${shopData.shopPhone}</li>
                         <li><b>Email:</b> ${shopData.shopEmail}</li>
                         <li><b>Address:</b> ${shopData.shopAddress}</li>
@@ -23,11 +23,11 @@ class ShopViewModal extends HTMLElement {
                         <li><b>Brands:</b> ${shopData.brands}</li>
                         <li><b>Parts:</b> ${shopData.parts}</li>
                         <li><b>Warranty:</b> ${shopData.shopWarranty}</li>
-                        <li class="shop-view-notes"><b>Notes:</b> ${shopData.shopNotes}</li>
+                        <li class="shop-view-notes" style="font-family: monospace;"><b>Notes:</b> ${shopData.shopNotes}</li>
                     </ul>
                 </div>
             </div>
-            <input id="shopId" class="shop-id" value="${shopData.shopId}" name="shopId">
+            <input id="shopId" class="shop-id" value="${shopData.shopId}" name="shopId" type="hidden">
             <div class="container">
                 <div class="btn-row">
                     ${shopData.button}                   

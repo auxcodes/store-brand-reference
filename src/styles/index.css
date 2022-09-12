@@ -896,7 +896,7 @@ button {
 }
 
 .modal-field-label {
-
+    font-size: 1.25rem;
     padding: 0.45em 0.45em 0 0.45em;
     margin: 0.25em 0.45em 0 0.45em;
 }

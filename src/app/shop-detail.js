@@ -65,6 +65,13 @@ function openAddShopDetailModal() {
         "brands": '',
         "parts": '',
         "shopWarranty": '',
+        "shopPhone": '',
+        "shopEmail": '',
+        "shopAddress": '',
+        "shopInstagram": '',
+        "shopFacebook": '',
+        "shopNotes": '',
+        "version": 0,
         "button": '<button id="addButton" class="modal-btn add-btn" type="submit">Add</button>'
     }
     return shopDetails;
@@ -105,12 +112,13 @@ function formToLocal(formData) {
         brands: formData['shopBrands'].value,
         parts: formData['shopProducts'].value,
         shopWarranty: formData['shopWarranty'].value,
-        shopPhone: '',
-        shopEmail: '',
-        shopAddress: '',
-        shopInstagram: '',
-        shopFacebook: '',
-        shopNotes: ''
+        shopPhone: formData['shopPhone'].value,
+        shopEmail: formData['shopEmail'].value,
+        shopAddress: formData['shopAddress'].value,
+        shopInstagram: formData['shopInstagram'].value,
+        shopFacebook: formData['shopFacebook'].value,
+        shopNotes: formData['shopNotes'].value,
+        version: formData['shopVersion'].value
     }
 }
 
