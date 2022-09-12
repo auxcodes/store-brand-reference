@@ -11,20 +11,18 @@ class ShopViewModal extends HTMLElement {
                     title="Close Modal">&times;</button>
             </div>
             <div class="container">
-                <div>
-                    <ul>                    
-                        <li><b>Name:</b> ${shopData.shopName}</li>
-                        <li><b>Website:</b> <a href='${shopData.shopURL}' target='_blank'>${shopData.shopURL}</a></li>
-                        <li><b>Phone:</b> ${shopData.shopPhone}</li>
-                        <li><b>Email:</b> ${shopData.shopEmail}</li>
-                        <li><b>Address:</b> ${shopData.shopAddress}</li>
-                        <li><b>Facebook:</b> <a href='https://facebook.com' target='_blank'>${shopData.shopFacebook}</a></li>
-                        <li><b>Instagram:</b> <a href='https://instagram.com' target='_blank'>${shopData.shopInstagram}</a></li>
-                        <li><b>Brands:</b> ${shopData.brands}</li>
-                        <li><b>Parts:</b> ${shopData.parts}</li>
-                        <li><b>Warranty:</b> ${shopData.shopWarranty}</li>
-                        <li class="shop-view-notes" style="font-family: monospace;"><b>Notes:</b> ${shopData.shopNotes}</li>
-                    </ul>
+                <div>                 
+                    <div class="view-row"><span class="view-label">Name:</span> <span class="view-data"></span>${shopData.shopName}</span></div>
+                    <div class="view-row"><span class="view-label">Website:</span> <span class="view-data"><a href='${shopData.shopURL}' target='_blank'>${shopData.shopURL}</a></span></div>
+                    <div class="view-row"><span class="view-label">Phone:</span> <span class="view-data">${shopData.shopPhone}</span></div>
+                    <div class="view-row"><span class="view-label">Email:</span> <span class="view-data">${shopData.shopEmail}</span></div>
+                    <div class="view-row"><span class="view-label">Address:</span> <span class="view-data">${shopData.shopAddress}</span></div>
+                    <div class="view-row"><span class="view-label">Facebook:</span> <span class="view-data"><a href='https://facebook.com' target='_blank'>${shopData.shopFacebook}</a></span></div>
+                    <div class="view-row"><span class="view-label">Instagram:</span> <span class="view-data"><a href='https://instagram.com' target='_blank'>${shopData.shopInstagram}</a></span></div>
+                    <div class="view-row"><span class="view-label">Brands:</span> <span class="view-data">${shopData.brands}</span></div>
+                    <div class="view-row"><span class="view-label">Parts:</span> <span class="view-data">${shopData.parts}</span></div>
+                    <div class="view-row"><span class="view-label">Warranty:</span> <span class="view-data">${shopData.shopWarranty}</span></div>
+                    <div class="view-row"><span class="view-label">Notes:</span> <span class="view-data">${shopData.shopNotes}</span> </div>
                 </div>
             </div>
             <input id="shopId" class="shop-id" value="${shopData.shopId}" name="shopId" type="hidden">
