@@ -8,33 +8,23 @@ let allData = [];
 let csService = null;
 
 export let initialised = false;
+export let usingLocalData = false;
+export let clientOffline = false;
 
 export function ShopData(shopData) {
     if (shopData.length > 0) {
         if (debugOn()) { console.log("SD - Initialised data from local storage or cloud", shopData); }
         allData = shopData;
         initialised = true;
+        usingLocalData = false;
     }
     else {
-        if (debugOn()) { console.log('SD - Initialising from JSON:'); }
-        fetchJson();
+        if (debugOn()) { console.log('SD - Client Connection Issue'); }
+        allData = [];
+        initialised = true;
+        clientOffline = true;
     }
     csService = CloudStorageService.getInstance();
-}
-
-function fetchJson() {
-    fetch("./src/assets/shop-data.json")
-        .then(response => {
-            if (debugOn()) { console.log("init response: ", response); }
-            return response.json();
-        })
-        .then(data => {
-            initialised = true;
-            if (debugOn()) { console.log("Shop Data: ", data); }
-            data.forEach(shop => {
-                allData.push(shop);
-            });
-        });
 }
 
 export function findBrand(brandName) {
@@ -117,6 +107,7 @@ export function getAllShops() {
 
 export function getSpecificShop(shopId) {
     const shop = allData.find(shop => shop.shopId === shopId);
+    console.log(shop);
     return deepCopy(shop);
 }
 
@@ -126,12 +117,6 @@ function sortData() {
 
 export function addNewShop(newShop) {
     if (debugOn()) { console.log("SD - Add new shop:", newShop); }
-    createNotification({
-        name: newShop.shopDetail.shopName,
-        user: newShop.user,
-        type: newShop.changeType,
-        date: newShop.date
-    });
 
     csService.addShop(newShop.shopDetail)
         .then(newShopId => {
@@ -143,6 +128,12 @@ export function addNewShop(newShop) {
             onOpenAlert({
                 text: `${newShop.shopDetail.shopName} was successfully added.`,
                 alertType: 'positive-alert'
+            });
+            createNotification({
+                name: newShop.shopDetail.shopName,
+                user: newShop.user,
+                type: newShop.changeType,
+                date: newShop.date
             });
         })
         .catch(error => {
@@ -158,14 +149,6 @@ export function updateShop(updatedShop) {
     if (debugOn()) { console.log("SD - Update shop:", updatedShop); }
     const index = allData.findIndex(shop => shop.shopId === updatedShop.shopDetail.shopId);
 
-    backupChange(index, updatedShop);
-    createNotification({
-        name: updatedShop.shopDetail.shopName,
-        user: updatedShop.user,
-        type: updatedShop.changeType,
-        date: updatedShop.date
-    });
-
     csService.updateShop(updatedShop.shopDetail)
         .then(() => {
             allData[index] = updatedShop.shopDetail;
@@ -174,6 +157,13 @@ export function updateShop(updatedShop) {
             onOpenAlert({
                 text: `${updatedShop.shopDetail.shopName} was successfully updated.`,
                 alertType: 'positive-alert'
+            });
+            backupChange(index, updatedShop);
+            createNotification({
+                name: updatedShop.shopDetail.shopName,
+                user: updatedShop.user,
+                type: updatedShop.changeType,
+                date: updatedShop.date
             });
         })
         .catch(error => {
@@ -189,14 +179,6 @@ export function deleteShop(deletedShop) {
     if (debugOn()) { console.log("SD - Update shop:", deletedShop); }
     const index = allData.findIndex(shop => shop.shopId === deletedShop.shopDetail.shopId);
 
-    backupChange(index, deletedShop);
-    createNotification({
-        name: deletedShop.shopDetail.shopName,
-        user: deletedShop.user,
-        type: deletedShop.changeType,
-        date: deletedShop.date
-    });
-
     csService.deleteShop(deletedShop.shopDetail)
         .then(() => {
             allData.splice(index, 1);
@@ -204,6 +186,13 @@ export function deleteShop(deletedShop) {
             onOpenAlert({
                 text: `${deletedShop.shopDetail.shopName} was successfully deleted.`,
                 alertType: 'positive-alert'
+            });
+            backupChange(index, deletedShop);
+            createNotification({
+                name: deletedShop.shopDetail.shopName,
+                user: deletedShop.user,
+                type: deletedShop.changeType,
+                date: deletedShop.date
             });
         })
         .catch(error => {

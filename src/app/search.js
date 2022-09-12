@@ -1,4 +1,4 @@
-import { initialised, findBrand, findProduct, findWarranty, getAllShops, filterWords } from "./shop-data.js";
+import { initialised, findBrand, findProduct, findWarranty, getAllShops, filterWords, clientOffline } from "./shop-data.js";
 import { pageColour } from "./ui.js";
 import { } from "./components/search-result-loading.js";
 import { brandSearchEvent, noResultEvent, productSearchEvent, warrantySearchEvent } from "./support.js";
@@ -135,6 +135,13 @@ function getSearchValue() {
 }
 
 export function generateResults() {
+    if (clientOffline) {
+        const div = document.createElement("div");
+        div.style = "display: flex";
+        div.innerHTML = "<span class='no-results'> Oops!! Store Search appears to be offline. </br> Please check you internet connection and refresh the page. </span>";
+        searchResultElement.append(div);
+        return;
+    }
     if (searchResults.length === 0) {
         noResultsFound();
         return;

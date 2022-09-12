@@ -38,10 +38,24 @@ export class AppDataService {
         this.cloudStorageService.getStorage()
             .then(shopData => {
                 if (debugOn()) { console.log('AD - Cloud storage data: ', shopData); }
-                ShopData(shopData);
+                if (shopData.error) {
+                    const error = shopData.error.message;
+                    if (error === "Error: Client is offline.") {
+                        console.log('Error Message matched!!', shopData.error.message);
+                    }
+
+                    ShopData([]);
+                }
+                else {
+                    ShopData(shopData);
+                }
             })
-            .catch(error => { console.error('AD - Error checking cloud data:', error); });
+            .catch(error => {
+                console.error('AD - Error checking cloud data:', error);
+            });
     }
+
+
 
     updateAllData(allShopData) {
         this.cloudStorageService.updateStorage(allShopData);
