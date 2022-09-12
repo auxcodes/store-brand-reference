@@ -1,7 +1,10 @@
 import { CloudStorageService } from "./cloud-storage.js";
 import { } from "./components/manage-component.js";
 import { debugOn } from "./environment.js";
+<<<<<<< HEAD
 import { getAllShops } from "./shop-data.js";
+=======
+>>>>>>> dev
 
 export async function canManage() {
     const content = await getPage();
@@ -46,6 +49,7 @@ function enableButton(manageEl) {
         searchContent.classList.toggle('results-visible');
         manageEl.classList.toggle('manage-visible');
     };
+<<<<<<< HEAD
     readyForms();
 }
 
@@ -141,4 +145,6 @@ function mergeData(newData, existingData) {
         "version": newData.version
     };
     return merged
+=======
+>>>>>>> dev
 }
