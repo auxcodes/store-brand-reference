@@ -19,12 +19,35 @@ export function ShopData(shopData) {
         usingLocalData = false;
     }
     else {
-        if (debugOn()) { console.log('SD - Client Connection Issue'); }
-        allData = [];
-        initialised = true;
-        clientOffline = true;
+        if (debugOn()) {
+            console.log('SD - Client Connection Issue: Fetch JSON');
+            fetchJson();
+        }
+        else {
+            allData = [];
+            initialised = true;
+            clientOffline = true;
+        }
     }
     csService = CloudStorageService.getInstance();
+}
+
+async function fetchJson() {
+    await fetch("./src/assets/shop-data-all.json")
+        .then(response => {
+            if (debugOn()) { console.log("init response: ", response); }
+            return response.json();
+        })
+        .then(data => {
+            initialised = true;
+            clientOffline = true;
+            if (debugOn()) { console.log("Shop Data: ", data); }
+            data.forEach(shop => {
+                const shopId = crypto.randomUUID();
+                const loaclShop = csService.cloudToLocal(shopId, shop);
+                allData.push(loaclShop);
+            });
+        });
 }
 
 export function findBrand(brandName) {

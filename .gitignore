@@ -13,3 +13,5 @@ netlify_functions/package-lock.json
 package-lock.json
 
 firebase-based-code.html
+
+src/assets/shop-data-all.json

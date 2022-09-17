@@ -135,7 +135,7 @@ function getSearchValue() {
 }
 
 export function generateResults() {
-    if (clientOffline) {
+    if (clientOffline && !debugOn()) {
         const div = document.createElement("div");
         div.style = "display: flex";
         div.innerHTML = "<span class='no-results'> Oops!! Store Search appears to be offline. </br> Please check you internet connection and refresh the page. </span>";
