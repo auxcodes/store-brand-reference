@@ -24,6 +24,7 @@
     --brand-color: rgb(1, 136, 255);
     --brand-border: rgb(114, 189, 255);
     --active-search-color: var(--brand-color);
+    --search-view-color: #626161;
     --show-brands: block;
     --show-products: none;
     --show-warranty: none;
@@ -760,6 +761,15 @@ button {
     background-repeat: no-repeat;
     background-color: transparent;
     margin-right: -0.5em;
+}
+
+.result-row .view-btn {
+    color: var(--search-view-color);
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: 1em;
+    width: 1em;
+    text-align: right;
 }
 
 .result-row .fake-btn {

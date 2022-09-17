@@ -129,4 +129,7 @@ window.onclick = function (event) {
     if (event.target.id === "shop-detail-modal") {
         shopDetailModal.classList.toggle('modal-open');
     }
+    if (event.target.id === "shop-view-modal") {
+        shopViewModal.classList.toggle('modal-open');
+    }
 }

@@ -16,14 +16,38 @@ li {
     display: none;
 }
 
-.view-label {
+.view-rows-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
 
+.view-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-bottom: 1px solid #e1dede;
+}
+
+.view-label {
+    font-weight: bold;
+    grid-column: 1;
+    font-size: 1.25rem;
+    padding: 0.25em;
+    min-width: 5.25em;
 }
 
 .view-data {
+    grid-column: 2 / span 5;
+    font-size: 1.25rem;
+    padding: 0.25em;
+    text-align: left;
+}
 
+.view-data a {
+    word-wrap: anywhere;
 }
 
 .view-data-mono {
-    
+    font-family: monospace;
+    white-space: pre-wrap;
 }

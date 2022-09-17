@@ -11,8 +11,8 @@ class ShopViewModal extends HTMLElement {
                     title="Close Modal">&times;</button>
             </div>
             <div class="container">
-                <div>                 
-                    <div class="view-row"><span class="view-label">Name:</span> <span class="view-data"></span>${shopData.shopName}</span></div>
+                <div class="view-rows-container">                 
+                    <div class="view-row"><span class="view-label">Name:</span> <span class="view-data">${shopData.shopName}</span></div>
                     <div class="view-row"><span class="view-label">Website:</span> <span class="view-data"><a href='${shopData.shopURL}' target='_blank'>${shopData.shopURL}</a></span></div>
                     <div class="view-row"><span class="view-label">Phone:</span> <span class="view-data">${shopData.shopPhone}</span></div>
                     <div class="view-row"><span class="view-label">Email:</span> <span class="view-data">${shopData.shopEmail}</span></div>
@@ -22,7 +22,7 @@ class ShopViewModal extends HTMLElement {
                     <div class="view-row"><span class="view-label">Brands:</span> <span class="view-data">${shopData.brands}</span></div>
                     <div class="view-row"><span class="view-label">Parts:</span> <span class="view-data">${shopData.parts}</span></div>
                     <div class="view-row"><span class="view-label">Warranty:</span> <span class="view-data">${shopData.shopWarranty}</span></div>
-                    <div class="view-row"><span class="view-label">Notes:</span> <span class="view-data">${shopData.shopNotes}</span> </div>
+                    <div class="view-row"><span class="view-label">Notes:</span> <span class="view-data view-data-mono">${shopData.shopNotes}</span> </div>
                 </div>
             </div>
             <input id="shopId" class="shop-id" value="${shopData.shopId}" name="shopId" type="hidden">
