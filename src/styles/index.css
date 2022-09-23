@@ -21,6 +21,8 @@
     --product-border: rgb(3, 213, 66);
     --warranty-color: rgb(227, 51, 57);
     --warranty-border: rgb(231, 3, 3);
+    --shop-color: rgb(227, 113, 51);
+    --shop-border: rgb(231, 90, 3);
     --brand-color: rgb(1, 136, 255);
     --brand-border: rgb(114, 189, 255);
     --active-search-color: var(--brand-color);
@@ -28,6 +30,7 @@
     --show-brands: block;
     --show-products: none;
     --show-warranty: none;
+    --show-shop: none;
     --positive-alert-color: rgb(2, 172, 53);
     --positive-alert-bgcolor: rgb(229, 255, 220);
     --negative-alert-color: rgb(203, 0, 0);
@@ -493,6 +496,24 @@ button {
     border-bottom: 1px var(--warranty-color) solid;
 }
 
+.shop-btn {
+    background-color: var(--shop-color);
+    color: white;
+    box-shadow: 0px 7px 8px #000;
+    border: 1px var(--shop-color) solid, 1px var(--shop-color) solid, 1px var(--shop-color) solid,
+        1px #666 solid;
+}
+
+.shop-btn-active {
+    background-color: var(--shop-color);
+    color: white;
+    box-shadow: 0px 7px 20px #000;
+    border-top: 1px var(--shop-border) solid;
+    border-right: 1px var(--shop-border) solid;
+    border-left: 1px var(--shop-border) solid;
+    border-bottom: 1px var(--shop-color) solid;
+}
+
 @media screen and (max-width: 530px) {
     body {
         margin: 0;
@@ -608,6 +629,8 @@ button {
     grid-template-rows: 1fr max-content;
     border-bottom: 1px #d5d5d5 solid;
     border-radius: 1em;
+    padding: 0 0 0 0.5em;
+    font-size: 1.15rem;
 }
 
 .result-row-incomplete {
@@ -675,11 +698,11 @@ button {
 }
 
 .result-row .brand-name {
-    margin: 0.5em;
+    margin: 0.7em 0.5em 0.5em 0.5em ;
 }
 
 .result-row .fake-brand-name {
-    margin: 0.5em;
+    margin: 0.6em 0.5em 0.5em 0.5em;
     filter: blur(2px);
     animation: grow-blur 2s ease-in-out infinite;
 }
@@ -752,6 +775,18 @@ button {
 .result-row:hover .warranty-list,
 .result-row:focus-within .warranty-list {
     display: var(--show-warranty);
+}
+
+
+.result-row .shop-list {
+    display: none;
+    grid-column: 1/-1;
+    margin: 0.5em;
+}
+
+.result-row:hover .shop-list,
+.result-row:focus-within .shop-list {
+    display: var(--show-shop);
 }
 
 .result-row .edit-btn {

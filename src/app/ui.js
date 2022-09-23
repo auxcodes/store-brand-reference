@@ -2,34 +2,32 @@ const activeColour = document.querySelector(':root');
 const brandColour = 'var(--brand-color)';
 const productColour = 'var(--product-color)';
 const warrantyColour = 'var(--warranty-color)';
+const shopColour = 'var(--shop-color)';
 
 export function pageColour(searchType) {
     if (searchType === 'brands') {
-        activeColour.style.setProperty('--active-search-color', brandColour);
-        activeColour.style.setProperty('--show-brands', 'block');
-        activeColour.style.setProperty('--show-products', 'none');
-        activeColour.style.setProperty('--show-warranty', 'none');
-        searchBrandBtn.className = 'search-btn brand-btn-active';
-        searchProductBtn.className = 'search-btn products-btn';
-        searchWarrantyBtn.className = 'search-btn warranty-btn';
+        colourSwap(searchType, brandColour);
     }
     else if (searchType === 'parts') {
-        activeColour.style.setProperty('--active-search-color', productColour);
-        activeColour.style.setProperty('--show-products', 'block');
-        activeColour.style.setProperty('--show-brands', 'none');
-        activeColour.style.setProperty('--show-warranty', 'none');
-        searchBrandBtn.className = 'search-btn brand-btn';
-        searchProductBtn.className = 'search-btn products-btn-active';
-        searchWarrantyBtn.className = 'search-btn warranty-btn';
+        colourSwap(searchType, productColour);
+    }
+    else if (searchType === 'warranty') {
+        colourSwap(searchType, warrantyColour);
     }
     else {
-        activeColour.style.setProperty('--active-search-color', warrantyColour);
-        activeColour.style.setProperty('--show-warranty', 'block');
-        activeColour.style.setProperty('--show-brands', 'none');
-        activeColour.style.setProperty('--show-products', 'none');
-        searchBrandBtn.className = 'search-btn brand-btn';
-        searchProductBtn.className = 'search-btn products-btn';
-        searchWarrantyBtn.className = 'search-btn warranty-btn-active';
+        colourSwap(searchType, shopColour);
     }
 
+}
+
+function colourSwap(searchType, activateColour) {
+    activeColour.style.setProperty('--active-search-color', activateColour);
+    activeColour.style.setProperty('--show-brands', searchType === 'brands' ? 'block' : 'none');
+    activeColour.style.setProperty('--show-products', searchType === 'parts' ? 'block' : 'none');
+    activeColour.style.setProperty('--show-warranty', searchType === 'warranty' ? 'block' : 'none');
+    activeColour.style.setProperty('--show-shop', searchType === 'shops' ? 'block' : 'none');
+    searchBrandBtn.className = `search-btn ${searchType === 'brands' ? 'brand-btn' : 'brand-btn-active'}`;
+    searchProductBtn.className = `search-btn ${searchType === 'parts' ? 'products-btn' : 'products-btn-active'}`;
+    searchWarrantyBtn.className = `search-btn ${searchType === 'warranty' ? 'warranty-btn' : 'warranty-btn-active'}`;
+    searchShopBtn.className = `search-btn ${searchType === 'shops' ? 'shop-btn' : 'shop-btn-active'}`;
 }

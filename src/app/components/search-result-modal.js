@@ -7,6 +7,7 @@ class SearchResult extends HTMLElement {
             <span class='brand-list'><b>Brands: </b>${result.brands}</span>
             <span class='product-list'><b>Products: </b>${result.parts}</span>
             <span class='warranty-list'><b>Warranty: </b>${result.shopWarranty}</span>
+            <span class='shop-list'><b>Phone: </b>${result.shopPhone} <b>Email: </b> ${result.shopEmail} <b>Address: </b> ${result.shopAddress}</span>
             <span id='shopId' class='shop-id'>${result.shopId}</span>
         `;
     }

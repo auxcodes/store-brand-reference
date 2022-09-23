@@ -39,12 +39,22 @@ export function brandSearchEvent(searchTerm) {
 
 export function warrantySearchEvent(searchTerm) {
     const eventInfo = {
-        'event_category': 'warranty',
+        'event_category': 'search',
         'event_label': searchTerm,
         'debug_mode': debugOn()
     };
-    gtag('event', 'warranty_brands', eventInfo);
-    if (debugOn()) { console.log('GA - Brand Warranty Event: ', eventInfo); }
+    gtag('event', 'search_warranty', eventInfo);
+    if (debugOn()) { console.log('GA - Warranty Search Event: ', eventInfo); }
+}
+
+export function shopSearchEvent(searchTerm) {
+    const eventInfo = {
+        'event_category': 'search',
+        'event_label': searchTerm,
+        'debug_mode': debugOn()
+    };
+    gtag('event', 'search_shops', eventInfo);
+    if (debugOn()) { console.log('GA - Shops Search Event: ', eventInfo); }
 }
 
 export function noResultEvent(searchTerm) {

@@ -62,6 +62,10 @@ export function findWarranty(warranty) {
     return warranty === "" ? allWarranty() : filterShops(warranty, "shopWarranty");
 }
 
+export function findShop(shopName) {
+    return filterShops(shopName, "shopName");
+}
+
 function allWarranty() {
     let results = allData;
     results = allData.filter(shop => {

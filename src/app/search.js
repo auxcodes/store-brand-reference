@@ -1,7 +1,7 @@
-import { initialised, findBrand, findProduct, findWarranty, getAllShops, filterWords, clientOffline } from "./shop-data.js";
+import { initialised, findBrand, findProduct, findWarranty, findShop, getAllShops, filterWords, clientOffline } from "./shop-data.js";
 import { pageColour } from "./ui.js";
 import { } from "./components/search-result-loading.js";
-import { brandSearchEvent, noResultEvent, productSearchEvent, warrantySearchEvent } from "./support.js";
+import { brandSearchEvent, noResultEvent, productSearchEvent, warrantySearchEvent, shopSearchEvent } from "./support.js";
 import { debugOn } from "./environment.js";
 
 const searchForm = document.getElementById("form-search");
@@ -21,6 +21,9 @@ searchProductBtn.addEventListener("click", searchProduct);
 
 const searchWarrantyBtn = searchForm.querySelector("#searchWarrantyBtn");
 searchWarrantyBtn.addEventListener("click", searchWarranty);
+
+const searchShopBtn = searchForm.querySelector("#searchShopBtn");
+searchShopBtn.addEventListener("click", searchShop);
 
 const searchResultElement = document.getElementById("searchResults");
 let fakeResults = [];
@@ -43,6 +46,10 @@ function onSearch(event) {
         }
         if (searchType === 'warranty') {
             searchWarranty(event);
+            return;
+        }
+        if (searchType === 'shops') {
+            searchShop(event);
         }
     }
 }
@@ -110,6 +117,18 @@ function searchWarranty(event) {
     generateResults();
 }
 
+function searchShop(event) {
+    searchType = "shops";
+    pageColour(searchType);
+    getSearchValue();
+    shopSearchEvent(searchValue);
+    if (debugOn()) { console.log("Search Shops", searchValue, event); }
+    searchResults = [];
+    searchResults = findShop(searchValue);
+    clearResults();
+    generateResults();
+}
+
 export function onAltSearch(altSearch) {
     searchField.value = altSearch.searchTerm;
     searchValue = "";
@@ -123,6 +142,10 @@ export function onAltSearch(altSearch) {
     }
     if (altSearch.searchType === 'warranty') {
         searchWarranty(altSearch);
+        return;
+    }
+    if (altSearch.searchType === 'shops') {
+        searchShop(altSearch);
     }
 }
 
