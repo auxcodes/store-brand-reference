@@ -192,6 +192,9 @@ function highlightSearchTerm(storeResult) {
     if (searchType === 'parts') {
         storeResult.parts = storeResult.parts.replace(replace, highLight);
     }
+    if (searchType === 'warranty') {
+        storeResult.shopWarranty = storeResult.shopWarranty.replace(replace, highLight);
+    }
     return storeResult;
 }
 
