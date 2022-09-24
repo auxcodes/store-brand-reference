@@ -2,7 +2,7 @@ import { CloudStorageService } from "./cloud-storage.js";
 import { refreshResults } from "./search.js";
 import { onOpenAlert } from "./alerts.js";
 import { createNotification } from "./notifications.js";
-import { debugOn } from "./environment.js";
+import { debugOn, isLocalHost } from "./environment.js";
 
 let allData = [];
 let csService = null;
@@ -19,7 +19,7 @@ export function ShopData(shopData) {
         usingLocalData = false;
     }
     else {
-        if (debugOn()) {
+        if (debugOn() && isLocalHost()) {
             console.log('SD - Client Connection Issue: Fetch JSON');
             fetchJson();
         }

@@ -37,6 +37,9 @@ export function getFirebaseEnv() {
     return firebaseEnv[getEnvironment()];
 }
 
+export function isLocalHost() {
+    return currentUrl.includes('localhost');
+}
 function getEnvironment() {
     const currentUrl = window.location.host;
     let result = currentUrl.includes('localhost') || currentUrl.includes('dev') ? 'dev' : 'prod';
