@@ -17,8 +17,8 @@ class ShopViewModal extends HTMLElement {
                     <div class="view-row"><span class="view-label">Phone:</span> <span class="view-data">${shopData.shopPhone}</span></div>
                     <div class="view-row"><span class="view-label">Email:</span> <span class="view-data">${shopData.shopEmail}</span></div>
                     <div class="view-row"><span class="view-label">Address:</span> <span class="view-data">${shopData.shopAddress}</span></div>
-                    <div class="view-row"><span class="view-label">Facebook:</span> <span class="view-data"><a href='https://facebook.com' target='_blank'>${shopData.shopFacebook}</a></span></div>
-                    <div class="view-row"><span class="view-label">Instagram:</span> <span class="view-data"><a href='https://instagram.com' target='_blank'>${shopData.shopInstagram}</a></span></div>
+                    <div class="view-row"><span class="view-label">Facebook:</span> <span class="view-data">${shopData.facebookLinks}</span></div>
+                    <div class="view-row"><span class="view-label">Instagram:</span> <span class="view-data">${shopData.instagramLinks}</span></div>
                     <div class="view-row"><span class="view-label">Brands:</span> <span class="view-data">${shopData.brands}</span></div>
                     <div class="view-row"><span class="view-label">Parts:</span> <span class="view-data">${shopData.parts}</span></div>
                     <div class="view-row"><span class="view-label">Warranty:</span> <span class="view-data">${shopData.shopWarranty}</span></div>

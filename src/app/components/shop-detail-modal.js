@@ -17,13 +17,13 @@ class ShopDetailModal extends HTMLElement {
                 <label class="modal-field-label" for="shopPhone">Phone</label>
                 <input id="shop-detail-modal-phone" class="modal-field shop-field" type="tel" placeholder="03 1234 5678" name="shopPhone" value="${shopData.shopPhone}">
                 <label class="modal-field-label" for="shopEmail">Email</label>
-                <input id="shop-detail-modal-email" class="modal-field shop-field" type="email" placeholder="shop@email.com" name="shopEmail" value="${shopData.shopEmail}">
+                <input id="shop-detail-modal-email" class="modal-field shop-field" type="text" placeholder="shop@email.com" name="shopEmail" value="${shopData.shopEmail}">
                 <label class="modal-field-label" for="shopAddress">Address</label>
                 <input id="shop-detail-modal-address" class="modal-field shop-field" type="text" placeholder="123 Four St, Someplace, State 1234" name="shopAddress" value="${shopData.shopAddress}">
                 <label class="modal-field-label" for="shopFacebook">Facebook</label>
-                <input id="shop-detail-modal-facebook" class="modal-field shop-field" type="text" placeholder="/shopsFacebookHandle" name="shopFacebook" value="${shopData.shopFacebook}">
+                <input id="shop-detail-modal-facebook" class="modal-field shop-field" type="text" placeholder="/storeFacebookHandle" name="shopFacebook" value="${shopData.shopFacebook}">
                 <label class="modal-field-label" for="shopInstagram">Instagram</label>
-                <input id="shop-detail-modal-instagram" class="modal-field shop-field" type="text" placeholder="/shopsInstagramHandle" name="shopInstagram" value="${shopData.shopInstagram}">
+                <input id="shop-detail-modal-instagram" class="modal-field shop-field" type="text" placeholder="/storeInstagramHandle" name="shopInstagram" value="${shopData.shopInstagram}">
                 <label class="modal-field-label" for="shopBrands">Brands</label>
                 <textarea rows="2" cols="33" class="modal-field shop-field modal-textarea" type="text" placeholder="Brand Names, Fox, Shimano, SRAM, Rock Shox" name="shopBrands"
                 required>${shopData.brands}</textarea>

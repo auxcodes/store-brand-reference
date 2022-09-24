@@ -92,15 +92,37 @@ function openEditShopDetailModal(shopId) {
 
 function generateShopViewModal(shopId) {
     const shopToDisplay = getSpecificShop(shopId);
+    const facebookLinks = multipleSocialLinks(shopToDisplay.shopFacebook, 'facebook');
+    const instagramLinks = multipleSocialLinks(shopToDisplay.shopInstagram, 'instagram');
     const shopDetails = {
         "title": shopToDisplay.shopName,
         ...shopToDisplay,
+        "facebookLinks": facebookLinks,
+        "instagramLinks": instagramLinks,
         "button": `
         <button id='editStoreBtn' class='modal-btn edit-btn' title='Edit Shop' type="submit")'>Edit</button>
         `
     }
     if (debugOn()) { console.log("SDTL - View Specific Shop: ", shopDetails); }
     return shopDetails;
+}
+
+function multipleSocialLinks(socialHandles, socialSite) {
+    const handles = socialHandles.split('/');
+    let links = '';
+    console.log(handles);
+    handles.forEach(handle => {
+        if (handle.length > 0) {
+            links = links.length > 0 ? links + ', ' + socialLink(handle, socialSite) : socialLink(handle, socialSite);
+        }
+    });
+    console.log(links);
+    return links;
+}
+
+function socialLink(socialHandle, socialSite) {
+    const newLink = socialSite === 'facebook' ? `https://facebook.com/${socialHandle}` : `https://instagram.com/${socialHandle}`;
+    return `<a href='${newLink}' target='_blank'>/${socialHandle} </a>`;
 }
 
 function formToLocal(formData) {
