@@ -51,3 +51,12 @@ li {
     font-family: monospace;
     white-space: pre-wrap;
 }
+
+@media screen and (max-width: 550px) {
+    .view-data {
+        grid-column: 1 / span 6;
+        font-size: 1.25rem;
+        padding: 0.25em;
+        text-align: left;
+    }
+}
