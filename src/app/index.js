@@ -18,7 +18,7 @@ window.onStoreClick = onStoreClick;
 window.onAltSearch = onAltSearch;
 
 let loadingCount = 0;
-let maxWaitCount = 100;
+let maxWaitCount = 150;
 
 (function ShopList() {
     insertGaScript();
