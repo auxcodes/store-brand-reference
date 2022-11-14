@@ -41,10 +41,11 @@ export class AppDataService {
                 if (shopData.error) {
                     const error = shopData.error.message;
                     if (error === "Error: Client is offline.") {
-                        console.log('Error Message matched!!', shopData.error.message);
+                        this.checkCloudStorage();
                     }
-
-                    ShopData([]);
+                    else {
+                        ShopData([]);
+                    }
                 }
                 else {
                     ShopData(shopData);
