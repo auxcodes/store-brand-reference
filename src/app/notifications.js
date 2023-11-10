@@ -156,7 +156,7 @@ function getStorageHistory() {
     localStorageService.readEntry(storageKey)
         .then(storage => {
             if (storage) {
-                notificationHistory = storage;
+                notificationHistory = JSON.parse(storage);
             }
             else {
                 notificationHistory = { none: 'no history' }

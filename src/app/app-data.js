@@ -9,6 +9,9 @@ export class AppDataService {
     localStorageService = null
     cloudStorageService = null;
     shopData = null;
+    lastUpdateKey = 'shopsLastUpdate';
+    shopsKey = 'shops';
+    fileName = 'live';
 
     constructor() {
         if (debugOn()) { console.log('AD - Init App Data Service'); }
@@ -22,12 +25,19 @@ export class AppDataService {
     }
 
     checkForLocalData() {
-        this.localStorageService.readEntry('shop')
+        this.cloudStorageService.lastUpdated(this.fileName)
+            .then(date => {
+                console.log('AD - lastUpdated:', date);
+            })
+            .catch(error => { console.error('AD - Error checking last update:', error); });
+
+        this.localStorageService.readEntry(this.shopsKey)
             .then(localShopData => {
                 if (localShopData !== null) {
-                    ShopData(shopData);
+                    ShopData(JSON.parse(localShopData));
                 }
                 else {
+                    console.log('Check cloud storage...');
                     this.checkCloudStorage();
                 }
             })
@@ -49,11 +59,29 @@ export class AppDataService {
                 }
                 else {
                     ShopData(shopData);
+                    this.updateShopDataInLocalStorage(JSON.stringify(shopData));
                 }
             })
             .catch(error => {
                 console.error('AD - Error checking cloud data:', error);
             });
+    }
+
+    doesLocalDataNeedUpdating() {
+        this.localStorageService.readEntry(this.lastUpdateKey)
+            .then(date => {
+                const milliSecondsSinceLastUpdate = Date.now() - date;
+                console.log('Local last updated: ', milliSecondsSinceLastUpdate, ' milliseconds');
+            });
+    }
+
+    updateShopDataInLocalStorage(shopData) {
+        const updateDate = Date.now();
+        this.cloudStorageService.lastUpdated(this.fileName);
+
+
+
+        this.localStorageService.updateEntry(this.shopsKey, shopData);
     }
 
 

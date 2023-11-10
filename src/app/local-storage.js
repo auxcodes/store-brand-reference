@@ -41,7 +41,7 @@ class AppLocalStorage {
     updateEntry(key, value) {
         if (this.supported) {
             localStorage.setItem(key, value);
-            this.readEntry();
+            //this.readEntry();
         }
         else {
             return this.message;
@@ -50,7 +50,7 @@ class AppLocalStorage {
 
     async readEntry(key) {
         if (this.supported && this.hasEntry) {
-            return JSON.parse(localStorage.getItem(key));
+            return localStorage.getItem(key);
         }
         else {
             return this.message;

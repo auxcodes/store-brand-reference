@@ -61,6 +61,13 @@ export function refreshResults() {
     generateResults();
 }
 
+export function resetResults() {
+    searchResults = [];
+    searchResults = sortResults(getAllShops());
+    if (debugOn()) { console.log("S - Reset results: ", searchResults); }
+    generateResults();
+}
+
 export function generateLoadingRow(count) {
     if (count > 1) {
         const lastEl = document.getElementById('search-result-loading' + (count - 1));
@@ -221,12 +228,7 @@ export function clearResults() {
     searchResultElement.innerHTML = "";
 }
 
-export function resetResults() {
-    searchResults = [];
-    searchResults = sortResults(getAllShops());
-    if (debugOn()) { console.log("S - Reset results: ", searchResults); }
-    generateResults();
-}
+
 
 function sortResults(results) {
     return results.sort((sa, sb) => {

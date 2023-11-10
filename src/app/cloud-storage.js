@@ -11,6 +11,7 @@ export const CloudStorageService = (() => {
 
     return {
         getInstance: (firebaseService) => {
+            if (debugOn()) { console.log('CS - Init Cloud Storage Service') };
             if (!instance) {
                 instance = createInstance(firebaseService);
             }
@@ -22,15 +23,18 @@ export const CloudStorageService = (() => {
 export class AppCloudStorage {
     workingFile = 'live';
     backupFile = 'backup';
+    lastUpdateFile = 'lastUpdate';
     fbService = null;
     database = null;
     dbWorkingRef = null;
+    dbUpdateRef = null;
 
     constructor(firebaseService) {
-        if (debugOn()) { console.log('CS - Init Cloud Storage Service') };
+        if (debugOn()) { console.log('CS - Construct Cloud Storage Service') };
         this.fbService = firebaseService;
         this.database = getDatabase(this.fbService.app);
         this.dbWorkingRef = ref(this.database, this.workingFile);
+        this.dbUpdateRef = ref(this.database, this.lastUpdateFile);
 
         if (debugOn()) { console.log('CS - DB ref: ', this.dbWorkingRef) };
     }
@@ -45,6 +49,25 @@ export class AppCloudStorage {
         const shopRef = ref(this.database, this.workingFile + '/' + shopData.shopId);
         const newData = this.localToCloud(shopData);
         return set(shopRef, newData);
+    }
+
+    async lastUpdated(file) {
+        try {
+            let result = null;
+            await this.getItems(this.dbUpdateRef)
+                .then(updates => {
+                    console.log('CS - Last updated ', file, ': ', updates[file]);
+                    result = updates[file];
+                })
+                .catch(error => {
+                    console.log('CS - LastUpdated failed because: ', error)
+                })
+            return result;
+        }
+        catch (error) {
+            console.error('CS - Failed to get lastUpdated: ', error);
+            return null;
+        }
     }
 
     async addShop(newShopData) {
@@ -108,6 +131,7 @@ export class AppCloudStorage {
 
     async getItems(dbRef) {
         let items = {};
+        console.log('dbref: ', dbRef);
         await get(dbRef)
             .then((snapshot) => {
                 if (snapshot.exists()) {
