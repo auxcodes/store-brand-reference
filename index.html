@@ -23,7 +23,7 @@
             <button id="more-notifications-btn" class="more-notifications-btn" title="Load more notifications...">Show
                 More</button>
         </div>
-        <div class="search-bar">
+        <div id="searchBar" class="search-bar" hidden>
             <form id="form-search" class="search-form">
                 <div class="search-input-row">
                     <label class="search-label" for="searchInput">Store Search:</label>
@@ -46,7 +46,9 @@
         </div>
     </header>
     <main class="content">
-        <section id="pageContent">
+        <section id="landingPage" class="landing-page">
+        </section>
+        <section id="pageContent" hidden>
             <div id="searchResults" class="results-container"></div>
         </section>
     </main>

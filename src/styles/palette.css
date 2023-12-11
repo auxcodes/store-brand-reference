@@ -1,0 +1,34 @@
+/* Palette */
+:root {
+  --background: rgb(247, 247, 247);
+  --background-notif: rgb(223, 237, 242);
+  --colour-text: #4b4949;
+  --border-menu: #7c7c7c;
+  --bg-color-menu: #3d3d3d;
+  --product-color: rgb(2, 172, 53);
+  --product-border: rgb(3, 213, 66);
+  --warranty-color: rgb(227, 51, 57);
+  --warranty-border: rgb(231, 3, 3);
+  --shop-color: rgb(227, 113, 51);
+  --shop-border: rgb(231, 90, 3);
+  --brand-color: rgb(1, 136, 255);
+  --brand-border: rgb(114, 189, 255);
+  --active-search-color: var(--brand-color);
+  --search-view-color: #626161;
+  --show-brands: block;
+  --show-products: none;
+  --show-warranty: none;
+  --show-shop: none;
+  --positive-alert-color: rgb(2, 172, 53);
+  --positive-alert-bgcolor: rgb(229, 255, 220);
+  --negative-alert-color: rgb(203, 0, 0);
+  --negative-alert-bgcolor: rgb(255, 214, 214);
+  --notif-added-color: rgb(2, 172, 53);
+  --notif-added-bgcolor: rgb(229, 255, 220);
+  --notif-updated-color: rgb(203, 105, 0);
+  --notif-updated-bgcolor: rgb(255, 236, 214);
+  --notif-deleted-color: rgb(203, 0, 0);
+  --notif-deleted-bgcolor: rgb(255, 214, 214);
+  --notif-website-color: rgb(0, 118, 203);
+  --notif-website-bgcolor: rgb(214, 239, 255);
+}

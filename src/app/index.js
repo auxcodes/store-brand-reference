@@ -1,7 +1,8 @@
 import { initialised, usingLocalData } from "./shop-data.js";
 import { signInUser, signUpForm, userSignedIn } from "./auth.js";
 import { NavigationService } from "./navigation.js";
-import { } from "./components/search-result-modal.js";
+import {} from "./components/search-result-modal.js";
+import {} from "./components/search-form-landing.js";
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 import { resetResults, generateLoadingRow, removeLoadingRows, onAltSearch } from "./search.js";
@@ -21,67 +22,72 @@ let loadingCount = 0;
 let maxWaitCount = 150;
 
 (function ShopList() {
-    insertGaScript();
-    initTimeOut();
-    loadingProgress();
-    signUpForm();
-})() //IIFE immediately invoked function expression
+  insertGaScript();
+  initTimeOut();
+  loadingProgress();
+  signUpForm();
+})(); //IIFE immediately invoked function expression
 
 function initTimeOut() {
-    setTimeout(() => {
-        if (!initialised && maxWaitCount > 0) {
-            initTimeOut();
-            console.log("waiting...");
-        }
-        else {
-            userSignedInOnInitalised();
-            setStorageService(appDataService.localStorageService);
-            generateNotifications();
-            resetResults();
-            if (usingLocalData) {
-                appDataService.checkCloudStorage();
-                clientTimeOut();
-            }
-        }
-        maxWaitCount--;
-    }, 50);
+  setTimeout(() => {
+    if (!initialised && maxWaitCount > 0) {
+      initTimeOut();
+      console.log("waiting...");
+    } else {
+      landingPage();
+      userSignedInOnInitalised();
+      setStorageService(appDataService.localStorageService);
+      generateNotifications();
+      resetResults();
+      if (usingLocalData) {
+        appDataService.checkCloudStorage();
+        clientTimeOut();
+      }
+    }
+    maxWaitCount--;
+  }, 50);
 }
 
 function clientTimeOut() {
-    setTimeout(() => {
-        if (usingLocalData && maxWaitCount > 0) {
-            clientTimeOut();
-            console.log("checking for online client...");
-        }
-        else {
-            resetResults();
-        }
-        maxWaitCount--;
-    }, 50);
+  setTimeout(() => {
+    if (usingLocalData && maxWaitCount > 0) {
+      clientTimeOut();
+      console.log("checking for online client...");
+    } else {
+      resetResults();
+    }
+    maxWaitCount--;
+  }, 50);
 }
 
+function landingPage() {
+  const landingPage = document.getElementById("landingPage");
+  const searchFormEl = document.createElement("search-form-landing");
+  searchFormEl.classList.add("search-form-landing");
+  searchFormEl.formData = {};
+
+  landingPage.append(searchFormEl);
+}
 
 function loadingProgress() {
-    loadingCount++;
-    setTimeout(() => {
-        if (!initialised) {
-            if (loadingCount < 20) {
-                generateLoadingRow(loadingCount);
-            }
-            loadingProgress();
-        }
-        else {
-            removeLoadingRows();
-        }
-    }, 150);
+  loadingCount++;
+  setTimeout(() => {
+    if (!initialised) {
+      if (loadingCount < 20) {
+        generateLoadingRow(loadingCount);
+      }
+      loadingProgress();
+    } else {
+      removeLoadingRows();
+    }
+  }, 150);
 }
 
 function userSignedInOnInitalised() {
-    const user = userSignedIn();
-    if (user !== null) {
-        signInUser();
-    }
-    else {
-        siteMenu.toggleLoginButtonOn();
-    }
+  const user = userSignedIn();
+  if (user !== null) {
+    signInUser();
+  } else {
+    siteMenu.toggleLoginButtonOn();
+  }
 }
