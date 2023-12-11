@@ -5,6 +5,7 @@ import {} from "./components/search-result-modal.js";
 import {} from "./components/search-form-landing.js";
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
+import { initLandingPage } from "./landing-page.js";
 import { resetResults, generateLoadingRow, removeLoadingRows, onAltSearch } from "./search.js";
 import { onViewShop, onOpenShop, onOpenContact } from "./modal-controller.js";
 import { insertGaScript, onStoreClick } from "./support.js";
@@ -34,7 +35,7 @@ function initTimeOut() {
       initTimeOut();
       console.log("waiting...");
     } else {
-      landingPage();
+      initLandingPage();
       userSignedInOnInitalised();
       setStorageService(appDataService.localStorageService);
       generateNotifications();
@@ -58,15 +59,6 @@ function clientTimeOut() {
     }
     maxWaitCount--;
   }, 50);
-}
-
-function landingPage() {
-  const landingPage = document.getElementById("landingPage");
-  const searchFormEl = document.createElement("search-form-landing");
-  searchFormEl.classList.add("search-form-landing");
-  searchFormEl.formData = {};
-
-  landingPage.append(searchFormEl);
 }
 
 function loadingProgress() {
