@@ -5,7 +5,6 @@ const warrantyColour = "var(--warranty-color)";
 const shopColour = "var(--shop-color)";
 
 export function pageColour(searchType) {
-    if (searchType === 'brands') {
   if (searchType === "brands") {
     colourSwap(searchType, brandColour);
   } else if (searchType === "parts") {
