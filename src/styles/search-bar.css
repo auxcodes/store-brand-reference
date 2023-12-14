@@ -5,15 +5,16 @@
   flex-direction: column;
   margin: 0;
   padding: 0.5em 0 0 0;
+  box-shadow: inset 0px 0px 8px #000;
 }
 
-.search-input-row {
+.search-bar .search-input-row {
   display: flex;
   margin: auto;
   flex-wrap: wrap;
 }
 
-.search-label {
+.search-bar .search-label {
   text-align: center;
   width: max-content;
   margin: auto;

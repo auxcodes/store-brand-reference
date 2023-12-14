@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header>
+    <header id="pageHeader">
         <div id="notifications" class="notifications-container notifications-container--hidden">
             <span class="notifications-title">Notifications</span>
             <div id="notif-no-msg" class="notifications-empty-msg">Nothing new to see here...<button
@@ -22,27 +22,6 @@
             <div id="notifications-list"></div>
             <button id="more-notifications-btn" class="more-notifications-btn" title="Load more notifications...">Show
                 More</button>
-        </div>
-        <div id="searchBar" class="search-bar" hidden>
-            <form id="form-search" class="search-form">
-                <div class="search-input-row">
-                    <label class="search-label" for="searchInput">Store Search:</label>
-                    <input class="search-input" id="searchInput" type="search"
-                        placeholder="Search for brands or products..." />
-                </div>
-                <div class="search-btn-container">
-                    <button class="search-btn brand-btn" id="searchBrandBtn" type="button"
-                        title="Search for Brands">Brands</button>
-                    <button class="search-btn products-btn" id="searchProductBtn" type="button"
-                        title="Search for Products">Products</button>
-                    <button class="search-btn warranty-btn" id="searchWarrantyBtn" type="button"
-                        title="Search for Warranty provider">Warranty</button>
-                    <button class="search-btn shop-btn" id="searchShopBtn" type="button"
-                        title="Search for shop">Stores</button>
-                    <button class="browse-btn manage-btn" id="browseManageBtn" type="button" title="Manage Site"
-                        style="display: none">Manage</button>
-                </div>
-            </form>
         </div>
     </header>
     <main class="content">
@@ -72,7 +51,7 @@
                 class="logo"></span></a>
     </footer>
     <div id="alert-container" class="alert-container"></div>
-    <script async type="module" src="src/app/thirdparty/ga-support.js"></script>
+    <script type="module" src="src/app/thirdparty/ga-support.js"></script>
 </body>
 
 </html>

@@ -9,19 +9,19 @@
 /*
  Input Field
 */
-.search-form .search-input-row {
+.search-form-landing .search-form .search-input-row {
   display: flex;
   flex-direction: column;
 }
 
-.search-input-row .search-label {
+.search-form-landing .search-input-row .search-label {
   text-align: center;
   width: max-content;
   margin: auto 2em;
   font-size: 3.25rem;
 }
 
-.search-input-row .search-input {
+.search-form-landing .search-input-row .search-input {
   text-align: center;
   width: 100%;
   margin: 2em 0 1.5em 0;
@@ -31,7 +31,7 @@
 /*
  Search Buttons
 */
-.search-btn-container {
+/* .search-btn-container {
   min-width: max-content;
   display: flex;
   margin: 0 auto;
@@ -61,4 +61,4 @@
 
 .search-btn-container .shop-btn {
   border-radius: 0.75em;
-}
+} */

@@ -13,7 +13,7 @@
   --shop-border: rgb(231, 90, 3);
   --brand-color: rgb(1, 136, 255);
   --brand-border: rgb(114, 189, 255);
-  --active-search-color: var(--brand-color);
+  --active-search-color: none;
   --search-view-color: #626161;
   --show-brands: block;
   --show-products: none;

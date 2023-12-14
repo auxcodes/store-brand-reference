@@ -1,5 +1,6 @@
 @import url("https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css");
 @import url("palette.css");
+@import url("landing-page.css");
 
 /* 
     0. Alerts Bar
@@ -377,8 +378,7 @@ button {
 
 /* 3. Search Bar */
 .search-bar {
-  padding: 0 0.5em;
-  box-shadow: inset 0px 0px 8px #000;
+  padding: 0;
 }
 
 .search-input {

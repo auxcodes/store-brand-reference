@@ -1,4 +1,6 @@
-import { onSearch, setSearchField } from "./search.js";
+import { onSearch, searchBarEventListeners, setSearchField } from "./search.js";
+import { landingToSearch } from "./page-controller.js";
+import {} from "./components/search-form-bar.js";
 
 export function initLandingPage() {
   const landingPage = document.getElementById("landingPage");
@@ -7,7 +9,19 @@ export function initLandingPage() {
   searchFormEl.formData = {};
 
   landingPage.append(searchFormEl);
+  searchBarForm();
   formListeners();
+  searchBarEventListeners();
+}
+
+function searchBarForm() {
+  const pageHeader = document.getElementById("pageHeader");
+  const searchBar = document.createElement("search-form-bar");
+  searchBar.id = "searchBar";
+  searchBar.classList.add("search-bar");
+  searchBar.formData = {};
+  searchBar.hidden = true;
+  pageHeader.append(searchBar);
 }
 
 function formListeners() {
@@ -20,6 +34,9 @@ function formListeners() {
 }
 
 function onSearchKeypress(event) {
-  setSearchField(event);
-  onSearch(event);
+  if (event.key === "Enter") {
+    setSearchField(event);
+    onSearch(event);
+    landingToSearch();
+  }
 }
