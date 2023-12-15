@@ -31,4 +31,5 @@
   --notif-deleted-bgcolor: rgb(255, 214, 214);
   --notif-website-color: rgb(0, 118, 203);
   --notif-website-bgcolor: rgb(214, 239, 255);
+  --landing-box-shadow: 0px 12px 16px 0 rgba(0, 0, 0, 0.1), 0px -12px 16px 0 #fff;
 }

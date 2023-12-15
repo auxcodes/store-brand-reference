@@ -3,12 +3,12 @@
 @import url("landing-page.css");
 
 /* 
-    0. Alerts Bar
-    1. Notification Bar
-    2. Menu
-    3. Search Bar
-    4. Body
-    5. Footer
+    Alerts Bar
+    Notification Bar
+    Menu
+    Search Bar
+    Body
+    Footer
     Forms, Modals, Buttons
 */
 
@@ -23,6 +23,7 @@ body {
   font-size: 1rem;
   height: 100vh;
   margin: 0;
+  background-color: #f6f6f6;
 }
 
 header {
@@ -48,7 +49,7 @@ button {
   margin: 0.25em;
   font-size: 1.25rem;
 }
-/* 0. Alerts Bar */
+/* Alerts Bar */
 .alert-container {
   display: flex;
   position: absolute;
@@ -117,7 +118,7 @@ button {
   border-radius: 0 0.25em 0 0;
 }
 
-/* 1. Notification Bar */
+/* Notification Bar */
 .notification-toggle {
   position: absolute;
   z-index: 2;
@@ -248,7 +249,7 @@ button {
   border-radius: 0.5em;
   padding: 0.15em 0.5em;
 }
-/* 2. Menu */
+/* Menu */
 .site-nav {
   position: absolute;
   top: 0.25em;
@@ -376,7 +377,7 @@ button {
   height: 100%;
 }
 
-/* 3. Search Bar */
+/* Search Bar */
 .search-bar {
   padding: 0;
 }
@@ -389,6 +390,7 @@ button {
   flex-grow: 2;
   max-width: 500px;
   min-width: 320px;
+  outline: none;
 }
 
 .brand-btn {
@@ -498,11 +500,16 @@ button {
   }
 }
 
-/* 4. Body */
+/* Body */
 .content {
   flex: 1 0 auto;
   background: linear-gradient(var(--active-search-color), #fff 10%);
   z-index: 1;
+}
+
+.page-content {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .results-visible {
