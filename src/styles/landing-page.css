@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   margin: 15vh auto auto auto;
+  width: auto;
 }
 
 /*
@@ -18,7 +19,8 @@
   border-radius: 3em;
   margin: 2em 3em;
   padding: 1em 2em;
-  max-width: 455px;
+  max-width: min-content;
+  min-width: min-content;
   box-shadow: var(--landing-box-shadow);
 }
 
@@ -26,7 +28,8 @@
   text-align: center;
   width: max-content;
   margin: 0;
-  font-size: 3.25rem;
+  font-size: clamp(1rem, 8vw, 3.25rem);
+  white-space: nowrap;
 }
 
 .search-form-landing .search-input-row .search-input {

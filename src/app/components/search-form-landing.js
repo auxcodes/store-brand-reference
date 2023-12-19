@@ -9,7 +9,7 @@ class SearchFormLanding extends HTMLElement {
                     <div class="input-container"> 
                         <i class="fa-solid fa-magnifying-glass .search-icon"></i>
                         <input class="search-input" id="searchInput" type="search"
-                        placeholder="Search for brands or products..." />
+                        placeholder="Search bicycle brands or parts..." />
                     </div>
                 </div>
                 <div class="search-btn-container">
