@@ -7,7 +7,7 @@ class SearchFormLanding extends HTMLElement {
                         <label class="search-label" for="searchInput">Store Search:</label>
                     </div>
                     <div class="input-container"> 
-                        <i class="fa-solid fa-magnifying-glass .search-icon" style="position: absolute;top: 3.5em;left: 1em;"></i>
+                        <i class="fa-solid fa-magnifying-glass .search-icon"></i>
                         <input class="search-input" id="searchInput" type="search"
                         placeholder="Search for brands or products..." />
                     </div>
