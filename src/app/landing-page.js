@@ -3,12 +3,6 @@ import { landingToSearch } from "./page-controller.js";
 import {} from "./components/search-form-bar.js";
 
 export function initLandingPage() {
-  const landingPage = document.getElementById("landingPage");
-  const searchFormEl = document.createElement("search-form-landing");
-  searchFormEl.classList.add("search-form-landing");
-  searchFormEl.formData = {};
-
-  landingPage.append(searchFormEl);
   searchBarForm();
   formListeners();
   searchBarEventListeners();

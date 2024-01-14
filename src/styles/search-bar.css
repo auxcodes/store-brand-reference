@@ -23,6 +23,7 @@
 .search-btn-container {
   min-width: max-content;
   display: flex;
+  margin: auto;
 }
 
 .search-btn {

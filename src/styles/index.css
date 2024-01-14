@@ -386,7 +386,7 @@ button {
   padding: 0.2em 0.5em;
   border-radius: 0.75em 0.75em;
   border: 1px #666 solid;
-  margin-right: 3em;
+  margin: 1em 0.5em;
   flex-grow: 2;
   max-width: 500px;
   min-width: 320px;
