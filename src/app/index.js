@@ -2,7 +2,6 @@ import { initialised, usingLocalData } from "./shop-data.js";
 import { signInUser, signUpForm, userSignedIn } from "./auth.js";
 import { NavigationService } from "./navigation.js";
 import {} from "./components/search-result-modal.js";
-import {} from "./components/search-form-landing.js";
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 import { initLandingPage } from "./landing-page.js";
