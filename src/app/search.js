@@ -9,7 +9,8 @@ import {
   clientOffline,
 } from "./shop-data.js";
 import { pageColour } from "./ui.js";
-import {} from "./components/search-result-loading.js";
+import "./components/search-result-loading.js";
+import { SearchBar } from "./classes/SearchBar.js";
 import {
   brandSearchEvent,
   noResultEvent,
@@ -21,25 +22,6 @@ import { debugOn } from "./environment.js";
 
 const searchResultElement = document.getElementById("searchResults");
 let searchBar = null;
-
-class SearchBar {
-  form = null;
-  inputField = null;
-  fakeResults = [];
-  searchResults = [];
-  searchType = "brands";
-  searchValue = "";
-
-  constructor() {
-    this.form = document.getElementById("form-search");
-    this.form.onsubmit = (event) => event.preventDefault();
-
-    this.inputField = this.form.querySelector("#searchInput");
-    this.inputField.addEventListener("keypress", onSearch);
-    this.inputField.addEventListener("change", searchText);
-    this.inputField.focus();
-  }
-}
 
 export function searchBarEventListeners() {
   searchBar = new SearchBar();
@@ -55,10 +37,6 @@ export function searchBarEventListeners() {
 
   const searchShopBtn = searchBar.form.querySelector("#searchShopBtn");
   searchShopBtn.addEventListener("click", searchShop);
-}
-
-function searchText(event) {
-  searchBar.searchValue = event.target.value;
 }
 
 export function setSearchField(event) {
@@ -86,40 +64,21 @@ export function onSearch(event) {
 }
 
 export function refreshResults() {
-  searchBar.searchResults = [];
-  searchBar.searchResults =
-    searchBar.searchType === "brands" ? findBrand(searchBar.searchValue) : findProduct(searchBar.searchValue);
+  searchBar.searchResults.clearResults();
+  searchBar.searchResults.addResults(
+    searchBar.searchType === "brands" ? findBrand(searchBar.searchValue) : findProduct(searchBar.searchValue)
+  );
   clearResults();
   generateResults();
 }
 
 export function resetResults() {
-  searchBar.searchResults = [];
-  searchBar.searchResults = sortResults(getAllShops());
+  searchBar.searchResults.clearResults();
+  searchBar.searchResults.addResults(sortResults(getAllShops()));
   if (debugOn()) {
-    console.log("S - Reset results: ", searchBar.searchResults);
+    console.log("S - Reset results: ", searchBar.searchResults.results);
   }
   generateResults();
-}
-
-export function generateLoadingRow(count) {
-  if (count > 1) {
-    const lastEl = document.getElementById("search-result-loading" + (count - 1));
-    lastEl.classList.toggle("fake-result-row-visible");
-  }
-  const el = document.createElement("search-result-loading");
-  el.id = "search-result-loading" + count;
-  el.classList.add("result-row", "fake-result-row");
-  el.resultLoading = {};
-  searchResultElement.append(el);
-  searchBar.fakeResults.push(el.id);
-}
-
-export function removeLoadingRows() {
-  searchBar.fakeResults.forEach((elementId) => {
-    const el = document.getElementById(elementId);
-    el.remove();
-  });
 }
 
 function searchBrand(event) {
@@ -130,8 +89,8 @@ function searchBrand(event) {
   if (debugOn()) {
     console.log("Search Brand: ", searchBar.searchValue, event);
   }
-  searchBar.searchResults = [];
-  searchBar.searchResults = findBrand(searchBar.searchValue);
+  searchBar.searchResults.clearResults();
+  searchBar.searchResults.addResults(findBrand(searchBar.searchValue));
   clearResults();
   generateResults();
 }
@@ -144,8 +103,8 @@ function searchProduct(event) {
   if (debugOn()) {
     console.log("Search Product", searchBar.searchValue, event);
   }
-  searchBar.searchResults = [];
-  searchBar.searchResults = findProduct(searchBar.searchValue);
+  searchBar.searchResults.clearResults();
+  searchBar.searchResults.addResults(findProduct(searchBar.searchValue));
   clearResults();
   generateResults();
 }
@@ -158,8 +117,8 @@ function searchWarranty(event) {
   if (debugOn()) {
     console.log("Search Warranty", searchBar.searchValue, event);
   }
-  searchBar.searchResults = [];
-  searchBar.searchResults = findWarranty(searchBar.searchValue);
+  searchBar.searchResults.clearResults();
+  searchBar.searchResults.addResults(findWarranty(searchBar.searchValue));
   clearResults();
   generateResults();
 }
@@ -172,8 +131,8 @@ function searchShop(event) {
   if (debugOn()) {
     console.log("Search Shops", searchBar.searchValue, event);
   }
-  searchBar.searchResults = [];
-  searchBar.searchResults = findShop(searchBar.searchValue);
+  searchBar.searchResults.clearResults();
+  searchBar.searchResults.addResults(findShop(searchBar.searchValue));
   clearResults();
   generateResults();
 }
@@ -215,25 +174,15 @@ export function generateResults() {
     searchResultElement.append(div);
     return;
   }
-  if (searchBar.searchResults.length === 0) {
+  if (searchBar.searchResults.results.length === 0) {
     noResultsFound();
     return;
   }
-  searchBar.searchResults = sortResults(searchBar.searchResults);
-  searchBar.searchResults.forEach((result) => {
-    const el = document.createElement("search-result-modal");
-    const isIncomplete = checkCompletness(result) ? "result-row-incomplete" : "complete";
-    el.classList.add("result-row", isIncomplete);
-    if (searchBar.searchValue.length > 0) {
-      result = highlightSearchTerm(result);
-    }
-    el.result = result;
-    el.id = result.shopId;
-    searchResultElement.append(el);
-  });
+  searchBar.searchResults.addResults(sortResults(searchBar.searchResults.results));
+  searchBar.searchResults.addResultsToDom(searchBar);
 }
 
-function highlightSearchTerm(storeResult) {
+export function highlightSearchTerm(storeResult) {
   const replace = new RegExp(searchBar.searchValue, "i");
   const highLight = `<span class="result-text-highlight">${searchBar.searchValue.toUpperCase()}</span>`;
   if (searchBar.searchType === "brands") {
@@ -248,10 +197,6 @@ function highlightSearchTerm(storeResult) {
   return storeResult;
 }
 
-function checkCompletness(result) {
-  return result.parts.length === 0 || result.brands.length === 0;
-}
-
 function noResultsFound() {
   noResultEvent(searchBar.searchValue);
   const alternates = filterWords(searchBar.searchValue, searchBar.searchType);
@@ -263,6 +208,13 @@ function noResultsFound() {
     div.innerHTML = "<span class='no-results'> No results were found matching your search term. </span>";
   }
   searchResultElement.append(div);
+  const noResultSpan = div.querySelector(".no-results");
+  const allAltBtns = noResultSpan.querySelectorAll("button");
+  allAltBtns.forEach((altBtn) => {
+    altBtn.addEventListener("click", () => {
+      onAltSearch({ searchType: searchBar.searchType, searchTerm: altBtn.value });
+    });
+  });
 }
 
 export function clearResults() {

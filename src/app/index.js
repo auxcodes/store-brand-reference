@@ -1,22 +1,16 @@
+// @ts-check
 import { initialised, usingLocalData } from "./shop-data.js";
 import { signInUser, signUpForm, userSignedIn } from "./auth.js";
 import { NavigationService } from "./navigation.js";
-import {} from "./components/search-result-modal.js";
+import "./components/search-result-modal.js";
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 import { initLandingPage } from "./landing-page.js";
-import { resetResults, generateLoadingRow, removeLoadingRows, onAltSearch } from "./search.js";
-import { onViewShop, onOpenShop, onOpenContact } from "./modal-controller.js";
-import { insertGaScript, onStoreClick } from "./support.js";
+import { resetResults, onAltSearch } from "./search.js";
+import { insertGaScript } from "./support.js";
 
 const siteMenu = NavigationService.getInstance();
 const appDataService = new AppDataService();
-
-window.onViewShop = onViewShop;
-window.onOpenShop = onOpenShop;
-window.onOpenContact = onOpenContact;
-window.onStoreClick = onStoreClick;
-window.onAltSearch = onAltSearch;
 
 let loadingCount = 0;
 let maxWaitCount = 150;
@@ -64,12 +58,7 @@ function loadingProgress() {
   loadingCount++;
   setTimeout(() => {
     if (!initialised) {
-      if (loadingCount < 20) {
-        generateLoadingRow(loadingCount);
-      }
       loadingProgress();
-    } else {
-      removeLoadingRows();
     }
   }, 150);
 }
