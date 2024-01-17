@@ -39,8 +39,8 @@ export function searchBarEventListeners() {
   searchShopBtn.addEventListener("click", searchShop);
 }
 
-export function setSearchField(event) {
-  searchBar.inputField.value = event.target.value;
+export function setSearchField(searchTerm) {
+  searchBar.inputField.value = searchTerm;
 }
 
 export function onSearch(event) {
@@ -60,6 +60,25 @@ export function onSearch(event) {
     if (searchBar.searchType === "shops") {
       searchShop(event);
     }
+  }
+}
+
+export function onLandingSearch(event) {
+  getSearchValue();
+  if (findBrand(searchBar.searchValue).length > 0) {
+    searchBrand(event);
+    return;
+  }
+  if (findProduct(searchBar.searchValue).length > 0) {
+    searchProduct(event);
+    return;
+  }
+  if (findWarranty(searchBar.searchValue).length > 0) {
+    searchWarranty(event);
+    return;
+  }
+  if (findShop(searchBar.searchValue).length > 0) {
+    searchShop(event);
   }
 }
 
