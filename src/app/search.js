@@ -44,6 +44,7 @@ export function setSearchField(searchTerm) {
 }
 
 export function onSearch(event) {
+  getSearchValue();
   if (event.key === "Enter") {
     if (searchBar.searchType === "brands") {
       searchBrand(event);
@@ -80,6 +81,8 @@ export function onLandingSearch(event) {
   if (findShop(searchBar.searchValue).length > 0) {
     searchShop(event);
   }
+  // If no results found just search brands
+  searchBrand(event);
 }
 
 export function refreshResults() {
@@ -101,64 +104,56 @@ export function resetResults() {
 }
 
 function searchBrand(event) {
-  searchBar.searchType = "brands";
-  pageColour(searchBar.searchType);
-  getSearchValue();
-  brandSearchEvent(searchBar.searchValue);
   if (debugOn()) {
     console.log("Search Brand: ", searchBar.searchValue, event);
   }
-  searchBar.searchResults.clearResults();
-  searchBar.searchResults.addResults(findBrand(searchBar.searchValue));
-  clearResults();
-  generateResults();
+  searchBar.searchType = "brands";
+  const results = findBrand(searchBar.searchValue);
+  prepareResults(results);
+  brandSearchEvent(searchBar.searchValue);
 }
 
 function searchProduct(event) {
-  searchBar.searchType = "parts";
-  pageColour(searchBar.searchType);
-  getSearchValue();
-  productSearchEvent(searchBar.searchValue);
   if (debugOn()) {
     console.log("Search Product", searchBar.searchValue, event);
   }
-  searchBar.searchResults.clearResults();
-  searchBar.searchResults.addResults(findProduct(searchBar.searchValue));
-  clearResults();
-  generateResults();
+  searchBar.searchType = "parts";
+  const results = findProduct(searchBar.searchValue);
+  prepareResults(results);
+  productSearchEvent(searchBar.searchValue);
 }
 
 function searchWarranty(event) {
-  searchBar.searchType = "warranty";
-  pageColour(searchBar.searchType);
-  getSearchValue();
-  warrantySearchEvent(searchBar.searchValue);
   if (debugOn()) {
     console.log("Search Warranty", searchBar.searchValue, event);
   }
-  searchBar.searchResults.clearResults();
-  searchBar.searchResults.addResults(findWarranty(searchBar.searchValue));
-  clearResults();
-  generateResults();
+  searchBar.searchType = "warranty";
+  const results = findWarranty(searchBar.searchValue);
+  prepareResults(results);
+  warrantySearchEvent(searchBar.searchValue);
 }
 
 function searchShop(event) {
-  searchBar.searchType = "shops";
-  pageColour(searchBar.searchType);
-  getSearchValue();
-  shopSearchEvent(searchBar.searchValue);
   if (debugOn()) {
     console.log("Search Shops", searchBar.searchValue, event);
   }
+  searchBar.searchType = "shops";
+  const results = findShop(searchBar.searchValue);
+  prepareResults(results);
+  shopSearchEvent(searchBar.searchValue);
+}
+
+function prepareResults(results) {
+  pageColour(searchBar.searchType);
   searchBar.searchResults.clearResults();
-  searchBar.searchResults.addResults(findShop(searchBar.searchValue));
+  searchBar.searchResults.addResults(results);
   clearResults();
   generateResults();
 }
 
 export function onAltSearch(altSearch) {
   searchBar.inputField.value = altSearch.searchTerm;
-  searchBar.searchValue = "";
+  getSearchValue();
   if (altSearch.searchType === "brands") {
     searchBrand(altSearch);
     return;

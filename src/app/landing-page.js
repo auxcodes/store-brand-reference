@@ -42,13 +42,11 @@ function onSearchKeypress(event) {
 
 function onSearchClick(event) {
   setSearchField(getSearchValue());
-  console.log("Search clicked", event);
   onLandingSearch(event);
   landingToSearch();
 }
 
 function onBrowseClick(event) {
-  console.log("Browse clicked", event.target.value);
   onLandingSearch(event);
   landingToSearch();
 }
