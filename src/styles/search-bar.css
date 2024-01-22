@@ -26,7 +26,7 @@
   margin: auto;
 }
 
-.search-btn {
+.search-bar .search-btn {
   border-radius: 1.75em;
   padding: 0.2em 0.5em;
   width: 50%;
@@ -34,9 +34,15 @@
   cursor: pointer;
   border-radius: 0.75em 0.75em 0 0;
   margin: 0.25em 0.25em 0 0.25em;
+  transition: box-shadow 200ms, color 200ms;
+}
+
+.search-bar .search-btn:hover {
+  color: white;
 }
 
 .brand-btn {
+  color: #0000a4;
   box-shadow: 0px 7px 8px #000;
   border: 1px var(--brand-color) solid, 1px var(--brand-color) solid, 1px var(--brand-color) solid, 1px #666 solid;
 }
@@ -52,6 +58,7 @@
 }
 
 .products-btn {
+  color: #094600;
   box-shadow: 0px 7px 8px #000;
   border: 1px var(--product-color) solid, 1px var(--product-color) solid, 1px var(--product-color) solid, 1px #666 solid;
 }
@@ -67,6 +74,7 @@
 }
 
 .warranty-btn {
+  color: #5e0101;
   box-shadow: 0px 7px 8px #000;
   border: 1px var(--warranty-color) solid, 1px var(--warranty-color) solid, 1px var(--warranty-color) solid,
     1px #666 solid;
@@ -83,6 +91,7 @@
 }
 
 .shop-btn {
+  color: #603e00;
   box-shadow: 0px 7px 8px #000;
   border: 1px var(--shop-color) solid, 1px var(--shop-color) solid, 1px var(--shop-color) solid, 1px #666 solid;
 }
