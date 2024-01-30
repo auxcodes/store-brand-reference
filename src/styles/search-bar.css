@@ -59,7 +59,7 @@
 
 .brand-btn {
   color: #0000a4;
-  box-shadow: 0px 7px 8px #000;
+  box-shadow: var(--btn-off-box-shadow);
   border: 1px var(--brand-color) solid, 1px var(--brand-color) solid, 1px var(--brand-color) solid, 1px #666 solid;
 }
 
@@ -75,7 +75,7 @@
 
 .products-btn {
   color: #094600;
-  box-shadow: 0px 7px 8px #000;
+  box-shadow: var(--btn-off-box-shadow);
   border: 1px var(--product-color) solid, 1px var(--product-color) solid, 1px var(--product-color) solid, 1px #666 solid;
 }
 
@@ -91,7 +91,7 @@
 
 .warranty-btn {
   color: #5e0101;
-  box-shadow: 0px 7px 8px #000;
+  box-shadow: var(--btn-off-box-shadow);
   border: 1px var(--warranty-color) solid, 1px var(--warranty-color) solid, 1px var(--warranty-color) solid,
     1px #666 solid;
 }
@@ -108,7 +108,7 @@
 
 .shop-btn {
   color: #603e00;
-  box-shadow: 0px 7px 8px #000;
+  box-shadow: var(--btn-off-box-shadow);
   border: 1px var(--shop-color) solid, 1px var(--shop-color) solid, 1px var(--shop-color) solid, 1px #666 solid;
 }
 
