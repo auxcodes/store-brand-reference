@@ -255,6 +255,11 @@ button {
 .more-notifications-btn:hover {
   box-shadow: var(--btn-box-shadow);
 }
+
+.more-notifications-btn--hidden {
+  display: none;
+}
+
 /* Menu */
 .site-nav {
   position: absolute;
@@ -392,10 +397,10 @@ button {
   padding: 0.2em 0.5em;
   border-radius: 0.75em 0.75em;
   border: 1px #d6d6d6 solid;
-  margin: 0.85em 0.5em;
+  margin: 0.85em auto 0.85em 0.5em;
   flex-grow: 2;
   max-width: 500px;
-  min-width: 320px;
+  min-width: auto;
   outline: none;
   font-size: 1.35rem;
 }
@@ -427,7 +432,7 @@ button {
   color: white;
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 610px) {
   body {
     margin: 0;
   }
@@ -467,7 +472,7 @@ button {
 
   .search-input {
     margin: 0.5em 0 0.5em 0;
-    width: 90%;
+    width: 100%;
     min-width: auto;
   }
 

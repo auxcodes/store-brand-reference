@@ -13,8 +13,7 @@ const firebaseEnv = {
   dev: {
     apiKey: "AIzaSyAgMoqCYbnNy2e-yXpe20IOmgbDzzO_Neg",
     authDomain: "dev-store-search.firebaseapp.com",
-    databaseURL:
-      "https://dev-store-search-default-rtdb.europe-west1.firebasedatabase.app",
+    databaseURL: "https://dev-store-search-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "dev-store-search",
     storageBucket: "dev-store-search.appspot.com",
     messagingSenderId: "386871581796",
@@ -24,8 +23,7 @@ const firebaseEnv = {
   prod: {
     apiKey: "AIzaSyBSq792rpu4MTeNmX3XUHpiOwulkEqZoqk",
     authDomain: "store-search-d8833.firebaseapp.com",
-    databaseURL:
-      "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app",
+    databaseURL: "https://store-search-d8833-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "store-search-d8833",
     storageBucket: "store-search-d8833.appspot.com",
     messagingSenderId: "948158688295",
@@ -36,9 +34,7 @@ const firebaseEnv = {
 
 export function getGaId() {
   const env = getEnvironment();
-  return env === "prod"
-    ? firebaseEnv.prod.measurementId
-    : firebaseEnv.dev.measurementId;
+  return env === "prod" ? firebaseEnv.prod.measurementId : firebaseEnv.dev.measurementId;
 }
 
 export function debugOn() {
@@ -87,9 +83,7 @@ export function getContactUrl() {
   const env = getEnvironment();
   if (env === "dev") {
     const currentUrl = window.location.host;
-    result = currentUrl.includes("localhost")
-      ? contactURLs.local
-      : contactURLs.dev;
+    result = currentUrl.includes("localhost") ? contactURLs.local : contactURLs.dev;
   }
   return result;
 }

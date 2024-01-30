@@ -11,13 +11,29 @@
 .search-bar .search-input-row {
   display: flex;
   margin: auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 80%;
 }
 
 .search-bar .search-label {
   text-align: center;
-  width: max-content;
-  margin: auto;
+  width: min-content;
+  margin: auto 0 auto auto;
+  font-size: clamp(1.5rem, 5vw, 1.75rem);
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 610px) {
+  .search-bar .search-input-row {
+    min-width: 90%;
+  }
+  .search-bar .search-label {
+    margin: 0.15em auto auto;
+  }
+  .search-bar .search-input {
+    margin: 0.5em auto;
+  }
 }
 
 .search-btn-container {
