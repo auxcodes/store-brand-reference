@@ -11,6 +11,7 @@
     Body
     Footer
     Forms, Modals, Buttons
+    html (load last to stop FOUC)
 */
 
 /*
@@ -843,3 +844,10 @@ span.psw {
   right: 7px;
   cursor: pointer;
 }
+
+html {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+/*# sourceMappingURL=styles.css.map */
