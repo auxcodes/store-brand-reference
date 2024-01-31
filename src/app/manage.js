@@ -22,7 +22,7 @@ async function getPage() {
   await cs.getItems(dbRef).then((page) => {
     if (page) {
       result = page;
-      console.log("M - Got page: ", result);
+      //console.log("M - Got page: ", result);
       const pageContent = document.querySelector("#pageContent");
       const manageElement = document.createElement("manage-component");
       manageElement.id = "manage-element";
