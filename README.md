@@ -3,6 +3,7 @@ Prod: [![Netlify Status](https://api.netlify.com/api/v1/badges/76e28d34-5506-4ab
 **Store Search** is a website to aid Australian bike shops in searching for Australian Distributers that stock specific bike brands and parts.
 
 ## Updates
+- January 31 2024: Addition of a main landing page (search engine style), improvements to styling, automatic clearing of old notfications.
 - September 24 2022: Massive addition of backend data added (100+ distributors), new Store tab added to search for specific store, stores now have extra fields such as contact details.
 - May 31 2022: Version 1.0 released, all store data is online and can now be edited by uses with valid email adresses.
 - December 05 2021: Initial POC release, store data stored locally in json file.
