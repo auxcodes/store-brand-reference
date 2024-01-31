@@ -64,7 +64,7 @@ export function isDev(url) {
 function getEnvironment() {
   const currentUrl = window.location.host;
   const result = isDev(currentUrl) ? "dev" : "prod";
-  console.log("Current environment is: ", result, currentUrl);
+  // console.log("Current environment is: ", result, currentUrl);
   return result;
 }
 

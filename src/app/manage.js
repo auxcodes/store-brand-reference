@@ -9,10 +9,8 @@ const minShow = 5;
 export async function canManage() {
   const content = await getPage();
   if (content !== "") {
-    console.log("Can manage: ", content);
     return true;
   } else {
-    console.log("Can not manage:", content);
     return false;
   }
 }
