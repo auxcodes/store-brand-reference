@@ -193,7 +193,7 @@ export class AppCloudStorage {
         }
       })
       .catch((error) => {
-        console.error("CS - Error Adding Shop to Cloud: ", error);
+        console.error("CS - Error Adding Item to Cloud: ", error);
         return error;
       });
   }
