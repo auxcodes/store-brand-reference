@@ -4,7 +4,28 @@ import { LocalStorageService } from "./local-storage.js";
 import { ShopData } from "./shop-data.js";
 import { debugOn } from "./environment.js";
 
-export class AppDataService {
+export const AppDataService = (() => {
+  let instance = null;
+
+  function createInstance() {
+    let appData = new AppData();
+    return appData;
+  }
+
+  return {
+    getInstance: () => {
+      if (debugOn()) {
+        console.log("AD - Init App Data Service");
+      }
+      if (!instance) {
+        instance = createInstance();
+      }
+      return instance;
+    },
+  };
+})();
+
+export class AppData {
   authService = AuthService.getInstance();
   localStorageService = null;
   cloudStorageService = null;
@@ -33,6 +54,7 @@ export class AppDataService {
         if (debugOn()) {
           console.log("AD - lastUpdated:", date);
         }
+        this.doesLocalDataNeedUpdating(date);
       })
       .catch((error) => {
         console.error("AD - Error checking last update:", error);
@@ -79,19 +101,26 @@ export class AppDataService {
       });
   }
 
-  doesLocalDataNeedUpdating() {
+  doesLocalDataNeedUpdating(cloudDate) {
     this.localStorageService.readEntry(this.lastUpdateKey).then((date) => {
-      const milliSecondsSinceLastUpdate = Date.now() - date;
-      if (debugOn()) {
-        console.log("AD - Local last updated: ", milliSecondsSinceLastUpdate, " milliseconds");
+      if (date) {
+        const milliSecondsSinceLastUpdate = Date.now() - date;
+        if (debugOn()) {
+          console.log("AD - Local last updated: ", milliSecondsSinceLastUpdate, " milliseconds", +date, cloudDate);
+        }
+        if (+cloudDate > +date || milliSecondsSinceLastUpdate > 86400000) {
+          this.checkCloudStorage();
+        }
+      } else {
+        this.localStorageService.updateEntry(this.lastUpdateKey, Date.now());
       }
     });
   }
 
   updateShopDataInLocalStorage(shopData) {
-    const updateDate = Date.now();
     this.cloudStorageService.lastUpdated(this.fileName);
     this.localStorageService.updateEntry(this.shopsKey, shopData);
+    this.localStorageService.updateEntry(this.lastUpdateKey, Date.now());
   }
 
   updateAllData(allShopData) {

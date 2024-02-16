@@ -3,6 +3,7 @@ import {} from "./components/shop-view-modal.js";
 import { getSpecificShop, addNewShop, updateShop, deleteShop } from "./shop-data.js";
 import { userSignedIn, userEmail } from "./auth.js";
 import { debugOn } from "./environment.js";
+import { AppDataService } from "./app-data.js";
 
 const body = document.querySelector("body");
 
@@ -200,4 +201,6 @@ export function processShopDetails(fields, submitter) {
       console.log("SDTL - Process Details: ", shopDetails);
     }
   }
+  const appDataService = AppDataService.getInstance();
+  appDataService.checkCloudData();
 }

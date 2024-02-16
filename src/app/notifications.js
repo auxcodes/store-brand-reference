@@ -227,6 +227,7 @@ export function createNotification(changeObj) {
     .catch((error) => {
       console.error("N - Error Adding Notification: ", error);
     });
+  cs.updateLastUpdated(storageKey);
   refreshNotifications();
   return notification;
 }

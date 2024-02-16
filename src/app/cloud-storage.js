@@ -126,6 +126,26 @@ export class AppCloudStorage {
     });
   }
 
+  async updateLastUpdated(file) {
+    const updateRef = ref(this.database, this.lastUpdateFile);
+    await this.getItems(updateRef)
+      .then((updates) => {
+        if (debugOn()) {
+          console.log("CS - Update Last Updated - updates: ", updates);
+        }
+        updates[file] = Date.now();
+        updates[this.backupFile] = Date.now();
+        updates[this.workingFile] = Date.now();
+        set(updateRef, updates);
+        if (debugOn()) {
+          console.log("CS - Update Last Updated: ", file, updates);
+        }
+      })
+      .catch((error) => {
+        console.log("CS - Error Updating Last Updated: ", file);
+      });
+  }
+
   async getStorage() {
     let shopData = {};
 

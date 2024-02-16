@@ -10,7 +10,7 @@ import { resetResults, onAltSearch } from "./search.js";
 import { insertGaScript } from "./support.js";
 
 const siteMenu = NavigationService.getInstance();
-const appDataService = new AppDataService();
+const appDataService = AppDataService.getInstance();
 
 let loadingCount = 0;
 let maxWaitCount = 150;
