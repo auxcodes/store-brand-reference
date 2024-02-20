@@ -212,7 +212,7 @@ export function highlightSearchTerm(storeResult) {
 }
 
 function noResultsFound() {
-  noResultEvent(searchBar.searchValue);
+  noResultEvent(searchBar.searchValue, searchBar.searchType);
   const alternates = filterWords(searchBar.searchValue, searchBar.searchType);
   const div = document.createElement("div");
   div.classList.add("no-result-row");

@@ -1,5 +1,6 @@
 import { debugOn, getGaId } from "./environment.js";
 import { CloudStorageService } from "./cloud-storage.js";
+import { sendContactData } from "./contact.js";
 
 export function insertGaScript() {
   const gaID = getGaId();
@@ -66,7 +67,7 @@ export function shopSearchEvent(searchTerm) {
   }
 }
 
-export function noResultEvent(searchTerm) {
+export function noResultEvent(searchTerm, searchType) {
   const eventInfo = {
     event_category: "search",
     event_label: searchTerm,
@@ -76,20 +77,22 @@ export function noResultEvent(searchTerm) {
   if (debugOn()) {
     console.log("GA - Failed Search Event: ", eventInfo);
   }
-  searchEvent(searchTerm, "failed");
-}
-
-function searchEvent(searchTerm, searchType) {
-  const cs = CloudStorageService.getInstance();
-  const search = {
+  searchEvent({
     search_term: searchTerm,
     search_type: searchType,
+    search_result: "no_result",
     date: Date.now(),
-  };
+  });
+}
+
+function searchEvent(searchEvent) {
+  const cs = CloudStorageService.getInstance();
+
   if (debugOn()) {
-    console.log("GA - Adding Search Event: ", search);
+    console.log("GA - Adding Search Event: ", searchEvent);
   }
-  cs.addItem("search", search)
+  failedSearchAlert(searchEvent);
+  cs.addItem("search", searchEvent)
     .then(() => {
       if (debugOn()) {
         console.log("GA - Added Search Event: ");
@@ -134,4 +137,19 @@ function storeClickEvent(storeName) {
   if (debugOn()) {
     console.log("GA - Store Click Event: ", eventInfo);
   }
+}
+
+function failedSearchAlert(searchEvent) {
+  const searchInfo = {
+    name: "Failed Search",
+    email: "failed@search.com",
+    message: `<br>
+    <b>Search term:</b> ${searchEvent.search_term} <br>
+    <b>Search type:</b> ${searchEvent.search_type} <br>
+    <b>Search result:</b> ${searchEvent.search_result} <br>
+    <b>Date:</b> ${new Date().toLocaleDateString()}
+    `,
+    subject: `!! > ${searchEvent.search_term} < Not Found !!`,
+  };
+  sendContactData(searchInfo);
 }
