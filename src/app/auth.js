@@ -51,8 +51,11 @@ export function userSignedIn() {
   if (debugOn()) {
     console.log("AU - Is User Signed In");
   }
-  canManage();
-  return authService.alreadyUser();
+  const user = authService.alreadyUser();
+  if (user !== null && !user.isAnonymous) {
+    canManage();
+  }
+  return user;
 }
 
 export function signOutUser() {

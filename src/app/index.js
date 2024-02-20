@@ -65,7 +65,7 @@ function loadingProgress() {
 
 function userSignedInOnInitalised() {
   const user = userSignedIn();
-  if (user !== null) {
+  if (user !== null && !user.isAnonymous) {
     signInUser();
   } else {
     siteMenu.toggleLoginButtonOn();
