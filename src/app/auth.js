@@ -25,6 +25,10 @@ export function userEmail() {
   return authService.currentUser().email;
 }
 
+export function userId() {
+  return authService.currentUser().uid;
+}
+
 export function signUpForm() {
   const el = document.createElement("login-modal");
   el.classList.add("modal");
@@ -48,12 +52,9 @@ export function signUpForm() {
 }
 
 export function userSignedIn() {
-  if (debugOn()) {
-    console.log("AU - Is User Signed In");
-  }
   const user = authService.alreadyUser();
-  if (user !== null && !user.isAnonymous) {
-    canManage();
+  if (debugOn()) {
+    console.log("AU - Is User Signed In? ", user !== null && !user.isAnonymous ? "Yes" : "No");
   }
   return user;
 }
@@ -64,6 +65,14 @@ export function signOutUser() {
 
 export function signInUser() {
   const email = authService.alreadyUser().email;
+
+  if (debugOn()) {
+    console.log("AU - Sign in user", email);
+  }
+  if (email !== null && email !== undefined && email.length > 0) {
+    canManage();
+  }
+
   siteMenu.toggleLogoutButtonOn();
   onOpenAlert({
     text: `${email} is now signed in.`,

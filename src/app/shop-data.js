@@ -138,7 +138,7 @@ export function getAllShops() {
 export function getSpecificShop(shopId) {
   const shop = allData.find((shop) => shop.shopId === shopId);
   if (debugOn()) {
-    console.log(shop);
+    console.log("SD - Get Specific Shop: ", shop);
   }
   return deepCopy(shop);
 }

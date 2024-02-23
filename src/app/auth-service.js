@@ -61,31 +61,55 @@ class UserAuthentication {
 
   currentUser() {
     if (debugOn()) {
-      console.log("AS - Current User: ", this.user === null ? "none" : this.user.email);
+      console.log("AS - Current User: ", this.user);
     }
     return this.user;
   }
 
   authState() {
     this.auth = getAuth();
+    this.initUserAuth();
     this.auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (debugOn()) {
+        console.log("AS - Auth State Changed: Current user - ", this.user, ", New user - ", user);
+      }
+      if (user !== null) {
         this.user = user;
+        if (debugOn()) {
+          console.log("AS - ASC - User is: ", this.user);
+        }
         if (!user.isAnonymous) {
           signInUser();
         }
-        console.log("AS - User is: ", this.user);
       } else {
-        console.log("AS - No user set to Anonymous...");
+        if (debugOn()) {
+          console.log("AS - ASC - No user set to Anonymous...");
+        }
         this.anonSignIn();
       }
     });
   }
 
+  initUserAuth() {
+    this.user = this.auth.currentUser;
+    if (this.user !== null) {
+      if (debugOn()) {
+        console.log("AS - Init User is: ", this.user);
+      }
+      if (this.user.isAnonymous) {
+        if (debugOn()) {
+          console.log("AS - Init User is Anonymous...");
+        }
+      }
+    }
+  }
+
   anonSignIn() {
     signInAnonymously(this.auth)
       .then((user) => {
-        console.log("AS - Anon Sign In: ", user);
+        if (debugOn()) {
+          console.log("AS - Anon Sign In: ", user);
+        }
         this.user = user;
       })
       .catch((error) => {
@@ -95,15 +119,15 @@ class UserAuthentication {
 
   checkURL() {
     if (debugOn()) {
-      console.log("AS - Check URL...");
+      console.log("AS - Check URL for login...");
     }
     if (window.location.search.length > 0) {
       this.emailLogin();
     } else {
-      this.authState();
       if (debugOn()) {
         console.log("AS - Check current user ");
       }
+      this.authState();
     }
   }
 
@@ -139,7 +163,7 @@ class UserAuthentication {
     }
     this.auth = getAuth();
     const user = this.auth.currentUser;
-    if (user !== null) {
+    if (user !== null && !user.isAnonymous) {
       email = window.alert(`User ${user.email} is already logged in.`);
       if (debugOn()) {
         console.log("Already a user logged in: ", user);
@@ -162,7 +186,7 @@ class UserAuthentication {
               if (debugOn()) {
                 console.log("AS - Sign in with Email Link - user: ", result);
               }
-              this.currentUser();
+              this.authState();
               this.siteMenu.toggleLogoutButtonOn();
               onOpenAlert({
                 text: `You have been successfully signed in.`,

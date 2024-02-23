@@ -146,7 +146,7 @@ class SiteMenu {
 
   toggleLogoutButtonOn() {
     if (debugOn()) {
-      console.log("Toggle Logout On");
+      console.log("NAV - Toggle Logout On");
     }
     this.logoutButton.classList.remove("nav-btn--hide");
     this.loginButton.classList.add("nav-btn--hide");
@@ -154,7 +154,7 @@ class SiteMenu {
 
   toggleLoginButtonOn() {
     if (debugOn()) {
-      console.log("Toggle Login On");
+      console.log("NAV - Toggle Login On");
     }
     this.loginButton.classList.remove("nav-btn--hide");
     this.logoutButton.classList.add("nav-btn--hide");
@@ -162,9 +162,10 @@ class SiteMenu {
 
   toggleLoginLogout() {
     if (debugOn()) {
-      console.log("Toggle login/logout");
+      console.log("NAV - Toggle login/logout");
     }
-    if (userSignedIn() === null) {
+    const user = userSignedIn();
+    if (user === null || user.isAnonymous) {
       this.toggleLogoutButtonOn();
     } else {
       this.toggleLoginButtonOn;

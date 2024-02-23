@@ -21,7 +21,8 @@ export function hasShopViewModal(shopDetail) {
 }
 
 export function hasShopDetailForm(shopDetail) {
-  if (userSignedIn() === null) {
+  const user = userSignedIn();
+  if (user === null || user.isAnonymous) {
     document.getElementById("login-modal").classList.toggle("modal-open");
     document.getElementById("login-email-input").focus();
     return false;
@@ -78,6 +79,12 @@ function openAddShopDetailModal() {
 }
 
 function openEditShopDetailModal(shopId) {
+  const user = userSignedIn();
+  if (user === null || user.isAnonymous) {
+    document.getElementById("login-modal").classList.toggle("modal-open");
+    document.getElementById("login-email-input").focus();
+    return;
+  }
   const shopDetails = {
     title: "Edit Shop",
     ...getSpecificShop(shopId),
@@ -123,7 +130,7 @@ function multipleSocialLinks(socialHandles, socialSite) {
     }
   });
   if (debugOn()) {
-    console.log(links);
+    console.log("SD - Multiple Social Links: ", links);
   }
   return links;
 }

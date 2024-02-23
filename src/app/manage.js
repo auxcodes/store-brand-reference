@@ -19,19 +19,26 @@ async function getPage() {
   const cs = CloudStorageService.getInstance();
   const dbRef = cs.dbReference("a_page");
   let result = "";
-  await cs.getItems(dbRef).then((page) => {
-    if (page) {
-      result = page;
-      //console.log("M - Got page: ", result);
-      const pageContent = document.querySelector("#pageContent");
-      const manageElement = document.createElement("manage-component");
-      manageElement.id = "manage-element";
-      manageElement.style = "display : none";
-      manageElement.manageTools = result;
-      pageContent.append(manageElement);
-      enableButton(manageElement);
-    }
-  });
+  await cs
+    .getItems(dbRef)
+    .then((page) => {
+      if (page) {
+        result = page;
+        if (debugOn()) {
+          console.log("M - Got page: ", result);
+        }
+        const pageContent = document.querySelector("#pageContent");
+        const manageElement = document.createElement("manage-component");
+        manageElement.id = "manage-element";
+        manageElement.style = "display : none";
+        manageElement.manageTools = result;
+        pageContent.append(manageElement);
+        enableButton(manageElement);
+      }
+    })
+    .catch((error) => {
+      // Catch error getting page
+    });
 
   return result;
 }

@@ -1,6 +1,7 @@
 import { debugOn, getGaId } from "./environment.js";
 import { CloudStorageService } from "./cloud-storage.js";
 import { sendContactData } from "./contact.js";
+import { userEmail, userId } from "./auth.js";
 
 export function insertGaScript() {
   const gaID = getGaId();
@@ -77,11 +78,13 @@ export function noResultEvent(searchTerm, searchType) {
   if (debugOn()) {
     console.log("GA - Failed Search Event: ", eventInfo);
   }
+  const user = userEmail() ? userEmail() : userId();
   searchEvent({
     search_term: searchTerm,
     search_type: searchType,
     search_result: "no_result",
     date: Date.now(),
+    user: user,
   });
 }
 
@@ -147,7 +150,8 @@ function failedSearchAlert(searchEvent) {
     <b>Search term:</b> ${searchEvent.search_term} <br>
     <b>Search type:</b> ${searchEvent.search_type} <br>
     <b>Search result:</b> ${searchEvent.search_result} <br>
-    <b>Date:</b> ${new Date().toLocaleDateString()}
+    <b>Date:</b> ${new Date().toLocaleDateString()} <br>
+    <b>User:</b> ${searchEvent.user} <br>
     `,
     subject: `!! > ${searchEvent.search_term} < Not Found !!`,
   };

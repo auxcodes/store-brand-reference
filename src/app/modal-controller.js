@@ -45,9 +45,10 @@ export function onOpenShop(shopId) {
     shopDetailModal.onsubmit = (event) => {
       event.preventDefault();
       if (debugOn()) {
-        console.log("I - OnSubmitShopModalFOrm: ", event.submitter.id, event, userEmail());
+        console.log("MC - OnSubmitShopModalForm: ", event.submitter.id, event, userEmail());
       }
-      if (userSignedIn() !== null) {
+      const user = userSignedIn();
+      if (user !== null && !user.isAnonymous) {
         processShopDetails(event.target, event.submitter.id);
         clearResults();
         resetResults();
@@ -97,7 +98,9 @@ function createContactModal() {
   contactModal.id = "contact-modal";
   contactModal.contactForm = {};
   contactModal.onsubmit = (event) => {
-        if (debugOn()) { console.log('MC - Contact form submitted', event.target); }
+    if (debugOn()) {
+      console.log("MC - Contact form submitted", event.target);
+    }
     if (debugOn()) {
       console.log("MC - Contact form submitted", event.target);
     }
