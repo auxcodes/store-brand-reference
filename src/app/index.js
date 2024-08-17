@@ -8,6 +8,7 @@ import { AppDataService } from "./app-data.js";
 import { initLandingPage } from "./landing-page.js";
 import { resetResults, onAltSearch } from "./search.js";
 import { insertGaScript } from "./support.js";
+import { debugOn } from "./environment.js";
 
 const siteMenu = NavigationService.getInstance();
 const appDataService = AppDataService.getInstance();
@@ -65,8 +66,10 @@ function loadingProgress() {
 
 function userSignedInOnInitalised() {
   const user = userSignedIn();
-  if (user !== null && !user.isAnonymous) {
-    signInUser();
+  if (debugOn()) {
+    console.log("I - Signed In: ", user);
+  }
+  if (user !== null && user !== "unknown" && !user.isAnonymous) {
   } else {
     siteMenu.toggleLoginButtonOn();
   }

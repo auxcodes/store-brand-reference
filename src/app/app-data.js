@@ -15,7 +15,7 @@ export const AppDataService = (() => {
   return {
     getInstance: () => {
       if (debugOn()) {
-        console.log("AD - Init App Data Service");
+        console.log("AD - Get Instance App Data Service");
       }
       if (!instance) {
         instance = createInstance();
@@ -36,7 +36,7 @@ export class AppData {
 
   constructor() {
     if (debugOn()) {
-      console.log("AD - Init App Data Service");
+      console.log("AD - Construct App Data Service");
     }
     this.localStorageService = LocalStorageService.getInstance();
     this.cloudStorageService = CloudStorageService.getInstance(this.authService.firebaseService);

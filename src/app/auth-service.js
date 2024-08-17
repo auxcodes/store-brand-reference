@@ -132,6 +132,10 @@ class UserAuthentication {
   }
 
   signOut() {
+    if (this.user.isAnonymous) {
+      console.log("AS - SignOut: skip, user is anon");
+      return;
+    }
     if (this.auth) {
       this.auth
         .signOut()
