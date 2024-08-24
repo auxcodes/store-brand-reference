@@ -1,10 +1,10 @@
-import { highlightSearchTerm } from "../search.js";
 import { onViewShop } from "../modal-controller.js";
 import { onStoreClick } from "../support.js";
 
 export class SearchResults {
   searchResultElement = document.getElementById("searchResults");
   results = [];
+  searchValue = "";
 
   constructor() {
     this.results = [];
@@ -26,7 +26,7 @@ export class SearchResults {
       const isIncomplete = this.checkCompletness(result) ? "result-row-incomplete" : "complete";
       el.classList.add("result-row", isIncomplete);
       if (searchBar.searchValue.length > 0) {
-        result = highlightSearchTerm(result);
+        result = this.highlightSearchTerm(result, searchBar.searchValue);
       }
       el.result = result;
       el.id = result.shopId;
@@ -51,5 +51,14 @@ export class SearchResults {
         onStoreClick(result.shopName);
       });
     });
+  }
+
+  highlightSearchTerm(storeResult, searchValue) {
+    const replace = new RegExp(searchValue, "i");
+    const highLight = `<span class="result-text-highlight">${searchValue.toUpperCase()}</span>`;
+    storeResult.brands = storeResult.brands.replace(replace, highLight);
+    storeResult.parts = storeResult.parts.replace(replace, highLight);
+    storeResult.shopWarranty = storeResult.shopWarranty.replace(replace, highLight);
+    return storeResult;
   }
 }

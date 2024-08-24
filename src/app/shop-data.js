@@ -63,7 +63,7 @@ export function findProduct(productName) {
 }
 
 export function findWarranty(warranty) {
-  return warranty === "" ? allWarranty() : filterShops(warranty, "shopWarranty");
+  return filterShops(warranty, "shopWarranty");
 }
 
 export function findShop(shopName) {
@@ -85,11 +85,21 @@ function filterShops(searchTerm, property) {
   if (searchTerm !== "") {
     results = allData.filter((shop) => {
       if (shop[property] !== undefined) {
+        // Booolean confirmation of search term inclusion
         return shop[property].toLowerCase().includes(searchTerm.toLowerCase());
       }
     });
   }
-  return deepCopy(results);
+  return tagShopMatches(deepCopy(results), property);
+}
+
+function tagShopMatches(shops, searchType) {
+  return shops.map((shop) => {
+    return {
+      searchMatches: [searchType],
+      ...shop,
+    };
+  });
 }
 
 export function filterWords(searchTerm, property) {
