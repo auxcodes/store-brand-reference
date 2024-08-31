@@ -31,7 +31,7 @@ export function setSearchField(searchTerm) {
 }
 
 export function onSearch(event) {
-  if (event.key === "Enter") {
+  if (event.key === "Enter" || event.type === "click") {
     searchAll(event);
   }
 }

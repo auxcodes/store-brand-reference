@@ -7,8 +7,12 @@ class SearchFormBar extends HTMLElement {
             <form id="form-search" class="search-form">
                 <div class="search-input-row">
                     <label class="search-label" for="searchInput">Store Search:</label>
-                    <input class="search-input" id="searchInput" type="search"
-                        placeholder="Search for brands or products..." />
+                    <div class="search-input-wrapper">
+                      <input class="search-input square-right" id="searchInput" type="search"
+                      placeholder="Search for brands or products..." />
+                      <button class="search-icon-btn" id="searchIconBtn" type="button" title="Search all stores"><i
+                      class="fa-solid fa-search search-icon"></i></button>
+                    </div>
                 </div>
             </form>
   `;
