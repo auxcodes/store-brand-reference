@@ -2,8 +2,10 @@ class SearchResult extends HTMLElement {
   set result(result) {
     this.innerHTML = `
         <div class='result-header'>
-            <span class='brand-name'>${result.shopName}</span> 
-            <!-- <a id='shopUrl' class='brand-url' href='${result.shopURL}' target='_blank'>${result.shopURL}</a> -->
+            
+            <a id='shopUrl' class='brand-url' href='${result.shopURL}' target='_blank'>
+              <span class='brand-name'>${result.shopName}</span> 
+            </a>
             <div class="result-label-wrapper">
               ${result.resultLabels}
             </div>

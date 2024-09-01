@@ -54,13 +54,13 @@ export class SearchResults {
     this.results.forEach((result) => {
       const el = document.getElementById(result.shopId);
       const shopBtn = el.querySelector("#viewStoreBtn");
-      // const shopUrl = el.querySelector("#shopUrl");
+      const shopUrl = el.querySelector("#shopUrl");
       shopBtn.addEventListener("click", () => {
         onViewShop(result.shopId);
       });
-      // shopUrl.addEventListener("click", () => {
-      //   onStoreClick(result.shopName);
-      // });
+      shopUrl.addEventListener("click", () => {
+        onStoreClick(result.shopName);
+      });
     });
   }
 
