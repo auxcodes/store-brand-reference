@@ -6,6 +6,13 @@ export class SearchResults {
   results = [];
   searchValue = "";
 
+  labelClasses = {
+    brands: "brand-label-active",
+    parts: "products-label-active",
+    shopName: "shop-label-active",
+    shopWarranty: "warranty-label-active",
+  };
+
   constructor() {
     this.results = [];
   }
@@ -28,6 +35,10 @@ export class SearchResults {
       if (searchBar.searchValue.length > 0) {
         result = this.highlightSearchTerm(result, searchBar.searchValue);
       }
+      if (result.searchMatches) {
+        const labels = this.highlightSearchLabel(result.searchMatches);
+        result = { resultLabels: labels, ...result };
+      }
       el.result = result;
       el.id = result.shopId;
       this.searchResultElement.append(el);
@@ -43,13 +54,13 @@ export class SearchResults {
     this.results.forEach((result) => {
       const el = document.getElementById(result.shopId);
       const shopBtn = el.querySelector("#viewStoreBtn");
-      const shopUrl = el.querySelector("#shopUrl");
+      // const shopUrl = el.querySelector("#shopUrl");
       shopBtn.addEventListener("click", () => {
         onViewShop(result.shopId);
       });
-      shopUrl.addEventListener("click", () => {
-        onStoreClick(result.shopName);
-      });
+      // shopUrl.addEventListener("click", () => {
+      //   onStoreClick(result.shopName);
+      // });
     });
   }
 
@@ -60,5 +71,23 @@ export class SearchResults {
     storeResult.parts = storeResult.parts.replace(replace, highLight);
     storeResult.shopWarranty = storeResult.shopWarranty.replace(replace, highLight);
     return storeResult;
+  }
+
+  highlightSearchLabel(searchMatches) {
+    return `<span id="brandResultLabel" class="result-label ${this.activeClass(searchMatches, "brands")}">brands</span>
+    <span id="productResultLabel" class="result-label ${this.activeClass(searchMatches, "parts")}">parts</span>
+    <span id="shopResultLabel" class="result-label ${this.activeClass(searchMatches, "shopName")}">store name</span>
+    <span id="warrantyResultLabel" class="result-label ${this.activeClass(
+      searchMatches,
+      "shopWarranty"
+    )}">warranty</span>`;
+  }
+
+  activeClass(searchMatches, searchType) {
+    if (searchMatches.includes(searchType)) {
+      return this.labelClasses[searchType];
+    } else {
+      return "";
+    }
   }
 }

@@ -3,7 +3,10 @@ class SearchResult extends HTMLElement {
     this.innerHTML = `
         <div class='result-header'>
             <span class='brand-name'>${result.shopName}</span> 
-            <a id='shopUrl' class='brand-url' href='${result.shopURL}' target='_blank'>${result.shopURL}</a>
+            <!-- <a id='shopUrl' class='brand-url' href='${result.shopURL}' target='_blank'>${result.shopURL}</a> -->
+            <div class="result-label-wrapper">
+              ${result.resultLabels}
+            </div>
             <button id='viewStoreBtn' class='edit-btn' title='View Shop Information'><i class="fa-solid fa-info view-btn"></i></button>
         </div>
         <div class='result-body'>
