@@ -164,10 +164,19 @@
   margin: 0.5em;
 }
 
-.result-row:hover .brand-list,
+.show-item-list {
+  display: none;
+}
+
+.result-row:hover .show-item-list,
+.result-row:focus-within .show-item-list {
+  display: block;
+}
+
+/* .result-row:hover .brand-list,
 .result-row:focus-within .brand-list {
   display: var(--show-brands);
-}
+} */
 
 .result-row .product-list {
   display: none;
@@ -175,10 +184,10 @@
   margin: 0.5em;
 }
 
-.result-row:hover .product-list,
+/* .result-row:hover .product-list,
 .result-row:focus-within .product-list {
   display: var(--show-products);
-}
+} */
 
 .result-row .warranty-list {
   display: none;
@@ -186,10 +195,10 @@
   margin: 0.5em;
 }
 
-.result-row:hover .warranty-list,
+/* .result-row:hover .warranty-list,
 .result-row:focus-within .warranty-list {
   display: var(--show-warranty);
-}
+} */
 
 .result-row .shop-list {
   display: none;
@@ -197,10 +206,10 @@
   margin: 0.5em;
 }
 
-.result-row:hover .shop-list,
+/* .result-row:hover .shop-list,
 .result-row:focus-within .shop-list {
   display: var(--show-shop);
-}
+} */
 
 .result-row .edit-btn {
   display: block;

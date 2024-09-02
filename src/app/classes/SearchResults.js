@@ -37,7 +37,8 @@ export class SearchResults {
       }
       if (result.searchMatches) {
         const labels = this.highlightSearchLabel(result.searchMatches);
-        result = { resultLabels: labels, ...result };
+        const itemLists = this.showSearchLists(result);
+        result = { resultLabels: labels, storeLists: itemLists, ...result };
       }
       el.result = result;
       el.id = result.shopId;
@@ -73,7 +74,33 @@ export class SearchResults {
     return storeResult;
   }
 
+  showSearchLists(itemLists) {
+    //console.log("show search lists", searchMatches);
+    return `<span class='brand-list ${this.addShowClass(itemLists.searchMatches, "brands")}'><b>Brands: </b>${
+      itemLists.brands
+    }</span>
+              <span class='product-list ${this.addShowClass(itemLists.searchMatches, "parts")}'><b>Products: </b>${
+      itemLists.parts
+    }</span>
+              <span class='warranty-list ${this.addShowClass(
+                itemLists.searchMatches,
+                "shopWarranty"
+              )}'><b>Warranty: </b>${itemLists.shopWarranty}</span>
+              <span class='shop-list ${this.addShowClass(itemLists.searchMatches, "shopName")}'><b>Phone: </b>${
+      itemLists.shopPhone
+    } <b>Email: </b> ${itemLists.shopEmail} <b>Address: </b> ${itemLists.shopAddress}</span>`;
+  }
+
+  addShowClass(searchMatches, searchType) {
+    if (searchMatches.includes(searchType)) {
+      return "show-item-list";
+    } else {
+      return "";
+    }
+  }
+
   highlightSearchLabel(searchMatches) {
+    console.log("highlight search matches", searchMatches);
     return `<span id="brandResultLabel" class="result-label ${this.activeClass(searchMatches, "brands")}">brands</span>
     <span id="productResultLabel" class="result-label ${this.activeClass(searchMatches, "parts")}">parts</span>
     <span id="shopResultLabel" class="result-label ${this.activeClass(searchMatches, "shopName")}">store name</span>
