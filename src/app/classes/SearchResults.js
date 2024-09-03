@@ -25,7 +25,7 @@ export class SearchResults {
     this.results = [];
   }
 
-  get results() {}
+  get results() { }
 
   addResultsToDom(searchBar) {
     this.results.forEach((result) => {
@@ -76,19 +76,16 @@ export class SearchResults {
 
   showSearchLists(itemLists) {
     //console.log("show search lists", searchMatches);
-    return `<span class='brand-list ${this.addShowClass(itemLists.searchMatches, "brands")}'><b>Brands: </b>${
-      itemLists.brands
-    }</span>
-              <span class='product-list ${this.addShowClass(itemLists.searchMatches, "parts")}'><b>Products: </b>${
-      itemLists.parts
-    }</span>
+    return `<span class='brand-list ${this.addShowClass(itemLists.searchMatches, "brands")}'><b>Brands: </b>${itemLists.brands
+      }</span>
+              <span class='product-list ${this.addShowClass(itemLists.searchMatches, "parts")}'><b>Products: </b>${itemLists.parts
+      }</span>
               <span class='warranty-list ${this.addShowClass(
-                itemLists.searchMatches,
-                "shopWarranty"
-              )}'><b>Warranty: </b>${itemLists.shopWarranty}</span>
-              <span class='shop-list ${this.addShowClass(itemLists.searchMatches, "shopName")}'><b>Phone: </b>${
-      itemLists.shopPhone
-    } <b>Email: </b> ${itemLists.shopEmail} <b>Address: </b> ${itemLists.shopAddress}</span>`;
+        itemLists.searchMatches,
+        "shopWarranty"
+      )}'><b>Warranty: </b>${itemLists.shopWarranty}</span>
+              <span class='shop-list ${this.addShowClass(itemLists.searchMatches, "shopName")}'><b>Phone: </b>${itemLists.shopPhone
+      } <b>Email: </b> ${itemLists.shopEmail} <b>Address: </b> ${itemLists.shopAddress}</span>`;
   }
 
   addShowClass(searchMatches, searchType) {
@@ -100,9 +97,8 @@ export class SearchResults {
   }
 
   highlightSearchLabel(searchMatches) {
-    console.log("highlight search matches", searchMatches);
-    return `<span id="brandResultLabel" class="result-label ${this.activeClass(searchMatches, "brands")}">brands</span>
-    <span id="productResultLabel" class="result-label ${this.activeClass(searchMatches, "parts")}">parts</span>
+    return `<span id="brandResultLabel" class="result-label ${this.activeClass(searchMatches, "brands")}">brand</span>
+    <span id="productResultLabel" class="result-label ${this.activeClass(searchMatches, "parts")}">product</span>
     <span id="shopResultLabel" class="result-label ${this.activeClass(searchMatches, "shopName")}">store name</span>
     <span id="warrantyResultLabel" class="result-label ${this.activeClass(
       searchMatches,

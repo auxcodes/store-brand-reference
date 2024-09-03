@@ -90,6 +90,9 @@ function filterShops(searchTerm, property) {
       }
     });
   }
+  if (searchTerm === "") {
+    property = "";
+  }
   return tagShopMatches(deepCopy(results), property);
 }
 

@@ -51,6 +51,7 @@ button {
   margin: 0.25em;
   font-size: 1.25rem;
 }
+
 /* Alerts Bar */
 .alert-container {
   display: flex;
@@ -313,6 +314,10 @@ button {
   background: #fff;
   color: #464655;
   border-radius: 0.85em;
+}
+
+.site-nav button:active {
+  box-shadow: inset var(--landing-box-shadow);
 }
 
 .site-nav--icon {
@@ -717,8 +722,13 @@ button {
   transition: box-shadow 200ms;
 }
 
-.modal-btn:hover {
+.modal-btn:hover,
+.modal-btn:focus-visible {
   box-shadow: var(--btn-box-shadow);
+}
+
+.modal-btn:active {
+  box-shadow: inset var(--landing-box-shadow);
 }
 
 .link-button {
