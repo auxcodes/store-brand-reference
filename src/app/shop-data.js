@@ -6,6 +6,7 @@ import { debugOn, isLocalHost } from "./environment.js";
 
 let allData = [];
 let csService = null;
+const wordMatchLimit = 0.4;
 
 export let initialised = false;
 export let usingLocalData = false;
@@ -80,20 +81,20 @@ function allWarranty() {
   return deepCopy(results);
 }
 
-function filterShops(searchTerm, property) {
+function filterShops(searchTerm, searchType) {
   let results = allData;
   if (searchTerm !== "") {
     results = allData.filter((shop) => {
-      if (shop[property] !== undefined) {
+      if (shop[searchType] !== undefined) {
         // Booolean confirmation of search term inclusion
-        return shop[property].toLowerCase().includes(searchTerm.toLowerCase());
+        return shop[searchType].toLowerCase().includes(searchTerm.toLowerCase());
       }
     });
   }
   if (searchTerm === "") {
-    property = "";
+    searchType = "";
   }
-  return tagShopMatches(deepCopy(results), property);
+  return tagShopMatches(deepCopy(results), searchType);
 }
 
 function tagShopMatches(shops, searchType) {
@@ -105,21 +106,69 @@ function tagShopMatches(shops, searchType) {
   });
 }
 
-export function filterWords(searchTerm, property) {
+export function filterWords(searchTerm, searchType) {
+  console.log("filterWords: ", searchTerm);
   let results = [];
-  while (results.length === 0 && searchTerm.length > 0) {
-    allData.forEach((shop) => {
-      if (shop[property] !== undefined) {
-        const found = findWord(searchTerm, shop[property].split(", "));
-        if (found.length > 0) {
-          results.push(...found);
-        }
-      }
-    });
-    searchTerm = searchTerm.slice(0, -1);
-  }
-  results = generateButtons(property, new Set(results.map((result) => result.toLowerCase())));
+  allData.forEach((shop) => {
+    const wordsList = [
+      ...shop["brands"].split(", "),
+      ...shop["parts"].split(", "),
+      ...shop["shopWarranty"].split(", "),
+    ];
+    const compared = findWordsLikeSearch(searchTerm, wordsList);
+    if (compared.length > 0) {
+      results.push(...compared);
+    }
+  });
+  // while (results.length === 0 && searchTerm.length > 0) {
+  //   allData.forEach((shop) => {
+  //     if (shop[searchType] !== undefined) {
+  //       const found = findWord(searchTerm, shop[searchType].split(", "));
+  //       if (found.length > 0) {
+  //         results.push(...found);
+  //       }
+  //     }
+  //   });
+  //   searchTerm = searchTerm.slice(0, -1);
+  // }
+  results = generateButtons(searchType, new Set(results.map((result) => result.toLowerCase())));
   return results.join(", ");
+}
+
+function findWordsLikeSearch(searchTerm, shopLists) {
+  console.log("finding words like", searchTerm);
+  let results = [];
+  shopLists.forEach((word) => {
+    if (compareWords(searchTerm.toLowerCase(), word.toLowerCase()) > wordMatchLimit) {
+      results.push(word);
+    }
+  });
+  return results;
+}
+
+function compareWords(searchTerm, compareWord) {
+  console.log(searchTerm, compareWord);
+  const matrix = [];
+  for (let i = 0; i <= compareWord.length; i++) {
+    matrix[i] = [i];
+  }
+  for (let j = 1; j <= searchTerm.length; j++) {
+    matrix[0][j] = j;
+  }
+  for (let i = 1; i <= compareWord.length; i++) {
+    for (let j = 1; j <= searchTerm.length; j++) {
+      const indicator = searchTerm[j - 1] === compareWord[i - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1, // deletion
+        matrix[i][j - 1] + 1, // insertion
+        matrix[i - 1][j - 1] + indicator // substitution
+      );
+    }
+  }
+  const result = matrix[compareWord.length][searchTerm.length];
+  const similarity = 1 - result / Math.max(compareWord.length, searchTerm.length);
+  console.log("simmilarity: ", similarity); // 0.8 (80% similarity)
+  return similarity;
 }
 
 function generateButtons(searchType, searchTerms) {

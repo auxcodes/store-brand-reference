@@ -35,7 +35,7 @@
 
 .result-header {
   display: grid;
-  grid-template-columns: 1fr 2fr max-content;
+  grid-template-columns: 2fr 2fr max-content;
   grid-template-rows: 1fr max-content;
 }
 
