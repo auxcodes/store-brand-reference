@@ -6,7 +6,7 @@ import { debugOn, isLocalHost } from "./environment.js";
 
 let allData = [];
 let csService = null;
-const wordMatchLimit = 0.4;
+const wordMatchLimit = 0.5;
 
 export let initialised = false;
 export let usingLocalData = false;
