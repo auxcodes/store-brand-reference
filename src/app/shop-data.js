@@ -120,23 +120,11 @@ export function filterWords(searchTerm, searchType) {
       results.push(...compared);
     }
   });
-  // while (results.length === 0 && searchTerm.length > 0) {
-  //   allData.forEach((shop) => {
-  //     if (shop[searchType] !== undefined) {
-  //       const found = findWord(searchTerm, shop[searchType].split(", "));
-  //       if (found.length > 0) {
-  //         results.push(...found);
-  //       }
-  //     }
-  //   });
-  //   searchTerm = searchTerm.slice(0, -1);
-  // }
-  results = generateButtons(searchType, new Set(results.map((result) => result.toLowerCase())));
+  results = generateButtons(new Set(results.map((result) => result.toLowerCase())));
   return results.join(", ");
 }
 
 function findWordsLikeSearch(searchTerm, shopLists) {
-  console.log("finding words like", searchTerm);
   let results = [];
   shopLists.forEach((word) => {
     if (compareWords(searchTerm.toLowerCase(), word.toLowerCase()) > wordMatchLimit) {
@@ -147,7 +135,6 @@ function findWordsLikeSearch(searchTerm, shopLists) {
 }
 
 function compareWords(searchTerm, compareWord) {
-  console.log(searchTerm, compareWord);
   const matrix = [];
   for (let i = 0; i <= compareWord.length; i++) {
     matrix[i] = [i];
@@ -167,11 +154,10 @@ function compareWords(searchTerm, compareWord) {
   }
   const result = matrix[compareWord.length][searchTerm.length];
   const similarity = 1 - result / Math.max(compareWord.length, searchTerm.length);
-  console.log("simmilarity: ", similarity); // 0.8 (80% similarity)
   return similarity;
 }
 
-function generateButtons(searchType, searchTerms) {
+function generateButtons(searchTerms) {
   let buttons = [];
   searchTerms.forEach((searchTerm) => {
     const searchButton = `<button value='${searchTerm}' class='alt-search' title="Search for this...">${searchTerm}</button>`;

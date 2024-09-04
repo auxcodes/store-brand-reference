@@ -95,9 +95,9 @@ function prepareResults(results) {
   generateResults();
 }
 
-export function onAltSearch(altSearch) {
-  searchBar.inputField.value = altSearch.searchTerm;
-  onSearch();
+export function onAltSearch(event) {
+  searchBar.inputField.value = event.target.value;
+  onSearch(event);
 }
 
 function getSearchValue() {
@@ -131,16 +131,21 @@ function noResultsFound() {
   const div = document.createElement("div");
   div.classList.add("no-result-row");
   if (alternates.length > 0) {
-    div.innerHTML = `<span class='no-results'> Did you mean? ${alternates} <br><br>No results were found matching your search term.</span>`;
+    div.innerHTML = `
+    <div class="alt-search-wrapper">
+      <span class='alt-search-options'> Did you mean? ${alternates}</span>
+      <span class='no-results'>No results were found matching your search term.</span>
+    </div>
+    `;
   } else {
     div.innerHTML = "<span class='no-results'> No results were found matching your search term. </span>";
   }
   searchResultElement.append(div);
-  const noResultSpan = div.querySelector(".no-results");
+  const noResultSpan = div.querySelector(".alt-search-options");
   const allAltBtns = noResultSpan.querySelectorAll("button");
   allAltBtns.forEach((altBtn) => {
-    altBtn.addEventListener("click", () => {
-      onAltSearch({ searchType: searchBar.searchType, searchTerm: altBtn.value });
+    altBtn.addEventListener("click", (event) => {
+      onAltSearch(event);
     });
   });
 }
