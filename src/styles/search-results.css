@@ -94,6 +94,7 @@
   display: flex;
   flex-direction: column;
   grid-column: 1/-1;
+  width: 85%;
 }
 
 .alt-search-options {
@@ -104,6 +105,8 @@
   border-radius: 0.5em;
   background: rgba(227, 113, 51, 0.28);
   color: #1a0303;
+  width: inherit;
+  text-align: center;
 }
 
 .alt-search {
