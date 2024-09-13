@@ -58,7 +58,38 @@
             </search-form-landing>
         </section>
         <section id="pageContent" class="page-content" hidden>
-            <div id="searchResults" class="results-container"></div>
+            <div id="resultSortFilterBar" class="result-sort-filter-bar">
+                <div id="resultFilter" class="result-filter">
+                    <label class="filter-btn">Filter</label>
+                    <div class="filters-open">
+                        <div class="filters-box">
+                            <label class="filter-label" for="brandFilterCB">Brands:</label>
+                            <input id="brandFilterCB" name="filter" value="brands" class="filter-checkbox"
+                                type="checkbox" checked />
+                            <label class="filter-label" for="partsFilterCB">Products:</label>
+                            <input id="partsFilterCB" name="filter" value="parts" class="filter-checkbox"
+                                type="checkbox" checked />
+                            <label class="filter-label" for="shopFilterCB">Stores:</label>
+                            <input id="shopFilterCB" name="filter" value="shopName" class="filter-checkbox"
+                                type="checkbox" checked />
+                            <label class="filter-label" for="warrantyFilterCB">Warranty:</label>
+                            <input id="warrantyFilterCB" name="filter" value="shopWarranty" class="filter-checkbox"
+                                type="checkbox" checked />
+                        </div>
+                    </div>
+                </div>
+                <div id="resultSort" class="result-sort">
+                    <select id="sortSelect" class="sort-select">
+                        <option class="sort-option" value="">Sort</option>
+                        <option class="sort-option" value="az">A-Z</option>
+                        <option class="sort-option" value="za">Z-A</option>
+                        <option class="sort-option" value="bw">Brand-Warranty</option>
+                        <option class="sort-option" value="wb">Warranty-Brand</option>
+                    </select>
+                </div>
+            </div>
+            <div id="searchResults" class="results-container">
+            </div>
         </section>
     </main>
     <script type="module" src="src/app/index.js"></script>

@@ -1,0 +1,90 @@
+@import url("palette.css");
+
+.result-sort-filter-bar {
+  font-size: 1rem;
+  display: flex;
+  margin: 0 0.5em;
+  padding: 0 0.5em;
+}
+
+.result-filter {
+  position: relative;
+  padding-top: 2px;
+}
+
+.result-filter:hover .filters-open {
+  grid-template-rows: 1fr;
+}
+
+.result-filter:hover .filters-box {
+  padding: 0.25em;
+  border: 1px solid var(--input-border);
+  box-shadow: var(--result-label-shadow);
+}
+
+.filters-open {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0fr;
+  position: absolute;
+  top: 1.35em;
+}
+
+.filters-box {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--input-bg);
+  border-radius: 0.5em;
+  width: max-content;
+}
+
+.filter-btn {
+  font-size: 1rem;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  border-radius: 1em;
+  padding: 0.15em 0.75em;
+  margin: 0;
+  cursor: pointer;
+}
+
+.filter-label {
+  font-size: 1rem;
+}
+
+.filter-checkbox {
+  border-radius: 1em;
+}
+
+.result-sort {
+  margin-left: auto;
+}
+
+.sort-label {
+  font-size: 1rem;
+}
+
+.sort-select {
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  border-radius: 1em;
+  font-size: 1rem;
+  padding: 0.1em 0.5em;
+}
+
+.sort-option {
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: max-content;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
