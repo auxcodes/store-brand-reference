@@ -10,7 +10,6 @@ import { resetResults, onAltSearch } from "./search.js";
 import { insertGaScript } from "./support.js";
 import { debugOn } from "./environment.js";
 
-const siteMenu = NavigationService.getInstance();
 const appDataService = AppDataService.getInstance();
 
 let loadingCount = 0;
@@ -70,7 +69,9 @@ function userSignedInOnInitalised() {
     console.log("I - Signed In: ", user);
   }
   if (user !== null && user !== "unknown" && !user.isAnonymous) {
+    console.log("I - User signed in on init: ", user);
   } else {
+    const siteMenu = NavigationService.getInstance();
     siteMenu.toggleLoginButtonOn();
   }
 }

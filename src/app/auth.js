@@ -6,7 +6,6 @@ import { getFunctionUrl } from "./environment.js";
 import { NavigationService } from "./navigation.js";
 import { debugOn } from "./environment.js";
 import { loginEvent } from "./support.js";
-import { canManage } from "./manage.js";
 
 const method = "POST";
 const shouldBeAsync = true;
@@ -70,14 +69,12 @@ export function signInUser() {
     console.log("AU - Sign in user", email);
   }
   if (email !== null && email !== undefined && email.length > 0) {
-    canManage();
+    siteMenu.toggleLogoutButtonOn();
+    onOpenAlert({
+      text: `${email} is now signed in.`,
+      alertType: "positive-alert",
+    });
   }
-
-  siteMenu.toggleLogoutButtonOn();
-  onOpenAlert({
-    text: `${email} is now signed in.`,
-    alertType: "positive-alert",
-  });
 }
 
 function signInSubmitted(event) {

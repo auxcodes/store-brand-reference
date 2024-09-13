@@ -19,6 +19,8 @@ let loginModal = null;
 let shopViewModal = null;
 let shopDetailModal = null;
 let contactModal = null;
+let manageModal = null;
+let searchContent = null;
 
 export function onViewShop(shopId) {
   if (debugOn()) {
@@ -128,6 +130,25 @@ export function onLoginClick() {
   toggleLoginModal();
   loginModal.querySelector("#login-progress").style.width = "0%";
   loginModal.querySelector("#login-email-input").focus();
+}
+
+export function onManageClick() {
+  toggleManageModal();
+}
+export function destroyManage() {
+  if (searchContent.classList.contains("results-visible")) {
+    toggleManageModal();
+  }
+  manageModal.remove();
+}
+
+function toggleManageModal(hideForm) {
+  if (manageModal === null) {
+    manageModal = document.querySelector("#managePage");
+    searchContent = document.querySelector("#searchResults");
+  }
+  searchContent.classList.toggle("results-visible");
+  manageModal.classList.toggle("manage-visible");
 }
 
 export function onCloseLogin() {

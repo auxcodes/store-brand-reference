@@ -1,5 +1,12 @@
 import {} from "./components/menu-modal.js";
-import { onLoginClick, onOpenContact, onOpenShop, onOpenHistory } from "./modal-controller.js";
+import {
+  onLoginClick,
+  onOpenContact,
+  onOpenShop,
+  onOpenHistory,
+  onManageClick,
+  destroyManage,
+} from "./modal-controller.js";
 import { toggleNotifications } from "./notifications.js";
 import { hasShopDetailForm } from "./shop-detail.js";
 import { signOutUser, userSignedIn } from "./auth.js";
@@ -26,6 +33,7 @@ export const NavigationService = (() => {
 class SiteMenu {
   header = document.querySelector("header");
   menuModal = document.createElement("menu-modal");
+  authService = null;
   menu = null;
   siteNave = null;
   notifications = null;
@@ -35,6 +43,7 @@ class SiteMenu {
   footerContactBtn = null;
   loginButton = null;
   logoutButton = null;
+  manageButton = null;
 
   constructor() {
     this.menuModal.classList.add("menu");
@@ -65,6 +74,9 @@ class SiteMenu {
 
     this.logoutButton = this.siteNav.querySelector("#logout-link");
     this.setLogoutButtonOnClick();
+
+    this.manageButton = this.siteNav.querySelector("#manage-link");
+    this.setManageButtonOnClick();
 
     this.toggleLoginButtonOn();
   }
@@ -144,6 +156,19 @@ class SiteMenu {
     };
   }
 
+  setManageButtonOnClick() {
+    if (debugOn()) {
+      console.log("NAV - Set Manage Button onClick");
+    }
+    this.manageButton.onclick = (event) => {
+      if (debugOn()) {
+        console.log("NAV - Manage menu item clicked");
+      }
+      this.toggleMenu();
+      onManageClick();
+    };
+  }
+
   toggleLogoutButtonOn() {
     if (debugOn()) {
       console.log("NAV - Toggle Logout On");
@@ -158,6 +183,11 @@ class SiteMenu {
     }
     this.loginButton.classList.remove("nav-btn--hide");
     this.logoutButton.classList.add("nav-btn--hide");
+    // check if manage button is displayed and remove
+    if (this.manageButton.classList.contains("nav-btn--hide") === false) {
+      this.toggleManageButton();
+      destroyManage();
+    }
   }
 
   toggleLoginLogout() {
@@ -170,6 +200,13 @@ class SiteMenu {
     } else {
       this.toggleLoginButtonOn;
     }
+  }
+
+  toggleManageButton() {
+    if (debugOn()) {
+      console.log("NAV - Toggle Manage Button");
+    }
+    this.manageButton.classList.toggle("nav-btn--hide");
   }
 
   toggleMenu() {

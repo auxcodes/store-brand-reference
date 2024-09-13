@@ -45,9 +45,9 @@ export class AppCloudStorage {
 
   constructor(firebaseService) {
     if (debugOn()) {
-      console.log("CS - Construct Cloud Storage Service");
+      console.log("CS - Construct Cloud Storage Service", firebaseService);
     }
-    this.fbService = firebaseService;
+    this.fbService = firebaseService ? firebaseService : this.fbService;
     this.database = getDatabase(this.fbService.app);
     this.dbWorkingRef = ref(this.database, this.workingFile);
     this.dbUpdateRef = ref(this.database, this.lastUpdateFile);

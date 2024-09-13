@@ -10,6 +10,7 @@ import { onOpenAlert } from "./alerts.js";
 import { NavigationService } from "./navigation.js";
 import { debugOn } from "./environment.js";
 import { signInUser } from "./auth.js";
+import { canManage } from "./manage.js";
 
 export const AuthService = (() => {
   let instance = null;
@@ -80,6 +81,7 @@ class UserAuthentication {
         }
         if (!user.isAnonymous) {
           signInUser();
+          canManage(this.firebaseService).then((response) => (manager = response));
         }
       } else {
         if (debugOn()) {

@@ -1,25 +1,35 @@
 import { CloudStorageService } from "./cloud-storage.js";
 import "./components/manage-component.js";
 import { debugOn } from "./environment.js";
+import { NavigationService } from "./navigation.js";
 import { refreshNotifications } from "./notifications.js";
 import { getAllShops } from "./shop-data.js";
 
 const minShow = 5;
 
-export async function canManage() {
-  const content = await getPage();
-  if (content !== "") {
-    return true;
-  } else {
-    return false;
+export async function canManage(firebaseService) {
+  if (debugOn()) {
+    console.log("M - canManage...");
+  }
+  try {
+    const cloudService = CloudStorageService.getInstance(firebaseService);
+    await getPage(cloudService).then((page) => {
+      if (page !== "") {
+        readyForms();
+        return true;
+      } else {
+        return false;
+      }
+    });
+  } catch (error) {
+    console.log("M - canManage() error: ", error);
   }
 }
 
-async function getPage() {
-  const cs = CloudStorageService.getInstance();
-  const dbRef = cs.dbReference("a_page");
+async function getPage(cloudService) {
+  const dbRef = cloudService.dbReference("a_page");
   let result = "";
-  await cs
+  await cloudService
     .getItems(dbRef)
     .then((page) => {
       if (page) {
@@ -29,11 +39,10 @@ async function getPage() {
         }
         const pageContent = document.querySelector("#pageContent");
         const manageElement = document.createElement("manage-component");
-        manageElement.id = "manage-element";
+        manageElement.id = "managePage";
         manageElement.style = "display : none";
         manageElement.manageTools = result;
         pageContent.append(manageElement);
-        enableButton(manageElement);
       }
     })
     .catch((error) => {
@@ -43,21 +52,8 @@ async function getPage() {
   return result;
 }
 
-function enableButton(manageEl) {
-  const manageButton = document.querySelector("#browseManageBtn");
-  const searchContent = document.querySelector("#searchResults");
-  manageButton.classList.toggle("manage-btn-visible");
-  manageButton.onclick = (event) => {
-    if (debugOn()) {
-      console.log("Manage - Button Clicked", event);
-    }
-    searchContent.classList.toggle("results-visible");
-    manageEl.classList.toggle("manage-visible");
-  };
-  readyForms();
-}
-
-function readyForms() {
+export function readyForms() {
+  const siteMenu = NavigationService.getInstance();
   const updateAllForm = document.querySelector("#manage-update-all");
   const webNotificationForm = document.querySelector("#web-notification-form");
   const clearNotificationsForm = document.querySelector("#clear-notifications-form");
@@ -79,6 +75,7 @@ function readyForms() {
     console.log("form submited: ", formFields, formFields["input-upload-file"].value);
     openFile(formFields["input-upload-file"].files[0], formFields["input-upload-version"].value);
   };
+  siteMenu.toggleManageButton();
 }
 
 function onClearNotifications(date) {
