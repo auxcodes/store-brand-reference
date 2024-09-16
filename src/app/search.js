@@ -21,6 +21,7 @@ import { debugOn } from "./environment.js";
 
 const searchResultElement = document.getElementById("searchResults");
 let searchBar = null;
+let searchResults = [];
 
 export function searchBarEventListeners() {
   searchBar = new SearchBar();
@@ -52,6 +53,7 @@ function searchAll(event) {
     ...findShop(searchBar.searchValue),
     ...findWarranty(searchBar.searchValue),
   ]);
+  searchResults = results;
   prepareResults(results);
   // TODO: add search support event
 }
@@ -71,16 +73,12 @@ function mergeDuplicates(searchMatches) {
 }
 
 export function refreshResults() {
-  searchBar.searchResults.clearResults();
-  searchBar.searchResults.addResults(
-    searchBar.searchType === "brands" ? findBrand(searchBar.searchValue) : findProduct(searchBar.searchValue)
-  );
-  clearResults();
-  generateResults();
+  searchBar.searchResults.deleteResults();
+  searchAll();
 }
 
 export function resetResults() {
-  searchBar.searchResults.clearResults();
+  searchBar.searchResults.deleteResults();
   searchBar.searchResults.addResults(sortResults(getAllShops()));
   if (debugOn()) {
     console.log("S - Reset results: ", searchBar.searchResults.results);
@@ -89,9 +87,9 @@ export function resetResults() {
 }
 
 function prepareResults(results) {
-  searchBar.searchResults.clearResults();
+  searchBar.searchResults.deleteResults();
   searchBar.searchResults.addResults(results);
-  clearResults();
+  clearResultsFromDOM();
   generateResults();
 }
 
@@ -150,21 +148,66 @@ function noResultsFound() {
   });
 }
 
-export function clearResults() {
+export function clearResultsFromDOM() {
   if (debugOn()) {
     console.log("S - Clear Search Results");
   }
+  // Just clear the search results DOM
   searchResultElement.innerHTML = "";
 }
 
-function sortResults(results) {
+function sortAscending(results, sortField) {
   return results.sort((sa, sb) => {
-    if (sa.shopName > sb.shopName) {
+    const sortFieldA = Array.isArray(sa[sortField]) ? sa[sortField][0] : sa[sortField];
+    const sortFieldB = Array.isArray(sb[sortField]) ? sb[sortField][0] : sb[sortField];
+    if (sortFieldA > sortFieldB) {
       return 1;
-    } else if (sa.shopName < sb.shopName) {
+    } else if (sortFieldA < sortFieldB) {
       return -1;
     } else {
       return 0;
     }
   });
+}
+
+function sortDescending(results, sortField) {
+  return results.sort((sa, sb) => {
+    const sortFieldA = Array.isArray(sa[sortField]) ? sa[sortField][0] : sa[sortField];
+    const sortFieldB = Array.isArray(sb[sortField]) ? sb[sortField][0] : sb[sortField];
+
+    if (sortFieldA < sortFieldB) {
+      return 1;
+    } else if (sortFieldA > sortFieldB) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+}
+
+export function onSortResults(sortBy) {
+  searchBar.searchResults.addResults(sortResults(searchBar.searchResults.results, sortBy));
+  clearResultsFromDOM();
+  searchBar.searchResults.addResultsToDom(searchBar);
+}
+
+function sortResults(results, sortBy) {
+  let sorted = results;
+
+  switch (sortBy) {
+    case "za":
+      sorted = sortDescending(sorted, "shopName");
+      break;
+    case "bw":
+      sorted = sortAscending(sorted, "searchMatches");
+      break;
+    case "wb":
+      sorted = sortDescending(sorted, "searchMatches");
+      break;
+    // default sort A-Z
+    default:
+      sorted = sortAscending(sorted, "shopName");
+      break;
+  }
+  return sorted;
 }

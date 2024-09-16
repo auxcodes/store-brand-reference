@@ -192,7 +192,15 @@ export function getSpecificShop(shopId) {
 }
 
 function sortData() {
-  allData = allData.sort((sa, sb) => sa.shopName > sb.shopName);
+  allData = allData.sort((sa, sb) => {
+    if (sa.shopName > sb.shopName) {
+      return 1;
+    } else if (sa.shopName < sb.shopName) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
 }
 
 export function addNewShop(newShop) {

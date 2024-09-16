@@ -41,6 +41,7 @@
 
 .filter-btn {
   font-size: 1rem;
+  font-weight: normal;
   border: 1px solid var(--input-border);
   background: var(--input-bg);
   border-radius: 1em;
@@ -51,6 +52,7 @@
 
 .filter-label {
   font-size: 1rem;
+  font-weight: normal;
 }
 
 .filter-checkbox {

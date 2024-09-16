@@ -5,7 +5,7 @@ import {
   openShopDetailModal,
   processShopDetails,
 } from "./shop-detail.js";
-import { clearResults, resetResults } from "./search.js";
+import { clearResultsFromDOM, resetResults } from "./search.js";
 
 import {} from "./components/contact-modal.js";
 import { userEmail, userSignedIn } from "./auth.js";
@@ -52,7 +52,7 @@ export function onOpenShop(shopId) {
       const user = userSignedIn();
       if (user !== null && !user.isAnonymous) {
         processShopDetails(event.target, event.submitter.id);
-        clearResults();
+        clearResultsFromDOM();
         resetResults();
         shopDetailModal.classList.toggle("modal-open");
       } else {

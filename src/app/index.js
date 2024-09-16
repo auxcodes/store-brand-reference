@@ -9,6 +9,7 @@ import { initLandingPage } from "./landing-page.js";
 import { resetResults, onAltSearch } from "./search.js";
 import { insertGaScript } from "./support.js";
 import { debugOn } from "./environment.js";
+import { initialiseSortFilterBar } from "./sort-filter-bar.js";
 
 const appDataService = AppDataService.getInstance();
 
@@ -33,6 +34,7 @@ function initTimeOut() {
       setStorageService(appDataService.localStorageService);
       generateNotifications();
       resetResults();
+      initialiseSortFilterBar();
       if (usingLocalData) {
         appDataService.checkCloudStorage();
         clientTimeOut();

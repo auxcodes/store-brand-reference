@@ -21,11 +21,13 @@ export class SearchResults {
     this.results = results;
   }
 
-  clearResults() {
+  deleteResults() {
     this.results = [];
   }
 
-  get results() {}
+  get results() {
+    this.results;
+  }
 
   addResultsToDom(searchBar) {
     this.results.forEach((result) => {
