@@ -119,7 +119,7 @@ export function generateResults() {
     noResultsFound();
     return;
   }
-  searchBar.searchResults.addResults(sortResults(searchBar.searchResults.results));
+  searchBar.searchResults.addResults(sortResults(searchBar.searchResults.updatedResults));
   searchBar.searchResults.addResultsToDom(searchBar);
 }
 
@@ -186,7 +186,7 @@ function sortDescending(results, sortField) {
 }
 
 export function onSortResults(sortBy) {
-  searchBar.searchResults.addResults(sortResults(searchBar.searchResults.results, sortBy));
+  searchBar.searchResults.updateResults(sortResults(searchBar.searchResults.updatedResults, sortBy));
   clearResultsFromDOM();
   searchBar.searchResults.addResultsToDom(searchBar);
 }
@@ -210,4 +210,20 @@ function sortResults(results, sortBy) {
       break;
   }
   return sorted;
+}
+
+export function onFilterResults(filters) {
+  searchBar.searchResults.updateResults(filterResults(searchBar.searchResults.results, filters));
+  clearResultsFromDOM();
+  searchBar.searchResults.addResultsToDom(searchBar);
+}
+
+function filterResults(results, filters) {
+  const filtered = [];
+  results.forEach((result) => {
+    if (filters.some((filter) => result.searchMatches.includes(filter))) {
+      filtered.push(result);
+    }
+  });
+  return filtered;
 }

@@ -1,4 +1,4 @@
-import { refreshResults, onSortResults } from "./search.js";
+import { onFilterResults, onSortResults } from "./search.js";
 
 export function initialiseSortFilterBar() {
   sortEvents();
@@ -17,7 +17,18 @@ function filterEvents() {
 
   filters.forEach((checkBox) => {
     checkBox.addEventListener("click", (event) => {
-      console.log(">----------- filter: ", event.target.value, event.target.checked);
+      onFilterResults(checkedFilters());
     });
   });
+}
+
+function checkedFilters() {
+  const checkBoxes = document.querySelectorAll("#searchFilter");
+  let filters = [];
+  checkBoxes.forEach((filter) => {
+    if (filter.checked) {
+      filters.push(filter.value);
+    }
+  });
+  return filters;
 }

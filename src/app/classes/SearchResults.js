@@ -4,6 +4,7 @@ import { onStoreClick } from "../support.js";
 export class SearchResults {
   searchResultElement = document.getElementById("searchResults");
   results = [];
+  updatedResults = [];
   searchValue = "";
 
   labelClasses = {
@@ -15,22 +16,29 @@ export class SearchResults {
 
   constructor() {
     this.results = [];
+    this.updatedResults = [];
   }
 
   addResults(results) {
     this.results = results;
+    this.updateResults(results);
+  }
+
+  updateResults(updatedResults) {
+    this.updatedResults = updatedResults;
   }
 
   deleteResults() {
     this.results = [];
+    this.updatedResults = [];
   }
 
-  get results() {
-    this.results;
-  }
+  get results() {}
+
+  get updatedResults() {}
 
   addResultsToDom(searchBar) {
-    this.results.forEach((result) => {
+    this.updatedResults.forEach((result) => {
       const el = document.createElement("search-result-modal");
       const isIncomplete = this.checkCompletness(result) ? "result-row-incomplete" : "complete";
       el.classList.add("result-row", isIncomplete);
@@ -54,7 +62,7 @@ export class SearchResults {
   }
 
   addEventListeners() {
-    this.results.forEach((result) => {
+    this.updatedResults.forEach((result) => {
       const el = document.getElementById(result.shopId);
       const shopBtn = el.querySelector("#viewStoreBtn");
       const shopUrl = el.querySelector("#shopUrl");
