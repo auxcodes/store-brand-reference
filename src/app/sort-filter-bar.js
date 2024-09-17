@@ -11,6 +11,37 @@ export function resetSortFilterBar() {
   resetSort();
 }
 
+export function setResultFilterEvents() {
+  const searchResults = document.getElementById("searchResults");
+  const brandLabels = searchResults.querySelectorAll("#brandResultLabel");
+  const productLabels = searchResults.querySelectorAll("#productResultLabel");
+  const shopLabels = searchResults.querySelectorAll("#shopResultLabel");
+  const warrantyLabels = searchResults.querySelectorAll("#warrantyResultLabel");
+  addFilterLabelEvent(brandLabels, "brands");
+  addFilterLabelEvent(productLabels, "parts");
+  addFilterLabelEvent(shopLabels, "shopName");
+  addFilterLabelEvent(warrantyLabels, "shopWarranty");
+}
+
+function addFilterLabelEvent(labels, filter) {
+  labels.forEach((label) => {
+    label.addEventListener("click", () => {
+      onFilterResults([filter]);
+      setSelectedFilterCheckbox(filter);
+    });
+  });
+}
+
+export function markFilterAsChecked(filter) {
+  const filters = document.querySelectorAll("#searchFilter");
+
+  filters.forEach((checkBox) => {
+    if (checkBox.value === filter) {
+      checkBox.checked = true;
+    }
+  });
+}
+
 function resetSort() {
   const sortSelect = document.getElementById("sortSelect");
   sortSelect.value = "";
@@ -22,6 +53,10 @@ function resetFilters() {
   filters.forEach((checkBox) => {
     checkBox.checked = true;
   });
+}
+
+function setSelectedFilterCheckbox(filter) {
+  console.log("##TODO - set filter");
 }
 
 function sortEvents() {

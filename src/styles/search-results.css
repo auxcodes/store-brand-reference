@@ -260,6 +260,7 @@
   color: white;
   box-shadow: var(--result-label-shadow);
   border: 1px var(--brand-border) solid;
+  cursor: pointer;
 }
 
 .products-label-active {
@@ -267,6 +268,7 @@
   color: white;
   box-shadow: var(--result-label-shadow);
   border: 1px var(--product-border) solid;
+  cursor: pointer;
 }
 
 .warranty-label-active {
@@ -274,6 +276,7 @@
   color: white;
   box-shadow: var(--result-label-shadow);
   border: 1px var(--warranty-border) solid;
+  cursor: pointer;
 }
 
 .shop-label-active {
@@ -281,4 +284,5 @@
   color: white;
   box-shadow: var(--result-label-shadow);
   border: 1px var(--shop-border) solid;
+  cursor: pointer;
 }

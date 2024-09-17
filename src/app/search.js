@@ -18,7 +18,7 @@ import {
   shopSearchEvent,
 } from "./support.js";
 import { debugOn } from "./environment.js";
-import { resetSortFilterBar } from "./sort-filter-bar.js";
+import { resetSortFilterBar, setResultFilterEvents } from "./sort-filter-bar.js";
 
 const searchResultElement = document.getElementById("searchResults");
 let searchBar = null;
@@ -123,6 +123,7 @@ export function generateResults() {
   }
   searchBar.searchResults.addResults(sortResults(searchBar.searchResults.updatedResults));
   searchBar.searchResults.addResultsToDom(searchBar);
+  setResultFilterEvents();
 }
 
 function noResultsFound() {
@@ -218,6 +219,7 @@ export function onFilterResults(filters) {
   searchBar.searchResults.updateResults(filterResults(searchBar.searchResults.results, filters));
   clearResultsFromDOM();
   searchBar.searchResults.addResultsToDom(searchBar);
+  setResultFilterEvents();
 }
 
 function filterResults(results, filters) {
