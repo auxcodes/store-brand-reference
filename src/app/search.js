@@ -18,6 +18,7 @@ import {
   shopSearchEvent,
 } from "./support.js";
 import { debugOn } from "./environment.js";
+import { resetSortFilterBar } from "./sort-filter-bar.js";
 
 const searchResultElement = document.getElementById("searchResults");
 let searchBar = null;
@@ -34,6 +35,7 @@ export function setSearchField(searchTerm) {
 export function onSearch(event) {
   if (event.key === "Enter" || event.type === "click") {
     searchAll(event);
+    resetSortFilterBar();
   }
 }
 

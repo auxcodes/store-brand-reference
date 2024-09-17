@@ -1,8 +1,27 @@
 import { onFilterResults, onSortResults } from "./search.js";
 
 export function initialiseSortFilterBar() {
+  resetSortFilterBar();
   sortEvents();
   filterEvents();
+}
+
+export function resetSortFilterBar() {
+  resetFilters();
+  resetSort();
+}
+
+function resetSort() {
+  const sortSelect = document.getElementById("sortSelect");
+  sortSelect.value = "";
+}
+
+function resetFilters() {
+  const filters = document.querySelectorAll("#searchFilter");
+
+  filters.forEach((checkBox) => {
+    checkBox.checked = true;
+  });
 }
 
 function sortEvents() {
