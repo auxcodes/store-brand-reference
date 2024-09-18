@@ -41,6 +41,7 @@ class SiteMenu {
   addShopButton = null;
   contactButton = null;
   footerContactBtn = null;
+  feedbackButton = null;
   loginButton = null;
   logoutButton = null;
   manageButton = null;
@@ -66,6 +67,7 @@ class SiteMenu {
     this.setHistoryOnClick();
 
     this.contactButton = this.siteNav.querySelector("#contact-link");
+    this.feedbackButton = document.getElementById("feedbackButton");
     this.footerContactBtn = document.getElementById("footerContactBtn");
     this.setContactButtonOnClick();
 
@@ -126,6 +128,12 @@ class SiteMenu {
         console.log("NAV - Contact menu item clicked");
       }
       this.toggleMenu();
+      onOpenContact();
+    };
+    this.feedbackButton.onclick = (event) => {
+      if (debugOn()) {
+        console.log("NAV - Feedback button clicked");
+      }
       onOpenContact();
     };
     this.footerContactBtn.onclick = (event) => {

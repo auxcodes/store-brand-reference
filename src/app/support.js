@@ -20,7 +20,26 @@ export function onStoreClick(storeName) {
   storeClickEvent(storeName);
 }
 
-export function productSearchEvent(searchTerm) {
+export function onSearchEvent(searchTerm, searchType) {
+  switch (searchType) {
+    case "brands":
+      brandSearchEvent(searchTerm);
+      break;
+    case "product":
+      productSearchEvent(searchTerm);
+      break;
+    case "shopName":
+      shopSearchEvent(searchTerm);
+      break;
+    case "shopWarranty":
+      warrantySearchEvent(searchTerm);
+      break;
+    default:
+      break;
+  }
+}
+
+function productSearchEvent(searchTerm) {
   const eventInfo = {
     event_category: "search",
     event_label: searchTerm,
@@ -32,7 +51,7 @@ export function productSearchEvent(searchTerm) {
   }
 }
 
-export function brandSearchEvent(searchTerm) {
+function brandSearchEvent(searchTerm) {
   const eventInfo = {
     event_category: "search",
     event_label: searchTerm,
@@ -44,7 +63,7 @@ export function brandSearchEvent(searchTerm) {
   }
 }
 
-export function warrantySearchEvent(searchTerm) {
+function warrantySearchEvent(searchTerm) {
   const eventInfo = {
     event_category: "search",
     event_label: searchTerm,
@@ -56,7 +75,7 @@ export function warrantySearchEvent(searchTerm) {
   }
 }
 
-export function shopSearchEvent(searchTerm) {
+function shopSearchEvent(searchTerm) {
   const eventInfo = {
     event_category: "search",
     event_label: searchTerm,

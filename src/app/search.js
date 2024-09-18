@@ -10,13 +10,7 @@ import {
 } from "./shop-data.js";
 import "./components/search-result-loading.js";
 import { SearchBar } from "./classes/SearchBar.js";
-import {
-  brandSearchEvent,
-  noResultEvent,
-  productSearchEvent,
-  warrantySearchEvent,
-  shopSearchEvent,
-} from "./support.js";
+import { noResultEvent } from "./support.js";
 import { debugOn } from "./environment.js";
 import { resetSortFilterBar, setResultFilterEvents } from "./sort-filter-bar.js";
 
@@ -57,7 +51,6 @@ function searchAll(event) {
   ]);
   searchResults = results;
   prepareResults(results);
-  // TODO: add search support event
 }
 
 function mergeDuplicates(searchMatches) {

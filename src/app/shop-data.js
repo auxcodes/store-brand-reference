@@ -3,6 +3,7 @@ import { refreshResults } from "./search.js";
 import { onOpenAlert } from "./alerts.js";
 import { createNotification } from "./notifications.js";
 import { debugOn, isLocalHost } from "./environment.js";
+import { onSearchEvent } from "./support.js";
 
 let allData = [];
 let csService = null;
@@ -56,29 +57,35 @@ async function fetchJson() {
 }
 
 export function findBrand(brandName) {
-  return filterShops(brandName, "brands");
+  const results = filterShops(brandName, "brands");
+  if (results.length > 0) {
+    onSearchEvent(brandName, "brands");
+  }
+  return results;
 }
 
 export function findProduct(productName) {
-  return filterShops(productName, "parts");
+  const results = filterShops(productName, "parts");
+  if (results.length > 0) {
+    onSearchEvent(productName, "parts");
+  }
+  return results;
 }
 
 export function findWarranty(warranty) {
-  return filterShops(warranty, "shopWarranty");
+  const results = filterShops(warranty, "shopWarranty");
+  if (results.length > 0) {
+    onSearchEvent(warranty, "shopWarranty");
+  }
+  return results;
 }
 
 export function findShop(shopName) {
-  return filterShops(shopName, "shopName");
-}
-
-function allWarranty() {
-  let results = allData;
-  results = allData.filter((shop) => {
-    if (shop["shopWarranty"] !== undefined && shop["shopWarranty"] !== "") {
-      return shop["shopWarranty"];
-    }
-  });
-  return deepCopy(results);
+  const results = filterShops(shopName, "shopName");
+  if (results.length > 0) {
+    onSearchEvent(shopName, "shopName");
+  }
+  return results;
 }
 
 function filterShops(searchTerm, searchType) {
@@ -94,6 +101,7 @@ function filterShops(searchTerm, searchType) {
   if (searchTerm === "") {
     searchType = "";
   }
+
   return tagShopMatches(deepCopy(results), searchType);
 }
 
@@ -107,7 +115,6 @@ function tagShopMatches(shops, searchType) {
 }
 
 export function filterWords(searchTerm, searchType) {
-  console.log("filterWords: ", searchTerm);
   let results = [];
   allData.forEach((shop) => {
     const wordsList = [
@@ -164,19 +171,6 @@ function generateButtons(searchTerms) {
     buttons.push(searchButton);
   });
   return buttons;
-}
-
-function findWord(searchTerm, stringArray) {
-  if (searchTerm.length === 0) {
-    return [];
-  }
-  let results = [];
-  stringArray.forEach((word) => {
-    if (word.toLowerCase().startsWith(searchTerm.toLowerCase())) {
-      results.push(word);
-    }
-  });
-  return results;
 }
 
 export function getAllShops() {

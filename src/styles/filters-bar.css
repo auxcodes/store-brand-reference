@@ -63,6 +63,7 @@
 
 .result-sort {
   margin-left: auto;
+  cursor: pointer;
 }
 
 .sort-label {
