@@ -32,16 +32,6 @@ function addFilterLabelEvent(labels, filter) {
   });
 }
 
-export function markFilterAsChecked(filter) {
-  const filters = document.querySelectorAll("#searchFilter");
-
-  filters.forEach((checkBox) => {
-    if (checkBox.value === filter) {
-      checkBox.checked = true;
-    }
-  });
-}
-
 function resetSort() {
   const sortSelect = document.getElementById("sortSelect");
   sortSelect.value = "";
@@ -56,7 +46,15 @@ function resetFilters() {
 }
 
 function setSelectedFilterCheckbox(filter) {
-  console.log("##TODO - set filter");
+  const filters = document.querySelectorAll("#searchFilter");
+
+  filters.forEach((checkBox) => {
+    if (checkBox.value === filter) {
+      checkBox.checked = true;
+    } else {
+      checkBox.checked = false;
+    }
+  });
 }
 
 function sortEvents() {

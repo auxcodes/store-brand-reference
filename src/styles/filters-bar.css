@@ -12,11 +12,13 @@
   padding-top: 2px;
 }
 
-.result-filter:hover .filters-open {
+.result-filter:hover .filters-open,
+.result-filter:active .filters-open {
   grid-template-rows: 1fr;
 }
 
-.result-filter:hover .filters-box {
+.result-filter:hover .filters-box,
+.result-filter:active .filters-box {
   padding: 0.25em;
   border: 1px solid var(--input-border);
   box-shadow: var(--result-label-shadow);
