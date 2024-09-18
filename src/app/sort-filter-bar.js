@@ -13,10 +13,10 @@ export function resetSortFilterBar() {
 
 export function setResultFilterEvents() {
   const searchResults = document.getElementById("searchResults");
-  const brandLabels = searchResults.querySelectorAll("#brandResultLabel");
-  const productLabels = searchResults.querySelectorAll("#productResultLabel");
-  const shopLabels = searchResults.querySelectorAll("#shopResultLabel");
-  const warrantyLabels = searchResults.querySelectorAll("#warrantyResultLabel");
+  const brandLabels = searchResults.querySelectorAll(".brand-label-active");
+  const productLabels = searchResults.querySelectorAll(".products-label-active");
+  const shopLabels = searchResults.querySelectorAll(".shop-label-active");
+  const warrantyLabels = searchResults.querySelectorAll(".warranty-label-active");
   addFilterLabelEvent(brandLabels, "brands");
   addFilterLabelEvent(productLabels, "parts");
   addFilterLabelEvent(shopLabels, "shopName");

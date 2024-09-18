@@ -244,6 +244,8 @@
 }
 
 .result-label-wrapper {
+  display: flex;
+  flex-wrap: wrap;
   margin: auto;
 }
 
@@ -253,6 +255,8 @@
   font-size: 1rem;
   background: #d2d2d2;
   color: #686868;
+  white-space: nowrap;
+  margin: 0.2em 0.1em 0.1em 0.1em;
 }
 
 .brand-label-active {
