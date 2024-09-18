@@ -16,7 +16,6 @@ import { resetSortFilterBar, setResultFilterEvents } from "./sort-filter-bar.js"
 
 const searchResultElement = document.getElementById("searchResults");
 let searchBar = null;
-let searchResults = [];
 
 export function searchBarEventListeners() {
   searchBar = new SearchBar();
@@ -49,7 +48,6 @@ function searchAll(event) {
     ...findShop(searchBar.searchValue),
     ...findWarranty(searchBar.searchValue),
   ]);
-  searchResults = results;
   prepareResults(results);
 }
 
@@ -209,10 +207,12 @@ function sortResults(results, sortBy) {
 }
 
 export function onFilterResults(filters) {
-  searchBar.searchResults.updateResults(filterResults(searchBar.searchResults.results, filters));
-  clearResultsFromDOM();
-  searchBar.searchResults.addResultsToDom(searchBar);
-  setResultFilterEvents();
+  if (searchBar.inputField.value !== "") {
+    searchBar.searchResults.updateResults(filterResults(searchBar.searchResults.results, filters));
+    clearResultsFromDOM();
+    searchBar.searchResults.addResultsToDom(searchBar);
+    setResultFilterEvents();
+  }
 }
 
 function filterResults(results, filters) {

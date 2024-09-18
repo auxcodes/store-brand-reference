@@ -419,7 +419,7 @@ button {
 }
 
 .feedback-btn {
-  position: absolute;
+  position: fixed;
   writing-mode: sideways-lr;
   text-orientation: mixed;
   right: 0;
@@ -428,12 +428,13 @@ button {
   cursor: pointer;
   font-size: 1em;
   border: 1px solid #d2d2d2;
-  background: #f9f9f9;
+  background: #fff;
   transition: all ease 0.3s;
   border-radius: 1em 0 0 1em;
   padding: 0.6em 0.3em 0.6em 0.6em;
   margin: 0;
   z-index: 100;
+  box-shadow: var(--result-label-shadow);
 }
 
 .feedback-icon {
