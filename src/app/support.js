@@ -1,7 +1,7 @@
 import { debugOn, getGaId } from "./environment.js";
 import { CloudStorageService } from "./cloud-storage.js";
 import { sendContactData } from "./contact.js";
-import { userEmail, userId } from "./auth.js";
+import { localUser, userEmail, userId } from "./auth.js";
 
 export function insertGaScript() {
   const gaID = getGaId();
@@ -171,8 +171,26 @@ function failedSearchAlert(searchEvent) {
     <b>Search result:</b> ${searchEvent.search_result} <br>
     <b>Date:</b> ${new Date().toLocaleDateString()} <br>
     <b>User:</b> ${searchEvent.user} <br>
+    <b>LocalUser:</b> ${JSON.stringify(localUser())} <br>
     `,
     subject: `!! > ${searchEvent.search_term} < Not Found !!`,
   };
   sendContactData(searchInfo);
+}
+
+export async function getTrace() {
+  const data = await fetch("https://1.0.0.1/cdn-cgi/trace").then((res) => res.text());
+  let arr = data
+    .trim()
+    .split("\n")
+    .map((e) => e.split("="));
+  const traceJSON = Object.fromEntries(arr);
+  console.log(traceJSON);
+  const cleanTrace = {
+    loc: traceJSON.loc,
+    colo: traceJSON.colo,
+    ip: traceJSON.ip,
+    uag: traceJSON.uag,
+  };
+  return cleanTrace;
 }

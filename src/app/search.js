@@ -129,17 +129,17 @@ function noResultsFound() {
       <span class='no-results'>No results were found matching your search term.</span>
     </div>
     `;
+    const noResultSpan = div.querySelector(".alt-search-options");
+    const allAltBtns = noResultSpan.querySelectorAll("button");
+    allAltBtns.forEach((altBtn) => {
+      altBtn.addEventListener("click", (event) => {
+        onAltSearch(event);
+      });
+    });
   } else {
     div.innerHTML = "<span class='no-results'> No results were found matching your search term. </span>";
   }
   searchResultElement.append(div);
-  const noResultSpan = div.querySelector(".alt-search-options");
-  const allAltBtns = noResultSpan.querySelectorAll("button");
-  allAltBtns.forEach((altBtn) => {
-    altBtn.addEventListener("click", (event) => {
-      onAltSearch(event);
-    });
-  });
 }
 
 export function clearResultsFromDOM() {

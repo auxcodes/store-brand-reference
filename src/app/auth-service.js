@@ -11,6 +11,8 @@ import { NavigationService } from "./navigation.js";
 import { debugOn } from "./environment.js";
 import { signInUser } from "./auth.js";
 import { canManage } from "./manage.js";
+import { LocalStorageService } from "./local-storage.js";
+import { getTrace } from "./support.js";
 
 export const AuthService = (() => {
   let instance = null;
@@ -37,6 +39,11 @@ class UserAuthentication {
   tokenExpirationTimer = null;
   dataName = "ss_userdata";
   siteMenu = NavigationService.getInstance();
+  localService = LocalStorageService.getInstance();
+  localUser = null;
+  localKey = "localUser";
+
+  get localUser() {}
 
   constructor() {
     if (debugOn()) {
@@ -235,5 +242,34 @@ class UserAuthentication {
   storeEmailPrompt() {
     const email = window.prompt("Please provide your email for confirmation.");
     window.localStorage.setItem("emailForSignIn", email);
+  }
+
+  async addLocalUser() {
+    const userData = await getTrace();
+    this.localUser = {
+      uid: crypto.randomUUID(),
+      createdDate: Date.now(),
+      checkedDate: Date.now(),
+      ...userData,
+    };
+    this.localService.updateEntry(this.localKey, JSON.stringify(this.localUser));
+    if (debugOn()) {
+      console.log("AS - no local user:", userData);
+    }
+  }
+
+  async checkLocalUser() {
+    let user = await this.localService.readEntry(this.localKey);
+    if (debugOn()) {
+      console.log("AS - check local user:", user);
+    }
+    if (user === null) {
+      this.addLocalUser();
+      return this.localUser;
+    }
+    user = JSON.parse(user);
+    user.checkedDate = Date.now();
+    this.localUser = user;
+    this.localService.updateEntry(this.localKey, JSON.stringify(this.localUser));
   }
 }

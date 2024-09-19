@@ -7,7 +7,7 @@ import { onSearchEvent } from "./support.js";
 
 let allData = [];
 let csService = null;
-const wordMatchLimit = 0.5;
+const wordMatchLimit = 0.45;
 
 export let initialised = false;
 export let usingLocalData = false;

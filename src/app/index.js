@@ -1,12 +1,12 @@
 // @ts-check
 import { initialised, usingLocalData } from "./shop-data.js";
-import { signInUser, signUpForm, userSignedIn } from "./auth.js";
+import { signUpForm, userSignedIn } from "./auth.js";
 import { NavigationService } from "./navigation.js";
 import "./components/search-result-modal.js";
 import { generateNotifications, setStorageService } from "./notifications.js";
 import { AppDataService } from "./app-data.js";
 import { initLandingPage } from "./landing-page.js";
-import { resetResults, onAltSearch } from "./search.js";
+import { resetResults } from "./search.js";
 import { insertGaScript } from "./support.js";
 import { debugOn } from "./environment.js";
 import { initialiseSortFilterBar } from "./sort-filter-bar.js";

@@ -52,10 +52,15 @@ export function signUpForm() {
 
 export function userSignedIn() {
   const user = authService.alreadyUser();
+  authService.checkLocalUser();
   if (debugOn()) {
     console.log("AU - Is User Signed In? ", user !== null && !user.isAnonymous ? "Yes" : "No");
   }
   return user;
+}
+
+export function localUser() {
+  return authService.localUser;
 }
 
 export function signOutUser() {
