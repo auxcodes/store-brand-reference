@@ -81,6 +81,9 @@ export class SearchResults {
     storeResult.brands = storeResult.brands.replace(replace, highLight);
     storeResult.parts = storeResult.parts.replace(replace, highLight);
     storeResult.shopWarranty = storeResult.shopWarranty.replace(replace, highLight);
+    storeResult.shopEmail = storeResult.shopEmail.replace(replace, highLight);
+    storeResult.shopPhone = storeResult.shopPhone.replace(replace, highLight);
+
     return storeResult;
   }
 

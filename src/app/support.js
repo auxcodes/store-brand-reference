@@ -162,6 +162,7 @@ function storeClickEvent(storeName) {
 }
 
 function failedSearchAlert(searchEvent) {
+  const user = localUser();
   const searchInfo = {
     name: "Failed Search",
     email: "failed@search.com",
@@ -171,7 +172,14 @@ function failedSearchAlert(searchEvent) {
     <b>Search result:</b> ${searchEvent.search_result} <br>
     <b>Date:</b> ${new Date().toLocaleDateString()} <br>
     <b>User:</b> ${searchEvent.user} <br>
-    <b>LocalUser:</b> ${JSON.stringify(localUser())} <br>
+    <b>LocalUser:</b> <br>
+    <b>- </b> ${user.uid}<br>
+    <b>- </b> ${new Date(user.createdDate).toDateString()}, ${new Date(user.checkedDate).toDateString()} <br>
+    <b>- </b> ${user.colo} <br>
+    <b>- </b> ${user.loc} <br>
+    <b>- </b> ${user.colo} <br>
+    <b>- </b> ${user.ip} <br>
+    <b>- </b> ${user.uag} <br>
     `,
     subject: `!! > ${searchEvent.search_term} < Not Found !!`,
   };
@@ -185,7 +193,6 @@ export async function getTrace() {
     .split("\n")
     .map((e) => e.split("="));
   const traceJSON = Object.fromEntries(arr);
-  console.log(traceJSON);
   const cleanTrace = {
     loc: traceJSON.loc,
     colo: traceJSON.colo,
