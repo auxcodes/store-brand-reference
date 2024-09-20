@@ -8,6 +8,7 @@ import { onSearchEvent } from "./support.js";
 let allData = [];
 let csService = null;
 const wordMatchLimit = 0.45;
+const searchTypes = ["brands", "products", "shopName", "shopWarranty"];
 
 export let initialised = false;
 export let usingLocalData = false;
@@ -80,10 +81,15 @@ export function findWarranty(warranty) {
   return results;
 }
 
-export function findShop(shopName) {
-  const results = filterShops(shopName, "shopName");
+export function findShop(searchTerm) {
+  const shopDetails = ["shopName", "shopEmail", "shopPhone", "shopAddress", "shopNotes"];
+  let results = [];
+  shopDetails.forEach((shopDetail) => {
+    results = [...results, ...filterShops(searchTerm, shopDetail)];
+  });
+
   if (results.length > 0) {
-    onSearchEvent(shopName, "shopName");
+    onSearchEvent(searchTerm, "shopSearch");
   }
   return results;
 }
@@ -94,7 +100,9 @@ function filterShops(searchTerm, searchType) {
     results = allData.filter((shop) => {
       if (shop[searchType] !== undefined) {
         // Booolean confirmation of search term inclusion
-        return shop[searchType].toLowerCase().includes(searchTerm.toLowerCase());
+        const cleanTerm = searchTerm.replaceAll(" ", "");
+        const cleanShop = shop[searchType].replaceAll(" ", "");
+        return cleanShop.toLowerCase().includes(cleanTerm.toLowerCase());
       }
     });
   }
@@ -106,6 +114,7 @@ function filterShops(searchTerm, searchType) {
 }
 
 function tagShopMatches(shops, searchType) {
+  searchType = checkSearchType(searchType);
   return shops.map((shop) => {
     return {
       searchMatches: [searchType],
@@ -114,31 +123,47 @@ function tagShopMatches(shops, searchType) {
   });
 }
 
+function checkSearchType(searchType) {
+  const checkSearch = searchTypes.find((search) => search === searchType);
+  if (checkSearch === undefined && searchType !== "") {
+    searchType = "shopName";
+  }
+  return searchType;
+}
+
 export function filterWords(searchTerm, searchType) {
-  let results = [];
+  let results = {};
   allData.forEach((shop) => {
     const wordsList = [
       ...shop["brands"].split(", "),
       ...shop["parts"].split(", "),
       ...shop["shopWarranty"].split(", "),
+      ...shop["shopEmail"].split(", "),
+      ...shop["shopName"].split(", "),
+      ...shop["shopPhone"].split(", "),
     ];
     const compared = findWordsLikeSearch(searchTerm, wordsList);
-    if (compared.length > 0) {
-      results.push(...compared);
+    if (Object.entries(compared).length > 0) {
+      results = {
+        ...compared,
+        ...results,
+      };
     }
   });
-  results = generateButtons(new Set(results.map((result) => result.toLowerCase())));
-  return results.join(", ");
+  let altSearchTerms = Object.keys(results).sort((a, b) => results[a] < results[b]);
+  altSearchTerms = generateButtons(new Set(altSearchTerms.map((result) => result.toLowerCase())));
+  return altSearchTerms.join(", ");
 }
 
 function findWordsLikeSearch(searchTerm, shopLists) {
-  let results = [];
+  let matches = {};
   shopLists.forEach((word) => {
-    if (compareWords(searchTerm.toLowerCase(), word.toLowerCase()) > wordMatchLimit) {
-      results.push(word);
+    const matchValue = compareWords(searchTerm.toLowerCase(), word.toLowerCase());
+    if (matchValue > wordMatchLimit) {
+      matches[word] = matchValue;
     }
   });
-  return results;
+  return matches;
 }
 
 function compareWords(searchTerm, compareWord) {

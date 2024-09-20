@@ -122,11 +122,13 @@ function noResultsFound() {
   const alternates = filterWords(searchBar.searchValue, searchBar.searchType);
   const div = document.createElement("div");
   div.classList.add("no-result-row");
+  const gSearch = "https://www.google.com.au/search?hl=en&q=" + searchBar.searchValue;
+
   if (alternates.length > 0) {
     div.innerHTML = `
     <div class="alt-search-wrapper">
       <span class='alt-search-options'> Did you mean? ${alternates}</span>
-      <span class='no-results'>No results were found matching your search term.</span>
+      <span class='no-results'>Or try our <a href="${gSearch}" target="blank">Google search link</a>!</span>
     </div>
     `;
     const noResultSpan = div.querySelector(".alt-search-options");
@@ -137,7 +139,7 @@ function noResultsFound() {
       });
     });
   } else {
-    div.innerHTML = "<span class='no-results'> No results were found matching your search term. </span>";
+    div.innerHTML = `<span class='no-results'> No luck sorry... try our <a href="${gSearch}" target="blank">Google search link</a>!</span>`;
   }
   searchResultElement.append(div);
 }
