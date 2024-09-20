@@ -81,7 +81,7 @@ class UserAuthentication {
       if (debugOn()) {
         console.log("AS - Auth State Changed: Current user - ", this.user, ", New user - ", user);
       }
-      if (user !== null) {
+      if (user !== null || user !== "undefined") {
         this.user = user;
         if (debugOn()) {
           console.log("AS - ASC - User is: ", this.user);
@@ -123,6 +123,7 @@ class UserAuthentication {
       })
       .catch((error) => {
         console.error("AS - Anon Sign In Error: ", error);
+        this.user = { uid: "Failed Anon" };
       });
   }
 
