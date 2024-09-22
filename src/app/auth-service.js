@@ -79,9 +79,9 @@ class UserAuthentication {
     this.initUserAuth();
     this.auth.onAuthStateChanged((user) => {
       if (debugOn()) {
-        console.log("AS - Auth State Changed: Current user - ", this.user, ", New user - ", user);
+        console.log("AS - Auth State Changed:");
       }
-      if (user !== null || user !== "undefined") {
+      if (user !== null && user !== "undefined") {
         this.user = user;
         if (debugOn()) {
           console.log("AS - ASC - User is: ", this.user);
