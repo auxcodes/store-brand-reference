@@ -177,7 +177,6 @@ function failedSearchAlert(searchEvent) {
     <b>- </b> ${new Date(user.createdDate).toDateString()}, ${new Date(user.checkedDate).toDateString()} <br>
     <b>- </b> ${user.colo} <br>
     <b>- </b> ${user.loc} <br>
-    <b>- </b> ${user.colo} <br>
     <b>- </b> ${user.ip} <br>
     <b>- </b> ${user.uag} <br>
     `,
