@@ -8,7 +8,7 @@ import { onSearchEvent } from "./support.js";
 let allData = [];
 let csService = null;
 const wordMatchLimit = 0.45;
-const searchTypes = ["brands", "products", "shopName", "shopWarranty"];
+const searchTypes = ["brands", "parts", "shopName", "shopWarranty"];
 
 export let initialised = false;
 export let usingLocalData = false;
